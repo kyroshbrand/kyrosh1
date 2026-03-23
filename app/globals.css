@@ -9,7 +9,51 @@ body {
   background-color: #000000;
   color: #ffffff;
   overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 15% -5%,  rgba(119, 64, 217, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 45% at 85% 105%, rgba(211, 59, 215, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 70% 10%,  rgba(211, 59, 215, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 60% at 30% 90%,  rgba(119, 64, 217, 0.10) 0%, transparent 60%);
 }
+
+/* ── Grid line background ────────────────────────────────────────────────── */
+/* Use on a section wrapper — adds white grid lines + dual-color gradient glow */
+.bg-grid {
+  position: relative;
+}
+.bg-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  z-index: 0;
+}
+.bg-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 40%, rgba(119, 64, 217, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 80% 60%, rgba(211, 59, 215, 0.15) 0%, transparent 60%);
+  z-index: 0;
+}
+.bg-grid > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Tighter grid variant (hero / CTA use) */
+.bg-grid-tight::before {
+  background-size: 36px 36px;
+}
+
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {

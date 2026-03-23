@@ -1,43 +1,186 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useSpring, useAnimationFrame } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Section, SectionLabel, Button, GlowBlob } from "@/components/GlobalUI";
 import { PlayCircle, Camera, TrendingUp, Instagram, BookOpen, Handshake, Layout, ChevronDown } from "lucide-react";
 
-// Stat Counter Component
+// ── Stat Counter ──────────────────────────────────────────────────────────────
 function Stat({ number, suffix, label, desc }: any) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (isInView) {
-      let start = 0;
-      const end = parseInt(number);
-      if (start === end) return;
-      let timer = setInterval(() => {
-        start += Math.ceil(end / 20);
-        if (start >= end) {
-          setCount(end);
-          clearInterval(timer);
-        } else {
-          setCount(start);
-        }
-      }, 50);
-      return () => clearInterval(timer);
-    }
+    if (!isInView) return;
+    const end = parseInt(number);
+    let start = 0;
+    const duration = 1800;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      start = Math.round(eased * end);
+      setCount(start);
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }, [isInView, number]);
 
   return (
-    <div ref={ref} className="text-center p-6 border-r border-border last:border-0 border-b md:border-b-0 md:border-r border-border/50">
-      <div className="font-mono text-5xl font-bold text-primary mb-2">{count}{suffix}</div>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 24, scale: 0.92 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="text-center p-8 relative group border-r border-border/40 last:border-0"
+    >
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"
+        style={{ background: "radial-gradient(ellipse at center, rgba(119,64,217,0.08) 0%, transparent 70%)" }} />
+      <div className="font-mono text-6xl font-bold text-primary mb-2 tabular-nums">
+        {count}{suffix}
+      </div>
       <div className="font-syne font-semibold text-white text-lg mb-1">{label}</div>
       <div className="font-sans text-text_muted text-sm">{desc}</div>
+    </motion.div>
+  );
+}
+
+// ── "What We Do" service card ─────────────────────────────────────────────────
+const SERVICES_CARDS = [
+  { icon: Camera, title: "Video Production", desc: "Cinematic quality content for any budget. Scripted, shot, and edited in-house from concept to final cut.", color: "from-violet-500/20 via-fuchsia-500/10 to-transparent" },
+  { icon: TrendingUp, title: "Social Media", desc: "Full-service management: content strategy, captions, creative design, scheduling, and monthly reports.", color: "from-[#d33bd7]/15 to-transparent" },
+  { icon: Instagram, title: "Instagram Growth", desc: "Organic community building strategies that convert. No fake followers, no bots — just real audiences.", color: "from-fuchsia-600/20 via-[#d33bd7]/10 to-transparent" },
+  { icon: BookOpen, title: "School Marketing", desc: "Specialized for education brands. We build reputation and drive enrollment through authentic content.", color: "from-violet-400/20 to-[#d33bd7]/5" },
+  { icon: Handshake, title: "Brand Partnerships", desc: "Connect with audiences that care. We broker partnerships that feel genuine and drive real results.", color: "from-[#7740d9]/20 via-[#d33bd7]/10 to-transparent" },
+  { icon: Layout, title: "Content Strategy", desc: "Data-backed content calendars that keep you relevant, consistent, and top-of-mind.", color: "from-[#d33bd7]/15 via-purple-500/10 to-transparent" },
+];
+
+function ServiceCard({ item, index }: { item: typeof SERVICES_CARDS[0], index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className="relative bg-card rounded-2xl border border-border p-8 group hover:border-primary/50 hover:shadow-[0_8px_40px_rgba(119,64,217,0.12)] transition-all duration-400 overflow-hidden flex flex-col gap-4"
+    >
+      <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+      <div className="relative z-10">
+        <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+          <item.icon className="w-6 h-6 text-primary" />
+        </div>
+        <h3 className="font-syne text-xl font-bold mb-3 text-white">{item.title}</h3>
+        <p className="font-sans text-text_secondary text-sm leading-relaxed">{item.desc}</p>
+      </div>
+      <div className="relative z-10 mt-auto pt-2">
+        <span className="font-sans text-xs text-primary/60 group-hover:text-primary transition-colors duration-300 flex items-center gap-1.5">
+          Learn more <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
+// ── Testimonial Vertical Marquee ───────────────────────────────────────────────
+const TESTIMONIALS = [
+  { quote: "Kyrosh completely transformed how our school is seen online. Cinematic, professional, and enrollment inquiries went up significantly after the first campaign.", name: "School Management", co: "Diamond International School", init: "SM", grad: "from-violet-600 to-purple-800" },
+  { quote: "They understood our brand in the first meeting. The content felt premium — exactly who we wanted to speak to.", name: "Brand Team", co: "Reid & Premium", init: "BT", grad: "from-[#d33bd7] to-fuchsia-800" },
+  { quote: "What amazed us was how genuine their content felt. It wasn't just promotional — it felt like a real moment.", name: "Community Member", co: "Kyrosh Iftar Series", init: "CM", grad: "from-purple-500 to-[#d33bd7]" },
+  { quote: "The ROI from their Instagram strategy was clear within weeks. We're seeing organic reach we've never had before.", name: "Marketing Director", co: "Edu Partner", init: "MD", grad: "from-fuchsia-600 to-violet-800" },
+  { quote: "They brought creativity and discipline together. Every piece of content was on-brand and delivered on time.", name: "CEO", co: "Local Brand", init: "CE", grad: "from-[#7740d9] to-[#d33bd7]" },
+  { quote: "Working with Kyrosh felt collaborative, not transactional. They genuinely cared about our growth.", name: "Founder", co: "Startup Client", init: "FO", grad: "from-violet-400 to-fuchsia-700" },
+];
+
+function TestimonialCard({ t }: { t: typeof TESTIMONIALS[0] }) {
+  return (
+    <div className="bg-card border border-border rounded-2xl p-6 mb-4 relative overflow-hidden">
+      <div className="absolute top-3 right-4 text-5xl font-syne leading-none select-none" style={{ color: 'rgba(211,59,215,0.12)' }}>&ldquo;</div>
+      <p className="font-sans text-text_secondary text-sm leading-relaxed mb-5 relative z-10">"{t.quote}"</p>
+      <div className="flex items-center gap-3">
+        <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${t.grad} flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(119,64,217,0.3)]`}>
+          <span className="font-syne font-bold text-[10px] text-white select-none">{t.init}</span>
+        </div>
+        <div>
+          <p className="font-syne font-bold text-white text-sm leading-none mb-0.5">{t.name}</p>
+          <p className="font-sans text-xs text-primary/80">{t.co}</p>
+        </div>
+      </div>
     </div>
   );
 }
 
+function VerticalMarqueeColumn({ items, direction = "up", speed = 28, startFraction = 0 }: { items: typeof TESTIMONIALS; direction?: "up" | "down"; speed?: number; startFraction?: number }) {
+  const doubled = [...items, ...items];
+  const rafRef = useRef<number>(0);
+  const lastTimeRef = useRef<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemHeightRef = useRef(0);
+  const [offset, setOffset] = useState(0);
+  const initialised = useRef(false);
+
+  useEffect(() => {
+    // measure after mount
+    const measure = () => {
+      if (containerRef.current) {
+        const h = containerRef.current.scrollHeight / 2;
+        itemHeightRef.current = h;
+        if (!initialised.current) {
+          // start the down column mid-list so cards show immediately
+          setOffset(h * startFraction);
+          initialised.current = true;
+        }
+      }
+    };
+    measure();
+    // slight delay in case fonts haven't painted
+    const t = setTimeout(measure, 200);
+    return () => clearTimeout(t);
+  }, [startFraction]);
+
+  useEffect(() => {
+    lastTimeRef.current = performance.now();
+    const animate = (time: number) => {
+      const delta = (time - lastTimeRef.current) / 1000;
+      lastTimeRef.current = time;
+      setOffset(prev => {
+        const h = itemHeightRef.current;
+        if (!h) return prev;
+        let next = prev + (direction === "up" ? speed * delta : -speed * delta);
+        if (next >= h) next -= h;
+        if (next < 0) next += h;
+        return next;
+      });
+      rafRef.current = requestAnimationFrame(animate);
+    };
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [direction, speed]);
+
+  return (
+    <div className="relative overflow-hidden h-[520px]">
+      <div
+        ref={containerRef}
+        style={{ transform: `translateY(${direction === "up" ? -offset : offset}px)` }}
+      >
+        {doubled.map((t, i) => (
+          <TestimonialCard key={i} t={t} />
+        ))}
+      </div>
+      <div className="pointer-events-none absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background to-transparent z-10" />
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent z-10" />
+    </div>
+  );
+}
+
+// ── PAGE ──────────────────────────────────────────────────────────────────────
 export default function Home() {
+  const col1 = TESTIMONIALS.slice(0, 3).concat(TESTIMONIALS.slice(0, 3));
+  const col2 = TESTIMONIALS.slice(2, 5).concat(TESTIMONIALS.slice(2, 5));
+  const col3 = TESTIMONIALS.slice(3, 6).concat(TESTIMONIALS.slice(3, 6));
+
   return (
     <>
       {/* Hero Section */}
@@ -87,7 +230,7 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 py-4 border-t border-border bg-surface/50 backdrop-blur-md overflow-hidden flex whitespace-nowrap">
           <div className="animate-marquee font-syne font-semibold text-text_muted uppercase tracking-widest text-sm flex gap-12">
             {[...Array(4)].map((_, i) => (
-              <span key={i}>Diamond International School • Reid & Premium • Kyrosh Originals • </span>
+              <span key={i}>Diamond International School • Reid &amp; Premium • Kyrosh Originals • </span>
             ))}
           </div>
         </div>
@@ -111,48 +254,63 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Bento Grid Services */}
-      <Section className="bg-surface border-y border-border">
-        <div className="text-center mb-16">
-          <SectionLabel>What We Do</SectionLabel>
-          <h2 className="font-syne font-bold text-4xl md:text-5xl mb-6">Every Tool.<br/>One Team.</h2>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {/* Top Row Large */}
-          <div className="md:col-span-2 bg-card rounded-2xl p-8 border border-border hover:border-primary/50 hover:shadow-[0_8px_40px_rgba(119,64,217,0.12)] transition-all duration-300 group">
-            <Camera className="w-10 h-10 text-primary mb-6" />
-            <h3 className="font-syne text-2xl font-bold mb-3 text-white">Video Production</h3>
-            <p className="font-sans text-text_secondary">Cinematic quality content for any budget. Scripted, shot, edited in-house.</p>
-          </div>
-          <div className="md:col-span-1 bg-card rounded-2xl p-8 border border-border hover:border-primary/50 transition-all duration-300 group">
-            <TrendingUp className="w-10 h-10 text-primary mb-6" />
-            <h3 className="font-syne text-2xl font-bold mb-3 text-white">Social Media</h3>
-            <p className="font-sans text-text_secondary">Strategy, content, and management.</p>
-          </div>
-          
-          {/* Bottom Row */}
-          {[
-            { title: "Instagram Growth", icon: Instagram, desc: "Organic community building that converts." },
-            { title: "School Marketing", icon: BookOpen, desc: "Specialized for education brands." },
-            { title: "Brand Partnerships", icon: Handshake, desc: "Connect with audiences that care." },
-            { title: "Content Strategy", icon: Layout, desc: "Data-backed calendars keeping you relevant." }
-          ].map((item, i) => (
-            <div key={i} className="bg-card rounded-2xl p-8 border border-border hover:border-primary/50 hover:-translate-y-1 transition-all duration-300">
-              <item.icon className="w-8 h-8 text-primary mb-6" />
-              <h3 className="font-syne text-xl font-bold mb-2 text-white">{item.title}</h3>
-              <p className="font-sans text-sm text-text_secondary">{item.desc}</p>
+      {/* ── What We Do ── Creative scroll-reveal grid ──────────────────────── */}
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        {/* background gradient for this section */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(119,64,217,0.10) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(211,59,215,0.08) 0%, transparent 60%)" }} />
+        <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="flex flex-col md:flex-row md:items-end gap-6 mb-16"
+          >
+            <div className="flex-1">
+              <SectionLabel>What We Do</SectionLabel>
+              <h2 className="font-syne font-bold text-4xl md:text-6xl leading-none">
+                Every Tool.<br />
+                <span className="text-primary">One Team.</span>
+              </h2>
             </div>
-          ))}
-        </div>
-        <div className="flex justify-center">
-          <Button href="/services" variant="ghost">All Services</Button>
-        </div>
-      </Section>
+            <p className="font-sans text-text_secondary max-w-sm text-base leading-relaxed md:pb-2">
+              Six focused services, one agency that handles everything your brand needs to grow and connect.
+            </p>
+          </motion.div>
 
-      {/* Stats */}
-      <div className="bg-card border-y border-border">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0">
+          {/* 3-column masonry-feel grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Column 1 — full card + half card */}
+            <div className="flex flex-col gap-5">
+              <ServiceCard item={SERVICES_CARDS[0]} index={0} />
+              <ServiceCard item={SERVICES_CARDS[3]} index={3} />
+            </div>
+            {/* Column 2 — offset: half then full */}
+            <div className="flex flex-col gap-5 md:mt-12">
+              <ServiceCard item={SERVICES_CARDS[1]} index={1} />
+              <ServiceCard item={SERVICES_CARDS[4]} index={4} />
+            </div>
+            {/* Column 3 */}
+            <div className="flex flex-col gap-5 md:mt-6">
+              <ServiceCard item={SERVICES_CARDS[2]} index={2} />
+              <ServiceCard item={SERVICES_CARDS[5]} index={5} />
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="flex justify-center mt-12"
+          >
+            <Button href="/services" variant="ghost">All Services</Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Stats ── ──────────────────────────────────────────────────────── */}
+      <div className="relative border-y border-border overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 80% 100% at 30% 50%, rgba(119,64,217,0.07) 0%, transparent 60%), radial-gradient(ellipse 80% 100% at 70% 50%, rgba(211,59,215,0.06) 0%, transparent 60%)" }} />
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border/40 relative">
           <Stat number="50" suffix="+" label="Videos Produced" desc="For Diamond International alone" />
           <Stat number="3" suffix="+" label="Brand Clients" desc="And growing every month" />
           <Stat number="100" suffix="%" label="Community First" desc="Authentic, never hollow" />
@@ -194,31 +352,38 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Testimonials */}
-      <Section className="bg-surface border-y border-border">
-        <SectionLabel>Client Words</SectionLabel>
-        <h2 className="font-syne font-bold text-4xl md:text-5xl mb-16">What They Said.</h2>
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            { quote: "Kyrosh completely transformed how our school is seen online. Cinematic, professional, and enrollment inquiries went up.", name: "School Management", co: "Diamond International School" },
-            { quote: "They understood our brand in the first meeting. The content felt premium — exactly who we wanted to speak to.", name: "Brand Team", co: "Reid & Premium" },
-            { quote: "What amazed us was how genuine their content felt. It wasn't just promotional — it felt like a real moment.", name: "Community Member", co: "Kyrosh Iftar Series" }
-          ].map((t, i) => (
-            <motion.div 
-              key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
-              className="bg-card border-l-4 border-primary rounded-r-2xl p-8 relative"
-            >
-              <div className="absolute top-4 right-4 text-7xl font-syne text-primary/10">"</div>
-              <p className="font-sans text-text_secondary mb-8 relative z-10">"{t.quote}"</p>
-              <div>
-                <p className="font-syne font-bold text-white">{t.name}</p>
-                <p className="font-sans text-xs text-primary">{t.co}</p>
-              </div>
-            </motion.div>
-          ))}
+      {/* ── Testimonials — 3-col vertical infinite marquee ───────────────── */}
+      <section className="relative py-24 md:py-32 overflow-hidden border-t border-border">
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 60% 60% at 30% 40%, rgba(119,64,217,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 70% 60%, rgba(211,59,215,0.07) 0%, transparent 60%)" }} />
+        <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <SectionLabel>Client Words</SectionLabel>
+            <h2 className="font-syne font-bold text-4xl md:text-5xl">What They Said.</h2>
+          </motion.div>
+
+          {/* Desktop: 3-col marquee */}
+          <div className="hidden md:grid grid-cols-3 gap-6">
+            <VerticalMarqueeColumn items={TESTIMONIALS} direction="up" speed={30} startFraction={0} />
+            <VerticalMarqueeColumn items={[...TESTIMONIALS].reverse()} direction="down" speed={25} startFraction={0.5} />
+            <VerticalMarqueeColumn items={TESTIMONIALS} direction="up" speed={35} startFraction={0.25} />
+          </div>
+
+          {/* Mobile: stacked fade-in cards */}
+          <div className="md:hidden space-y-4">
+            {TESTIMONIALS.slice(0, 3).map((t, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+                <TestimonialCard t={t} />
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </Section>
+      </section>
 
       {/* CTA */}
       <section className="relative py-32 text-center overflow-hidden">
