@@ -184,7 +184,7 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {TEAM.map((member, i) => (
               <TeamCard key={member.name} member={member} index={i} />
             ))}

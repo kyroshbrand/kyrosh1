@@ -346,7 +346,7 @@ export default function Home() {
       </Section>
 
       {/* ── Video Showcase ─────────────────────────────────────────────────── */}
-      <section className="bg-grid py-24 md:py-32 border-y border-border">
+      <section className="bg-grid-subtle py-24 md:py-32 border-y border-border">
         <div className="max-w-[900px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
@@ -412,7 +412,7 @@ export default function Home() {
       </section>
 
       {/* ── Stats ── ──────────────────────────────────────────────────────── */}
-      <div className="bg-grid border-y border-border overflow-hidden">
+      <div className="bg-grid-subtle border-y border-border overflow-hidden">
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border/40 relative">
           <Stat number="50" suffix="+" label="Videos Produced" desc="For Diamond International alone" />
           <Stat number="3" suffix="+" label="Brand Clients" desc="And growing every month" />
@@ -456,7 +456,7 @@ export default function Home() {
       </Section>
 
       {/* ── Testimonials — 3-col vertical infinite marquee ───────────────── */}
-      <section className="bg-grid py-24 md:py-32 overflow-hidden border-t border-border">
+      <section className="bg-grid-subtle py-24 md:py-32 overflow-hidden border-t border-border">
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}

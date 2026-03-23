@@ -10,24 +10,28 @@ const SERVICES = [
     title: "Video Production",
     desc: "From concept to final cut. We handle scripting, filming, motion graphics, and editing — producing cinematic content that stops the scroll.",
     tags: ["Scripting", "Filming", "Editing", "Motion Graphics"],
+    img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80"
   },
   {
     num: "02", icon: TrendingUp,
     title: "Social Media Marketing",
     desc: "We build your social presence end-to-end. Content calendars, captions, creatives, scheduling, and monthly analytics reports.",
     tags: ["Content Calendar", "Analytics", "Scheduling"],
+    img: "https://images.unsplash.com/photo-1611162617213-5d8f2e9d0e0c?w=800&q=80"
   },
   {
     num: "03", icon: Instagram,
     title: "Instagram Growth",
     desc: "Organic strategies that build a real audience. No fake followers, no bots. Just consistent, authentic content that converts.",
     tags: ["Organic Growth", "Reels Strategy", "Community"],
+    img: "https://images.unsplash.com/photo-1611162616415-96820000a442?w=800&q=80"
   },
   {
     num: "04", icon: BookOpen,
     title: "School Marketing",
     desc: "Specialized digital marketing for schools. We create content that builds institutional reputation and drives enrollment inquiries.",
     tags: ["Enrollment Campaigns", "Culture Videos"],
+    img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80"
   },
 ];
 
@@ -83,12 +87,18 @@ function StickyServiceItem({ service, index, total }: { service: typeof SERVICES
               </div>
             </div>
             {/* Right visual */}
-            <div className="flex-1 md:max-w-[45%] min-h-[240px] md:min-h-[320px] bg-[#0a0a0f] relative overflow-hidden border-t md:border-t-0 md:border-l border-border/50">
+            <div className="flex-1 md:max-w-[45%] min-h-[300px] md:min-h-auto bg-[#0a0a0f] relative overflow-hidden border-t md:border-t-0 md:border-l border-border/50">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src={service.img} 
+                alt={service.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60"
+              />
               <div className="absolute inset-0 flex items-center justify-center">
-                <service.icon className="w-24 h-24 text-primary/10" />
+                <service.icon className="w-20 h-20 text-white/10" />
               </div>
               {/* gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           </div>
         </div>
