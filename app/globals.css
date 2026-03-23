@@ -6,14 +6,20 @@
 }
 
 body {
-  background-color: #000000;
+  background-color: #050008;
   color: #ffffff;
   overflow-x: hidden;
   background-image:
-    radial-gradient(ellipse 80% 50% at 15% -5%,  rgba(119, 64, 217, 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 45% at 85% 105%, rgba(211, 59, 215, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 70% 10%,  rgba(211, 59, 215, 0.10) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 60% at 30% 90%,  rgba(119, 64, 217, 0.10) 0%, transparent 60%);
+    /* grid lines — global, on every page */
+    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
+    /* colour gradients */
+    radial-gradient(ellipse 70% 60% at 10% 0%,   rgba(119, 64, 217, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(211, 59, 215, 0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 75% 5%,   rgba(211, 59, 215, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 25% 95%,  rgba(119, 64, 217, 0.20) 0%, transparent 55%);
+  background-size: 55px 55px, 55px 55px, auto, auto, auto, auto;
+  background-attachment: fixed;
 }
 
 /* ── Grid line background ────────────────────────────────────────────────── */
@@ -27,11 +33,9 @@ body {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
-  background-size: 60px 60px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    linear-gradient(rgba(255,255,255,0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.09) 1px, transparent 1px);
+  background-size: 55px 55px;
   z-index: 0;
 }
 .bg-grid::after {
@@ -40,8 +44,8 @@ body {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 70% 60% at 20% 40%, rgba(119, 64, 217, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 60% at 80% 60%, rgba(211, 59, 215, 0.15) 0%, transparent 60%);
+    radial-gradient(ellipse 90% 80% at 25% 40%, rgba(119, 64, 217, 0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 70% at 80% 65%, rgba(211, 59, 215, 0.38) 0%, transparent 65%);
   z-index: 0;
 }
 .bg-grid > * {

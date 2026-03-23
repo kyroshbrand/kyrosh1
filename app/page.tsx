@@ -1,6 +1,6 @@
 "use client";
-import { motion, useInView, useScroll, useTransform, useSpring, useAnimationFrame } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { Section, SectionLabel, Button, GlowBlob } from "@/components/GlobalUI";
 import { PlayCircle, Camera, TrendingUp, Instagram, BookOpen, Handshake, Layout, ChevronDown } from "lucide-react";
 
@@ -45,6 +45,113 @@ function Stat({ number, suffix, label, desc }: any) {
       <div className="font-syne font-semibold text-white text-lg mb-1">{label}</div>
       <div className="font-sans text-text_muted text-sm">{desc}</div>
     </motion.div>
+  );
+}
+
+// ── Video Player ───────────────────────────────────────────────────────────────
+function VideoPlayer({ src, poster }: { src?: string; poster?: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(true);
+  const [playing, setPlaying] = useState(true);
+  const [showFeedback, setShowFeedback] = useState<null | 'unmuted' | 'muted'>(null);
+
+  const handleClick = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (muted) {
+      // First click: unmute and play
+      v.muted = false;
+      v.loop = false;
+      v.play();
+      setMuted(false);
+      setPlaying(true);
+      setShowFeedback('unmuted');
+    } else {
+      // Toggle pause/play
+      if (v.paused) { v.play(); setPlaying(true); }
+      else { v.pause(); setPlaying(false); }
+    }
+    setTimeout(() => setShowFeedback(null), 1200);
+  }, [muted]);
+
+  return (
+    <div
+      onClick={handleClick}
+      className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 cursor-pointer group shadow-[0_0_60px_rgba(119,64,217,0.20)]"
+      style={{ background: '#070710' }}
+    >
+      {/* gradient frame glow */}
+      <div className="absolute inset-0 rounded-2xl pointer-events-none z-20"
+        style={{ boxShadow: 'inset 0 0 0 1px rgba(119,64,217,0.3), inset 0 0 0 1px rgba(211,59,215,0.15)' }} />
+
+      {/* video element */}
+      {src ? (
+        <video
+          ref={videoRef}
+          src={src}
+          poster={poster}
+          autoPlay muted loop playsInline
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        /* Placeholder when no src — animated gradient loop */
+        <div className="w-full h-full relative flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 animate-pulse"
+            style={{ background: 'linear-gradient(135deg, rgba(119,64,217,0.25) 0%, rgba(211,59,215,0.15) 50%, rgba(119,64,217,0.10) 100%)' }} />
+          <div className="absolute inset-0"
+            style={{
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+              backgroundSize: '40px 40px'
+            }} />
+          <div className="relative z-10 text-center select-none">
+            <div className="font-syne text-white/20 text-xs tracking-[0.3em] uppercase mb-4">Kyrosh Showreel</div>
+            <div className="font-syne text-white/10 text-[4rem] font-bold leading-none">2024</div>
+          </div>
+        </div>
+      )}
+
+      {/* overlay — dims on hover */}
+      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500 z-10" />
+
+      {/* centre play button (shown while muted/paused) */}
+      <motion.div
+        initial={false}
+        animate={{ opacity: muted || !playing ? 1 : 0, scale: muted || !playing ? 1 : 0.8 }}
+        transition={{ duration: 0.25 }}
+        className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+      >
+        <div className="w-16 h-16 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20"
+          style={{ background: 'rgba(119,64,217,0.35)' }}>
+          <svg viewBox="0 0 24 24" fill="white" className="w-6 h-6 ml-1">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </motion.div>
+
+      {/* Bottom bar — volume + label */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 px-5 py-4 flex items-center justify-between"
+        style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)' }}>
+        <span className="font-syne text-white/80 text-xs tracking-widest uppercase">
+          {muted ? 'Click to unmute' : playing ? 'Playing' : 'Paused'}
+        </span>
+        <div className="flex items-center gap-2">
+          <div className={`w-2 h-2 rounded-full ${muted ? 'bg-primary/60' : 'bg-secondary'} animate-pulse`} />
+          <span className="font-mono text-white/50 text-[10px]">{muted ? 'MUTED' : 'LIVE'}</span>
+        </div>
+      </div>
+
+      {/* Click feedback toast */}
+      <motion.div
+        key={showFeedback}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: showFeedback ? 1 : 0, y: showFeedback ? 0 : 10 }}
+        className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 pointer-events-none"
+      >
+        <span className="font-sans text-xs text-white">
+          {showFeedback === 'unmuted' ? '🔊 Sound on' : '🔇 Muted'}
+        </span>
+      </motion.div>
+    </div>
   );
 }
 
@@ -148,9 +255,9 @@ function VerticalMarqueeColumn({ items, direction = "up", speed = 28, startFract
       setOffset(prev => {
         const h = itemHeightRef.current;
         if (!h) return prev;
-        let next = prev + (direction === "up" ? speed * delta : -speed * delta);
+        // always increment; both directions use the same counter
+        let next = prev + speed * delta;
         if (next >= h) next -= h;
-        if (next < 0) next += h;
         return next;
       });
       rafRef.current = requestAnimationFrame(animate);
@@ -163,7 +270,7 @@ function VerticalMarqueeColumn({ items, direction = "up", speed = 28, startFract
     <div className="relative overflow-hidden h-[520px]">
       <div
         ref={containerRef}
-        style={{ transform: `translateY(${direction === "up" ? -offset : offset}px)` }}
+        style={{ transform: `translateY(${direction === "up" ? -offset : (offset - itemHeightRef.current)}px)` }}
       >
         {doubled.map((t, i) => (
           <TestimonialCard key={i} t={t} />
@@ -177,9 +284,6 @@ function VerticalMarqueeColumn({ items, direction = "up", speed = 28, startFract
 
 // ── PAGE ──────────────────────────────────────────────────────────────────────
 export default function Home() {
-  const col1 = TESTIMONIALS.slice(0, 3).concat(TESTIMONIALS.slice(0, 3));
-  const col2 = TESTIMONIALS.slice(2, 5).concat(TESTIMONIALS.slice(2, 5));
-  const col3 = TESTIMONIALS.slice(3, 6).concat(TESTIMONIALS.slice(3, 6));
 
   return (
     <>
@@ -226,14 +330,6 @@ export default function Home() {
           <ChevronDown className="w-8 h-8 text-white" />
         </motion.div>
 
-        {/* Marquee */}
-        <div className="absolute bottom-0 left-0 right-0 py-4 border-t border-border bg-surface/50 backdrop-blur-md overflow-hidden flex whitespace-nowrap">
-          <div className="animate-marquee font-syne font-semibold text-text_muted uppercase tracking-widest text-sm flex gap-12">
-            {[...Array(4)].map((_, i) => (
-              <span key={i}>Diamond International School • Reid &amp; Premium • Kyrosh Originals • </span>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Origin Story */}
@@ -246,19 +342,28 @@ export default function Home() {
             <p>Businesses noticed what we were doing — the authenticity, the reach, the emotion. That's when Kyrosh became a digital marketing agency. Today we carry that same community spirit into every campaign.</p>
           </div>
         </div>
-        <div className="relative aspect-square md:aspect-[4/5] rounded-2xl border border-primary/20 bg-card overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute inset-0 flex items-center justify-center bg-[#111]">
-            <PlayCircle className="w-16 h-16 text-primary/50 group-hover:text-primary transition-colors duration-300" />
-          </div>
-        </div>
+        <VideoPlayer />
       </Section>
+
+      {/* ── Video Showcase ─────────────────────────────────────────────────── */}
+      <section className="bg-grid py-24 md:py-32 border-y border-border">
+        <div className="max-w-[900px] mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.7 }}
+          >
+            <div className="text-center mb-10">
+              <SectionLabel>Our Showreel</SectionLabel>
+              <h2 className="font-syne font-bold text-4xl md:text-5xl mb-4">See the Work<br/><span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(90deg, #7740d9, #d33bd7)' }}>In Motion.</span></h2>
+              <p className="font-sans text-text_secondary max-w-lg mx-auto">Autoplay preview — click to unmute and watch with sound.</p>
+            </div>
+            <VideoPlayer />
+          </motion.div>
+        </div>
+      </section>
 
       {/* ── What We Do ── Creative scroll-reveal grid ──────────────────────── */}
       <section className="relative py-24 md:py-32 overflow-hidden">
-        {/* background gradient for this section */}
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(119,64,217,0.10) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(211,59,215,0.08) 0%, transparent 60%)" }} />
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
@@ -307,9 +412,7 @@ export default function Home() {
       </section>
 
       {/* ── Stats ── ──────────────────────────────────────────────────────── */}
-      <div className="relative border-y border-border overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 80% 100% at 30% 50%, rgba(119,64,217,0.07) 0%, transparent 60%), radial-gradient(ellipse 80% 100% at 70% 50%, rgba(211,59,215,0.06) 0%, transparent 60%)" }} />
+      <div className="bg-grid border-y border-border overflow-hidden">
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border/40 relative">
           <Stat number="50" suffix="+" label="Videos Produced" desc="For Diamond International alone" />
           <Stat number="3" suffix="+" label="Brand Clients" desc="And growing every month" />
@@ -353,9 +456,7 @@ export default function Home() {
       </Section>
 
       {/* ── Testimonials — 3-col vertical infinite marquee ───────────────── */}
-      <section className="relative py-24 md:py-32 overflow-hidden border-t border-border">
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse 60% 60% at 30% 40%, rgba(119,64,217,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 70% 60%, rgba(211,59,215,0.07) 0%, transparent 60%)" }} />
+      <section className="bg-grid py-24 md:py-32 overflow-hidden border-t border-border">
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
