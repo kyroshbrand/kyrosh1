@@ -34,7 +34,7 @@ export function MemoryGame() {
 
   // Initialize Game
   const initializeGame = () => {
-    const cardValues = [...Array(10).keys()].map(n => n + 1);
+    const cardValues = [...Array(8).keys()].map(n => n + 1);
     const deck = [...cardValues, ...cardValues]
       .sort(() => Math.random() - 0.5)
       .map((value) => ({
@@ -158,27 +158,26 @@ export function MemoryGame() {
   return (
     <div className="w-full flex flex-col items-center gap-8">
       {/* Top Bar */}
-      <div className="w-full flex items-center justify-between mb-2">
+      <div className="w-full flex items-center justify-between bg-card border border-primary/20 rounded-2xl p-4 shadow-xl">
         <button 
           onClick={() => router.back()} 
           className="flex items-center gap-2 text-text_secondary hover:text-white transition-colors cursor-pointer"
+          title="Go Back"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-sans font-medium">Back</span>
         </button>
-      </div>
 
-      <div className="w-full flex items-center justify-between bg-card border border-primary/20 rounded-2xl p-4 shadow-xl">
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2 text-text_secondary">
-            <Clock className="w-5 h-5 text-primary" />
-            <span className="font-mono text-xl w-20">{(timeMs / 1000).toFixed(2)}s</span>
+        <div className="flex items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-1 sm:gap-2 text-text_secondary">
+            <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+            <span className="font-mono text-sm sm:text-xl w-14 sm:w-20 text-right">{(timeMs / 1000).toFixed(2)}s</span>
           </div>
-          <div className="flex items-center gap-2 text-text_secondary">
-            <Target className="w-5 h-5 text-secondary" />
-            <span className="font-mono text-xl">{moves} moves</span>
+          <div className="flex items-center gap-1 sm:gap-2 text-text_secondary">
+            <Target className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
+            <span className="font-mono text-sm sm:text-xl">{moves} moves</span>
           </div>
         </div>
+
         <button 
           onClick={initializeGame}
           className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
@@ -189,7 +188,7 @@ export function MemoryGame() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-4 md:grid-cols-5 gap-3 sm:gap-4 perspective-1000 w-full max-w-3xl">
+      <div className="grid grid-cols-4 gap-3 sm:gap-4 perspective-1000 w-full max-w-lg mx-auto">
         {cards.map(card => (
           <motion.div
             key={card.id}
