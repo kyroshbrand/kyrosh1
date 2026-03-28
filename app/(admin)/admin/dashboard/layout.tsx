@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { createBrowserClient } from "@/lib/supabase";
+import { HiHome, HiChatBubbleLeftRight, HiTrophy } from "react-icons/hi2";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -35,9 +36,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }, [fetchUnread]);
 
   const navLinks = [
-    { href: "/admin/dashboard", label: "🏠 Home" },
-    { href: "/admin/dashboard/messages", label: `💬 Messages`, badge: unreadCount },
-    { href: "/admin/dashboard/toppers", label: "🏆 Game Toppers" },
+    { href: "/admin/dashboard", label: "Home", icon: HiHome },
+    { href: "/admin/dashboard/messages", label: `Messages`, badge: unreadCount, icon: HiChatBubbleLeftRight },
+    { href: "/admin/dashboard/toppers", label: "Game Toppers", icon: HiTrophy },
   ];
 
   return (
@@ -56,12 +57,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 href={link.href} 
                 className={`adm-tab ${pathname === link.href ? "active" : ""}`}
               >
+                <link.icon className="mr-2" />
                 {link.label}
                 {link.badge && link.badge > 0 && <span className="adm-tab-badge">{link.badge}</span>}
               </Link>
             ))}
           </div>
-          <button className="adm-logout" onClick={() => { window.location.href = "/admin"; }}>
+          <button 
+            className="adm-logout" 
+            onClick={async () => { 
+              await fetch("/api/admin/logout", { method: "POST" });
+              window.location.href = "/admin"; 
+            }}
+          >
             Logout
           </button>
         </nav>

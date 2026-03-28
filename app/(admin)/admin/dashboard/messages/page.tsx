@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { createBrowserClient } from "@/lib/supabase";
+import { HiDevicePhoneMobile, HiUser, HiChatBubbleLeftRight, HiArrowRightOnRectangle, HiArrowsRightLeft } from "react-icons/hi2";
 
 interface Session {
   id: string;
