@@ -328,7 +328,7 @@ export default function ChatBot() {
       setMessages([{
         id: "welcome",
         role: "bot",
-        content: `Hi ${user?.name}! [ICON:HandRaised] Welcome to Kyrosh. How can I help you today?`,
+        content: `Thanks for your message, ${user?.name || "there"}! I'm not sure about that specific question. Let me connect you with our team — reach out on WhatsApp and we'll help you right away!`,
         is_seen: false,
         created_at: new Date().toISOString(),
       }]);

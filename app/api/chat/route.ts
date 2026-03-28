@@ -21,7 +21,7 @@ function buildResponse(
   userName: string
 ): string {
   if (!matches || matches.length === 0) {
-    return `Thanks for your message, ${userName}! I'm not sure about that specific question. Let me connect you with our team — reach out on WhatsApp and we'll help you right away! [ICON:Rocket]`;
+    return `Thanks for your message, ${userName}! I'm not sure about that specific question. Let me connect you with our team — reach out on WhatsApp and we'll help you right away!`;
   }
 
   const best = matches[0];
