@@ -1,6 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { connectDB } from "@/lib/mongodb";
-import { ChatSession } from "@/models/ChatSession";
+import { createServerClient } from "@/lib/supabase";
 import { SYSTEM_PROMPT } from "@/lib/system-prompt";
 import { getFAQContext } from "@/lib/faq-data";
 
@@ -15,83 +14,127 @@ export async function POST(request: Request) {
       return Response.json({ error: "Message is required" }, { status: 400 });
     }
 
-    if (!process.env.GEMINI_API_KEY) {
-      return Response.json({ error: "Gemini API key not configured" }, { status: 500 });
-    }
+    const supabase = createServerClient();
+    let currentSessionId = sessionId;
 
-    // Connect to MongoDB
-    await connectDB();
-
-    // Find or create chat session
-    let session;
-    if (sessionId) {
-      session = await ChatSession.findById(sessionId);
-    }
-
-    if (!session) {
+    // Create session if new
+    if (!currentSessionId) {
       if (!userName || !userPhone) {
         return Response.json(
           { error: "Name and phone are required to start a chat" },
           { status: 400 }
         );
       }
-      session = new ChatSession({
-        name: userName.trim(),
-        phone: userPhone.trim(),
-        messages: [],
+
+      const { data: session, error: sessErr } = await supabase
+        .from("chat_sessions")
+        .insert({ name: userName.trim(), phone: userPhone.trim() })
+        .select("id")
+        .single();
+
+      if (sessErr || !session) {
+        console.error("Session create error:", sessErr);
+        return Response.json({ error: "Failed to create session" }, { status: 500 });
+      }
+      currentSessionId = session.id;
+    }
+
+    // Insert user message
+    await supabase.from("messages").insert({
+      session_id: currentSessionId,
+      role: "user",
+      content: message.trim(),
+      is_seen: false,
+    });
+
+    // Check if human is connected
+    const { data: sessionData } = await supabase
+      .from("chat_sessions")
+      .select("is_human_connected, name, phone")
+      .eq("id", currentSessionId)
+      .single();
+
+    if (sessionData?.is_human_connected) {
+      // Human takeover — don't call AI, wait for admin reply
+      return Response.json({
+        reply: null,
+        sessionId: currentSessionId,
+        awaitingHuman: true,
       });
     }
 
-    // Add user message to session
-    session.messages.push({
-      role: "user",
-      content: message.trim(),
-      timestamp: new Date(),
-    });
+    // Not connected to human — call Gemini AI
+    if (!process.env.GEMINI_API_KEY) {
+      return Response.json({ error: "Gemini API key not configured" }, { status: 500 });
+    }
 
-    // Build conversation history for Gemini
-    const conversationHistory = session.messages.map((msg: { role: string; content: string }) => ({
+    // Get conversation history
+    const { data: history } = await supabase
+      .from("messages")
+      .select("role, content")
+      .eq("session_id", currentSessionId)
+      .order("created_at", { ascending: true });
+
+    const conversationHistory = (history || []).map((msg) => ({
       role: msg.role === "user" ? "user" : "model",
       parts: [{ text: msg.content }],
     }));
 
-    // Build the full system instruction
     const faqContext = getFAQContext();
     const fullSystemInstruction = `${SYSTEM_PROMPT}
 
-The user's name is: ${session.name}
-The user's phone number is: ${session.phone}
+The user's name is: ${sessionData?.name || userName}
+The user's phone number is: ${sessionData?.phone || userPhone}
 
 ${faqContext}
 
 Remember: Keep responses short (2-4 sentences max), friendly, and always guide toward WhatsApp or a phone call.`;
 
-    // Call Gemini API
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
-      systemInstruction: fullSystemInstruction,
-    });
+    // Try models with fallback
+    const models = ["gemini-2.0-flash-lite", "gemini-2.0-flash"];
+    let botReply = "";
 
-    const chat = model.startChat({
-      history: conversationHistory.slice(0, -1), // all except last (the current msg)
-    });
+    for (const modelName of models) {
+      try {
+        const model = genAI.getGenerativeModel({
+          model: modelName,
+          systemInstruction: fullSystemInstruction,
+        });
 
-    const result = await chat.sendMessage(message.trim());
-    const botReply = result.response.text();
+        const chat = model.startChat({
+          history: conversationHistory.slice(0, -1),
+        });
 
-    // Add bot response to session
-    session.messages.push({
+        const result = await chat.sendMessage(message.trim());
+        botReply = result.response.text();
+        break;
+      } catch (modelError: unknown) {
+        const err = modelError as { status?: number };
+        if (err?.status === 429 && modelName !== models[models.length - 1]) {
+          console.warn(`Rate limited on ${modelName}, trying next...`);
+          continue;
+        }
+        throw modelError;
+      }
+    }
+
+    // Save bot reply
+    await supabase.from("messages").insert({
+      session_id: currentSessionId,
       role: "bot",
       content: botReply,
-      timestamp: new Date(),
+      is_seen: false,
     });
 
-    // Save session
-    await session.save();
+    // Update session timestamp
+    await supabase
+      .from("chat_sessions")
+      .update({ updated_at: new Date().toISOString() })
+      .eq("id", currentSessionId);
 
     return Response.json({
       reply: botReply,
-      sessionId: session._id.toString(),
+      sessionId: currentSessionId,
     });
   } catch (error) {
     console.error("Chat API error:", error);

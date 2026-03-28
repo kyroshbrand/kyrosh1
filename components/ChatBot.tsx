@@ -1,10 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect, FormEvent } from "react";
+import { useState, useRef, useEffect, FormEvent, useCallback } from "react";
+import { createBrowserClient } from "@/lib/supabase";
 
 interface Message {
-  role: "user" | "bot";
+  id: string;
+  role: "user" | "bot" | "admin";
   content: string;
+  is_seen: boolean;
+  created_at: string;
 }
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "91XXXXXXXXXX";
@@ -17,6 +21,7 @@ export default function ChatBot() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const [isHumanConnected, setIsHumanConnected] = useState(false);
 
   // Lead form state
   const [showForm, setShowForm] = useState(true);
@@ -26,6 +31,10 @@ export default function ChatBot() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const supabaseRef = useRef<ReturnType<typeof createBrowserClient> | null>(null);
+  if (!supabaseRef.current && typeof window !== "undefined") {
+    supabaseRef.current = createBrowserClient();
+  }
 
   // Auto-scroll to latest message
   useEffect(() => {
@@ -38,6 +47,87 @@ export default function ChatBot() {
       setTimeout(() => inputRef.current?.focus(), 350);
     }
   }, [isOpen, showForm]);
+
+  // Subscribe to Supabase Realtime for messages and session updates
+  useEffect(() => {
+    if (!sessionId) return;
+
+    const supabase = supabaseRef.current;
+    if (!supabase) return;
+
+    // Subscribe to new messages
+    const msgChannel = supabase
+      .channel(`messages:${sessionId}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "messages",
+          filter: `session_id=eq.${sessionId}`,
+        },
+        (payload) => {
+          const newMsg = payload.new as Message;
+          setMessages((prev) => {
+            // Avoid duplicates
+            if (prev.some((m) => m.id === newMsg.id)) return prev;
+            return [...prev, newMsg];
+          });
+        }
+      )
+      .on(
+        "postgres_changes",
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "messages",
+          filter: `session_id=eq.${sessionId}`,
+        },
+        (payload) => {
+          const updated = payload.new as Message;
+          setMessages((prev) =>
+            prev.map((m) => (m.id === updated.id ? { ...m, is_seen: updated.is_seen } : m))
+          );
+        }
+      )
+      .subscribe();
+
+    // Subscribe to session changes (human connect/disconnect)
+    const sessChannel = supabase
+      .channel(`session:${sessionId}`)
+      .on(
+        "postgres_changes",
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "chat_sessions",
+          filter: `id=eq.${sessionId}`,
+        },
+        (payload) => {
+          const updated = payload.new as { is_human_connected: boolean };
+          setIsHumanConnected(updated.is_human_connected);
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(msgChannel);
+      supabase.removeChannel(sessChannel);
+    };
+  }, [sessionId]);
+
+  // Load existing messages when session starts
+  const loadMessages = useCallback(async (sessId: string) => {
+    const supabase = supabaseRef.current;
+    if (!supabase) return;
+    const { data } = await supabase
+      .from("messages")
+      .select("*")
+      .eq("session_id", sessId)
+      .order("created_at", { ascending: true });
+
+    if (data) setMessages(data);
+  }, []);
 
   const handleStartChat = async (e: FormEvent) => {
     e.preventDefault();
@@ -55,9 +145,8 @@ export default function ChatBot() {
 
     setFormError("");
     setShowForm(false);
-
-    // Send initial greeting
     setIsLoading(true);
+
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
@@ -70,18 +159,19 @@ export default function ChatBot() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to connect");
+      if (!res.ok) throw new Error(data.error);
 
       setSessionId(data.sessionId);
-      setMessages([
-        { role: "user", content: `Hi, my name is ${name}. I'm interested in learning about Kyrosh services.` },
-        { role: "bot", content: data.reply },
-      ]);
+      // Load all messages from DB (includes the ones just created)
+      await loadMessages(data.sessionId);
     } catch {
       setMessages([
         {
+          id: "welcome",
           role: "bot",
           content: `Hi ${name}! 👋 Welcome to Kyrosh. How can I help you grow your business today?`,
+          is_seen: false,
+          created_at: new Date().toISOString(),
         },
       ]);
     } finally {
@@ -95,7 +185,6 @@ export default function ChatBot() {
 
     setInput("");
     setError("");
-    setMessages((prev) => [...prev, { role: "user", content: trimmed }]);
     setIsLoading(true);
 
     try {
@@ -111,10 +200,14 @@ export default function ChatBot() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong");
+      if (!res.ok) throw new Error(data.error);
 
-      if (data.sessionId && !sessionId) setSessionId(data.sessionId);
-      setMessages((prev) => [...prev, { role: "bot", content: data.reply }]);
+      if (data.sessionId && !sessionId) {
+        setSessionId(data.sessionId);
+      }
+
+      // Messages will arrive via Realtime subscription
+      // But if not human-connected and reply exists, it's already in DB
     } catch {
       setError("Couldn't get a response. Please try again.");
     } finally {
@@ -127,6 +220,26 @@ export default function ChatBot() {
       e.preventDefault();
       handleSend();
     }
+  };
+
+  const renderTick = (msg: Message) => {
+    if (msg.role !== "user") return null;
+    return (
+      <span className="chatbot-tick">
+        {msg.is_seen ? (
+          // Double tick (seen)
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+            <path d="M1 5l3 3L11 1" stroke="#7740d9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M5 5l3 3L15 1" stroke="#7740d9" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        ) : (
+          // Single tick (sent)
+          <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+            <path d="M1 5l3 3L11 1" stroke="#888" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )}
+      </span>
+    );
   };
 
   return (
@@ -157,9 +270,19 @@ export default function ChatBot() {
           <div className="chatbot-header-avatar">K</div>
           <div className="chatbot-header-info">
             <h3>Kyrosh AI</h3>
-            <p><span className="online-dot" />Online — Ready to help</p>
+            <p>
+              <span className="online-dot" />
+              {isHumanConnected ? "Connected to support agent" : "Online — Ready to help"}
+            </p>
           </div>
         </div>
+
+        {/* Human connected banner */}
+        {isHumanConnected && !showForm && (
+          <div className="chatbot-human-banner">
+            🧑‍💼 You&apos;re now chatting with a support agent
+          </div>
+        )}
 
         {showForm ? (
           /* ── Lead Capture Form ──────────────────────────── */
@@ -191,9 +314,11 @@ export default function ChatBot() {
           <>
             {/* ── Messages ───────────────────────────────── */}
             <div className="chatbot-messages" id="chatbot-messages">
-              {messages.map((msg, i) => (
-                <div key={i} className={`chatbot-msg ${msg.role}`}>
+              {messages.map((msg) => (
+                <div key={msg.id} className={`chatbot-msg ${msg.role === "user" ? "user" : "bot"}`}>
+                  {msg.role === "admin" && <span className="chatbot-admin-badge">Support</span>}
                   {msg.content}
+                  {renderTick(msg)}
                 </div>
               ))}
               {isLoading && (
@@ -236,7 +361,7 @@ export default function ChatBot() {
               <input
                 ref={inputRef}
                 type="text"
-                placeholder="Type your message..."
+                placeholder={isHumanConnected ? "Message support agent..." : "Type your message..."}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
