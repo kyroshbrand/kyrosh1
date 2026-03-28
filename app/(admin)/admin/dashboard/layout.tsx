@@ -29,7 +29,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const supabase = createBrowserClient();
     const channel = supabase
       .channel("admin-layout-rt")
-      .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages" }, () => fetchUnread())
+      .on("postgres_changes", { event: "*", schema: "public", table: "messages" }, () => fetchUnread())
       .subscribe();
       
     return () => { supabase.removeChannel(channel); };

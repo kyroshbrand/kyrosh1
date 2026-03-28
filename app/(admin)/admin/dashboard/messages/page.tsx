@@ -34,6 +34,8 @@ export default function AdminMessages() {
   const [sending, setSending] = useState(false);
   const [loading, setLoading] = useState(true);
   const [mobileShowChat, setMobileShowChat] = useState(false);
+  const [filter, setFilter] = useState<"all" | "unread" | "ai" | "human">("all");
+  const selectedIdRef = useRef<string | null>(null);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const supabaseRef = useRef<ReturnType<typeof createBrowserClient> | null>(null);
@@ -51,6 +53,15 @@ export default function AdminMessages() {
 
   useEffect(() => { fetchSessions(); }, [fetchSessions]);
 
+  const markAsSeen = useCallback(async (id: string) => {
+    await fetch("/api/admin/mark-seen", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" }, 
+      body: JSON.stringify({ sessionId: id }) 
+    });
+    fetchSessions();
+  }, [fetchSessions]);
+
   useEffect(() => {
     const supabase = supabaseRef.current;
     if (!supabase) return;
@@ -66,28 +77,35 @@ export default function AdminMessages() {
           }
           return prev;
         });
-        fetchSessions();
+        
+        // Auto mark seen if it's the current session
+        if (m.session_id === selectedIdRef.current && m.role === "user") {
+          markAsSeen(m.session_id);
+        } else {
+          fetchSessions();
+        }
       })
       .on("postgres_changes", { event: "UPDATE", schema: "public", table: "messages" }, (payload) => {
         const u = payload.new as Message;
         setMessages((prev) => prev.map((x) => (x.id === u.id ? { ...x, is_seen: u.is_seen } : x)));
+        fetchSessions();
       })
       .subscribe();
     return () => { supabase.removeChannel(channel); };
-  }, [fetchSessions]);
+  }, [fetchSessions, markAsSeen]);
 
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
 
   const selectSession = useCallback(async (id: string) => {
     setSelectedId(id);
+    selectedIdRef.current = id;
     setMobileShowChat(true);
     const supabase = supabaseRef.current;
     if (!supabase) return;
     const { data } = await supabase.from("messages").select("*").eq("session_id", id).order("created_at", { ascending: true });
     if (data) setMessages(data);
-    await fetch("/api/admin/mark-seen", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sessionId: id }) });
-    fetchSessions();
-  }, [fetchSessions]);
+    markAsSeen(id);
+  }, [markAsSeen]);
 
   const handleReply = async () => {
     if (!reply.trim() || !selectedId || sending) return;
@@ -118,21 +136,48 @@ export default function AdminMessages() {
     return new Date(d).toLocaleDateString();
   };
 
+  const filteredSessions = sessions.filter((s) => {
+    if (filter === "unread") return s.unreadCount > 0;
+    if (filter === "ai") return !s.is_human_connected;
+    if (filter === "human") return s.is_human_connected;
+    return true;
+  });
+
   return (
     <div className="adm-messages">
+      <style>{`
+        .adm-filters { display: flex; gap: 8px; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.03); overflow-x: auto; scrollbar-width: none; }
+        .adm-filters::-webkit-scrollbar { display: none; }
+        .adm-pill { 
+          padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(119,64,217,0.15); 
+          background: rgba(119,64,217,0.05); color: #888; font-size: 11px; font-weight: 700; 
+          white-space: nowrap; transition: all 0.2s; cursor: pointer;
+        }
+        .adm-pill:hover { background: rgba(119,64,217,0.1); color: #ccc; }
+        .adm-pill.active { background: #7740d9; color: #fff; border-color: #7740d9; box-shadow: 0 4px 12px rgba(119,64,217,0.25); }
+      `}</style>
       {/* Sidebar */}
       <div className={`adm-sidebar ${mobileShowChat ? "adm-hide-mobile" : ""}`}>
         <div className="adm-sidebar-header">
-          <h3>All Chats</h3>
-          <span className="adm-count">{sessions.length}</span>
+          <h3>Chat Sessions</h3>
+          <span className="adm-count">{filteredSessions.length}</span>
         </div>
+        
+        <div className="adm-filters">
+          {(["all", "unread", "ai", "human"] as const).map((f) => (
+            <button key={f} className={`adm-pill ${filter === f ? "active" : ""}`} onClick={() => setFilter(f)}>
+              {f.charAt(0).toUpperCase() + f.slice(1)}
+            </button>
+          ))}
+        </div>
+
         <div className="adm-session-list">
           {loading ? (
             <p className="adm-empty">Loading...</p>
-          ) : sessions.length === 0 ? (
-            <p className="adm-empty">No chats yet</p>
+          ) : filteredSessions.length === 0 ? (
+            <p className="adm-empty">No {filter !== "all" ? filter : ""} chats found</p>
           ) : (
-            sessions.map((sess) => (
+            filteredSessions.map((sess) => (
               <button key={sess.id} className={`adm-sess ${selectedId === sess.id ? "active" : ""}`} onClick={() => selectSession(sess.id)}>
                 <div className="adm-sess-avatar">{sess.name.charAt(0).toUpperCase()}</div>
                 <div className="adm-sess-info">
