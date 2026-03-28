@@ -6,7 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import { 
   HiHandRaised, HiRocketLaunch, HiKey, HiUser, HiSun, 
   HiFaceSmile, HiChartBar, HiSwatch, HiCodeBracket, HiDevicePhoneMobile,
-  HiArrowLeft, HiArrowSmallRight 
+  HiArrowLeft, HiArrowSmallRight, HiXMark 
 } from "react-icons/hi2";
 
 interface Message {
@@ -481,6 +481,9 @@ export default function ChatBot() {
               {isHumanConnected ? "Connected to support agent" : "Online — Ready to help"}
             </p>
           </div>
+          <button className="chatbot-close-btn" onClick={handleToggle} aria-label="Close chat">
+            <HiXMark className="w-6 h-6" />
+          </button>
         </div>
 
         {isHumanConnected && screen === "chat" && (
