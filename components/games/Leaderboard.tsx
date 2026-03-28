@@ -77,16 +77,17 @@ export function Leaderboard() {
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
       {/* Filters Container */}
-      <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 mb-12 p-2 bg-[#0a0a0a]/50 backdrop-blur-md rounded-2xl border border-primary/20 shadow-xl">
-        <div className="flex w-full md:w-auto overflow-x-auto hide-scrollbar gap-1 p-1 bg-background rounded-xl shrink-0">
+      <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 mb-12 p-3 bg-card border border-primary/20 rounded-full shadow-xl">
+        {/* Time Filters */}
+        <div className="flex w-full md:w-auto overflow-x-auto hide-scrollbar gap-2 px-2 shrink-0">
           {(["day", "week", "month", "all"] as TimeFilter[]).map((f) => (
             <button
               key={f}
               onClick={() => setTimeFilter(f)}
-              className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+              className={`px-6 py-2 rounded-full text-sm font-semibold tracking-wide transition-all whitespace-nowrap ${
                 timeFilter === f 
-                  ? "bg-primary text-white shadow-[0_0_15px_rgba(var(--primary-rgb),0.3)]" 
-                  : "text-text_secondary hover:text-white hover:bg-white/5"
+                  ? "bg-primary text-white shadow-[0_0_15px_rgba(var(--primary-rgb),0.4)]" 
+                  : "bg-surface border border-border text-text_muted hover:text-white hover:border-primary/50"
               }`}
             >
               {f === "all" ? "All Time" : f.charAt(0).toUpperCase() + f.slice(1)}
@@ -94,15 +95,16 @@ export function Leaderboard() {
           ))}
         </div>
 
+        {/* Category Filters */}
         <div className="flex w-full md:w-auto overflow-x-auto hide-scrollbar gap-2 px-2 shrink-0">
           {(["all", "memory", "math", "train", "word"] as CategoryFilter[]).map((c) => (
             <button
               key={c}
-              onClick={() => setCategoryFilter(c)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide uppercase transition-all whitespace-nowrap border ${
+              onClick={() => setCategoryFilter(c as CategoryFilter)}
+              className={`px-5 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all whitespace-nowrap ${
                 categoryFilter === c 
-                  ? "bg-secondary/10 border-secondary text-secondary" 
-                  : "bg-surface border-border text-text_muted hover:text-text_secondary"
+                  ? "bg-secondary/15 border border-secondary text-secondary shadow-[0_0_15px_rgba(var(--secondary-rgb),0.2)]" 
+                  : "bg-surface border border-border text-text_muted hover:text-white hover:border-secondary/50"
               }`}
             >
               {c}

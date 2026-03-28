@@ -16,7 +16,7 @@ interface Card {
 }
 
 export function MemoryGame() {
-  const { user } = useAuth();
+  const { user, openAuthModal } = useAuth();
   const router = useRouter();
   const supabase = createBrowserClient();
 
@@ -55,12 +55,10 @@ export function MemoryGame() {
   };
 
   useEffect(() => {
-    if (!user) {
-      router.push("/contact"); // Assuming login is handled via contact or a general catch-all for unauthorized users. Or we can just prompt.
-    } else {
+    if (user) {
       initializeGame();
     }
-  }, [user, router]);
+  }, [user]);
 
   // Timer
   useEffect(() => {
@@ -141,7 +139,12 @@ export function MemoryGame() {
       <div className="text-center space-y-4 py-20">
         <h2 className="text-2xl font-bold text-white">Login Required</h2>
         <p className="text-text_secondary">You must be logged in to play.</p>
-        <Button href="/contact" variant="primary">Login / Sign Up</Button>
+        <button 
+          onClick={openAuthModal} 
+          className="inline-block bg-primary text-white font-sans font-medium px-8 py-3 rounded-full hover:scale-105 transition-all shadow-lg hover:shadow-primary/25"
+        >
+          Login / Sign Up
+        </button>
       </div>
     );
   }

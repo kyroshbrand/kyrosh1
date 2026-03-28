@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { AuthModal } from "@/components/AuthModal";
 
 interface User {
   id: string;
@@ -13,6 +14,9 @@ interface AuthContextType {
   refreshUser: () => Promise<void>;
   setUser: (user: User | null) => void;
   isLoading: boolean;
+  isAuthModalOpen: boolean;
+  openAuthModal: () => void;
+  closeAuthModal: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,6 +24,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const refreshUser = useCallback(async () => {
     try {
@@ -41,9 +46,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     refreshUser();
   }, [refreshUser]);
 
+  const openAuthModal = useCallback(() => setIsAuthModalOpen(true), []);
+  const closeAuthModal = useCallback(() => setIsAuthModalOpen(false), []);
+
   return (
-    <AuthContext.Provider value={{ user, refreshUser, setUser, isLoading }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      refreshUser, 
+      setUser, 
+      isLoading,
+      isAuthModalOpen,
+      openAuthModal,
+      closeAuthModal
+    }}>
       {children}
+      <AuthModal />
     </AuthContext.Provider>
   );
 }
