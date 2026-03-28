@@ -51,7 +51,7 @@ export default function GamesPage() {
                 </div>
                 
                 <p className="text-text_secondary mb-6 max-w-xl leading-relaxed text-sm md:text-base">
-                  Test your cognitive limits in this fast-paced card matching experience. Uncover pairs, race against the clock, and minimize your total moves to climb to the top of the leaderboard!
+                  Match all pairs to win! Your score increases the faster you finish and the fewer moves you make.
                 </p>
 
                 {/* Info tags */}
