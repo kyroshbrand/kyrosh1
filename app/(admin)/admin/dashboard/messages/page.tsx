@@ -170,9 +170,15 @@ export default function AdminMessages() {
                 <p className="adm-chat-phone flex items-center gap-1"><HiDevicePhoneMobile className="opacity-50" /> {selected.phone}</p>
               </div>
               <div style={{ flex: 1 }} />
-              <button className={`adm-human-btn flex items-center gap-2 ${selected.is_human_connected ? "active" : ""}`} onClick={toggleHuman}>
-                {selected.is_human_connected ? <><HiArrowRightOnRectangle /> Disconnect</> : <><HiArrowsRightLeft /> Connect</>}
-              </button>
+              {!selected.is_human_connected ? (
+                <button className="adm-human-btn flex items-center gap-2" onClick={toggleHuman}>
+                  <HiArrowsRightLeft /> Connect
+                </button>
+              ) : (
+                <span className="adm-human-btn active flex items-center gap-2">
+                  <HiUser className="w-4 h-4" /> Human Connected
+                </span>
+              )}
             </div>
 
             {selected.is_human_connected && (

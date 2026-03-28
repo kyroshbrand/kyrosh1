@@ -6,6 +6,7 @@ import {
   PlayCircle, Camera, TrendingUp, Instagram, BookOpen, Handshake, Layout, ChevronDown, 
   Palette, Video, Smartphone, Search, Megaphone, Code
 } from "lucide-react";
+import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
 
 // ── Stat Counter ──────────────────────────────────────────────────────────────
 function Stat({ number, suffix, label, desc }: any) {
@@ -150,8 +151,8 @@ function VideoPlayer({ src, poster }: { src?: string; poster?: string }) {
         animate={{ opacity: showFeedback ? 1 : 0, y: showFeedback ? 0 : 10 }}
         className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-black/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 pointer-events-none"
       >
-        <span className="font-sans text-xs text-white">
-          {showFeedback === 'unmuted' ? '🔊 Sound on' : '🔇 Muted'}
+        <span className="font-sans text-xs text-white flex items-center gap-2">
+          {showFeedback === 'unmuted' ? <><HiSpeakerWave className="w-3 h-3" /> Sound on</> : <><HiSpeakerXMark className="w-3 h-3" /> Muted</>}
         </span>
       </motion.div>
     </div>

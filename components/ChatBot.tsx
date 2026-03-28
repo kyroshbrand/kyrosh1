@@ -3,7 +3,10 @@
 import { useState, useRef, useEffect, FormEvent, useCallback } from "react";
 import { createBrowserClient } from "@/lib/supabase";
 import { useAuth } from "@/context/AuthContext";
-import { HiHandRaised, HiRocketLaunch, HiKey, HiUser } from "react-icons/hi2";
+import { 
+  HiHandRaised, HiRocketLaunch, HiKey, HiUser, HiSun, 
+  HiFaceSmile, HiChartBar, HiSwatch, HiCodeBracket, HiDevicePhoneMobile 
+} from "react-icons/hi2";
 
 interface Message {
   id: string;
@@ -301,7 +304,7 @@ export default function ChatBot() {
       setMessages([{
         id: "welcome",
         role: "bot",
-        content: `Hi ${user?.name}! <HiHandRaised className="inline-block ml-1" /> Welcome to Kyrosh. How can I help you today?`,
+        content: `Hi ${user?.name}! [ICON:HandRaised] Welcome to Kyrosh. How can I help you today?`,
         is_seen: false,
         created_at: new Date().toISOString(),
       }]);
@@ -329,6 +332,22 @@ export default function ChatBot() {
       setError("Couldn't get a response. Please try again.");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleConnectHuman = async () => {
+    if (!sessionId) return;
+    try {
+      const res = await fetch("/api/admin/toggle-human", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId, connect: true }),
+      });
+      if (res.ok) {
+        setIsHumanConnected(true);
+      }
+    } catch (err) {
+      console.error("Failed to connect human:", err);
     }
   };
 
@@ -364,6 +383,29 @@ export default function ChatBot() {
     const hours = Math.floor(mins / 60);
     if (hours < 24) return `${hours}h ago`;
     return d.toLocaleDateString();
+  };
+
+  const renderMessageContent = (content: string) => {
+    const parts = content.split(/(\[ICON:[^\]]+\])/);
+    return parts.map((part, i) => {
+      if (part.startsWith("[ICON:") && part.endsWith("]")) {
+        const iconName = part.slice(6, -1);
+        const iconProps = { className: "inline-block mx-1 text-primary", key: i };
+        switch (iconName) {
+          case "HandRaised": return <HiHandRaised {...iconProps} />;
+          case "Rocket": return <HiRocketLaunch {...iconProps} />;
+          case "Key": return <HiKey {...iconProps} />;
+          case "Sun": return <HiSun {...iconProps} />;
+          case "FaceSmile": return <HiFaceSmile {...iconProps} />;
+          case "Palette": return <HiSwatch {...iconProps} />;
+          case "Code": return <HiCodeBracket {...iconProps} />;
+          case "ChartBar": return <HiChartBar {...iconProps} />;
+          case "Phone": return <HiDevicePhoneMobile {...iconProps} />;
+          default: return null;
+        }
+      }
+      return <span key={i}>{part}</span>;
+    });
   };
 
   const handleToggle = () => {
@@ -527,11 +569,20 @@ export default function ChatBot() {
             <div className="chatbot-messages" id="chatbot-messages">
               {messages.map((msg) => (
                 <div key={msg.id} className={`chatbot-msg ${msg.role === "user" ? "user" : "bot"}`}>
-                  {msg.role === "admin" && <span className="chatbot-admin-badge">Support</span>}
-                  {msg.content}
+                  {msg.role === "admin" && (
+                    <div className="flex flex-col">
+                      <span className="chatbot-admin-badge">Support</span>
+                    </div>
+                  )}
+                  <div className="chatbot-msg-text">{renderMessageContent(msg.content)}</div>
                   {renderTick(msg)}
                 </div>
               ))}
+              {!isHumanConnected && messages.length > 3 && (
+                <button className="chatbot-human-request-btn" onClick={handleConnectHuman}>
+                  🤝 Connect with a human
+                </button>
+              )}
               {isLoading && (
                 <div className="chatbot-typing"><span /><span /><span /></div>
               )}

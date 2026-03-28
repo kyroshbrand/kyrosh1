@@ -21,7 +21,7 @@ function buildResponse(
   userName: string
 ): string {
   if (!matches || matches.length === 0) {
-    return `Thanks for your message, ${userName}! I'm not sure about that specific question. Let me connect you with our team — reach out on WhatsApp and we'll help you right away! 🚀`;
+    return `Thanks for your message, ${userName}! I'm not sure about that specific question. Let me connect you with our team — reach out on WhatsApp and we'll help you right away! [ICON:Rocket]`;
   }
 
   const best = matches[0];
@@ -34,7 +34,7 @@ function buildResponse(
     return best.answer;
   } else {
     // Low confidence — suggest related
-    return `${best.answer}\n\nWant to know more? WhatsApp us and we'll give you all the details! 📱`;
+    return `${best.answer}\n\nWant to know more? WhatsApp us and we'll give you all the details! [ICON:Phone]`;
   }
 }
 
