@@ -188,7 +188,7 @@ export function MemoryGame() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-4 gap-3 sm:gap-4 perspective-1000 w-full max-w-lg mx-auto">
+      <div className="grid grid-cols-4 md:grid-cols-8 gap-3 sm:gap-4 perspective-1000 w-full max-w-md md:max-w-4xl mx-auto px-2">
         {cards.map(card => (
           <motion.div
             key={card.id}
@@ -232,40 +232,60 @@ export function MemoryGame() {
         ))}
       </div>
 
-      {/* Game Over State */}
+      {/* Game Over State Modal */}
       <AnimatePresence>
         {isFinished && (
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="w-full max-w-md bg-gradient-to-b from-card to-background border border-primary/30 p-8 rounded-3xl shadow-2xl flex flex-col items-center text-center gap-6 mt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4"
           >
-            <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2">
-              <Trophy className="w-8 h-8" />
-            </div>
-            <div>
-              <h2 className="text-3xl font-syne font-bold text-white mb-2">Level Cleared!</h2>
-              <p className="text-text_secondary">You matched all pairs perfectly.</p>
-            </div>
-            
-            <div className="flex gap-8 justify-center w-full">
-              <div className="flex flex-col items-center">
-                <span className="text-xs text-text_muted uppercase tracking-wider font-bold">Time</span>
-                <span className="text-2xl font-mono text-primary font-bold">{(timeMs / 1000).toFixed(2)}s</span>
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="w-full max-w-md bg-gradient-to-b from-card to-background border border-primary/30 p-8 rounded-3xl shadow-[0_0_50px_rgba(var(--primary-rgb),0.2)] flex flex-col items-center text-center gap-6 relative"
+            >
+              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-2 shadow-[0_0_30px_rgba(var(--primary-rgb),0.4)]">
+                <Trophy className="w-8 h-8" />
               </div>
-              <div className="flex flex-col items-center">
-                <span className="text-xs text-text_muted uppercase tracking-wider font-bold">Moves</span>
-                <span className="text-2xl font-mono text-secondary font-bold">{moves}</span>
+              
+              <div>
+                <h2 className="text-3xl font-syne font-bold text-white mb-2">Congratulations!</h2>
+                <p className="text-text_secondary">You matched all pairs perfectly.</p>
               </div>
-              <div className="flex flex-col items-center">
-                <span className="text-xs text-text_muted uppercase tracking-wider font-bold">Score</span>
-                <span className="text-2xl font-mono text-emerald-400 font-bold">{finalScore}</span>
+              
+              <div className="flex gap-6 sm:gap-8 justify-center w-full my-2 bg-surface p-4 rounded-2xl border border-white/5">
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] sm:text-xs text-text_muted uppercase tracking-wider font-bold">Time</span>
+                  <span className="text-xl sm:text-2xl font-mono text-primary font-bold">{(timeMs / 1000).toFixed(2)}s</span>
+                </div>
+                <div className="w-px bg-border"></div>
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] sm:text-xs text-text_muted uppercase tracking-wider font-bold">Moves</span>
+                  <span className="text-xl sm:text-2xl font-mono text-secondary font-bold">{moves}</span>
+                </div>
+                <div className="w-px bg-border"></div>
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] sm:text-xs text-text_muted uppercase tracking-wider font-bold">Score</span>
+                  <span className="text-xl sm:text-2xl font-mono text-emerald-400 font-bold">{finalScore}</span>
+                </div>
               </div>
-            </div>
 
-            <Button onClick={initializeGame} variant="primary" className="w-full mt-4">
-              Play Again
-            </Button>
+              <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
+                <Button onClick={initializeGame} variant="primary" className="w-full py-3">
+                  Play Again
+                </Button>
+                <Button 
+                  onClick={() => router.push('/games')} 
+                  variant="outline" 
+                  className="w-full py-3 border border-white/10 hover:bg-white/5 text-white"
+                >
+                  Leaderboard
+                </Button>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

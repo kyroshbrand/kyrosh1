@@ -6,7 +6,6 @@ import { createBrowserClient } from "@/lib/supabase";
 import { Trophy, Clock, Target, Medal } from "lucide-react";
 
 type TimeFilter = "all" | "day" | "week" | "month";
-type CategoryFilter = "all" | "memory" | "math" | "train" | "word";
 
 interface GameRecord {
   id: string;
@@ -23,7 +22,6 @@ interface GameRecord {
 
 export function Leaderboard() {
   const [timeFilter, setTimeFilter] = useState<TimeFilter>("all");
-  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("memory");
   const [leaderboard, setLeaderboard] = useState<GameRecord[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -31,7 +29,7 @@ export function Leaderboard() {
 
   useEffect(() => {
     fetchLeaderboard();
-  }, [timeFilter, categoryFilter]);
+  }, [timeFilter]);
 
   const fetchLeaderboard = async () => {
     if (!supabase) return;
@@ -45,10 +43,8 @@ export function Leaderboard() {
         .order("time_taken", { ascending: true })
         .limit(50);
 
-      // Filtering by mode
-      if (categoryFilter !== "all") {
-        query = query.eq("mode", categoryFilter);
-      }
+      // Default to memory game mode since it's the only one
+      query = query.eq("mode", "memory");
 
       // Filtering by time
       if (timeFilter !== "all") {
@@ -76,10 +72,18 @@ export function Leaderboard() {
 
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col items-center">
-      {/* Filters Container */}
-      <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 mb-12 p-3 bg-card border border-primary/20 rounded-full shadow-xl">
+      {/* Header & Filters Container */}
+      <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 mb-12 p-4 bg-card border border-primary/20 rounded-2xl md:rounded-full shadow-xl">
+        {/* Heading */}
+        <div className="flex items-center gap-3 px-4 md:px-6">
+          <Trophy className="w-6 h-6 text-yellow-400" />
+          <h2 className="text-xl md:text-2xl font-syne font-bold text-white tracking-wide">
+            Leaderboard
+          </h2>
+        </div>
+
         {/* Time Filters */}
-        <div className="flex w-full md:w-auto overflow-x-auto hide-scrollbar gap-2 px-2 shrink-0">
+        <div className="flex w-full md:w-auto overflow-x-auto hide-scrollbar gap-2 px-2 shrink-0 pb-2 md:pb-0">
           {(["day", "week", "month", "all"] as TimeFilter[]).map((f) => (
             <button
               key={f}
@@ -91,23 +95,6 @@ export function Leaderboard() {
               }`}
             >
               {f === "all" ? "All Time" : f.charAt(0).toUpperCase() + f.slice(1)}
-            </button>
-          ))}
-        </div>
-
-        {/* Category Filters */}
-        <div className="flex w-full md:w-auto overflow-x-auto hide-scrollbar gap-2 px-2 shrink-0">
-          {(["all", "memory", "math", "train", "word"] as CategoryFilter[]).map((c) => (
-            <button
-              key={c}
-              onClick={() => setCategoryFilter(c as CategoryFilter)}
-              className={`px-5 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all whitespace-nowrap ${
-                categoryFilter === c 
-                  ? "bg-secondary/15 border border-secondary text-secondary shadow-[0_0_15px_rgba(var(--secondary-rgb),0.2)]" 
-                  : "bg-surface border border-border text-text_muted hover:text-white hover:border-secondary/50"
-              }`}
-            >
-              {c}
             </button>
           ))}
         </div>
