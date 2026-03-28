@@ -6,6 +6,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, PlayCircle } from "lucide-react";
 
+export function MainWrapper({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  return (
+    <main className={`min-h-screen ${isHome ? "" : "pt-24"}`}>
+      {children}
+    </main>
+  );
+}
+
 // --- CUSTOM CURSOR ---
 export function Cursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });

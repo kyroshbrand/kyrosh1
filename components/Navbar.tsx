@@ -18,14 +18,25 @@ export function Navbar() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [isOpen, setIsOpen] = useState(false);
+  const isHome = pathname === "/";
   
   const width = useTransform(scrollY, [0, 100], ["100%", "90%"]);
   const y = useTransform(scrollY, [0, 100], [0, 10]);
+  
+  // Scroll-to-reveal logic for homepage
+  const opacity = useTransform(scrollY, [300, 500], [isHome ? 0 : 1, 1]);
+  const pointerEvents = useTransform(scrollY, [300, 500], [isHome ? "none" as const : "auto" as const, "auto" as const]);
+  const homeY = useTransform(scrollY, [300, 500], [-20, 10]);
 
   return (
     <>
       <motion.nav 
-        style={{ width, y }}
+        style={{ 
+          width, 
+          y: isHome ? homeY : y,
+          opacity,
+          pointerEvents
+        }}
         className="fixed top-6 left-0 right-0 mx-auto max-w-[680px] z-50 px-4"
       >
         <div className="bg-[#0a0a0a]/75 backdrop-blur-[20px] saturate-[180%] border border-primary/20 rounded-full px-7 py-3 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all">

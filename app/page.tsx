@@ -331,8 +331,39 @@ export default function Home() {
         </motion.div>
 
       </section>
+      
+      {/* ── Testimonials — 3-col vertical infinite marquee ───────────────── */}
+      <section className="bg-grid-subtle py-24 md:py-32 overflow-hidden border-t border-border">
+        <div className="max-w-[1200px] mx-auto px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <SectionLabel>Client Words</SectionLabel>
+            <h2 className="font-syne font-bold text-4xl md:text-5xl">What They Said.</h2>
+          </motion.div>
 
-      {/* Origin Story */}
+          {/* Desktop: 3-col marquee */}
+          <div className="hidden md:grid grid-cols-3 gap-6">
+            <VerticalMarqueeColumn items={TESTIMONIALS} direction="up" speed={30} startFraction={0} />
+            <VerticalMarqueeColumn items={[...TESTIMONIALS].reverse()} direction="down" speed={25} startFraction={0.5} />
+            <VerticalMarqueeColumn items={TESTIMONIALS} direction="up" speed={35} startFraction={0.25} />
+          </div>
+
+          {/* Mobile: stacked fade-in cards */}
+          <div className="md:hidden space-y-4">
+            {TESTIMONIALS.slice(0, 3).map((t, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+                <TestimonialCard t={t} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Origin Story (Commented out)
       <Section className="grid md:grid-cols-2 gap-16 items-center">
         <div>
           <SectionLabel>Our Story</SectionLabel>
@@ -344,6 +375,7 @@ export default function Home() {
         </div>
         <VideoPlayer />
       </Section>
+      */}
 
       {/* ── Video Showcase ─────────────────────────────────────────────────── */}
       <section className="bg-grid-subtle py-24 md:py-32 border-y border-border">
@@ -454,37 +486,6 @@ export default function Home() {
           <Button href="/work" variant="primary">View All Work</Button>
         </div>
       </Section>
-
-      {/* ── Testimonials — 3-col vertical infinite marquee ───────────────── */}
-      <section className="bg-grid-subtle py-24 md:py-32 overflow-hidden border-t border-border">
-        <div className="max-w-[1200px] mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <SectionLabel>Client Words</SectionLabel>
-            <h2 className="font-syne font-bold text-4xl md:text-5xl">What They Said.</h2>
-          </motion.div>
-
-          {/* Desktop: 3-col marquee */}
-          <div className="hidden md:grid grid-cols-3 gap-6">
-            <VerticalMarqueeColumn items={TESTIMONIALS} direction="up" speed={30} startFraction={0} />
-            <VerticalMarqueeColumn items={[...TESTIMONIALS].reverse()} direction="down" speed={25} startFraction={0.5} />
-            <VerticalMarqueeColumn items={TESTIMONIALS} direction="up" speed={35} startFraction={0.25} />
-          </div>
-
-          {/* Mobile: stacked fade-in cards */}
-          <div className="md:hidden space-y-4">
-            {TESTIMONIALS.slice(0, 3).map((t, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-                <TestimonialCard t={t} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="relative py-32 text-center overflow-hidden">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Cursor, Grain } from "@/components/GlobalUI";
+import { Cursor, Grain, MainWrapper } from "@/components/GlobalUI";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Grain />
         <Cursor />
         <Navbar />
-        <main className="min-h-screen pt-24">{children}</main>
+        <MainWrapper>{children}</MainWrapper>
         <Footer />
       </body>
     </html>
