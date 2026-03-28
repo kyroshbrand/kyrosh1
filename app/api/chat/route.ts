@@ -2,33 +2,60 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createServerClient } from "@/lib/supabase";
 import { SYSTEM_PROMPT } from "@/lib/system-prompt";
 import { getFAQContext } from "@/lib/faq-data";
+import { cookies } from "next/headers";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+
+// Get current user from cookie
+async function getCurrentUser() {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("user_token")?.value;
+    if (!token) return null;
+    const decoded = JSON.parse(Buffer.from(token, "base64").toString("utf-8"));
+    return decoded.userId || null;
+  } catch {
+    return null;
+  }
+}
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { message, sessionId, userName, userPhone } = body;
+    const { message, sessionId } = body;
 
     if (!message || typeof message !== "string" || !message.trim()) {
       return Response.json({ error: "Message is required" }, { status: 400 });
     }
 
     const supabase = createServerClient();
+    const userId = await getCurrentUser();
     let currentSessionId = sessionId;
 
     // Create session if new
     if (!currentSessionId) {
-      if (!userName || !userPhone) {
-        return Response.json(
-          { error: "Name and phone are required to start a chat" },
-          { status: 400 }
-        );
+      if (!userId) {
+        return Response.json({ error: "Please log in to start a chat" }, { status: 401 });
+      }
+
+      // Get user info
+      const { data: user } = await supabase
+        .from("users")
+        .select("name, phone")
+        .eq("id", userId)
+        .single();
+
+      if (!user) {
+        return Response.json({ error: "User not found" }, { status: 404 });
       }
 
       const { data: session, error: sessErr } = await supabase
         .from("chat_sessions")
-        .insert({ name: userName.trim(), phone: userPhone.trim() })
+        .insert({
+          user_id: userId,
+          name: user.name,
+          phone: user.phone,
+        })
         .select("id")
         .single();
 
@@ -55,7 +82,6 @@ export async function POST(request: Request) {
       .single();
 
     if (sessionData?.is_human_connected) {
-      // Human takeover — don't call AI, wait for admin reply
       return Response.json({
         reply: null,
         sessionId: currentSessionId,
@@ -63,12 +89,11 @@ export async function POST(request: Request) {
       });
     }
 
-    // Not connected to human — call Gemini AI
+    // Call Gemini AI
     if (!process.env.GEMINI_API_KEY) {
       return Response.json({ error: "Gemini API key not configured" }, { status: 500 });
     }
 
-    // Get conversation history
     const { data: history } = await supabase
       .from("messages")
       .select("role, content")
@@ -83,14 +108,13 @@ export async function POST(request: Request) {
     const faqContext = getFAQContext();
     const fullSystemInstruction = `${SYSTEM_PROMPT}
 
-The user's name is: ${sessionData?.name || userName}
-The user's phone number is: ${sessionData?.phone || userPhone}
+The user's name is: ${sessionData?.name || "User"}
+The user's phone number is: ${sessionData?.phone || ""}
 
 ${faqContext}
 
 Remember: Keep responses short (2-4 sentences max), friendly, and always guide toward WhatsApp or a phone call.`;
 
-    // Try models with fallback
     const models = ["gemini-2.0-flash-lite", "gemini-2.0-flash"];
     let botReply = "";
 
@@ -100,25 +124,21 @@ Remember: Keep responses short (2-4 sentences max), friendly, and always guide t
           model: modelName,
           systemInstruction: fullSystemInstruction,
         });
-
         const chat = model.startChat({
           history: conversationHistory.slice(0, -1),
         });
-
         const result = await chat.sendMessage(message.trim());
         botReply = result.response.text();
         break;
       } catch (modelError: unknown) {
         const err = modelError as { status?: number };
         if (err?.status === 429 && modelName !== models[models.length - 1]) {
-          console.warn(`Rate limited on ${modelName}, trying next...`);
           continue;
         }
         throw modelError;
       }
     }
 
-    // Save bot reply
     await supabase.from("messages").insert({
       session_id: currentSessionId,
       role: "bot",
@@ -126,21 +146,14 @@ Remember: Keep responses short (2-4 sentences max), friendly, and always guide t
       is_seen: false,
     });
 
-    // Update session timestamp
     await supabase
       .from("chat_sessions")
       .update({ updated_at: new Date().toISOString() })
       .eq("id", currentSessionId);
 
-    return Response.json({
-      reply: botReply,
-      sessionId: currentSessionId,
-    });
+    return Response.json({ reply: botReply, sessionId: currentSessionId });
   } catch (error) {
     console.error("Chat API error:", error);
-    return Response.json(
-      { error: "Something went wrong. Please try again." },
-      { status: 500 }
-    );
+    return Response.json({ error: "Something went wrong. Please try again." }, { status: 500 });
   }
 }
