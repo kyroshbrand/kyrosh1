@@ -15,6 +15,8 @@ export default function AdminHome() {
   const [loading, setLoading] = useState(true);
   const [seeding, setSeeding] = useState(false);
   const [seedResult, setSeedResult] = useState("");
+  const [seedingGames, setSeedingGames] = useState(false);
+  const [seedGamesResult, setSeedGamesResult] = useState("");
 
   const fetchSessions = useCallback(async () => {
     try {
@@ -46,6 +48,17 @@ export default function AdminHome() {
     } catch { setSeedResult("error"); } finally { setSeeding(false); }
   };
 
+  const seedGames = async () => {
+    setSeedingGames(true);
+    setSeedGamesResult("");
+    try {
+      const res = await fetch("/api/admin/seed-games", { method: "POST" });
+      const data = await res.json();
+      if (res.ok) setSeedGamesResult("success");
+      else setSeedGamesResult("error");
+    } catch { setSeedGamesResult("error"); } finally { setSeedingGames(false); }
+  };
+
   const renderSeedResult = () => {
     if (!seedResult) return null;
     if (seedResult === "success") return (
@@ -56,6 +69,20 @@ export default function AdminHome() {
     return (
       <p className="adm-seed-result flex items-center gap-2 text-red-500">
         <HiXCircle /> Failed to seed FAQs
+      </p>
+    );
+  };
+
+  const renderSeedGamesResult = () => {
+    if (!seedGamesResult) return null;
+    if (seedGamesResult === "success") return (
+      <p className="adm-seed-result flex items-center gap-2 text-green-500">
+        <HiCheckCircle /> Game records seeded successfully
+      </p>
+    );
+    return (
+      <p className="adm-seed-result flex items-center gap-2 text-red-500">
+        <HiXCircle /> Failed to seed game records
       </p>
     );
   };
@@ -80,17 +107,32 @@ export default function AdminHome() {
         </div>
       </div>
 
-      <div className="adm-section">
-        <h2>Knowledge Base</h2>
-        <p className="adm-section-desc">Feed the chatbot FAQ data so it can answer visitor questions automatically.</p>
-        <button className="adm-feed-btn flex items-center justify-center gap-2" onClick={seedFaqs} disabled={seeding}>
-          {seeding ? (
-            <><HiArrowPath className="animate-spin" /> Seeding...</>
-          ) : (
-            <><HiLightBulb /> Feed FAQs to Chatbot</>
-          )}
-        </button>
-        {renderSeedResult()}
+      <div className="flex flex-col md:flex-row gap-6">
+        <div className="adm-section flex-1">
+          <h2>Knowledge Base</h2>
+          <p className="adm-section-desc">Feed the chatbot FAQ data so it can answer visitor questions automatically.</p>
+          <button className="adm-feed-btn flex items-center justify-center gap-2" onClick={seedFaqs} disabled={seeding}>
+            {seeding ? (
+              <><HiArrowPath className="animate-spin" /> Seeding...</>
+            ) : (
+              <><HiLightBulb /> Feed FAQs to Chatbot</>
+            )}
+          </button>
+          {renderSeedResult()}
+        </div>
+
+        <div className="adm-section flex-1">
+          <h2>Memory Game</h2>
+          <p className="adm-section-desc">Seed the leaderboard with dummy game records and dummy users for testing.</p>
+          <button className="adm-feed-btn flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700" onClick={seedGames} disabled={seedingGames}>
+            {seedingGames ? (
+              <><HiArrowPath className="animate-spin" /> Seeding...</>
+            ) : (
+              <><HiCheckCircle className="text-white" /> Seed Game Records</>
+            )}
+          </button>
+          {renderSeedGamesResult()}
+        </div>
       </div>
     </div>
   );

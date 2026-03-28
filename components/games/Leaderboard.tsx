@@ -109,7 +109,7 @@ export function Leaderboard() {
           No records found for these filters.
         </div>
       ) : (
-        <div className="w-full flex flex-col lg:flex-row items-center lg:items-end gap-12 lg:gap-8 px-2">
+        <div className="w-full flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-8 px-2">
           
           {/* Left Side: 3D Podium */}
           {top3.length > 0 && (

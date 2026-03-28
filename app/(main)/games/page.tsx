@@ -18,14 +18,14 @@ export default function GamesPage() {
           >
             Kyrosh <span className="text-primary">Arcade</span>
           </motion.h1>
-          <motion.p 
+          {/* <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-text_secondary max-w-2xl mx-auto"
           >
             Play games, beat the high scores, and climb the leaderboard.
-          </motion.p>
+          </motion.p> */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
