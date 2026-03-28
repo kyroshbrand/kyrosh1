@@ -41,7 +41,7 @@ export function Leaderboard() {
       let query = supabase
         .from("games")
         .select("*, users(name)")
-        .order("moves", { ascending: true })
+        .order("score", { ascending: false })
         .order("time_taken", { ascending: true })
         .limit(50);
 
@@ -167,9 +167,10 @@ export function Leaderboard() {
             <div className="w-full max-w-3xl flex flex-col gap-3">
               <div className="grid grid-cols-12 gap-4 px-6 py-3 text-xs font-semibold text-text_muted uppercase tracking-wider">
                 <div className="col-span-2 sm:col-span-1 text-center">#</div>
-                <div className="col-span-5 sm:col-span-7">Player</div>
+                <div className="col-span-3 sm:col-span-5">Player</div>
+                <div className="col-span-2 text-center text-emerald-400">Score</div>
                 <div className="col-span-2 text-center text-secondary">Moves</div>
-                <div className="col-span-3 sm:col-span-2 text-right text-primary">Time</div>
+                <div className="col-span-3 text-right text-primary">Time</div>
               </div>
               
               <AnimatePresence>
@@ -184,14 +185,17 @@ export function Leaderboard() {
                     <div className="col-span-2 sm:col-span-1 text-center font-mono font-bold text-text_secondary">
                       {index + 4}
                     </div>
-                    <div className="col-span-5 sm:col-span-7 font-medium text-white truncate">
+                    <div className="col-span-3 sm:col-span-5 font-medium text-white truncate">
                       {record.users?.name || "Anonymous"}
+                    </div>
+                    <div className="col-span-2 text-center font-mono text-emerald-400 font-bold">
+                      {record.score}
                     </div>
                     <div className="col-span-2 text-center font-mono">
                       {record.moves}
                     </div>
-                    <div className="col-span-3 sm:col-span-2 text-right font-mono text-text_secondary">
-                      {record.time_taken}s
+                    <div className="col-span-3 text-right font-mono text-text_secondary">
+                      {record.time_taken > 1000 ? (record.time_taken / 1000).toFixed(2) : record.time_taken}s
                     </div>
                   </motion.div>
                 ))}
@@ -229,8 +233,8 @@ function PodiumPosition({ record, rank, height, color, glow, delay }: { record: 
         <div className="absolute inset-0 bg-black/10 mix-blend-overlay" />
         <span className="text-3xl sm:text-4xl font-syne font-black text-white/90 drop-shadow-md relative z-10">{rank}</span>
         <div className="mt-auto pb-4 sm:pb-6 flex flex-col items-center gap-1 relative z-10">
-          <span className="text-xs sm:text-sm font-bold text-white/90 drop-shadow">{record.moves} moves</span>
-          <span className="text-[10px] sm:text-xs text-white/70">{record.time_taken}s</span>
+          <span className="text-xs sm:text-sm font-bold text-emerald-400 drop-shadow">{record.score} pts</span>
+          <span className="text-[10px] sm:text-xs text-white/70">{record.time_taken > 1000 ? (record.time_taken / 1000).toFixed(2) : record.time_taken}s</span>
         </div>
       </div>
     </motion.div>

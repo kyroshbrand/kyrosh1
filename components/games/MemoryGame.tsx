@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { createBrowserClient } from "@/lib/supabase";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/GlobalUI";
-import { RotateCcw, Clock, Target, Trophy } from "lucide-react";
+import { RotateCcw, Clock, Target, Trophy, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface Card {
@@ -28,12 +28,13 @@ export function MemoryGame() {
   
   const [isPlaying, setIsPlaying] = useState(false);
   const [startTime, setStartTime] = useState<number | null>(null);
-  const [timeTaken, setTimeTaken] = useState(0); // in seconds
+  const [timeMs, setTimeMs] = useState(0); // in milliseconds
   const [isFinished, setIsFinished] = useState(false);
+  const [finalScore, setFinalScore] = useState(0);
 
   // Initialize Game
   const initializeGame = () => {
-    const cardValues = [...Array(12).keys()].map(n => n + 1);
+    const cardValues = [...Array(10).keys()].map(n => n + 1);
     const deck = [...cardValues, ...cardValues]
       .sort(() => Math.random() - 0.5)
       .map((value) => ({
@@ -50,7 +51,8 @@ export function MemoryGame() {
     setIsLocked(false);
     setIsPlaying(true);
     setStartTime(Date.now());
-    setTimeTaken(0);
+    setTimeMs(0);
+    setFinalScore(0);
     setIsFinished(false);
   };
 
@@ -62,13 +64,15 @@ export function MemoryGame() {
 
   // Timer
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let animationFrame: number;
     if (isPlaying && startTime && !isFinished) {
-      interval = setInterval(() => {
-        setTimeTaken(Math.floor((Date.now() - startTime) / 1000));
-      }, 1000);
+      const update = () => {
+        setTimeMs(Date.now() - startTime);
+        animationFrame = requestAnimationFrame(update);
+      };
+      animationFrame = requestAnimationFrame(update);
     }
-    return () => clearInterval(interval);
+    return () => cancelAnimationFrame(animationFrame);
   }, [isPlaying, startTime, isFinished]);
 
   // Handlers
@@ -113,20 +117,22 @@ export function MemoryGame() {
   useEffect(() => {
     if (cards.length > 0 && cards.every(c => c.matched) && !isFinished) {
       setIsFinished(true);
+      const score = Math.max(0, Math.round(100000 / (moves + (timeMs / 1000))));
+      setFinalScore(score);
       if (user) {
-        saveGame();
+        saveGame(score);
       }
     }
   }, [cards, isFinished]);
 
-  const saveGame = async () => {
+  const saveGame = async (scoreToSave: number) => {
     if (!supabase || !user) return;
     try {
       await supabase.from("games").insert({
         user_id: user.id,
         moves,
-        time_taken: timeTaken,
-        score: 12,
+        time_taken: timeMs, // saving exact ms to db
+        score: scoreToSave,
         mode: "memory"
       });
     } catch (e) {
@@ -152,11 +158,21 @@ export function MemoryGame() {
   return (
     <div className="w-full flex flex-col items-center gap-8">
       {/* Top Bar */}
+      <div className="w-full flex items-center justify-between mb-2">
+        <button 
+          onClick={() => router.back()} 
+          className="flex items-center gap-2 text-text_secondary hover:text-white transition-colors cursor-pointer"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="font-sans font-medium">Back</span>
+        </button>
+      </div>
+
       <div className="w-full flex items-center justify-between bg-card border border-primary/20 rounded-2xl p-4 shadow-xl">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2 text-text_secondary">
             <Clock className="w-5 h-5 text-primary" />
-            <span className="font-mono text-xl w-16">{timeTaken}s</span>
+            <span className="font-mono text-xl w-20">{(timeMs / 1000).toFixed(2)}s</span>
           </div>
           <div className="flex items-center gap-2 text-text_secondary">
             <Target className="w-5 h-5 text-secondary" />
@@ -173,7 +189,7 @@ export function MemoryGame() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4 perspective-1000 w-full max-w-3xl">
+      <div className="grid grid-cols-4 md:grid-cols-5 gap-3 sm:gap-4 perspective-1000 w-full max-w-3xl">
         {cards.map(card => (
           <motion.div
             key={card.id}
@@ -233,14 +249,18 @@ export function MemoryGame() {
               <p className="text-text_secondary">You matched all pairs perfectly.</p>
             </div>
             
-            <div className="flex gap-8">
+            <div className="flex gap-8 justify-center w-full">
               <div className="flex flex-col items-center">
                 <span className="text-xs text-text_muted uppercase tracking-wider font-bold">Time</span>
-                <span className="text-2xl font-mono text-primary font-bold">{timeTaken}s</span>
+                <span className="text-2xl font-mono text-primary font-bold">{(timeMs / 1000).toFixed(2)}s</span>
               </div>
               <div className="flex flex-col items-center">
                 <span className="text-xs text-text_muted uppercase tracking-wider font-bold">Moves</span>
                 <span className="text-2xl font-mono text-secondary font-bold">{moves}</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-xs text-text_muted uppercase tracking-wider font-bold">Score</span>
+                <span className="text-2xl font-mono text-emerald-400 font-bold">{finalScore}</span>
               </div>
             </div>
 

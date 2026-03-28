@@ -37,7 +37,7 @@ export function Cursor() {
   }, []);
 
   return (
-    <div className="hidden md:block pointer-events-none fixed inset-0 z-[100]">
+    <div className="hidden md:block pointer-events-none fixed inset-0 z-[99999]">
       <motion.div 
         className="absolute w-2 h-2 bg-primary rounded-full -translate-x-1/2 -translate-y-1/2"
         animate={{ x: mousePosition.x, y: mousePosition.y, scale: isHovering ? 0 : 1 }}
