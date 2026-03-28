@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, User } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "./GlobalUI";
 
 const LINKS = [
@@ -18,7 +18,17 @@ export function Navbar() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState<{ name: string } | null>(null);
   const isHome = pathname === "/";
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then(res => res.json())
+      .then(data => {
+        if (data.user) setUser(data.user);
+      })
+      .catch(() => {});
+  }, []);
   
   const width = useTransform(scrollY, [0, 100], ["100%", "90%"]);
   const y = useTransform(scrollY, [0, 100], [0, 10]);
@@ -56,7 +66,13 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:block">
-            <Button href="/contact" variant="primary">Let's Talk</Button>
+            {user ? (
+              <Link href="/contact" className="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/30 transition-all overflow-hidden" title={user.name}>
+                {user.name.charAt(0).toUpperCase()}
+              </Link>
+            ) : (
+              <Button href="/contact" variant="primary">Let's Talk</Button>
+            )}
           </div>
 
           <button className="md:hidden text-white" onClick={() => setIsOpen(true)}>
@@ -77,6 +93,14 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            {user && (
+              <Link href="/contact" onClick={() => setIsOpen(false)} className="flex items-center gap-3 text-white text-2xl font-syne">
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-base">
+                  {user.name.charAt(0).toUpperCase()}
+                </div>
+                {user.name}
+              </Link>
+            )}
           </div>
         </div>
       )}

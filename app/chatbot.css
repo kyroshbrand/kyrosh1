@@ -628,12 +628,14 @@
   border-color: rgba(119, 64, 217, 0.2);
 }
 
-.chatbot-session-item-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4px;
+.chatbot-session-item-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.chatbot-session-actions { display: flex; align-items: center; gap: 8px; }
+.chatbot-session-delete { 
+  background: none; border: none; color: #666; padding: 4px; 
+  cursor: pointer; border-radius: 4px; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
 }
+.chatbot-session-delete:hover { background: rgba(244, 63, 94, 0.1); color: #f43f5e; }
 
 .chatbot-session-item-time {
   font-size: 11px;

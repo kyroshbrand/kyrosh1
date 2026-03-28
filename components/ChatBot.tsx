@@ -235,6 +235,28 @@ export default function ChatBot() {
     setNotifCount(0);
   };
 
+  const handleDeleteChat = async (e: React.MouseEvent, sessId: string) => {
+    e.stopPropagation(); // Don't open chat
+    if (!confirm("Are you sure you want to delete this chat?")) return;
+    
+    try {
+      const res = await fetch("/api/chat/delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId: sessId }),
+      });
+      if (res.ok) {
+        setChatSessions(prev => prev.filter(s => s.id !== sessId));
+        if (sessionId === sessId) {
+          setSessionId(null);
+          setMessages([]);
+        }
+      }
+    } catch (err) {
+      console.error("Delete failed:", err);
+    }
+  };
+
   // Open existing chat
   const openChat = async (sessId: string) => {
     setSessionId(sessId);
@@ -385,7 +407,7 @@ export default function ChatBot() {
           )}
           <div className="chatbot-header-avatar">K</div>
           <div className="chatbot-header-info">
-            <h3>Kyrosh AI</h3>
+            <h3>Kyrosh Support</h3>
             <p>
               <span className="online-dot" />
               {isHumanConnected ? "Connected to support agent" : "Online — Ready to help"}
@@ -451,9 +473,21 @@ export default function ChatBot() {
                   <button key={sess.id} className="chatbot-session-item" onClick={() => openChat(sess.id)}>
                     <div className="chatbot-session-item-top">
                       <span className="chatbot-session-item-time">{formatTime(sess.updated_at)}</span>
-                      {sess.unreadCount > 0 && (
-                        <span className="chatbot-session-item-badge">{sess.unreadCount}</span>
-                      )}
+                      <div className="chatbot-session-actions">
+                        {sess.unreadCount > 0 && (
+                          <span className="chatbot-session-item-badge">{sess.unreadCount}</span>
+                        )}
+                        <button 
+                          className="chatbot-session-delete" 
+                          onClick={(e) => handleDeleteChat(e, sess.id)}
+                          title="Delete Chat"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                     <p className="chatbot-session-item-preview">
                       {sess.lastMessage.slice(0, 60)}{sess.lastMessage.length > 60 ? "..." : ""}
