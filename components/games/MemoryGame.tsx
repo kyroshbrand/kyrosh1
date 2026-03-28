@@ -273,14 +273,14 @@ export function MemoryGame() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
-                <Button onClick={initializeGame} variant="primary" className="w-full py-3">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full mt-4">
+                <Button onClick={initializeGame} variant="primary" className="px-10 py-3 text-sm sm:text-base">
                   Play Again
                 </Button>
                 <Button 
                   onClick={() => router.push('/games')} 
                   variant="outline" 
-                  className="w-full py-3 border border-white/10 hover:bg-white/5 text-white"
+                  className="px-10 py-3 border border-white/10 hover:bg-white/5 text-white text-sm sm:text-base"
                 >
                   Leaderboard
                 </Button>

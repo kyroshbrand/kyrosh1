@@ -183,7 +183,7 @@ export function Leaderboard() {
                     {record.moves}
                   </div>
                   <div className="col-span-2 sm:col-span-2 text-right font-mono text-sm text-text_secondary">
-                    {record.time_taken > 1000 ? (record.time_taken / 1000).toFixed(1) : record.time_taken}s
+                    {(record.time_taken / 1000).toFixed(1)}s
                   </div>
                 </motion.div>
               ))}

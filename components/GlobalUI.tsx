@@ -79,11 +79,19 @@ export function Section({ children, className = "" }: { children: React.ReactNod
 }
 
 // --- BUTTONS ---
-export function Button({ href, variant = "primary", children, icon: Icon }: any) {
+export function Button({ 
+  href, 
+  variant = "primary", 
+  children, 
+  icon: Icon, 
+  className = "", 
+  ...props 
+}: any) {
   const base = "relative inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-sans font-medium transition-all duration-300 overflow-hidden group";
   const variants = {
     primary: "bg-primary text-white hover:scale-[1.03] hover:shadow-[0_0_24px_rgba(119,64,217,0.4)]",
-    ghost: "border border-primary text-white hover:bg-primary hover:scale-[1.03]"
+    ghost: "border border-primary text-white hover:bg-primary hover:scale-[1.03]",
+    outline: "border border-white/10 text-white hover:bg-white/5"
   };
   
   const content = (
@@ -93,10 +101,12 @@ export function Button({ href, variant = "primary", children, icon: Icon }: any)
     </>
   );
 
+  const combinedClasses = `${base} ${variants[variant as keyof typeof variants] || ""} ${className}`;
+
   return href ? (
-    <Link href={href} className={`${base} ${variants[variant as keyof typeof variants]}`}>{content}</Link>
+    <Link href={href} className={combinedClasses} {...props}>{content}</Link>
   ) : (
-    <button className={`${base} ${variants[variant as keyof typeof variants]}`}>{content}</button>
+    <button className={combinedClasses} {...props}>{content}</button>
   );
 }
 
