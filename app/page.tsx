@@ -2,7 +2,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState, useCallback } from "react";
 import { Section, SectionLabel, Button, GlowBlob } from "@/components/GlobalUI";
-import { PlayCircle, Camera, TrendingUp, Instagram, BookOpen, Handshake, Layout, ChevronDown } from "lucide-react";
+import { 
+  PlayCircle, Camera, TrendingUp, Instagram, BookOpen, Handshake, Layout, ChevronDown, 
+  Palette, Video, Smartphone, Search, Megaphone, Code
+} from "lucide-react";
 
 // ── Stat Counter ──────────────────────────────────────────────────────────────
 function Stat({ number, suffix, label, desc }: any) {
@@ -157,12 +160,12 @@ function VideoPlayer({ src, poster }: { src?: string; poster?: string }) {
 
 // ── "What We Do" service card ─────────────────────────────────────────────────
 const SERVICES_CARDS = [
-  { icon: Camera, title: "Video Production", desc: "Cinematic quality content for any budget. Scripted, shot, and edited in-house from concept to final cut.", color: "from-violet-500/20 via-fuchsia-500/10 to-transparent" },
-  { icon: TrendingUp, title: "Social Media", desc: "Full-service management: content strategy, captions, creative design, scheduling, and monthly reports.", color: "from-[#d33bd7]/15 to-transparent" },
-  { icon: Instagram, title: "Instagram Growth", desc: "Organic community building strategies that convert. No fake followers, no bots — just real audiences.", color: "from-fuchsia-600/20 via-[#d33bd7]/10 to-transparent" },
-  { icon: BookOpen, title: "School Marketing", desc: "Specialized for education brands. We build reputation and drive enrollment through authentic content.", color: "from-violet-400/20 to-[#d33bd7]/5" },
-  { icon: Handshake, title: "Brand Partnerships", desc: "Connect with audiences that care. We broker partnerships that feel genuine and drive real results.", color: "from-[#7740d9]/20 via-[#d33bd7]/10 to-transparent" },
-  { icon: Layout, title: "Content Strategy", desc: "Data-backed content calendars that keep you relevant, consistent, and top-of-mind.", color: "from-[#d33bd7]/15 via-purple-500/10 to-transparent" },
+  { icon: Palette, title: "Graphic Design", desc: "Stunning posters and graphics that define your brand's visual identity and capture attention instantly.", color: "from-violet-500/20 via-fuchsia-500/10 to-transparent" },
+  { icon: Smartphone, title: "Software Dev", desc: "High-performance websites and mobile apps built with modern technologies for a seamless user experience.", color: "from-[#d33bd7]/15 to-transparent" },
+  { icon: Megaphone, title: "Paid Marketing", desc: "ROI-driven Meta and Google Ads campaigns designed to scale your business and maximize conversions.", color: "from-fuchsia-600/20 via-[#d33bd7]/10 to-transparent" },
+  { icon: Video, title: "Video Editing", desc: "Cinematic video editing and motion graphics that tell your brand's story across all digital platforms.", color: "from-violet-400/20 to-[#d33bd7]/5" },
+  { icon: Instagram, title: "Social Media", desc: "Full-service management: from content strategy and community building to monthly growth analytics.", color: "from-[#7740d9]/20 via-[#d33bd7]/10 to-transparent" },
+  { icon: Search, title: "Digital Growth", desc: "Advanced SEO, GEO-targeting, and WhatsApp marketing strategies to reach your audience everywhere.", color: "from-[#d33bd7]/15 via-purple-500/10 to-transparent" },
 ];
 
 function ServiceCard({ item, index }: { item: typeof SERVICES_CARDS[0], index: number }) {
@@ -373,7 +376,7 @@ export default function Home() {
             <p>Businesses noticed what we were doing — the authenticity, the reach, the emotion. That's when Kyrosh became a digital marketing agency. Today we carry that same community spirit into every campaign.</p>
           </div>
         </div>
-        <VideoPlayer />
+        <VideoPlayer src="/intro.MOV" />
       </Section>
       */}
 
@@ -389,7 +392,7 @@ export default function Home() {
               <h2 className="font-syne font-bold text-4xl md:text-5xl mb-4">See the Work<br/><span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(90deg, #7740d9, #d33bd7)' }}>In Motion.</span></h2>
               <p className="font-sans text-text_secondary max-w-lg mx-auto">Autoplay preview — click to unmute and watch with sound.</p>
             </div>
-            <VideoPlayer />
+            <VideoPlayer src="/intro.MOV" />
           </motion.div>
         </div>
       </section>

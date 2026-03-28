@@ -2,36 +2,39 @@
 import { Section, SectionLabel, Button, GlowBlob } from "@/components/GlobalUI";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Camera, TrendingUp, Instagram, BookOpen, Handshake, Layout } from "lucide-react";
+import { 
+  Camera, TrendingUp, Instagram, BookOpen, Handshake, Layout, 
+  Palette, Video, Code, Megaphone, Smartphone, Search, MessageSquare 
+} from "lucide-react";
 
 const SERVICES = [
   {
-    num: "01", icon: Camera,
-    title: "Video Production",
-    desc: "From concept to final cut. We handle scripting, filming, motion graphics, and editing — producing cinematic content that stops the scroll.",
-    tags: ["Scripting", "Filming", "Editing", "Motion Graphics"],
-    img: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80"
+    num: "01", icon: Palette,
+    title: "Content Services",
+    desc: "Visual storytelling through precision design. We create stunning posters, graphics, and pro-level video editing that define your brand identity.",
+    tags: ["Graphic Design", "Posters", "Video Editing", "Motion Graphics"],
+    img: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80"
   },
   {
-    num: "02", icon: TrendingUp,
-    title: "Social Media Marketing",
-    desc: "We build your social presence end-to-end. Content calendars, captions, creatives, scheduling, and monthly analytics reports.",
-    tags: ["Content Calendar", "Analytics", "Scheduling"],
-    img: "https://images.unsplash.com/photo-1611162617213-5d8f2e9d0e0c?w=800&q=80"
+    num: "02", icon: Code,
+    title: "Software Development",
+    desc: "Building the digital backbone of your business. We develop high-performance websites and mobile applications optimized for speed and conversion.",
+    tags: ["Websites", "Mobile Apps", "Custom UI/UX", "API Integration"],
+    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80"
   },
   {
-    num: "03", icon: Instagram,
-    title: "Instagram Growth",
-    desc: "Organic strategies that build a real audience. No fake followers, no bots. Just consistent, authentic content that converts.",
-    tags: ["Organic Growth", "Reels Strategy", "Community"],
-    img: "https://images.unsplash.com/photo-1611162616415-96820000a442?w=800&q=80"
+    num: "03", icon: Megaphone,
+    title: "Online Marketing",
+    desc: "Strategic reach that generates results. From Meta and Google Ads to comprehensive Social Media management and growth strategies.",
+    tags: ["Meta Ads", "Google Ads", "SM Management", "Lead Gen"],
+    img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
   },
   {
-    num: "04", icon: BookOpen,
-    title: "School Marketing",
-    desc: "Specialized digital marketing for schools. We create content that builds institutional reputation and drives enrollment inquiries.",
-    tags: ["Enrollment Campaigns", "Culture Videos"],
-    img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80"
+    num: "04", icon: Search,
+    title: "Digital Growth",
+    desc: "Dominate your local and global market. Advanced SEO, GEO-targeting, and WhatsApp marketing automation to stay ahead of the curve.",
+    tags: ["SEO", "GEO Targeting", "WhatsApp Marketing", "Automation"],
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
   },
 ];
 
