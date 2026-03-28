@@ -231,16 +231,16 @@ const css = `
     font-size: 14px; line-height: 1.5; word-break: break-word;
   }
   .adm-msg.user {
-    align-self: flex-end; background: rgba(119,64,217,0.12);
-    border: 1px solid rgba(119,64,217,0.18); border-bottom-right-radius: 4px;
+    align-self: flex-start; background: rgba(119,64,217,0.12);
+    border: 1px solid rgba(119,64,217,0.18); border-bottom-left-radius: 4px;
   }
   .adm-msg.bot {
-    align-self: flex-start; background: rgba(50,50,70,0.15);
-    border: 1px solid rgba(255,255,255,0.05); border-bottom-left-radius: 4px;
+    align-self: flex-end; background: rgba(50,50,70,0.15);
+    border: 1px solid rgba(255,255,255,0.05); border-bottom-right-radius: 4px;
   }
   .adm-msg.admin {
-    align-self: flex-start; background: rgba(37,211,102,0.08);
-    border: 1px solid rgba(37,211,102,0.12); border-bottom-left-radius: 4px;
+    align-self: flex-end; background: rgba(37,211,102,0.08);
+    border: 1px solid rgba(37,211,102,0.12); border-bottom-right-radius: 4px;
   }
   .adm-msg-label { display: block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
   .adm-msg-label.admin { color: #22c55e; }

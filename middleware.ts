@@ -8,14 +8,20 @@ export function middleware(request: NextRequest) {
   if (pathname.startsWith('/admin/dashboard')) {
     const adminToken = request.cookies.get('admin_token')?.value;
     
-    if (!adminToken) {
-      // Redirect to admin login if no token
+    const adminUser = process.env.ADMIN_USERNAME;
+    const adminPass = process.env.ADMIN_PASSWORD;
+
+    if (!adminUser || !adminPass) {
+      console.error("Admin credentials not configured in .env");
       return NextResponse.redirect(new URL('/admin', request.url));
     }
-    
-    // In a real app, you might want to verify the token here, 
-    // but Next.js middleware is edge and can't easily query DB without external API.
-    // For now, presence of the specific cookie is our first line of defense.
+
+    const expectedToken = Buffer.from(`${adminUser}:${adminPass}`).toString("base64");
+
+    if (!adminToken || adminToken !== expectedToken) {
+      // Redirect to admin login if no token or invalid token
+      return NextResponse.redirect(new URL('/admin', request.url));
+    }
   }
 
   return NextResponse.next();
