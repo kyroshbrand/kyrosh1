@@ -9,6 +9,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 -- Drop existing
 DROP FUNCTION IF EXISTS update_updated_at() CASCADE;
 DROP FUNCTION IF EXISTS match_faqs(vector(384), int, float) CASCADE;
+DROP TABLE IF EXISTS games CASCADE;
 DROP TABLE IF EXISTS messages CASCADE;
 DROP TABLE IF EXISTS chat_sessions CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
@@ -52,6 +53,16 @@ CREATE TABLE faqs (
   answer TEXT NOT NULL,
   category TEXT,
   embedding vector(384)
+);
+
+CREATE TABLE games (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  moves INT NOT NULL,
+  time_taken INT NOT NULL,
+  score INT DEFAULT 12,
+  mode TEXT DEFAULT 'memory',
+  created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- ═══════════════════════════════════════════════════════════
@@ -140,6 +151,16 @@ CREATE POLICY "service_all_messages" ON messages FOR ALL TO service_role USING (
 CREATE POLICY "anon_select_faqs" ON faqs FOR SELECT TO anon USING (true);
 CREATE POLICY "anon_insert_faqs" ON faqs FOR INSERT TO anon WITH CHECK (true);
 CREATE POLICY "service_all_faqs" ON faqs FOR ALL TO service_role USING (true);
+
+ALTER TABLE games ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "anon_select_games" ON games FOR SELECT USING (true);
+CREATE POLICY "authenticated_insert_games" ON games FOR INSERT TO authenticated WITH CHECK (auth.uid() = user_id);
+-- Also allow inserting without explicit auth.uid() if users are mapped differently, but usually user_id matches auth.uid().
+-- For this app, it seems custom auth is used since `users` table has a `password_hash`. We will allow insert by anon for now provided user_id is set, or better, we let the API handle it with service_role.
+CREATE POLICY "service_all_games" ON games FOR ALL TO service_role USING (true);
+CREATE POLICY "anon_insert_games" ON games FOR INSERT TO anon WITH CHECK (true);
+CREATE INDEX idx_games_user_id ON games(user_id);
+CREATE INDEX idx_games_score_time ON games(moves ASC, time_taken ASC);
 
 -- ═══════════════════════════════════════════════════════════
 -- Enable Realtime
