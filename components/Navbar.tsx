@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Menu, X, User } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, X, User, LogOut } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "./GlobalUI";
 
 const LINKS = [
@@ -18,7 +18,9 @@ export function Navbar() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [isOpen, setIsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [user, setUser] = useState<{ name: string } | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -29,6 +31,23 @@ export function Navbar() {
       })
       .catch(() => {});
   }, []);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsProfileOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleLogout = async () => {
+    await fetch("/api/auth/me", { method: "DELETE" });
+    setUser(null);
+    window.location.reload();
+  };
   
   const width = useTransform(scrollY, [0, 100], ["100%", "90%"]);
   const y = useTransform(scrollY, [0, 100], [0, 10]);
@@ -65,11 +84,36 @@ export function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden md:block relative" ref={dropdownRef}>
             {user ? (
-              <Link href="/contact" className="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/30 transition-all overflow-hidden" title={user.name}>
-                {user.name.charAt(0).toUpperCase()}
-              </Link>
+              <>
+                <button 
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  className="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary hover:bg-primary/30 transition-all overflow-hidden" 
+                  title={user.name}
+                >
+                  {user.name.charAt(0).toUpperCase()}
+                </button>
+                
+                {isProfileOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    className="absolute right-0 mt-3 w-48 bg-[#0a0a0a] border border-primary/20 rounded-2xl shadow-2xl overflow-hidden z-[60]"
+                  >
+                    <div className="px-4 py-3 border-bottom border-primary/10">
+                      <p className="text-sm font-medium text-white truncate">{user.name}</p>
+                    </div>
+                    <button 
+                      onClick={handleLogout}
+                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-text_secondary hover:bg-primary/10 hover:text-white transition-colors"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      Logout
+                    </button>
+                  </motion.div>
+                )}
+              </>
             ) : (
               <Button href="/contact" variant="primary">Let's Talk</Button>
             )}
@@ -94,12 +138,21 @@ export function Navbar() {
               </Link>
             ))}
             {user && (
-              <Link href="/contact" onClick={() => setIsOpen(false)} className="flex items-center gap-3 text-white text-2xl font-syne">
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-base">
-                  {user.name.charAt(0).toUpperCase()}
+              <div className="flex flex-col items-center gap-6 mt-4">
+                <div className="flex items-center gap-3 text-white text-2xl font-syne">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-base">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                  {user.name}
                 </div>
-                {user.name}
-              </Link>
+                <button 
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 text-rose-500 font-medium px-6 py-2 rounded-full border border-rose-500/20 bg-rose-500/5 hover:bg-rose-500/10 transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </button>
+              </div>
             )}
           </div>
         </div>

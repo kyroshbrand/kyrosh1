@@ -128,6 +128,7 @@ CREATE POLICY "service_all_users" ON users FOR ALL TO service_role USING (true);
 CREATE POLICY "anon_insert_sessions" ON chat_sessions FOR INSERT TO anon WITH CHECK (true);
 CREATE POLICY "anon_select_sessions" ON chat_sessions FOR SELECT TO anon USING (true);
 CREATE POLICY "anon_update_sessions" ON chat_sessions FOR UPDATE TO anon USING (true);
+CREATE POLICY "anon_delete_sessions" ON chat_sessions FOR DELETE TO anon USING (true);
 CREATE POLICY "service_all_sessions" ON chat_sessions FOR ALL TO service_role USING (true);
 
 CREATE POLICY "anon_insert_messages" ON messages FOR INSERT TO anon WITH CHECK (true);

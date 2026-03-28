@@ -84,7 +84,7 @@ export default function ChatBot() {
       if (data.user) {
         setUser(data.user);
         setChatSessions(data.sessions || []);
-        setScreen("history");
+        setScreen(prev => prev === "auth" ? "history" : prev);
         // Count total unread
         const total = (data.sessions || []).reduce((sum: number, s: UserSession) => sum + s.unreadCount, 0);
         setNotifCount(total);
@@ -157,7 +157,7 @@ export default function ChatBot() {
         // Only notify for bot/admin messages not in current active session
         if ((newMsg.role === "bot" || newMsg.role === "admin") && newMsg.session_id !== sessionId) {
           setNotifCount((c) => c + 1);
-          // Refresh sessions
+          // Refresh sessions without switching screen
           checkAuth();
         }
       })
@@ -289,7 +289,7 @@ export default function ChatBot() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: `Hi, I'm ${user?.name}. I want to learn about Kyrosh services.` }),
+        body: JSON.stringify({ message: "Hi" }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
@@ -413,7 +413,7 @@ export default function ChatBot() {
               {isHumanConnected ? "Connected to support agent" : "Online — Ready to help"}
             </p>
           </div>
-          {user && (
+          {user && screen !== "chat" && (
             <button className="chatbot-logout-btn" onClick={handleLogout} title="Logout">
               ↗
             </button>
