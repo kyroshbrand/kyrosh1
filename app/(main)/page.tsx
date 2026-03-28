@@ -6,7 +6,7 @@ import {
   PlayCircle, Camera, TrendingUp, Instagram, BookOpen, Handshake, Layout, ChevronDown, 
   Palette, Video, Smartphone, Search, Megaphone, Code
 } from "lucide-react";
-import { HiSpeakerWave, HiSpeakerXMark } from "react-icons/hi2";
+import { HiSpeakerWave, HiSpeakerXMark, HiArrowSmallRight } from "react-icons/hi2";
 
 // ── Stat Counter ──────────────────────────────────────────────────────────────
 function Stat({ number, suffix, label, desc }: any) {
@@ -188,7 +188,7 @@ function ServiceCard({ item, index }: { item: typeof SERVICES_CARDS[0], index: n
       </div>
       <div className="relative z-10 mt-auto pt-2">
         <span className="font-sans text-xs text-primary/60 group-hover:text-primary transition-colors duration-300 flex items-center gap-1.5">
-          Learn more <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
+          Learn more <HiArrowSmallRight className="inline-block group-hover:translate-x-1 transition-transform" />
         </span>
       </div>
     </motion.div>

@@ -5,7 +5,8 @@ import { createBrowserClient } from "@/lib/supabase";
 import { useAuth } from "@/context/AuthContext";
 import { 
   HiHandRaised, HiRocketLaunch, HiKey, HiUser, HiSun, 
-  HiFaceSmile, HiChartBar, HiSwatch, HiCodeBracket, HiDevicePhoneMobile 
+  HiFaceSmile, HiChartBar, HiSwatch, HiCodeBracket, HiDevicePhoneMobile,
+  HiArrowLeft, HiArrowSmallRight 
 } from "react-icons/hi2";
 
 interface Message {
@@ -446,7 +447,7 @@ export default function ChatBot() {
               onClick={() => { setScreen("history"); checkAuth(); }}
               aria-label="Back to chats"
             >
-              ←
+              <HiArrowLeft className="w-5 h-5" />
             </button>
           )}
           <div className="chatbot-header-avatar">K</div>

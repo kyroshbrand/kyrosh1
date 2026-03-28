@@ -75,7 +75,7 @@ const FAQ_DATA = [
 
   // ── Process ──
   { q: "How do I get started?", a: "Simple! Just WhatsApp us or call us. We'll understand your needs, share a plan, and get started quickly.", c: "process" },
-  { q: "What is your work process?", a: "1. Discovery call → 2. Proposal → 3. Design/Development → 4. Review → 5. Launch → 6. Ongoing support.", c: "process" },
+  { q: "What is your work process?", a: "1. Discovery call -> 2. Proposal -> 3. Design/Development -> 4. Review -> 5. Launch -> 6. Ongoing support.", c: "process" },
   { q: "How do you communicate with clients?", a: "We use WhatsApp for quick updates, email for documentation, and video calls for detailed discussions.", c: "process" },
   { q: "Do you provide project updates?", a: "Yes! We share weekly progress updates and are available daily on WhatsApp for any questions.", c: "process" },
   { q: "Can I make changes during the project?", a: "Yes, we allow revisions at every stage. We keep you involved throughout the entire process.", c: "process" },
