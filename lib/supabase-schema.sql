@@ -1,14 +1,18 @@
 -- ═══════════════════════════════════════════════════════════
--- Kyrosh Chatbot — FRESH INSTALL
--- Drops everything and recreates from scratch
+-- Kyrosh Chatbot — FRESH INSTALL (v3 with pgvector)
 -- Run this in Supabase SQL Editor
 -- ═══════════════════════════════════════════════════════════
 
--- Drop existing (order matters)
+-- Enable pgvector extension
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- Drop existing
 DROP FUNCTION IF EXISTS update_updated_at() CASCADE;
+DROP FUNCTION IF EXISTS match_faqs(vector(384), int, float) CASCADE;
 DROP TABLE IF EXISTS messages CASCADE;
 DROP TABLE IF EXISTS chat_sessions CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS faqs CASCADE;
 
 -- ═══════════════════════════════════════════════════════════
 -- Tables
@@ -41,6 +45,14 @@ CREATE TABLE messages (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+CREATE TABLE faqs (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  question TEXT NOT NULL,
+  answer TEXT NOT NULL,
+  category TEXT,
+  embedding vector(384)
+);
+
 -- ═══════════════════════════════════════════════════════════
 -- Indexes
 -- ═══════════════════════════════════════════════════════════
@@ -50,8 +62,11 @@ CREATE INDEX idx_messages_created_at ON messages(session_id, created_at);
 CREATE INDEX idx_sessions_user_id ON chat_sessions(user_id);
 CREATE INDEX idx_users_phone ON users(phone);
 
+-- Vector similarity index (IVFFlat for fast cosine search)
+CREATE INDEX idx_faqs_embedding ON faqs USING ivfflat (embedding vector_cosine_ops) WITH (lists = 10);
+
 -- ═══════════════════════════════════════════════════════════
--- Auto-update trigger
+-- Functions
 -- ═══════════════════════════════════════════════════════════
 
 CREATE OR REPLACE FUNCTION update_updated_at()
@@ -67,6 +82,36 @@ CREATE TRIGGER trigger_update_updated_at
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at();
 
+-- Vector similarity search function
+CREATE OR REPLACE FUNCTION match_faqs(
+  query_embedding vector(384),
+  match_count int DEFAULT 3,
+  match_threshold float DEFAULT 0.1
+)
+RETURNS TABLE (
+  id UUID,
+  question TEXT,
+  answer TEXT,
+  category TEXT,
+  similarity float
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  RETURN QUERY
+  SELECT
+    f.id,
+    f.question,
+    f.answer,
+    f.category,
+    1 - (f.embedding <=> query_embedding) AS similarity
+  FROM faqs f
+  WHERE 1 - (f.embedding <=> query_embedding) > match_threshold
+  ORDER BY f.embedding <=> query_embedding
+  LIMIT match_count;
+END;
+$$;
+
 -- ═══════════════════════════════════════════════════════════
 -- Row Level Security
 -- ═══════════════════════════════════════════════════════════
@@ -74,6 +119,7 @@ CREATE TRIGGER trigger_update_updated_at
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE chat_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE faqs ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "anon_insert_users" ON users FOR INSERT TO anon WITH CHECK (true);
 CREATE POLICY "anon_select_users" ON users FOR SELECT TO anon USING (true);
@@ -88,6 +134,10 @@ CREATE POLICY "anon_insert_messages" ON messages FOR INSERT TO anon WITH CHECK (
 CREATE POLICY "anon_select_messages" ON messages FOR SELECT TO anon USING (true);
 CREATE POLICY "anon_update_messages" ON messages FOR UPDATE TO anon USING (true);
 CREATE POLICY "service_all_messages" ON messages FOR ALL TO service_role USING (true);
+
+CREATE POLICY "anon_select_faqs" ON faqs FOR SELECT TO anon USING (true);
+CREATE POLICY "anon_insert_faqs" ON faqs FOR INSERT TO anon WITH CHECK (true);
+CREATE POLICY "service_all_faqs" ON faqs FOR ALL TO service_role USING (true);
 
 -- ═══════════════════════════════════════════════════════════
 -- Enable Realtime

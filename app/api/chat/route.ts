@@ -1,10 +1,6 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createServerClient } from "@/lib/supabase";
-import { SYSTEM_PROMPT } from "@/lib/system-prompt";
-import { getFAQContext } from "@/lib/faq-data";
+import { generateEmbedding, vectorToString } from "@/lib/embeddings";
 import { cookies } from "next/headers";
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 // Get current user from cookie
 async function getCurrentUser() {
@@ -16,6 +12,29 @@ async function getCurrentUser() {
     return decoded.userId || null;
   } catch {
     return null;
+  }
+}
+
+// Build a natural response from matched FAQs
+function buildResponse(
+  matches: { question: string; answer: string; similarity: number }[],
+  userName: string
+): string {
+  if (!matches || matches.length === 0) {
+    return `Thanks for your message, ${userName}! I'm not sure about that specific question. Let me connect you with our team — reach out on WhatsApp and we'll help you right away! 🚀`;
+  }
+
+  const best = matches[0];
+
+  if (best.similarity > 0.6) {
+    // High confidence — return the best match directly
+    return best.answer;
+  } else if (best.similarity > 0.3) {
+    // Medium confidence — return with context
+    return best.answer;
+  } else {
+    // Low confidence — suggest related
+    return `${best.answer}\n\nWant to know more? WhatsApp us and we'll give you all the details! 📱`;
   }
 }
 
@@ -38,7 +57,6 @@ export async function POST(request: Request) {
         return Response.json({ error: "Please log in to start a chat" }, { status: 401 });
       }
 
-      // Get user info
       const { data: user } = await supabase
         .from("users")
         .select("name, phone")
@@ -51,11 +69,7 @@ export async function POST(request: Request) {
 
       const { data: session, error: sessErr } = await supabase
         .from("chat_sessions")
-        .insert({
-          user_id: userId,
-          name: user.name,
-          phone: user.phone,
-        })
+        .insert({ user_id: userId, name: user.name, phone: user.phone })
         .select("id")
         .single();
 
@@ -77,7 +91,7 @@ export async function POST(request: Request) {
     // Check if human is connected
     const { data: sessionData } = await supabase
       .from("chat_sessions")
-      .select("is_human_connected, name, phone")
+      .select("is_human_connected, name")
       .eq("id", currentSessionId)
       .single();
 
@@ -89,56 +103,25 @@ export async function POST(request: Request) {
       });
     }
 
-    // Call Gemini AI
-    if (!process.env.GEMINI_API_KEY) {
-      return Response.json({ error: "Gemini API key not configured" }, { status: 500 });
+    // --- Vector search for FAQ matching ---
+    const queryEmbedding = generateEmbedding(message.trim());
+
+    const { data: matches, error: matchErr } = await supabase.rpc("match_faqs", {
+      query_embedding: vectorToString(queryEmbedding),
+      match_count: 3,
+      match_threshold: 0.05,
+    });
+
+    if (matchErr) {
+      console.error("Vector search error:", matchErr);
     }
 
-    const { data: history } = await supabase
-      .from("messages")
-      .select("role, content")
-      .eq("session_id", currentSessionId)
-      .order("created_at", { ascending: true });
+    const botReply = buildResponse(
+      matches || [],
+      sessionData?.name || "there"
+    );
 
-    const conversationHistory = (history || []).map((msg) => ({
-      role: msg.role === "user" ? "user" : "model",
-      parts: [{ text: msg.content }],
-    }));
-
-    const faqContext = getFAQContext();
-    const fullSystemInstruction = `${SYSTEM_PROMPT}
-
-The user's name is: ${sessionData?.name || "User"}
-The user's phone number is: ${sessionData?.phone || ""}
-
-${faqContext}
-
-Remember: Keep responses short (2-4 sentences max), friendly, and always guide toward WhatsApp or a phone call.`;
-
-    const models = ["gemini-2.0-flash-lite", "gemini-2.0-flash"];
-    let botReply = "";
-
-    for (const modelName of models) {
-      try {
-        const model = genAI.getGenerativeModel({
-          model: modelName,
-          systemInstruction: fullSystemInstruction,
-        });
-        const chat = model.startChat({
-          history: conversationHistory.slice(0, -1),
-        });
-        const result = await chat.sendMessage(message.trim());
-        botReply = result.response.text();
-        break;
-      } catch (modelError: unknown) {
-        const err = modelError as { status?: number };
-        if (err?.status === 429 && modelName !== models[models.length - 1]) {
-          continue;
-        }
-        throw modelError;
-      }
-    }
-
+    // Save bot reply
     await supabase.from("messages").insert({
       session_id: currentSessionId,
       role: "bot",
@@ -146,6 +129,7 @@ Remember: Keep responses short (2-4 sentences max), friendly, and always guide t
       is_seen: false,
     });
 
+    // Update session timestamp
     await supabase
       .from("chat_sessions")
       .update({ updated_at: new Date().toISOString() })
@@ -154,6 +138,9 @@ Remember: Keep responses short (2-4 sentences max), friendly, and always guide t
     return Response.json({ reply: botReply, sessionId: currentSessionId });
   } catch (error) {
     console.error("Chat API error:", error);
-    return Response.json({ error: "Something went wrong. Please try again." }, { status: 500 });
+    return Response.json(
+      { error: "Something went wrong. Please try again." },
+      { status: 500 }
+    );
   }
 }
