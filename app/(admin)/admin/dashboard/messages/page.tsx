@@ -144,8 +144,8 @@ export default function AdminMessages() {
                     <span className="adm-sess-preview">{sess.lastMessage.slice(0, 45)}{sess.lastMessage.length > 45 ? "…" : ""}</span>
                     {sess.unreadCount > 0 && <span className="adm-sess-badge">{sess.unreadCount}</span>}
                   </div>
-                  <span className="adm-sess-phone">📱 {sess.phone}</span>
-                  {sess.is_human_connected && <span className="adm-human-tag">🧑‍💼 Human</span>}
+                  <span className="adm-sess-phone flex items-center gap-1"><HiDevicePhoneMobile className="opacity-50" /> {sess.phone}</span>
+                  {sess.is_human_connected && <span className="adm-human-tag flex items-center gap-1"><HiUser className="w-2.5 h-2.5" /> Human</span>}
                 </div>
               </button>
             ))
@@ -157,7 +157,7 @@ export default function AdminMessages() {
       <div className={`adm-chat ${!mobileShowChat ? "adm-hide-mobile" : ""}`}>
         {!selected ? (
           <div className="adm-no-chat">
-            <p style={{ fontSize: 48 }}>💬</p>
+            <HiChatBubbleLeftRight className="text-border opacity-20 w-16 h-16 mb-4" />
             <h3>Select a chat</h3>
             <p>Choose a conversation from the sidebar</p>
           </div>
@@ -167,11 +167,11 @@ export default function AdminMessages() {
               <button className="adm-back-btn" onClick={() => setMobileShowChat(false)}>←</button>
               <div>
                 <h3 className="adm-chat-name">{selected.name}</h3>
-                <p className="adm-chat-phone">📱 {selected.phone}</p>
+                <p className="adm-chat-phone flex items-center gap-1"><HiDevicePhoneMobile className="opacity-50" /> {selected.phone}</p>
               </div>
               <div style={{ flex: 1 }} />
-              <button className={`adm-human-btn ${selected.is_human_connected ? "active" : ""}`} onClick={toggleHuman}>
-                {selected.is_human_connected ? "🧑‍💼 Disconnect" : "🔌 Connect"}
+              <button className={`adm-human-btn flex items-center gap-2 ${selected.is_human_connected ? "active" : ""}`} onClick={toggleHuman}>
+                {selected.is_human_connected ? <><HiArrowRightOnRectangle /> Disconnect</> : <><HiArrowsRightLeft /> Connect</>}
               </button>
             </div>
 

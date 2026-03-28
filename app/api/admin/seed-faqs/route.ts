@@ -97,16 +97,16 @@ const FAQ_DATA = [
   { q: "I'm interested in your services", a: "That's great to hear! Let's discuss how we can help your business grow. WhatsApp us or schedule a call right now!", c: "conversion" },
 
   // ── General/Greetings ──
-  { q: "Hi", a: "Hey there! 👋 Welcome to Kyrosh. I'm here to help you with marketing, design, or tech solutions. What can I help you with?", c: "general" },
-  { q: "Hello", a: "Hello! 👋 Great to have you here. How can Kyrosh help your business grow today?", c: "general" },
-  { q: "Hey", a: "Hey! 👋 Welcome to Kyrosh. Looking for marketing, design, or development help? I'm here for you!", c: "general" },
-  { q: "Good morning", a: "Good morning! ☀️ How can we help your business today? Feel free to ask anything about our services!", c: "general" },
-  { q: "Thank you", a: "You're welcome! 😊 Is there anything else I can help you with? We're always here for you!", c: "general" },
+  { q: "Hi", a: "Hey there! [ICON:HandRaised] Welcome to Kyrosh. I'm here to help you with marketing, design, or tech solutions. What can I help you with?", c: "general" },
+  { q: "Hello", a: "Hello! [ICON:HandRaised] Great to have you here. How can Kyrosh help your business grow today?", c: "general" },
+  { q: "Hey", a: "Hey! [ICON:HandRaised] Welcome to Kyrosh. Looking for marketing, design, or development help? I'm here for you!", c: "general" },
+  { q: "Good morning", a: "Good morning! [ICON:Sun] How can we help your business today? Feel free to ask anything about our services!", c: "general" },
+  { q: "Thank you", a: "You're welcome! [ICON:FaceSmile] Is there anything else I can help you with? We're always here for you!", c: "general" },
   { q: "Thanks", a: "Happy to help! If you need anything else, just ask or reach out to us on WhatsApp anytime!", c: "general" },
-  { q: "Bye", a: "Goodbye! 👋 Thanks for chatting with us. Reach out anytime on WhatsApp if you need help!", c: "general" },
+  { q: "Bye", a: "Goodbye! [ICON:HandRaised] Thanks for chatting with us. Reach out anytime on WhatsApp if you need help!", c: "general" },
   { q: "Ok", a: "Great! Let me know if you have any other questions. We're here to help!", c: "general" },
   { q: "What can you do?", a: "I can help you learn about Kyrosh services — content design, video editing, web & app development, ads, SEO, and more! What interests you?", c: "general" },
-  { q: "Tell me about your services", a: "We offer: 🎨 Content (design, video editing), 💻 Software (websites, apps), 📈 Marketing (ads, SMM, SEO, WhatsApp). What interests you most?", c: "general" },
+  { q: "Tell me about your services", a: "We offer: [ICON:Palette] Content (design, video editing), [ICON:Code] Software (websites, apps), [ICON:ChartBar] Marketing (ads, SMM, SEO, WhatsApp). What interests you most?", c: "general" },
 ];
 
 export async function POST() {
