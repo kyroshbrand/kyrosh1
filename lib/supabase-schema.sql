@@ -1,11 +1,21 @@
 -- ═══════════════════════════════════════════════════════════
--- Kyrosh Chatbot — Supabase Schema
+-- Kyrosh Chatbot — Supabase Schema (v2 with Users)
 -- Run this in Supabase SQL Editor
 -- ═══════════════════════════════════════════════════════════
 
--- Chat sessions (one per visitor)
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name TEXT NOT NULL,
+  phone TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Chat sessions (linked to users)
 CREATE TABLE IF NOT EXISTS chat_sessions (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
   phone TEXT NOT NULL,
   is_human_connected BOOLEAN DEFAULT FALSE,
@@ -23,9 +33,11 @@ CREATE TABLE IF NOT EXISTS messages (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Index for fast lookups
+-- Indexes
 CREATE INDEX IF NOT EXISTS idx_messages_session_id ON messages(session_id);
 CREATE INDEX IF NOT EXISTS idx_messages_created_at ON messages(session_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_sessions_user_id ON chat_sessions(user_id);
+CREATE INDEX IF NOT EXISTS idx_users_phone ON users(phone);
 
 -- Auto-update updated_at on chat_sessions
 CREATE OR REPLACE FUNCTION update_updated_at()
@@ -46,21 +58,25 @@ CREATE TRIGGER trigger_update_updated_at
 -- Row Level Security (RLS)
 -- ═══════════════════════════════════════════════════════════
 
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE chat_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
 
--- Allow anon to insert/select chat sessions
+-- Users
+CREATE POLICY "anon_insert_users" ON users FOR INSERT TO anon WITH CHECK (true);
+CREATE POLICY "anon_select_users" ON users FOR SELECT TO anon USING (true);
+CREATE POLICY "service_all_users" ON users FOR ALL TO service_role USING (true);
+
+-- Chat sessions
 CREATE POLICY "anon_insert_sessions" ON chat_sessions FOR INSERT TO anon WITH CHECK (true);
 CREATE POLICY "anon_select_sessions" ON chat_sessions FOR SELECT TO anon USING (true);
 CREATE POLICY "anon_update_sessions" ON chat_sessions FOR UPDATE TO anon USING (true);
+CREATE POLICY "service_all_sessions" ON chat_sessions FOR ALL TO service_role USING (true);
 
--- Allow anon to insert/select messages
+-- Messages
 CREATE POLICY "anon_insert_messages" ON messages FOR INSERT TO anon WITH CHECK (true);
 CREATE POLICY "anon_select_messages" ON messages FOR SELECT TO anon USING (true);
 CREATE POLICY "anon_update_messages" ON messages FOR UPDATE TO anon USING (true);
-
--- Service role has full access (used by API routes)
-CREATE POLICY "service_all_sessions" ON chat_sessions FOR ALL TO service_role USING (true);
 CREATE POLICY "service_all_messages" ON messages FOR ALL TO service_role USING (true);
 
 -- ═══════════════════════════════════════════════════════════
