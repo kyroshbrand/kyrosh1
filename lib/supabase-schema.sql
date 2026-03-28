@@ -23,6 +23,7 @@ CREATE TABLE users (
   name TEXT NOT NULL,
   phone TEXT UNIQUE NOT NULL,
   password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'user' CHECK (role IN ('user', 'admin')),
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 

@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect, FormEvent, useCallback } from "react";
 import { createBrowserClient } from "@/lib/supabase";
+import { useAuth } from "@/context/AuthContext";
+import { HiHandRaised, HiRocketLaunch, HiKey, HiUser } from "react-icons/hi2";
 
 interface Message {
   id: string;
@@ -33,7 +35,7 @@ type Screen = "auth" | "history" | "chat";
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [screen, setScreen] = useState<Screen>("auth");
-  const [user, setUser] = useState<User | null>(null);
+  const { user, setUser } = useAuth();
   const [chatSessions, setChatSessions] = useState<UserSession[]>([]);
 
   // Auth form
@@ -299,7 +301,7 @@ export default function ChatBot() {
       setMessages([{
         id: "welcome",
         role: "bot",
-        content: `Hi ${user?.name}! 👋 Welcome to Kyrosh. How can I help you today?`,
+        content: `Hi ${user?.name}! <HiHandRaised className="inline-block ml-1" /> Welcome to Kyrosh. How can I help you today?`,
         is_seen: false,
         created_at: new Date().toISOString(),
       }]);
@@ -413,23 +415,18 @@ export default function ChatBot() {
               {isHumanConnected ? "Connected to support agent" : "Online — Ready to help"}
             </p>
           </div>
-          {user && screen !== "chat" && (
-            <button className="chatbot-logout-btn" onClick={handleLogout} title="Logout">
-              ↗
-            </button>
-          )}
         </div>
 
         {isHumanConnected && screen === "chat" && (
-          <div className="chatbot-human-banner">
-            🧑‍💼 You&apos;re now chatting with a support agent
+          <div className="chatbot-human-banner flex items-center justify-center gap-2">
+            <HiUser className="w-4 h-4" /> You&apos;re now chatting with a support agent
           </div>
         )}
 
         {/* ── Auth Screen ───────────────────────────────── */}
         {screen === "auth" && (
           <form className="chatbot-lead-form" onSubmit={authMode === "signup" ? handleSignup : handleLogin}>
-            <h4>👋 Welcome to Kyrosh!</h4>
+            <h4 className="flex items-center justify-center gap-2"><HiHandRaised className="text-primary" /> Welcome to Kyrosh!</h4>
             <p>{authMode === "signup" ? "Create an account to start chatting" : "Log in to continue your chats"}</p>
 
             {authMode === "signup" && (
@@ -443,8 +440,12 @@ export default function ChatBot() {
 
             {authError && <p className="chatbot-form-error">{authError}</p>}
 
-            <button type="submit" className="chatbot-lead-start" disabled={authLoading}>
-              {authLoading ? "Please wait..." : authMode === "signup" ? "Sign Up 🚀" : "Log In 🔑"}
+            <button type="submit" className="chatbot-lead-start flex items-center justify-center gap-2" disabled={authLoading}>
+              {authLoading ? "Please wait..." : authMode === "signup" ? (
+                <>Sign Up <HiRocketLaunch /></>
+              ) : (
+                <>Log In <HiKey /></>
+              )}
             </button>
 
             <button type="button" className="chatbot-auth-toggle"
@@ -457,8 +458,8 @@ export default function ChatBot() {
         {/* ── Chat History Screen ───────────────────────── */}
         {screen === "history" && (
           <div className="chatbot-history">
-            <div className="chatbot-history-header">
-              <span>Hi, {user?.name}! 👋</span>
+            <div className="chatbot-history-header flex items-center gap-2">
+              <span>Hi, {user?.name}! <HiHandRaised className="inline-block text-primary" /></span>
             </div>
 
             <button className="chatbot-new-chat-btn" onClick={startNewChat}>
@@ -470,7 +471,14 @@ export default function ChatBot() {
             ) : (
               <div className="chatbot-session-list">
                 {chatSessions.map((sess) => (
-                  <button key={sess.id} className="chatbot-session-item" onClick={() => openChat(sess.id)}>
+                  <div 
+                    key={sess.id} 
+                    className="chatbot-session-item" 
+                    onClick={() => openChat(sess.id)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === "Enter" && openChat(sess.id)}
+                  >
                     <div className="chatbot-session-item-top">
                       <span className="chatbot-session-item-time">{formatTime(sess.updated_at)}</span>
                       <div className="chatbot-session-actions">
@@ -481,6 +489,7 @@ export default function ChatBot() {
                           className="chatbot-session-delete" 
                           onClick={(e) => handleDeleteChat(e, sess.id)}
                           title="Delete Chat"
+                          aria-label="Delete Chat"
                         >
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="3 6 5 6 21 6"></polyline>
@@ -492,7 +501,7 @@ export default function ChatBot() {
                     <p className="chatbot-session-item-preview">
                       {sess.lastMessage.slice(0, 60)}{sess.lastMessage.length > 60 ? "..." : ""}
                     </p>
-                  </button>
+                  </div>
                 ))}
               </div>
             )}

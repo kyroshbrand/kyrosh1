@@ -37,8 +37,9 @@ export async function POST(request: Request) {
         name: name.trim(),
         phone: phone.trim(),
         password_hash: passwordHash,
+        role: 'user', // Explicitly set role
       })
-      .select("id, name, phone")
+      .select("id, name, phone, role")
       .single();
 
     if (userErr || !user) {

@@ -34,7 +34,21 @@ export async function GET() {
       .eq("user_id", user.id)
       .order("updated_at", { ascending: false });
 
-    // Get last message and unread count for each session
+    // Get all unread messages for these sessions in one query to optimize performance
+    const sessionIds = (sessions || []).map(s => s.id);
+    const { data: allUnread } = await supabase
+      .from("messages")
+      .select("session_id")
+      .in("session_id", sessionIds)
+      .in("role", ["bot", "admin"])
+      .eq("is_seen", false);
+
+    const unreadMap: Record<string, number> = {};
+    (allUnread || []).forEach(msg => {
+      unreadMap[msg.session_id] = (unreadMap[msg.session_id] || 0) + 1;
+    });
+
+    // Get last message for each session in parallel
     const enrichedSessions = await Promise.all(
       (sessions || []).map(async (sess) => {
         const { data: lastMsg } = await supabase
@@ -45,18 +59,11 @@ export async function GET() {
           .limit(1)
           .single();
 
-        const { count: unreadCount } = await supabase
-          .from("messages")
-          .select("*", { count: "exact", head: true })
-          .eq("session_id", sess.id)
-          .in("role", ["bot", "admin"])
-          .eq("is_seen", false);
-
         return {
           ...sess,
           lastMessage: lastMsg?.content || "No messages yet",
           lastMessageRole: lastMsg?.role || "",
-          unreadCount: unreadCount || 0,
+          unreadCount: unreadMap[sess.id] || 0,
         };
       })
     );

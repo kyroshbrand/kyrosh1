@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Menu, X, User, LogOut } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "./GlobalUI";
+import { useAuth } from "@/context/AuthContext";
 
 const LINKS = [
   { label: "Home", href: "/" },
@@ -17,20 +18,11 @@ const LINKS = [
 export function Navbar() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
+  const { user, setUser } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [user, setUser] = useState<{ name: string } | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const isHome = pathname === "/";
-
-  useEffect(() => {
-    fetch("/api/auth/me")
-      .then(res => res.json())
-      .then(data => {
-        if (data.user) setUser(data.user);
-      })
-      .catch(() => {});
-  }, []);
 
   // Close dropdown on click outside
   useEffect(() => {

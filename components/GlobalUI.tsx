@@ -45,7 +45,7 @@ export function Cursor() {
       />
       <motion.div 
         className="absolute w-8 h-8 border border-primary rounded-full -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
-        animate={{ x: mousePosition.x, y: mousePosition.y, scale: isHovering ? 1.5 : 1, backgroundColor: isHovering ? "rgba(119, 64, 217, 0.1)" : "transparent" }}
+        animate={{ x: mousePosition.x, y: mousePosition.y, scale: isHovering ? 1.5 : 1, backgroundColor: isHovering ? "rgba(119, 64, 217, 0.1)" : "rgba(119, 64, 217, 0)" }}
         transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.5 }}
       >
         {isHovering && <ArrowRight className="w-3 h-3 text-primary" />}

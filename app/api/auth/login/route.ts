@@ -15,12 +15,17 @@ export async function POST(request: Request) {
     // Find user by phone
     const { data: user, error } = await supabase
       .from("users")
-      .select("id, name, phone, password_hash")
+      .select("id, name, phone, password_hash, role")
       .eq("phone", phone.trim())
       .single();
 
     if (error || !user) {
       return Response.json({ error: "Account not found. Please sign up." }, { status: 404 });
+    }
+
+    // Ensure only 'user' role can login here (optional, but good for separation)
+    if (user.role !== 'user') {
+      return Response.json({ error: "This account is registered for a different section. Please use the appropriate login." }, { status: 403 });
     }
 
     // Verify password
