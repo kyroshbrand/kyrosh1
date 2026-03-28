@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { createBrowserClient } from "@/lib/supabase";
 import { HiCheckCircle, HiXCircle, HiArrowPath, HiLightBulb } from "react-icons/hi2";
 
 interface Session {
@@ -23,7 +24,16 @@ export default function AdminHome() {
     } catch { /* */ } finally { setLoading(false); }
   }, []);
 
-  useEffect(() => { fetchSessions(); }, [fetchSessions]);
+  useEffect(() => { 
+    fetchSessions();
+    const supabase = createBrowserClient();
+    const channel = supabase
+      .channel("admin-home-rt")
+      .on("postgres_changes", { event: "*", schema: "public", table: "messages" }, () => fetchSessions())
+      .on("postgres_changes", { event: "*", schema: "public", table: "chat_sessions" }, () => fetchSessions())
+      .subscribe();
+    return () => { supabase.removeChannel(channel); };
+  }, [fetchSessions]);
 
   const seedFaqs = async () => {
     setSeeding(true);

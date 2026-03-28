@@ -98,6 +98,20 @@ export default function ChatBot() {
     } catch { /* not logged in */ }
   };
 
+  const markAsSeen = useCallback(async (sessId: string) => {
+    try {
+      await fetch("/api/chat/mark-seen", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId: sessId }),
+      });
+      // Refresh to update unread counts in history
+      checkAuth();
+    } catch (err) {
+      console.error("Failed to mark seen:", err);
+    }
+  }, []);
+
   // Realtime subscription for messages
   useEffect(() => {
     if (!sessionId) return;
@@ -115,8 +129,12 @@ export default function ChatBot() {
           if (prev.some((m) => m.id === newMsg.id)) return prev;
           return [...prev, newMsg];
         });
-        // If chat is closed, increment notification
-        if (!document.querySelector(".chatbot-window.visible")) {
+        
+        // If chat is open and it's this session, mark as seen
+        const isWindowOpen = document.querySelector(".chatbot-window.visible");
+        if (isWindowOpen && screen === "chat") {
+          markAsSeen(sessionId);
+        } else {
           setNotifCount((c) => c + 1);
         }
       })
@@ -146,7 +164,7 @@ export default function ChatBot() {
       supabase.removeChannel(msgChannel);
       supabase.removeChannel(sessChannel);
     };
-  }, [sessionId]);
+  }, [sessionId, screen, markAsSeen]);
 
   // Global realtime for new messages across all sessions (for notification)
   useEffect(() => {
@@ -157,13 +175,17 @@ export default function ChatBot() {
     const globalChannel = supabase
       .channel("global-notif")
       .on("postgres_changes", {
-        event: "INSERT", schema: "public", table: "messages",
+        event: "*", schema: "public", table: "messages",
       }, (payload) => {
-        const newMsg = payload.new as Message & { session_id: string };
-        // Only notify for bot/admin messages not in current active session
-        if ((newMsg.role === "bot" || newMsg.role === "admin") && newMsg.session_id !== sessionId) {
-          setNotifCount((c) => c + 1);
-          // Refresh sessions without switching screen
+        if (payload.eventType === "INSERT") {
+          const newMsg = payload.new as Message & { session_id: string };
+          // Only notify for bot/admin messages not in current active session
+          if ((newMsg.role === "bot" || newMsg.role === "admin") && newMsg.session_id !== sessionId) {
+            setNotifCount((c) => c + 1);
+            checkAuth();
+          }
+        } else if (payload.eventType === "UPDATE") {
+          // Refresh sessions to update unread counts when messages are marked seen
           checkAuth();
         }
       })
@@ -269,6 +291,7 @@ export default function ChatBot() {
     await loadMessages(sessId);
     setScreen("chat");
     setNotifCount(0);
+    markAsSeen(sessId);
 
     // Check human-connected status
     const supabase = supabaseRef.current;
