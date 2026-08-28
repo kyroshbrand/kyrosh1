@@ -2013,11 +2013,22 @@
                     }
                     return;
                 }
-                const { error } = await supabaseClient.auth.resetPasswordForEmail(email);
+                const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email);
                 if (error) {
                     if (authError) {
-                        authError.textContent = error.message;
+                        // ✅ USER-FRIENDLY ERROR MESSAGES FOR PASSWORD RESET
+                        if (error.message && error.message.includes('API key')) {
+                            authError.textContent = '⚠️ SMTP configuration error. Please contact support.';
+                        } else if (error.message && error.message.includes('rate limit')) {
+                            authError.textContent = '⏳ Too many attempts. Please wait a few minutes.';
+                        } else if (error.message && error.message.includes('Invalid login')) {
+                            authError.textContent = '❌ Invalid email address. Please check and try again.';
+                        } else {
+                            authError.textContent = '❌ ' + error.message;
+                        }
                         authError.style.display = 'block';
+                        authError.style.color = '#FF6B6B';
+                        authError.style.borderLeftColor = '#FF6B6B';
                     }
                 } else {
                     if (authError) {
@@ -2091,6 +2102,22 @@
                         if (authForm) authForm.reset();
 
                         await updateAuthUI({ user }, { justLoggedIn: true });
+                        return;
+                    }
+
+                    // If login failed, handle the error gracefully
+                    if (signInError) {
+                        if (authError) {
+                            // ✅ CUSTOM ERROR MESSAGES FOR LOGIN
+                            if (signInError.message.includes('Invalid login credentials')) {
+                                authError.textContent = '❌ Password is incorrect. Please try again.';
+                            } else if (signInError.message.includes('Email not confirmed')) {
+                                authError.textContent = '⚠️ Please confirm your email before logging in.';
+                            } else {
+                                authError.textContent = '❌ ' + signInError.message;
+                            }
+                            authError.style.display = 'block';
+                        }
                         return;
                     }
 
