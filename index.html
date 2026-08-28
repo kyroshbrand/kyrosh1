@@ -28,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <style>
-        /* ========== FULL CSS ========== */
+        /* ========== FULL CSS (unchanged – all your existing styles) ========== */
         :root {
             --primary: #7844D5;
             --primary-light: #A78BFA;
@@ -168,7 +168,7 @@
             transform:translateY(0);
         }
 
-        /* ----- KEYFRAMES ----- */
+        /* ----- KEYFRAMES (all) ----- */
         @keyframes badgeGlow {
             0%,100% { box-shadow:0 0 20px rgba(120,68,213,0.4); }
             50% { box-shadow:0 0 45px rgba(167,139,250,0.8); }
@@ -308,51 +308,23 @@
 
         /* ----- LOGIN SUCCESS POPUP ----- */
         .login-success-overlay {
-            position:fixed;
-            inset:0;
-            background:rgba(0,0,0,0.72);
-            z-index:10006;
-            display:none;
-            align-items:center;
-            justify-content:center;
-            padding:20px;
-            backdrop-filter:blur(6px);
+            position:fixed; inset:0; background:rgba(0,0,0,0.72); z-index:10006; display:none;
+            align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(6px);
         }
         .login-success-overlay.active { display:flex; }
         .login-success-popup {
-            width:min(360px, 100%);
-            padding:30px 24px;
-            text-align:center;
-            border:2px solid var(--primary-light);
-            border-radius:22px;
+            width:min(360px, 100%); padding:30px 24px; text-align:center;
+            border:2px solid var(--primary-light); border-radius:22px;
             background:linear-gradient(145deg, #1A0B2E, #3A1C5A);
             box-shadow:0 20px 70px rgba(120,68,213,.45);
             animation:loginSuccessIn .55s cubic-bezier(.2,.8,.2,1);
         }
-        .login-success-icon {
-            width:68px;
-            height:68px;
-            margin:0 auto 15px;
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            background:linear-gradient(135deg,var(--primary),var(--primary-light));
-            color:#fff;
-            font-size:30px;
-            box-shadow:0 0 0 0 rgba(167,139,250,.55);
-            animation:loginSuccessPulse 1.2s ease-out;
-        }
-        .login-success-popup h3 {
-            color:#fff;
-            font-size:24px;
-            font-weight:800;
-            margin-bottom:7px;
-        }
-        .login-success-popup p {
-            color:var(--gray);
-            font-size:14px;
-        }
+        .login-success-icon { width:68px; height:68px; margin:0 auto 15px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            background:linear-gradient(135deg,var(--primary),var(--primary-light)); color:#fff; font-size:30px;
+            box-shadow:0 0 0 0 rgba(167,139,250,.55); animation:loginSuccessPulse 1.2s ease-out; }
+        .login-success-popup h3 { color:#fff; font-size:24px; font-weight:800; margin-bottom:7px; }
+        .login-success-popup p { color:var(--gray); font-size:14px; }
         .login-success-popup strong { color:var(--primary-light); }
         @keyframes loginSuccessIn {
             0% { opacity:0; transform:translateY(25px) scale(.8); }
@@ -368,87 +340,27 @@
         /* ----- WELCOME POPUP ----- */
         .welcome-popup-overlay {
             position:fixed; top:0; left:0; width:100%; height:100%;
-            background:rgba(0,0,0,0.85);
-            z-index:10005; display:none;
-            align-items:center; justify-content:center; padding:20px;
-            backdrop-filter:blur(6px);
+            background:rgba(0,0,0,0.85); z-index:10005; display:none;
+            align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(6px);
         }
         .welcome-popup-overlay.active { display:flex; }
         .welcome-popup {
             background:linear-gradient(135deg, #1A0B2E, #3A1C5A);
-            border:2px solid var(--primary-light);
-            border-radius:24px;
-            padding:30px 25px;
-            max-width:400px;
-            width:100%;
-            text-align:center;
-            position:relative;
-            animation:popupBounce .6s ease;
-            box-shadow:0 20px 60px rgba(0,0,0,0.7);
+            border:2px solid var(--primary-light); border-radius:24px;
+            padding:30px 25px; max-width:400px; width:100%; text-align:center;
+            position:relative; animation:popupBounce .6s ease; box-shadow:0 20px 60px rgba(0,0,0,0.7);
             overflow:hidden;
         }
-        .welcome-popup .confetti-container {
-            position:absolute;
-            top:0; left:0; width:100%; height:100%;
-            pointer-events:none;
-            overflow:hidden;
-        }
-        .welcome-popup .confetti-piece {
-            position:absolute;
-            width:10px; height:10px;
-            animation:confettiFall linear infinite;
-            opacity:0.8;
-        }
-        .welcome-popup .welcome-icon {
-            font-size:56px;
-            margin-bottom:12px;
-            animation:fireAnimation 1.5s infinite;
-        }
-        .welcome-popup h2 {
-            font-size:28px;
-            font-weight:900;
-            color:var(--white);
-            margin-bottom:8px;
-        }
+        .welcome-popup .confetti-container { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; }
+        .welcome-popup .confetti-piece { position:absolute; width:10px; height:10px; animation:confettiFall linear infinite; opacity:0.8; }
+        .welcome-popup .welcome-icon { font-size:56px; margin-bottom:12px; animation:fireAnimation 1.5s infinite; }
+        .welcome-popup h2 { font-size:28px; font-weight:900; color:var(--white); margin-bottom:8px; }
         .welcome-popup h2 span { color:var(--primary-light); }
-        .welcome-popup p {
-            color:var(--gray);
-            font-size:15px;
-            margin-bottom:20px;
-            line-height:1.6;
-        }
-        .welcome-popup .offer-highlight {
-            background:linear-gradient(135deg, #FF4444, #FF6B6B);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            font-weight:900;
-            font-size:22px;
-        }
-        .welcome-popup .btn-welcome {
-            background:linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color:white;
-            padding:12px 32px;
-            border:none;
-            border-radius:50px;
-            font-weight:700;
-            font-size:16px;
-            cursor:pointer;
-            transition:all .3s;
-            box-shadow:0 4px 20px rgba(120,68,213,0.4);
-        }
-        .welcome-popup .btn-welcome:hover {
-            transform:scale(1.05);
-            box-shadow:0 6px 30px rgba(120,68,213,0.6);
-        }
-        .welcome-popup .close-welcome {
-            position:absolute;
-            top:10px; right:15px;
-            font-size:22px;
-            color:var(--gray);
-            cursor:pointer;
-            background:none;
-            border:none;
-        }
+        .welcome-popup p { color:var(--gray); font-size:15px; margin-bottom:20px; line-height:1.6; }
+        .welcome-popup .offer-highlight { background:linear-gradient(135deg, #FF4444, #FF6B6B); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:900; font-size:22px; }
+        .welcome-popup .btn-welcome { background:linear-gradient(135deg, var(--primary), var(--primary-dark)); color:white; padding:12px 32px; border:none; border-radius:50px; font-weight:700; font-size:16px; cursor:pointer; transition:all .3s; box-shadow:0 4px 20px rgba(120,68,213,0.4); }
+        .welcome-popup .btn-welcome:hover { transform:scale(1.05); box-shadow:0 6px 30px rgba(120,68,213,0.6); }
+        .welcome-popup .close-welcome { position:absolute; top:10px; right:15px; font-size:22px; color:var(--gray); cursor:pointer; background:none; border:none; }
         .welcome-popup .close-welcome:hover { color:var(--white); }
 
         /* ----- PRELOADER & PARTICLES ----- */
@@ -488,458 +400,76 @@
         .hamburger { display:none; font-size:28px; cursor:pointer; }
 
         /* ----- AUTH BUTTONS & PROFILE DROPDOWN ----- */
-        .auth-buttons {
-            display:flex;
-            gap:10px;
-            align-items:center;
-            position:relative;
-        }
-        .btn-login {
-            background:transparent;
-            color:var(--white);
-            border:2px solid rgba(255,255,255,0.3);
-            padding:8px 18px;
-            border-radius:50px;
-            cursor:pointer;
-            font-weight:600;
-            transition:all .3s;
-            font-size:14px;
-        }
-        .btn-login:hover {
-            border-color:var(--primary-light);
-            color:var(--primary-light);
-        }
-        .profile-avatar {
-            display:flex;
-            align-items:center;
-            gap:6px;
-            cursor:pointer;
-            padding:4px 12px 4px 6px;
-            border-radius:50px;
-            border:2px solid rgba(167,139,250,0.4);
-            transition:all .3s;
-            background:rgba(120,68,213,0.15);
-        }
-        .profile-avatar:hover {
-            border-color:var(--primary-light);
-            background:rgba(120,68,213,0.25);
-        }
-        .profile-avatar .avatar-icon {
-            width:28px;
-            height:28px;
-            border-radius:50%;
-            background:var(--primary);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:700;
-            font-size:12px;
-            color:white;
-            flex-shrink:0;
-        }
-        .profile-avatar .avatar-name {
-            font-weight:600;
-            color:var(--white);
-            font-size:13px;
-            max-width:80px;
-            overflow:hidden;
-            text-overflow:ellipsis;
-            white-space:nowrap;
-        }
-        .profile-avatar .avatar-arrow {
-            color:var(--primary-light);
-            font-size:11px;
-            transition:transform .3s;
-        }
+        .auth-buttons { display:flex; gap:10px; align-items:center; position:relative; }
+        .btn-login { background:transparent; color:var(--white); border:2px solid rgba(255,255,255,0.3); padding:8px 18px; border-radius:50px; cursor:pointer; font-weight:600; transition:all .3s; font-size:14px; }
+        .btn-login:hover { border-color:var(--primary-light); color:var(--primary-light); }
+        .profile-avatar { display:flex; align-items:center; gap:6px; cursor:pointer; padding:4px 12px 4px 6px; border-radius:50px; border:2px solid rgba(167,139,250,0.4); transition:all .3s; background:rgba(120,68,213,0.15); }
+        .profile-avatar:hover { border-color:var(--primary-light); background:rgba(120,68,213,0.25); }
+        .profile-avatar .avatar-icon { width:28px; height:28px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; color:white; flex-shrink:0; }
+        .profile-avatar .avatar-name { font-weight:600; color:var(--white); font-size:13px; max-width:80px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .profile-avatar .avatar-arrow { color:var(--primary-light); font-size:11px; transition:transform .3s; }
         .profile-avatar.open .avatar-arrow { transform:rotate(180deg); }
+        .profile-dropdown { position:absolute; top:calc(100% + 12px); right:0; background:linear-gradient(145deg, #1A0B2E, #2D1B4E); border:2px solid rgba(167,139,250,0.4); border-radius:16px; padding:20px 18px; min-width:220px; box-shadow:var(--shadow); opacity:0; visibility:hidden; transform:translateY(-10px) scale(0.96); transition:all .3s ease; z-index:100; backdrop-filter:blur(10px); }
+        .profile-dropdown.open { opacity:1; visibility:visible; transform:translateY(0) scale(1); }
+        .profile-dropdown .dropdown-user { display:flex; align-items:center; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(167,139,250,0.2); margin-bottom:12px; }
+        .profile-dropdown .dropdown-user .big-avatar { width:40px; height:40px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; color:white; flex-shrink:0; }
+        .profile-dropdown .dropdown-user .user-info h4 { font-size:14px; font-weight:700; color:var(--white); }
+        .profile-dropdown .dropdown-user .user-info p { font-size:11px; color:var(--gray); }
+        .profile-dropdown .dropdown-section { padding:4px 0; }
+        .profile-dropdown .dropdown-item { display:flex; align-items:center; gap:10px; padding:8px 6px; border-radius:10px; color:var(--white); text-decoration:none; cursor:pointer; transition:all .2s; font-size:13px; font-weight:500; border:none; background:transparent; width:100%; text-align:left; }
+        .profile-dropdown .dropdown-item:hover { background:rgba(120,68,213,0.2); color:var(--primary-light); }
+        .profile-dropdown .dropdown-item i { width:18px; color:var(--primary-light); font-size:14px; }
+        .profile-dropdown .dropdown-divider { height:1px; background:rgba(167,139,250,0.2); margin:8px 0; }
+        .profile-dropdown .dropdown-item.logout-item { color:#FF6B6B; }
+        .profile-dropdown .dropdown-item.logout-item:hover { background:rgba(255,107,107,0.15); color:#FF6B6B; }
+        .profile-dropdown .dropdown-item.logout-item i { color:#FF6B6B; }
 
-        .profile-dropdown {
-            position:absolute;
-            top:calc(100% + 12px);
-            right:0;
-            background:linear-gradient(145deg, #1A0B2E, #2D1B4E);
-            border:2px solid rgba(167,139,250,0.4);
-            border-radius:16px;
-            padding:20px 18px;
-            min-width:220px;
-            box-shadow:var(--shadow);
-            opacity:0;
-            visibility:hidden;
-            transform:translateY(-10px) scale(0.96);
-            transition:all .3s ease;
-            z-index:100;
-            backdrop-filter:blur(10px);
-        }
-        .profile-dropdown.open {
-            opacity:1;
-            visibility:visible;
-            transform:translateY(0) scale(1);
-        }
-        .profile-dropdown .dropdown-user {
-            display:flex;
-            align-items:center;
-            gap:12px;
-            padding-bottom:12px;
-            border-bottom:1px solid rgba(167,139,250,0.2);
-            margin-bottom:12px;
-        }
-        .profile-dropdown .dropdown-user .big-avatar {
-            width:40px;
-            height:40px;
-            border-radius:50%;
-            background:var(--primary);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:700;
-            font-size:18px;
-            color:white;
-            flex-shrink:0;
-        }
-        .profile-dropdown .dropdown-user .user-info h4 {
-            font-size:14px;
-            font-weight:700;
-            color:var(--white);
-        }
-        .profile-dropdown .dropdown-user .user-info p {
-            font-size:11px;
-            color:var(--gray);
-        }
-        .profile-dropdown .dropdown-section {
-            padding:4px 0;
-        }
-        .profile-dropdown .dropdown-item {
-            display:flex;
-            align-items:center;
-            gap:10px;
-            padding:8px 6px;
-            border-radius:10px;
-            color:var(--white);
-            text-decoration:none;
-            cursor:pointer;
-            transition:all .2s;
-            font-size:13px;
-            font-weight:500;
-            border:none;
-            background:transparent;
-            width:100%;
-            text-align:left;
-        }
-        .profile-dropdown .dropdown-item:hover {
-            background:rgba(120,68,213,0.2);
-            color:var(--primary-light);
-        }
-        .profile-dropdown .dropdown-item i {
-            width:18px;
-            color:var(--primary-light);
-            font-size:14px;
-        }
-        .profile-dropdown .dropdown-divider {
-            height:1px;
-            background:rgba(167,139,250,0.2);
-            margin:8px 0;
-        }
-        .profile-dropdown .dropdown-item.logout-item {
-            color:#FF6B6B;
-        }
-        .profile-dropdown .dropdown-item.logout-item:hover {
-            background:rgba(255,107,107,0.15);
-            color:#FF6B6B;
-        }
-        .profile-dropdown .dropdown-item.logout-item i {
-            color:#FF6B6B;
-        }
-
-        /* ----- AUTH MODAL ----- */
-        .auth-modal-overlay {
-            position:fixed;
-            top:0; left:0;
-            width:100%; height:100%;
-            background:rgba(0,0,0,0.8);
-            z-index:10002;
-            display:none;
-            align-items:center;
-            justify-content:center;
-            padding:20px;
-            backdrop-filter:blur(4px);
-        }
+        /* ----- AUTH MODAL (modified: now includes Name, Phone, Email, no Password) ----- */
+        .auth-modal-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10002; display:none; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(4px); }
         .auth-modal-overlay.active { display:flex; }
-        .auth-modal {
-            background:linear-gradient(145deg, #1A0B2E, #2D1B4E);
-            border:2px solid var(--primary-light);
-            border-radius:24px;
-            padding:35px 30px 30px;
-            max-width:420px;
-            width:100%;
-            position:relative;
-            animation:popupBounce .5s ease;
-            box-shadow:0 20px 60px rgba(0,0,0,0.6);
-        }
-        .auth-modal .close-modal {
-            position:absolute;
-            top:12px;
-            right:18px;
-            font-size:22px;
-            cursor:pointer;
-            color:var(--gray);
-            transition:all .2s;
-            background:none;
-            border:none;
-        }
+        .auth-modal { background:linear-gradient(145deg, #1A0B2E, #2D1B4E); border:2px solid var(--primary-light); border-radius:24px; padding:35px 30px 30px; max-width:420px; width:100%; position:relative; animation:popupBounce .5s ease; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
+        .auth-modal .close-modal { position:absolute; top:12px; right:18px; font-size:22px; cursor:pointer; color:var(--gray); transition:all .2s; background:none; border:none; }
         .auth-modal .close-modal:hover { color:var(--white); transform:rotate(90deg); }
-        .auth-modal .modal-header {
-            text-align:center;
-            margin-bottom:25px;
-        }
-        .auth-modal .modal-header .icon-circle {
-            width:60px;
-            height:60px;
-            background:rgba(120,68,213,0.2);
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            margin:0 auto 12px;
-            font-size:28px;
-            color:var(--primary-light);
-            border:2px solid rgba(167,139,250,0.3);
-            animation:floatLabel 2s infinite alternate;
-        }
-        .auth-modal .modal-header h3 {
-            font-size:26px;
-            font-weight:800;
-            color:var(--white);
-            letter-spacing:-0.5px;
-        }
-        .auth-modal .modal-header p {
-            color:var(--gray);
-            font-size:14px;
-            margin-top:4px;
-        }
-        .auth-modal .input-group {
-            position:relative;
-            margin-bottom:20px;
-        }
-        .auth-modal .input-group i {
-            position:absolute;
-            left:14px;
-            top:50%;
-            transform:translateY(-50%);
-            color:var(--gray);
-            font-size:16px;
-            transition:color .3s;
-        }
-        .auth-modal .input-group input {
-            width:100%;
-            padding:14px 14px 14px 44px;
-            border:2px solid rgba(120,68,213,0.2);
-            border-radius:12px;
-            background:rgba(13,6,24,0.6);
-            color:white;
-            font-size:15px;
-            transition:all .3s;
-            outline:none;
-        }
-        .auth-modal .input-group input:focus {
-            border-color:var(--primary-light);
-            background:rgba(13,6,24,0.8);
-            box-shadow:0 0 0 4px rgba(167,139,250,0.15);
-        }
-        .auth-modal .input-group input:focus + i,
-        .auth-modal .input-group input:focus ~ i {
-            color:var(--primary-light);
-        }
-        .auth-modal .input-group input::placeholder {
-            color:var(--gray);
-            font-weight:300;
-        }
-        .auth-modal .auth-error {
-            color:#FF6B6B;
-            font-size:13px;
-            text-align:center;
-            margin-bottom:12px;
-            display:none;
-            background:rgba(255,107,107,0.1);
-            padding:8px;
-            border-radius:8px;
-            border-left:3px solid #FF6B6B;
-        }
-        .auth-modal .auth-submit {
-            width:100%;
-            background:linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color:white;
-            border:none;
-            padding:14px;
-            border-radius:12px;
-            font-weight:700;
-            font-size:16px;
-            cursor:pointer;
-            transition:all .3s;
-            letter-spacing:0.5px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:10px;
-        }
-        .auth-modal .auth-submit:hover {
-            transform:scale(1.02);
-            box-shadow:0 4px 20px rgba(120,68,213,0.4);
-        }
+        .auth-modal .modal-header { text-align:center; margin-bottom:25px; }
+        .auth-modal .modal-header .icon-circle { width:60px; height:60px; background:rgba(120,68,213,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:28px; color:var(--primary-light); border:2px solid rgba(167,139,250,0.3); animation:floatLabel 2s infinite alternate; }
+        .auth-modal .modal-header h3 { font-size:26px; font-weight:800; color:var(--white); letter-spacing:-0.5px; }
+        .auth-modal .modal-header p { color:var(--gray); font-size:14px; margin-top:4px; }
+        .auth-modal .input-group { position:relative; margin-bottom:20px; }
+        .auth-modal .input-group i { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--gray); font-size:16px; transition:color .3s; }
+        .auth-modal .input-group input { width:100%; padding:14px 14px 14px 44px; border:2px solid rgba(120,68,213,0.2); border-radius:12px; background:rgba(13,6,24,0.6); color:white; font-size:15px; transition:all .3s; outline:none; }
+        .auth-modal .input-group input:focus { border-color:var(--primary-light); background:rgba(13,6,24,0.8); box-shadow:0 0 0 4px rgba(167,139,250,0.15); }
+        .auth-modal .input-group input:focus + i, .auth-modal .input-group input:focus ~ i { color:var(--primary-light); }
+        .auth-modal .input-group input::placeholder { color:var(--gray); font-weight:300; }
+        .auth-modal .auth-error { color:#FF6B6B; font-size:13px; text-align:center; margin-bottom:12px; display:none; background:rgba(255,107,107,0.1); padding:8px; border-radius:8px; border-left:3px solid #FF6B6B; }
+        .auth-modal .auth-submit { width:100%; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); color:white; border:none; padding:14px; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; transition:all .3s; letter-spacing:0.5px; display:flex; align-items:center; justify-content:center; gap:10px; }
+        .auth-modal .auth-submit:hover { transform:scale(1.02); box-shadow:0 4px 20px rgba(120,68,213,0.4); }
         .auth-modal .auth-submit:active { transform:scale(0.98); }
-        .auth-modal .auth-submit .spinner {
-            display:none;
-            animation:spin 1s linear infinite;
-        }
-        .auth-modal .auth-submit.loading .spinner {
-            display:inline-block;
-        }
-        .auth-modal .auth-submit.loading .btn-text {
-            opacity:0.7;
-        }
-        .auth-modal .auth-actions {
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            margin-top:12px;
-            flex-wrap:wrap;
-            gap:8px;
-        }
-        .auth-modal .forgot-password {
-            color:var(--primary-light);
-            font-size:13px;
-            cursor:pointer;
-            text-decoration:none;
-            transition:color .2s;
-            background:none;
-            border:none;
-            font-weight:500;
-        }
-        .auth-modal .forgot-password:hover {
-            color:#C4B5FD;
-            text-decoration:underline;
-        }
-        .auth-modal .auth-toggle {
-            text-align:center;
-            margin-top:12px;
-            color:var(--gray);
-            font-size:12px;
-        }
+        .auth-modal .auth-submit .spinner { display:none; animation:spin 1s linear infinite; }
+        .auth-modal .auth-submit.loading .spinner { display:inline-block; }
+        .auth-modal .auth-submit.loading .btn-text { opacity:0.7; }
+        .auth-modal .auth-actions { display:flex; justify-content:space-between; align-items:center; margin-top:12px; flex-wrap:wrap; gap:8px; }
+        /* We hide the forgot password button since no password */
+        .auth-modal .forgot-password { display:none; }
+        .auth-modal .auth-toggle { text-align:center; margin-top:12px; color:var(--gray); font-size:12px; }
 
-        /* ----- EDIT PROFILE MODAL ----- */
-        .edit-profile-overlay {
-            position:fixed;
-            top:0; left:0;
-            width:100%; height:100%;
-            background:rgba(0,0,0,0.8);
-            z-index:10003;
-            display:none;
-            align-items:center;
-            justify-content:center;
-            padding:20px;
-            backdrop-filter:blur(4px);
-        }
+        /* ----- EDIT PROFILE MODAL (unchanged) ----- */
+        .edit-profile-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10003; display:none; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(4px); }
         .edit-profile-overlay.active { display:flex; }
-        .edit-profile-modal {
-            background:linear-gradient(145deg, #1A0B2E, #2D1B4E);
-            border:2px solid var(--primary-light);
-            border-radius:24px;
-            padding:35px 30px 30px;
-            max-width:420px;
-            width:100%;
-            animation:popupBounce .5s ease;
-            box-shadow:0 20px 60px rgba(0,0,0,0.6);
-            position:relative;
-        }
-        .edit-profile-modal .close-edit {
-            position:absolute;
-            top:12px;
-            right:18px;
-            font-size:22px;
-            cursor:pointer;
-            color:var(--gray);
-            background:none;
-            border:none;
-        }
+        .edit-profile-modal { background:linear-gradient(145deg, #1A0B2E, #2D1B4E); border:2px solid var(--primary-light); border-radius:24px; padding:35px 30px 30px; max-width:420px; width:100%; animation:popupBounce .5s ease; box-shadow:0 20px 60px rgba(0,0,0,0.6); position:relative; }
+        .edit-profile-modal .close-edit { position:absolute; top:12px; right:18px; font-size:22px; cursor:pointer; color:var(--gray); background:none; border:none; }
         .edit-profile-modal .close-edit:hover { color:var(--white); }
-        .edit-profile-modal h3 {
-            font-size:24px;
-            font-weight:800;
-            color:var(--white);
-            text-align:center;
-            margin-bottom:20px;
-        }
-        .edit-profile-modal .input-group {
-            position:relative;
-            margin-bottom:20px;
-        }
-        .edit-profile-modal .input-group i {
-            position:absolute;
-            left:14px;
-            top:50%;
-            transform:translateY(-50%);
-            color:var(--gray);
-            font-size:16px;
-        }
-        .edit-profile-modal .input-group input {
-            width:100%;
-            padding:14px 14px 14px 44px;
-            border:2px solid rgba(120,68,213,0.2);
-            border-radius:12px;
-            background:rgba(13,6,24,0.6);
-            color:white;
-            font-size:15px;
-            transition:all .3s;
-            outline:none;
-        }
-        .edit-profile-modal .input-group input:focus {
-            border-color:var(--primary-light);
-            background:rgba(13,6,24,0.8);
-            box-shadow:0 0 0 4px rgba(167,139,250,0.15);
-        }
-        .edit-profile-modal .edit-submit {
-            width:100%;
-            background:linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color:white;
-            border:none;
-            padding:14px;
-            border-radius:12px;
-            font-weight:700;
-            font-size:16px;
-            cursor:pointer;
-            transition:all .3s;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:10px;
-        }
-        .edit-profile-modal .edit-submit:hover {
-            transform:scale(1.02);
-            box-shadow:0 4px 20px rgba(120,68,213,0.4);
-        }
-        .edit-profile-modal .edit-submit .spinner {
-            display:none;
-            animation:spin 1s linear infinite;
-        }
-        .edit-profile-modal .edit-submit.loading .spinner {
-            display:inline-block;
-        }
-        .edit-profile-modal .edit-submit.loading .btn-text {
-            opacity:0.7;
-        }
-        .edit-profile-modal .edit-error {
-            color:#FF6B6B;
-            font-size:13px;
-            text-align:center;
-            margin-bottom:12px;
-            display:none;
-        }
-        .edit-profile-modal .edit-success {
-            color:#4CAF50;
-            font-size:13px;
-            text-align:center;
-            margin-bottom:12px;
-            display:none;
-        }
+        .edit-profile-modal h3 { font-size:24px; font-weight:800; color:var(--white); text-align:center; margin-bottom:20px; }
+        .edit-profile-modal .input-group { position:relative; margin-bottom:20px; }
+        .edit-profile-modal .input-group i { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--gray); font-size:16px; }
+        .edit-profile-modal .input-group input { width:100%; padding:14px 14px 14px 44px; border:2px solid rgba(120,68,213,0.2); border-radius:12px; background:rgba(13,6,24,0.6); color:white; font-size:15px; transition:all .3s; outline:none; }
+        .edit-profile-modal .input-group input:focus { border-color:var(--primary-light); background:rgba(13,6,24,0.8); box-shadow:0 0 0 4px rgba(167,139,250,0.15); }
+        .edit-profile-modal .edit-submit { width:100%; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); color:white; border:none; padding:14px; border-radius:12px; font-weight:700; font-size:16px; cursor:pointer; transition:all .3s; display:flex; align-items:center; justify-content:center; gap:10px; }
+        .edit-profile-modal .edit-submit:hover { transform:scale(1.02); box-shadow:0 4px 20px rgba(120,68,213,0.4); }
+        .edit-profile-modal .edit-submit .spinner { display:none; animation:spin 1s linear infinite; }
+        .edit-profile-modal .edit-submit.loading .spinner { display:inline-block; }
+        .edit-profile-modal .edit-submit.loading .btn-text { opacity:0.7; }
+        .edit-profile-modal .edit-error { color:#FF6B6B; font-size:13px; text-align:center; margin-bottom:12px; display:none; }
+        .edit-profile-modal .edit-success { color:#4CAF50; font-size:13px; text-align:center; margin-bottom:12px; display:none; }
 
         /* ----- HERO ----- */
         .hero { min-height:100vh; display:flex; align-items:center; background:radial-gradient(circle at 80% 20%, rgba(120,68,213,0.3), transparent 50%), var(--dark-bg); padding:120px 0 80px; position:relative; overflow:hidden; }
@@ -960,7 +490,7 @@
         .logo-strip .logos { display:flex; gap:40px; white-space:nowrap; animation:marqueeScroll 15s linear infinite; width:max-content; }
         .logo-strip .logos span { font-size:18px; font-weight:700; opacity:0.6; padding:0 20px; }
 
-        /* ----- MARQUEE ----- */
+        /* ----- MARQUEE SECTION ----- */
         .marquee-section { padding:80px 0; position:relative; }
         .marquee-scroll-container { overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; padding:15px 0; cursor:grab; -webkit-overflow-scrolling:touch; }
         .marquee-scroll-container::-webkit-scrollbar { display:none; }
@@ -1060,7 +590,6 @@
         .footer-grid a:hover { color:var(--primary-light); transform:translateX(5px); }
         .footer-bottom { text-align:center; color:var(--gray); font-size:13px; }
 
-        /* Responsive */
         @media (max-width:768px) {
             .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:var(--dark-bg); flex-direction:column; padding:20px; }
             .nav-links.active { display:flex; }
@@ -1099,7 +628,7 @@
     <div class="preloader" id="preloader"><div class="preloader-logo">KYROSH<span>.</span></div></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Success Popup -->
+    <!-- Success Popup (proposal submitted) -->
     <div class="success-popup-overlay" id="successPopup">
         <div class="success-popup">
             <div class="success-icon">🎉</div>
@@ -1118,7 +647,7 @@
         </div>
     </div>
 
-    <!-- Welcome Popup -->
+    <!-- Welcome Popup (first time) -->
     <div class="welcome-popup-overlay" id="welcomePopup">
         <div class="welcome-popup">
             <button class="close-welcome" id="closeWelcome">✕</button>
@@ -1155,42 +684,43 @@
         <button style="background:var(--primary-light);color:#000;border:none;padding:3px 8px;border-radius:5px;font-size:8px;cursor:pointer;" id="reopenOffer">VIEW</button>
     </div>
 
-    <!-- Auth Modal -->
+    <!-- Auth Modal (Magic Link – with Name, Phone, Email) -->
     <div class="auth-modal-overlay" id="authModal">
         <div class="auth-modal">
             <button class="close-modal" id="closeAuthModal">✕</button>
             <div class="modal-header">
-                <div class="icon-circle"><i class="fas fa-user-lock"></i></div>
-                <h3 id="authModalTitle">Welcome Back</h3>
-                <p id="authModalSub">Login or create your account</p>
+                <div class="icon-circle"><i class="fas fa-envelope"></i></div>
+                <h3 id="authModalTitle">Magic Link Login</h3>
+                <p id="authModalSub">Enter your details to receive a login link</p>
             </div>
             <div id="authError" class="auth-error"></div>
             <form id="authForm">
+                <!-- Name Field -->
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" id="authName" placeholder="Full Name" required />
                 </div>
+                <!-- Phone Field -->
                 <div class="input-group">
                     <i class="fas fa-phone"></i>
                     <input type="tel" id="authPhone" placeholder="Phone Number" required />
                 </div>
+                <!-- Email Field -->
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
                     <input type="email" id="authEmail" placeholder="Email Address" required />
                 </div>
-                <div class="input-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" id="authPassword" placeholder="Password" required minlength="6" />
-                </div>
+                <!-- No Password field -->
                 <button type="submit" class="auth-submit" id="authSubmitBtn">
                     <span class="spinner"><i class="fas fa-spinner"></i></span>
-                    <span class="btn-text">Login / Sign Up</span>
+                    <span class="btn-text">Send Magic Link</span>
                 </button>
                 <div class="auth-actions">
-                    <button type="button" class="forgot-password" id="forgotPasswordBtn">🔑 Forgot Password?</button>
+                    <!-- Forgot password hidden (no password) -->
+                    <button type="button" class="forgot-password" id="forgotPasswordBtn" style="display:none;">🔑 Forgot Password?</button>
                 </div>
             </form>
-            <p class="auth-toggle" style="color:var(--gray);font-size:12px;">By continuing, you agree to our Terms & Privacy Policy.</p>
+            <p class="auth-toggle" style="color:var(--gray);font-size:12px;">We'll email you a magic link to sign in instantly.</p>
         </div>
     </div>
 
@@ -1299,6 +829,7 @@
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-search"></i></div><h3>SEO & GEO</h3><p>Search Engine Optimization and Generative Engine Optimization to make your brand discoverable everywhere.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-rocket"></i></div><h3>Brand Uplifting</h3><p>Complete brand strategy, identity, positioning, and transformation that elevates your business.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-star"></i></div><h3>Complete Digital Works</h3><p>Anything digital your business needs — we handle it all. One team, one vision, total domination.</p></div>
+                <!-- Duplicated for seamless marquee -->
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-globe"></i></div><h3>Websites</h3><p>Business websites, e-commerce stores, landing pages, and custom web solutions that convert visitors into customers.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-code"></i></div><h3>Software</h3><p>Custom dashboards, web applications, automation tools, and software solutions built for your unique needs.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-video"></i></div><h3>Video Making</h3><p>High-quality ads, explainer videos, reels, corporate films, and content that captures attention instantly.</p></div>
@@ -1417,66 +948,19 @@
         </div>
         <div class="marquee-scroll-container" data-aos="fade-up" data-aos-delay="150">
             <div class="marquee-track" ontouchstart="this.classList.add('touch')" ontouchend="this.classList.remove('touch')">
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Kyrosh transformed our online presence. Sales doubled in 3 months!"</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">R</div><div><h5>Rahul Sharma</h5><span>Founder, BrightCart</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-                    <p>"Great team! They handle everything from graphics to SEO efficiently."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">P</div><div><h5>Priya Patel</h5><span>Owner, GlowNest</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Custom software boosted our operational efficiency by 60%."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">A</div><div><h5>Amit Verma</h5><span>Director, SwiftSolve</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                    <p>"Good results overall, though communication could be slightly faster."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">Z</div><div><h5>Zahid</h5><span>Owner, FreshBloom</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Video quality is top-notch! Engagement went through the roof."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">M</div><div><h5>Mazin Ahmad</h5><span>Marketing Head, FitCore</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-                    <p>"Delivered on time, quality exceeded expectations. ROI speaks for itself."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><h5>Swadiq MKR</h5><span>CEO, LearnPro Academy</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Kyrosh transformed our online presence. Sales doubled in 3 months!"</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">R</div><div><h5>Rahul Sharma</h5><span>Founder, BrightCart</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-                    <p>"Great team! They handle everything from graphics to SEO efficiently."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">P</div><div><h5>Priya Patel</h5><span>Owner, GlowNest</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Custom software boosted our operational efficiency by 60%."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">A</div><div><h5>Amit Verma</h5><span>Director, SwiftSolve</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                    <p>"Good results overall, though communication could be slightly faster."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">Z</div><div><h5>Zahid</h5><span>Owner, FreshBloom</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Video quality is top-notch! Engagement went through the roof."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">M</div><div><h5>Mazin Ahmad</h5><span>Marketing Head, FitCore</span></div></div>
-                </div>
-                <div class="testimonial-card marquee-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-                    <p>"Delivered on time, quality exceeded expectations. ROI speaks for itself."</p>
-                    <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><h5>Swadiq MKR</h5><span>CEO, LearnPro Academy</span></div></div>
-                </div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Kyrosh transformed our online presence. Sales doubled in 3 months!"</p><div class="testimonial-author"><div class="testimonial-avatar">R</div><div><h5>Rahul Sharma</h5><span>Founder, BrightCart</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><p>"Great team! They handle everything from graphics to SEO efficiently."</p><div class="testimonial-author"><div class="testimonial-avatar">P</div><div><h5>Priya Patel</h5><span>Owner, GlowNest</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Custom software boosted our operational efficiency by 60%."</p><div class="testimonial-author"><div class="testimonial-avatar">A</div><div><h5>Amit Verma</h5><span>Director, SwiftSolve</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div><p>"Good results overall, though communication could be slightly faster."</p><div class="testimonial-author"><div class="testimonial-avatar">Z</div><div><h5>Zahid</h5><span>Owner, FreshBloom</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Video quality is top-notch! Engagement went through the roof."</p><div class="testimonial-author"><div class="testimonial-avatar">M</div><div><h5>Mazin Ahmad</h5><span>Marketing Head, FitCore</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><p>"Delivered on time, quality exceeded expectations. ROI speaks for itself."</p><div class="testimonial-author"><div class="testimonial-avatar">S</div><div><h5>Swadiq MKR</h5><span>CEO, LearnPro Academy</span></div></div></div>
+                <!-- Duplicates for seamless scrolling -->
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Kyrosh transformed our online presence. Sales doubled in 3 months!"</p><div class="testimonial-author"><div class="testimonial-avatar">R</div><div><h5>Rahul Sharma</h5><span>Founder, BrightCart</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><p>"Great team! They handle everything from graphics to SEO efficiently."</p><div class="testimonial-author"><div class="testimonial-avatar">P</div><div><h5>Priya Patel</h5><span>Owner, GlowNest</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Custom software boosted our operational efficiency by 60%."</p><div class="testimonial-author"><div class="testimonial-avatar">A</div><div><h5>Amit Verma</h5><span>Director, SwiftSolve</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div><p>"Good results overall, though communication could be slightly faster."</p><div class="testimonial-author"><div class="testimonial-avatar">Z</div><div><h5>Zahid</h5><span>Owner, FreshBloom</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Video quality is top-notch! Engagement went through the roof."</p><div class="testimonial-author"><div class="testimonial-avatar">M</div><div><h5>Mazin Ahmad</h5><span>Marketing Head, FitCore</span></div></div></div>
+                <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><p>"Delivered on time, quality exceeded expectations. ROI speaks for itself."</p><div class="testimonial-author"><div class="testimonial-avatar">S</div><div><h5>Swadiq MKR</h5><span>CEO, LearnPro Academy</span></div></div></div>
             </div>
         </div>
     </section>
@@ -1528,60 +1012,12 @@
             </div>
             <div class="marquee-scroll-container" data-aos="fade-up" data-aos-delay="150">
                 <div class="marquee-track" ontouchstart="this.classList.add('touch')" ontouchend="this.classList.remove('touch')">
-                    <div class="marquee-card instagram-card">
-                        <i class="fab fa-instagram"></i>
-                        <h3>Kyrosh Brand</h3>
-                        <p>Brand Uplifting & Complete Digital Solutions</p>
-                        <div class="insta-buttons">
-                            <a href="https://www.instagram.com/kyrosh_brand" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a href="tel:+919019958415" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9019958415</a>
-                        </div>
-                    </div>
-                    <div class="marquee-card instagram-card">
-                        <i class="fab fa-instagram"></i>
-                        <h3>Kyrosh Ads</h3>
-                        <p>Performance Marketing & Advertising</p>
-                        <div class="insta-buttons">
-                            <a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a href="tel:+919741892884" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9741892884</a>
-                        </div>
-                    </div>
-                    <div class="marquee-card instagram-card">
-                        <i class="fab fa-instagram"></i>
-                        <h3>Kyrosh Brand</h3>
-                        <p>Brand Uplifting & Complete Digital Solutions</p>
-                        <div class="insta-buttons">
-                            <a href="https://www.instagram.com/kyrosh_brand" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a href="tel:+919019958415" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9019958415</a>
-                        </div>
-                    </div>
-                    <div class="marquee-card instagram-card">
-                        <i class="fab fa-instagram"></i>
-                        <h3>Kyrosh Ads</h3>
-                        <p>Performance Marketing & Advertising</p>
-                        <div class="insta-buttons">
-                            <a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a href="tel:+919741892884" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9741892884</a>
-                        </div>
-                    </div>
-                    <div class="marquee-card instagram-card">
-                        <i class="fab fa-instagram"></i>
-                        <h3>Kyrosh Brand</h3>
-                        <p>Brand Uplifting & Complete Digital Solutions</p>
-                        <div class="insta-buttons">
-                            <a href="https://www.instagram.com/kyrosh_brand" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a href="tel:+919019958415" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9019958415</a>
-                        </div>
-                    </div>
-                    <div class="marquee-card instagram-card">
-                        <i class="fab fa-instagram"></i>
-                        <h3>Kyrosh Ads</h3>
-                        <p>Performance Marketing & Advertising</p>
-                        <div class="insta-buttons">
-                            <a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a href="tel:+919741892884" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9741892884</a>
-                        </div>
-                    </div>
+                    <div class="marquee-card instagram-card"><i class="fab fa-instagram"></i><h3>Kyrosh Brand</h3><p>Brand Uplifting & Complete Digital Solutions</p><div class="insta-buttons"><a href="https://www.instagram.com/kyrosh_brand" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a><a href="tel:+919019958415" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9019958415</a></div></div>
+                    <div class="marquee-card instagram-card"><i class="fab fa-instagram"></i><h3>Kyrosh Ads</h3><p>Performance Marketing & Advertising</p><div class="insta-buttons"><a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a><a href="tel:+919741892884" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9741892884</a></div></div>
+                    <div class="marquee-card instagram-card"><i class="fab fa-instagram"></i><h3>Kyrosh Brand</h3><p>Brand Uplifting & Complete Digital Solutions</p><div class="insta-buttons"><a href="https://www.instagram.com/kyrosh_brand" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a><a href="tel:+919019958415" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9019958415</a></div></div>
+                    <div class="marquee-card instagram-card"><i class="fab fa-instagram"></i><h3>Kyrosh Ads</h3><p>Performance Marketing & Advertising</p><div class="insta-buttons"><a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a><a href="tel:+919741892884" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9741892884</a></div></div>
+                    <div class="marquee-card instagram-card"><i class="fab fa-instagram"></i><h3>Kyrosh Brand</h3><p>Brand Uplifting & Complete Digital Solutions</p><div class="insta-buttons"><a href="https://www.instagram.com/kyrosh_brand" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a><a href="tel:+919019958415" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9019958415</a></div></div>
+                    <div class="marquee-card instagram-card"><i class="fab fa-instagram"></i><h3>Kyrosh Ads</h3><p>Performance Marketing & Advertising</p><div class="insta-buttons"><a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a><a href="tel:+919741892884" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9741892884</a></div></div>
                 </div>
             </div>
         </div>
@@ -1608,18 +1044,7 @@
         // ============ SUPABASE INIT ============
         const SUPABASE_URL = 'https://qihxvqtetktpqszkxjkk.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_xtgsAZuCdU_0b3C87IgtxA_V8apZy2a';
-        // IMPORTANT:
-        // For password login/signup without a Supabase confirmation email:
-        // Supabase Dashboard -> Authentication -> Providers -> Email
-        // -> turn OFF "Confirm email".
-
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // ============ PRELOADER HIDE ============
-        setTimeout(() => {
-            const preloader = document.getElementById('preloader');
-            if (preloader) preloader.classList.add('hidden');
-        }, 1500);
 
         // ============ DOM REFS ============
         const authButtons = document.getElementById('authButtons');
@@ -1627,12 +1052,10 @@
         const closeAuthModal = document.getElementById('closeAuthModal');
         const authForm = document.getElementById('authForm');
         const authEmail = document.getElementById('authEmail');
-        const authPassword = document.getElementById('authPassword');
         const authName = document.getElementById('authName');
         const authPhone = document.getElementById('authPhone');
         const authSubmitBtn = document.getElementById('authSubmitBtn');
         const authError = document.getElementById('authError');
-        const forgotPasswordBtn = document.getElementById('forgotPasswordBtn');
         const editProfileModal = document.getElementById('editProfileModal');
         const closeEditModal = document.getElementById('closeEditModal');
         const editName = document.getElementById('editName');
@@ -1685,15 +1108,11 @@
 
         async function logLogin(user, profile = {}) {
             if (!user) return;
-
             const loginTime = new Date().toISOString();
             const name = profile.name || user.user_metadata?.name || user.email || 'User';
             const phone = profile.phone || user.user_metadata?.phone || '';
-
-            // Store every login event in Supabase.
-            // Create the login_logs table using the SQL supplied below this file.
             try {
-                const { error } = await supabaseClient
+                await supabaseClient
                     .from('login_logs')
                     .insert({
                         user_id: user.id,
@@ -1704,15 +1123,7 @@
                         user_agent: navigator.userAgent,
                         ip_note: 'Client-side login event'
                     });
-
-                if (error) {
-                    console.error('Supabase login log error:', error);
-                }
-            } catch (err) {
-                console.error('Supabase login log exception:', err);
-            }
-
-            // Also send the same login information to Google Sheets.
+            } catch (err) { console.error('Supabase login log error:', err); }
             try {
                 await fetch("https://script.google.com/macros/s/AKfycbw3hXnvZqSegfn9VYxY2pGe68zspmz8NpjqUQJ6rsPoGpilGrzkebQkCQwi_mYOYMFvXg/exec", {
                     method: "POST",
@@ -1728,38 +1139,15 @@
                         userAgent: navigator.userAgent
                     })
                 });
-            } catch (err) {
-                console.error('Google Sheets login log error:', err);
-            }
+            } catch (err) { console.error('Google Sheets login log error:', err); }
         }
 
         function showLoginSuccess(name) {
             if (!loginSuccessPopup) return;
-
             if (loginSuccessTimer) clearTimeout(loginSuccessTimer);
-            if (loginSuccessName) {
-                loginSuccessName.textContent = name || 'User';
-            }
-
+            if (loginSuccessName) loginSuccessName.textContent = name || 'User';
             loginSuccessPopup.classList.add('active');
-
-            loginSuccessTimer = setTimeout(() => {
-                loginSuccessPopup.classList.remove('active');
-            }, 3000);
-        }
-
-        function sendWelcomeEmail(name, email) {
-            try {
-                if (typeof emailjs !== 'undefined') {
-                    emailjs.send("service_nl0bwlc", "template_welcome", {
-                        to_name: name,
-                        to_email: email,
-                        offer_link: "#proposal"
-                    }).then(() => console.log('Welcome email sent')).catch(err => console.log('Email error:', err));
-                }
-            } catch (err) {
-                console.error('sendWelcomeEmail error:', err);
-            }
+            loginSuccessTimer = setTimeout(() => loginSuccessPopup.classList.remove('active'), 3000);
         }
 
         function launchConfetti() {
@@ -1778,16 +1166,13 @@
                     confettiContainer.appendChild(piece);
                 }
                 setTimeout(() => { confettiContainer.innerHTML = ''; }, 5000);
-            } catch (err) {
-                console.error('launchConfetti error:', err);
-            }
+            } catch (err) { console.error('launchConfetti error:', err); }
         }
 
-        // ============ UPDATE HEADER ============
+        // ============ UPDATE AUTH UI ============
         async function updateAuthUI(session, options = {}) {
             try {
                 const user = session?.user;
-
                 if (user) {
                     const profile = await getProfile(user.id);
                     const displayName = profile?.name || user.user_metadata?.name || user.email || 'User';
@@ -1819,25 +1204,12 @@
                                 </div>
                             </div>
                         `;
-
                         const profileToggle = document.getElementById('profileToggle');
                         const profileDropdown = document.getElementById('profileDropdown');
-
                         if (profileToggle && profileDropdown) {
-                            profileToggle.addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                profileToggle.classList.toggle('open');
-                                profileDropdown.classList.toggle('open');
-                            });
-
-                            document.addEventListener('click', (e) => {
-                                if (authButtons && !authButtons.contains(e.target)) {
-                                    profileToggle.classList.remove('open');
-                                    profileDropdown.classList.remove('open');
-                                }
-                            });
+                            profileToggle.addEventListener('click', (e) => { e.stopPropagation(); profileToggle.classList.toggle('open'); profileDropdown.classList.toggle('open'); });
+                            document.addEventListener('click', (e) => { if (authButtons && !authButtons.contains(e.target)) { profileToggle.classList.remove('open'); profileDropdown.classList.remove('open'); } });
                         }
-
                         const editBtn = document.getElementById('editProfileBtn');
                         if (editBtn) {
                             editBtn.addEventListener('click', () => {
@@ -1850,210 +1222,101 @@
                                 if (editProfileModal) editProfileModal.classList.add('active');
                             });
                         }
-
                         const logoutBtn = document.getElementById('logoutBtn');
                         if (logoutBtn) {
                             logoutBtn.addEventListener('click', async () => {
-                                const { error } = await supabaseClient.auth.signOut();
-                                if (error) {
-                                    console.error('Logout error:', error);
-                                    return;
-                                }
+                                await supabaseClient.auth.signOut();
                                 updateAuthUI(null);
                             });
                         }
                     }
-
                     if (proposalFormWrapper) proposalFormWrapper.style.display = 'block';
                     if (loginPrompt) loginPrompt.style.display = 'none';
-
                     const clientEmail = document.getElementById('clientEmail');
                     const clientName = document.getElementById('clientName');
                     if (clientEmail) clientEmail.value = user.email || '';
                     if (clientName) clientName.value = displayName;
 
-                    // ============================================================
-                    // 🚀 SEND EMAILS USING YOUR NEW EDGE FUNCTION
-                    // ============================================================
+                    // Send login notification & welcome email via Edge Function (same as before)
                     if (options.justLoggedIn) {
-                        // 1. Log the login to your sheet/database
                         await logLogin(user, { name: displayName, phone: phone === 'Not set' ? '' : phone });
-
-                        // 2. Show the success popup
                         showLoginSuccess(displayName);
-
-                        // 3. 📧 Send Login Notification (every login)
+                        // Send login notification
                         try {
                             const response = await fetch(
                                 'https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email',
                                 {
                                     method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                                    },
+                                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                     body: JSON.stringify({
                                         to: user.email,
                                         subject: `🔐 New Login to Your Kyrosh Account`,
-                                        html: `
-                                            <h2>Hi ${displayName},</h2>
-                                            <p>We noticed a new login to your Kyrosh account.</p>
-                                            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
-                                            <p><strong>Device:</strong> ${navigator.userAgent}</p>
-                                            <p>If this was you, great! 🎉</p>
-                                            <p>If you didn't log in, please contact us immediately.</p>
-                                            <br>
-                                            <p>Stay awesome,<br>The Kyrosh Team</p>
-                                        `
+                                        html: `<h2>Hi ${displayName},</h2><p>We noticed a new login to your Kyrosh account.</p><p><strong>Time:</strong> ${new Date().toLocaleString()}</p><p><strong>Device:</strong> ${navigator.userAgent}</p><p>If this was you, great! 🎉</p><p>If you didn't log in, please contact us immediately.</p><br><p>Stay awesome,<br>The Kyrosh Team</p>`
                                     })
                                 }
                             );
                             const result = await response.json();
-                            if (result.success) {
-                                console.log('✅ Login notification sent to', user.email);
-                            } else {
-                                console.warn('⚠️ Email service returned:', result.error);
-                            }
-                        } catch (err) {
-                            console.error('❌ Login email failed:', err.message);
-                        }
-
-                        // 4. 🎉 Send Welcome Email (First time only)
+                            if (result.success) console.log('✅ Login notification sent to', user.email);
+                            else console.warn('⚠️ Email service returned:', result.error);
+                        } catch (err) { console.error('❌ Login email failed:', err.message); }
+                        // Welcome email (first time only)
                         if (!profile?.first_login_done) {
                             try {
                                 const response = await fetch(
                                     'https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email',
                                     {
                                         method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                                        },
+                                        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                         body: JSON.stringify({
                                             to: user.email,
                                             subject: `🎉 Welcome to the Kyrosh Family, ${displayName}!`,
-                                            html: `
-                                                <h2>Welcome, ${displayName}!</h2>
-                                                <p>Thank you for joining Kyrosh — India's No.1 Digital Agency.</p>
-                                                <p>You've unlocked an exclusive <strong style="color:#FF4444;">50% OFF</strong> on all our services!</p>
-                                                <p>👉 <a href="${window.location.origin}#proposal" style="background:#7844D5;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;">Claim Your Offer Now</a></p>
-                                                <br>
-                                                <p>Let's build your digital empire together.</p>
-                                                <p>The Kyrosh Team</p>
-                                            `
+                                            html: `<h2>Welcome, ${displayName}!</h2><p>Thank you for joining Kyrosh — India's No.1 Digital Agency.</p><p>You've unlocked an exclusive <strong style="color:#FF4444;">50% OFF</strong> on all our services!</p><p>👉 <a href="${window.location.origin}#proposal" style="background:#7844D5;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;">Claim Your Offer Now</a></p><br><p>Let's build your digital empire together.</p><p>The Kyrosh Team</p>`
                                         })
                                     }
                                 );
                                 const result = await response.json();
                                 if (result.success) {
                                     console.log('🎉 Welcome email sent to', user.email);
-                                    // Mark first login as done so they don't get it again
                                     await upsertProfile(user.id, { first_login_done: true });
-                                } else {
-                                    console.warn('⚠️ Welcome email service returned:', result.error);
-                                }
-                            } catch (err) {
-                                console.error('❌ Welcome email failed:', err.message);
-                            }
+                                } else console.warn('⚠️ Welcome email service returned:', result.error);
+                            } catch (err) { console.error('❌ Welcome email failed:', err.message); }
                         }
                     }
-
                 } else {
                     if (authButtons) {
-                        authButtons.innerHTML = `
-                            <button class="btn-login" id="loginBtn">Login</button>
-                        `;
+                        authButtons.innerHTML = `<button class="btn-login" id="loginBtn">Login</button>`;
                         const loginBtn = document.getElementById('loginBtn');
                         if (loginBtn) loginBtn.addEventListener('click', () => openAuthModal());
                     }
-
                     if (proposalFormWrapper) proposalFormWrapper.style.display = 'none';
                     if (loginPrompt) loginPrompt.style.display = 'block';
                 }
-            } catch (err) {
-                console.error('updateAuthUI error:', err);
-            }
+            } catch (err) { console.error('updateAuthUI error:', err); }
         }
 
         // ============ AUTH MODAL ============
         function openAuthModal() {
-            if (authError) { authError.style.display = 'none';
-                authError.textContent = ''; }
-            if (authSubmitBtn) {
-                authSubmitBtn.classList.remove('loading');
-                const btnText = authSubmitBtn.querySelector('.btn-text');
-                if (btnText) btnText.textContent = 'Login / Sign Up';
-            }
+            if (authError) { authError.style.display = 'none'; authError.textContent = ''; }
+            if (authSubmitBtn) { authSubmitBtn.classList.remove('loading'); const btnText = authSubmitBtn.querySelector('.btn-text'); if (btnText) btnText.textContent = 'Send Magic Link'; }
             if (authForm) authForm.reset();
             if (authModal) authModal.classList.add('active');
         }
 
-        if (closeAuthModal) {
-            closeAuthModal.addEventListener('click', () => {
-                if (authModal) authModal.classList.remove('active');
-            });
-        }
-        if (authModal) {
-            authModal.addEventListener('click', (e) => {
-                if (e.target === authModal) authModal.classList.remove('active');
-            });
-        }
-        if (promptLoginBtn) {
-            promptLoginBtn.addEventListener('click', openAuthModal);
-        }
+        if (closeAuthModal) closeAuthModal.addEventListener('click', () => { if (authModal) authModal.classList.remove('active'); });
+        if (authModal) authModal.addEventListener('click', (e) => { if (e.target === authModal) authModal.classList.remove('active'); });
+        if (promptLoginBtn) promptLoginBtn.addEventListener('click', openAuthModal);
 
-        // ============ FORGOT PASSWORD ============
-        if (forgotPasswordBtn) {
-            forgotPasswordBtn.addEventListener('click', async () => {
-                const email = authEmail ? authEmail.value.trim() : '';
-                if (!email) {
-                    if (authError) {
-                        authError.textContent = 'Please enter your email address first.';
-                        authError.style.display = 'block';
-                    }
-                    return;
-                }
-                const { data, error } = await supabaseClient.auth.resetPasswordForEmail(email);
-                if (error) {
-                    if (authError) {
-                        // ✅ USER-FRIENDLY ERROR MESSAGES FOR PASSWORD RESET
-                        if (error.message && error.message.includes('API key')) {
-                            authError.textContent = '⚠️ SMTP configuration error. Please contact support.';
-                        } else if (error.message && error.message.includes('rate limit')) {
-                            authError.textContent = '⏳ Too many attempts. Please wait a few minutes.';
-                        } else if (error.message && error.message.includes('Invalid login')) {
-                            authError.textContent = '❌ Invalid email address. Please check and try again.';
-                        } else {
-                            authError.textContent = '❌ ' + error.message;
-                        }
-                        authError.style.display = 'block';
-                        authError.style.color = '#FF6B6B';
-                        authError.style.borderLeftColor = '#FF6B6B';
-                    }
-                } else {
-                    if (authError) {
-                        authError.style.display = 'block';
-                        authError.style.color = '#4CAF50';
-                        authError.style.borderLeftColor = '#4CAF50';
-                        authError.textContent = '✅ Password reset email sent! Check your inbox.';
-                    }
-                }
-            });
-        }
-
-        // ============ AUTH FORM SUBMIT ============
+        // ============ AUTH FORM SUBMIT (Magic Link) ============
         if (authForm) {
             authForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-
-                const email = authEmail ? authEmail.value.trim() : '';
-                const password = authPassword ? authPassword.value : '';
                 const name = authName ? authName.value.trim() : '';
                 const phone = authPhone ? authPhone.value.trim() : '';
+                const email = authEmail ? authEmail.value.trim() : '';
 
-                if (!email || !password || !name || !phone) {
+                if (!name || !phone || !email) {
                     if (authError) {
-                        authError.textContent = 'Please enter your name, phone, email and password.';
+                        authError.textContent = 'Please fill in your name, phone, and email.';
                         authError.style.display = 'block';
                     }
                     return;
@@ -2069,117 +1332,46 @@
                 if (authSubmitBtn) {
                     authSubmitBtn.classList.add('loading');
                     const btnText = authSubmitBtn.querySelector('.btn-text');
-                    if (btnText) btnText.textContent = 'Processing...';
+                    if (btnText) btnText.textContent = 'Sending...';
                 }
 
                 try {
-                    // First try normal login.
-                    const { data: signInData, error: signInError } =
-                        await supabaseClient.auth.signInWithPassword({ email, password });
+                    // Store name and phone in sessionStorage to be used after magic link login
+                    sessionStorage.setItem('pending_name', name);
+                    sessionStorage.setItem('pending_phone', phone);
 
-                    if (!signInError && signInData?.user) {
-                        const user = signInData.user;
-
-                        // Keep the user's name and phone in Supabase Auth metadata.
-                        const { error: metadataError } = await supabaseClient.auth.updateUser({
-                            data: { name, phone }
-                        });
-                        if (metadataError) console.warn('Auth metadata update:', metadataError.message);
-
-                        // Keep the same information in the public profiles table.
-                        const profileSaved = await upsertProfile(user.id, {
-                            name,
-                            phone,
-                            email: user.email || email,
-                            updated_at: new Date().toISOString()
-                        });
-
-                        if (!profileSaved) {
-                            console.warn('Profile row could not be updated. Check the profiles table/RLS policies.');
+                    // Send magic link
+                    const { data, error } = await supabaseClient.auth.signInWithOtp({
+                        email: email,
+                        options: {
+                            // Optional redirect
+                            // redirectTo: window.location.origin,
                         }
-
-                        if (authModal) authModal.classList.remove('active');
-                        if (authForm) authForm.reset();
-
-                        await updateAuthUI({ user }, { justLoggedIn: true });
-                        return;
-                    }
-
-                    // If login failed, handle the error gracefully
-                    if (signInError) {
-                        if (authError) {
-                            // ✅ CUSTOM ERROR MESSAGES FOR LOGIN
-                            if (signInError.message.includes('Email not confirmed')) {
-                                authError.textContent = '⚠️ Please confirm your email before logging in. Check your inbox for the confirmation link.';
-                            } else if (signInError.message.includes('Invalid login credentials')) {
-                                authError.textContent = '❌ Password is incorrect. Please try again.';
-                            } else {
-                                authError.textContent = '❌ ' + signInError.message;
-                            }
-                            authError.style.display = 'block';
-                        }
-                        return;
-                    }
-
-                    // If login failed because the account does not exist, create it.
-                    // This makes the same form work for both Sign Up and Login.
-                    const { data: signUpData, error: signUpError } =
-                        await supabaseClient.auth.signUp({
-                            email,
-                            password,
-                            options: {
-                                data: { name, phone }
-                            }
-                        });
-
-                    if (signUpError) {
-                        if (authError) {
-                            authError.textContent = signUpError.message;
-                            authError.style.display = 'block';
-                        }
-                        return;
-                    }
-
-                    if (!signUpData?.user) {
-                        throw new Error('Account could not be created.');
-                    }
-
-                    // IMPORTANT:
-                    // If Supabase "Confirm email" is enabled, signUp returns no session
-                    // and Supabase will send a confirmation email. 
-                    // We show a friendly message and do NOT attempt to auto-login.
-                    if (!signUpData.session) {
-                        if (authError) {
-                            authError.style.display = 'block';
-                            authError.style.color = '#4CAF50';
-                            authError.style.borderLeftColor = '#4CAF50';
-                            authError.textContent = '✅ Account created! Please check your email to confirm your account before logging in.';
-                        }
-                        // Clear form and close modal after showing message?
-                        // We keep modal open so user can see the message.
-                        // They will close it themselves.
-                        return;
-                    }
-
-                    // If we get here, session exists (confirmation is off)
-                    const user = signUpData.user;
-
-                    await upsertProfile(user.id, {
-                        name,
-                        phone,
-                        email: user.email || email,
-                        first_login_done: true,
-                        created_at: new Date().toISOString(),
-                        updated_at: new Date().toISOString()
                     });
 
-                    if (authModal) authModal.classList.remove('active');
+                    if (error) {
+                        if (authError) {
+                            if (error.message.includes('rate limit')) {
+                                authError.textContent = '⏳ Too many requests. Please wait a minute.';
+                            } else {
+                                authError.textContent = '❌ ' + error.message;
+                            }
+                            authError.style.display = 'block';
+                        }
+                        return;
+                    }
+
+                    // Success: show message
+                    if (authError) {
+                        authError.style.display = 'block';
+                        authError.style.color = '#4CAF50';
+                        authError.style.borderLeftColor = '#4CAF50';
+                        authError.textContent = '✅ Magic link sent! Check your email to log in.';
+                    }
                     if (authForm) authForm.reset();
 
-                    await updateAuthUI({ user }, { justLoggedIn: true });
-
                 } catch (err) {
-                    console.error('Authentication error:', err);
+                    console.error('Magic link error:', err);
                     if (authError) {
                         authError.textContent = err.message || 'Something went wrong. Please try again.';
                         authError.style.display = 'block';
@@ -2188,24 +1380,77 @@
                     if (authSubmitBtn) {
                         authSubmitBtn.classList.remove('loading');
                         const btnText = authSubmitBtn.querySelector('.btn-text');
-                        if (btnText) btnText.textContent = 'Login / Sign Up';
+                        if (btnText) btnText.textContent = 'Send Magic Link';
                     }
                 }
             });
         }
 
-        // ============ EDIT PROFILE ============
-        if (closeEditModal) {
-            closeEditModal.addEventListener('click', () => {
-                if (editProfileModal) editProfileModal.classList.remove('active');
-            });
-        }
-        if (editProfileModal) {
-            editProfileModal.addEventListener('click', (e) => {
-                if (e.target === editProfileModal) editProfileModal.classList.remove('active');
-            });
-        }
+        // ============ SESSION LISTENER ============
+        // This handles magic link callback and also normal sign-in
+        let isProcessingMagicLink = false;
+        supabaseClient.auth.onAuthStateChange(async (event, session) => {
+            if (event === 'SIGNED_IN' && session?.user) {
+                const user = session.user;
+                // Check if we have pending name/phone from sessionStorage
+                const pendingName = sessionStorage.getItem('pending_name');
+                const pendingPhone = sessionStorage.getItem('pending_phone');
+                if (pendingName && pendingPhone) {
+                    // This is a magic link login with pending data
+                    isProcessingMagicLink = true;
+                    // Create or update profile with the pending data
+                    await upsertProfile(user.id, {
+                        name: pendingName,
+                        phone: pendingPhone,
+                        email: user.email,
+                        first_login_done: false, // will be set after welcome email
+                        updated_at: new Date().toISOString()
+                    });
+                    // Clear storage
+                    sessionStorage.removeItem('pending_name');
+                    sessionStorage.removeItem('pending_phone');
+                }
+                // Fetch profile (maybe just created)
+                const profile = await getProfile(user.id);
+                // Now update UI with justLoggedIn = true
+                // Use a flag to avoid multiple triggers
+                if (!window._justLoggedIn) {
+                    window._justLoggedIn = true;
+                    await updateAuthUI(session, { justLoggedIn: true });
+                    // Reset flag after a short delay
+                    setTimeout(() => { window._justLoggedIn = false; }, 2000);
+                } else {
+                    await updateAuthUI(session, { justLoggedIn: false });
+                }
+            } else if (event === 'SIGNED_OUT') {
+                window._justLoggedIn = false;
+                updateAuthUI(null);
+            }
+        });
 
+        // ============ INITIAL SESSION CHECK ============
+        (async () => {
+            try {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (session) {
+                    window._justLoggedIn = false;
+                    await updateAuthUI(session, { justLoggedIn: false });
+                } else {
+                    updateAuthUI(null);
+                }
+            } catch (err) {
+                console.error('Initial session error:', err);
+                updateAuthUI(null);
+            }
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                if (preloader) preloader.classList.add('hidden');
+            }, 1500);
+        })();
+
+        // ============ EDIT PROFILE ============
+        if (closeEditModal) closeEditModal.addEventListener('click', () => { if (editProfileModal) editProfileModal.classList.remove('active'); });
+        if (editProfileModal) editProfileModal.addEventListener('click', (e) => { if (e.target === editProfileModal) editProfileModal.classList.remove('active'); });
         if (editSubmitBtn) {
             editSubmitBtn.addEventListener('click', async () => {
                 try {
@@ -2213,22 +1458,10 @@
                     if (!user) { alert('Please login first.'); return; }
                     const newName = editName ? editName.value.trim() : '';
                     const newPhone = editPhone ? editPhone.value.trim() : '';
-                    if (!newName) {
-                        if (editError) {
-                            editError.textContent = 'Name cannot be empty.';
-                            editError.style.display = 'block';
-                        }
-                        if (editSuccess) editSuccess.style.display = 'none';
-                        return;
-                    }
+                    if (!newName) { if (editError) { editError.textContent = 'Name cannot be empty.'; editError.style.display = 'block'; } if (editSuccess) editSuccess.style.display = 'none'; return; }
                     if (editError) editError.style.display = 'none';
                     if (editSuccess) editSuccess.style.display = 'none';
-                    if (editSubmitBtn) {
-                        editSubmitBtn.classList.add('loading');
-                        const btnText = editSubmitBtn.querySelector('.btn-text');
-                        if (btnText) btnText.textContent = 'Updating...';
-                    }
-
+                    if (editSubmitBtn) { editSubmitBtn.classList.add('loading'); const btnText = editSubmitBtn.querySelector('.btn-text'); if (btnText) btnText.textContent = 'Updating...'; }
                     const success = await upsertProfile(user.id, { name: newName, phone: newPhone });
                     if (success) {
                         await supabaseClient.auth.updateUser({ data: { name: newName } });
@@ -2239,134 +1472,38 @@
                             supabaseClient.auth.getSession().then(({ data }) => updateAuthUI(data.session));
                         }, 1500);
                     } else {
-                        if (editError) {
-                            editError.textContent = 'Failed to update profile.';
-                            editError.style.display = 'block';
-                        }
+                        if (editError) { editError.textContent = 'Failed to update profile.'; editError.style.display = 'block'; }
                     }
                 } catch (err) {
-                    if (editError) {
-                        editError.textContent = err.message || 'An error occurred.';
-                        editError.style.display = 'block';
-                    }
+                    if (editError) { editError.textContent = err.message || 'An error occurred.'; editError.style.display = 'block'; }
                 }
-                if (editSubmitBtn) {
-                    editSubmitBtn.classList.remove('loading');
-                    const btnText = editSubmitBtn.querySelector('.btn-text');
-                    if (btnText) btnText.textContent = 'Update Profile';
-                }
+                if (editSubmitBtn) { editSubmitBtn.classList.remove('loading'); const btnText = editSubmitBtn.querySelector('.btn-text'); if (btnText) btnText.textContent = 'Update Profile'; }
             });
         }
 
         // ============ WELCOME POPUP ============
-        if (closeWelcome) {
-            closeWelcome.addEventListener('click', () => {
-                if (welcomePopup) welcomePopup.classList.remove('active');
-            });
-        }
-        if (welcomeOfferBtn) {
-            welcomeOfferBtn.addEventListener('click', () => {
-                if (welcomePopup) welcomePopup.classList.remove('active');
-                const proposal = document.getElementById('proposal');
-                if (proposal) proposal.scrollIntoView({ behavior: 'smooth' });
-            });
-        }
-
-        // ============ SESSION LISTENER ============
-        supabaseClient.auth.onAuthStateChange((event, session) => {
-            if (event === 'SIGNED_IN' && session?.user) {
-                // updateAuthUI is also called directly after submit, so this listener
-                // only refreshes the header without creating a duplicate login log.
-                updateAuthUI(session, { justLoggedIn: false });
-            } else if (event === 'SIGNED_OUT') {
-                updateAuthUI(null);
-            }
-        });
-
-        // ============ INITIAL SESSION CHECK ============
-        (async () => {
-            try {
-                const { data: { session } } = await supabaseClient.auth.getSession();
-                await updateAuthUI(session);
-            } catch (err) {
-                console.error('Initial session error:', err);
-                if (authButtons) {
-                    authButtons.innerHTML = `
-                        <button class="btn-login" id="loginBtn">Login</button>
-                    `;
-                    const loginBtn = document.getElementById('loginBtn');
-                    if (loginBtn) loginBtn.addEventListener('click', () => openAuthModal());
-                }
-            }
-            setTimeout(() => {
-                const preloader = document.getElementById('preloader');
-                if (preloader) preloader.classList.add('hidden');
-            }, 1500);
-        })();
+        if (closeWelcome) closeWelcome.addEventListener('click', () => { if (welcomePopup) welcomePopup.classList.remove('active'); });
+        if (welcomeOfferBtn) welcomeOfferBtn.addEventListener('click', () => { if (welcomePopup) welcomePopup.classList.remove('active'); const proposal = document.getElementById('proposal'); if (proposal) proposal.scrollIntoView({ behavior: 'smooth' }); });
 
         // ============ HEADER SCROLL ============
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                if (header) header.classList.add('scrolled');
-            } else {
-                if (header) header.classList.remove('scrolled');
-            }
+            if (window.scrollY > 50) { if (header) header.classList.add('scrolled'); } else { if (header) header.classList.remove('scrolled'); }
         });
 
         // ============ HAMBURGER ============
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                if (navLinks) navLinks.classList.toggle('active');
-            });
-        }
+        if (hamburger) hamburger.addEventListener('click', () => { if (navLinks) navLinks.classList.toggle('active'); });
 
         // ============ NAVIGATION ============
-        function go(id) {
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-            if (navLinks) navLinks.classList.remove('active');
-        }
-
-        const navMap = {
-            'navHome': 'home',
-            'navServices': 'services',
-            'navWork': 'work',
-            'navTeam': 'team',
-            'navCertificates': 'certificates',
-            'navContact': 'proposal',
-            'navStartProject': 'proposal',
-            'heroViewWork': 'work',
-            'heroStrategyCall': 'proposal',
-            'logoHome': 'home',
-            'footerHome': 'home',
-            'footerServices': 'services',
-            'footerWork': 'work',
-            'footerTeam': 'team',
-            'footerCertificates': 'certificates',
-            'footerContact': 'proposal'
-        };
-        Object.keys(navMap).forEach(id => {
-            const el = document.getElementById(id);
-            if (el) {
-                el.addEventListener('click', () => go(navMap[id]));
-            }
-        });
+        function go(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); if (navLinks) navLinks.classList.remove('active'); }
+        const navMap = { 'navHome': 'home', 'navServices': 'services', 'navWork': 'work', 'navTeam': 'team', 'navCertificates': 'certificates', 'navContact': 'proposal', 'navStartProject': 'proposal', 'heroViewWork': 'work', 'heroStrategyCall': 'proposal', 'logoHome': 'home', 'footerHome': 'home', 'footerServices': 'services', 'footerWork': 'work', 'footerTeam': 'team', 'footerCertificates': 'certificates', 'footerContact': 'proposal' };
+        Object.keys(navMap).forEach(id => { const el = document.getElementById(id); if (el) { el.addEventListener('click', () => go(navMap[id])); } });
 
         // ============ PARTICLES ============
         const pc = document.getElementById('particles');
-        function makeParticle() {
-            if (!pc) return;
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.width = p.style.height = (Math.random() * 5 + 2) + 'px';
-            p.style.left = Math.random() * 100 + '%';
-            p.style.animationDuration = (Math.random() * 15 + 10) + 's';
-            pc.appendChild(p);
-            setTimeout(() => { if (p.parentNode) p.remove(); }, 25000);
-        }
+        function makeParticle() { if (!pc) return; const p = document.createElement('div'); p.className = 'particle'; p.style.width = p.style.height = (Math.random() * 5 + 2) + 'px'; p.style.left = Math.random() * 100 + '%'; p.style.animationDuration = (Math.random() * 15 + 10) + 's'; pc.appendChild(p); setTimeout(() => { if (p.parentNode) p.remove(); }, 25000); }
         for (let i = 0; i < 30; i++) setTimeout(makeParticle, Math.random() * 3000);
         setInterval(makeParticle, 2000);
 
@@ -2374,23 +1511,11 @@
         const tt = document.getElementById('typingText');
         if (tt) {
             const words = ['Websites.', 'Software.', 'Video Making.', 'Graphics.', 'Ads & Performance.', 'SEO & GEO.', 'Complete Brand Uplifting.'];
-            let wi = 0,
-                ci = 0,
-                del = false;
-
+            let wi = 0, ci = 0, del = false;
             function type() {
                 const w = words[wi];
-                if (!del) {
-                    tt.textContent = w.substring(0, ci + 1);
-                    ci++;
-                    if (ci === w.length) { del = true;
-                        setTimeout(type, 2000); return; }
-                } else {
-                    tt.textContent = w.substring(0, ci - 1);
-                    ci--;
-                    if (ci === 0) { del = false;
-                        wi = (wi + 1) % words.length; }
-                }
+                if (!del) { tt.textContent = w.substring(0, ci + 1); ci++; if (ci === w.length) { del = true; setTimeout(type, 2000); return; } }
+                else { tt.textContent = w.substring(0, ci - 1); ci--; if (ci === 0) { del = false; wi = (wi + 1) % words.length; } }
                 setTimeout(type, del ? 50 : 100);
             }
             type();
@@ -2404,92 +1529,33 @@
         const sideT = document.getElementById('sideTimer');
         const sideC = document.getElementById('sideTimerCount');
         const reopen = document.getElementById('reopenOffer');
-        let shown = false,
-            total = 3600,
-            interval = null,
-            fs = false;
-
-        function fmt(s) {
-            const h = Math.floor(s / 3600),
-                m = Math.floor((s % 3600) / 60),
-                se = s % 60;
-            return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(se).padStart(2,'0')}`;
-        }
-
-        function startT() {
-            if (interval) clearInterval(interval);
-            interval = setInterval(() => {
-                total--;
-                if (total <= 0) {
-                    clearInterval(interval);
-                    if (popup) popup.classList.remove('active');
-                    if (sideT) sideT.classList.remove('active');
-                    return;
-                }
-                const t = fmt(total);
-                if (timer) timer.textContent = t;
-                if (sideC) sideC.textContent = t;
-            }, 1000);
-        }
-
-        function show() {
-            if (!shown && !fs) {
-                shown = true;
-                if (popup) popup.classList.add('active');
-                startT();
-            }
-        }
+        let shown = false, total = 3600, interval = null, fs = false;
+        function fmt(s) { const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), se = s % 60; return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(se).padStart(2,'0')}`; }
+        function startT() { if (interval) clearInterval(interval); interval = setInterval(() => { total--; if (total <= 0) { clearInterval(interval); if (popup) popup.classList.remove('active'); if (sideT) sideT.classList.remove('active'); return; } const t = fmt(total); if (timer) timer.textContent = t; if (sideC) sideC.textContent = t; }, 1000); }
+        function show() { if (!shown && !fs) { shown = true; if (popup) popup.classList.add('active'); startT(); } }
         setTimeout(show, 10000);
         if (closeP) closeP.onclick = () => { if (popup) popup.classList.remove('active'); if (sideT) sideT.classList.add('active'); };
         if (reopen) reopen.onclick = () => { if (sideT) sideT.classList.remove('active'); if (popup) popup.classList.add('active'); };
-        if (offerB) {
-            offerB.onclick = (e) => {
-                e.preventDefault();
-                if (popup) popup.classList.remove('active');
-                if (sideT) sideT.classList.add('active');
-                go('proposal');
-            };
-        }
+        if (offerB) { offerB.onclick = (e) => { e.preventDefault(); if (popup) popup.classList.remove('active'); if (sideT) sideT.classList.add('active'); go('proposal'); }; }
 
         // ============ MARQUEE AUTO-SCROLL ============
         const tracks = document.querySelectorAll('.marquee-track');
         tracks.forEach(track => {
-            let autoScroll,
-                isPaused = false;
-            const speed = 0.5;
-
-            function startAuto() {
-                autoScroll = setInterval(() => {
-                    if (!isPaused && track) {
-                        track.scrollLeft += speed;
-                        if (track.scrollLeft >= track.scrollWidth - track.clientWidth) track.scrollLeft = 0;
-                    }
-                }, 16);
-            }
-
+            let autoScroll, isPaused = false; const speed = 0.5;
+            function startAuto() { autoScroll = setInterval(() => { if (!isPaused && track) { track.scrollLeft += speed; if (track.scrollLeft >= track.scrollWidth - track.clientWidth) track.scrollLeft = 0; } }, 16); }
             function stopAuto() { if (autoScroll) clearInterval(autoScroll); }
             track.addEventListener('mouseenter', () => { isPaused = true; });
             track.addEventListener('mouseleave', () => { isPaused = false; });
             track.addEventListener('touchstart', () => { isPaused = true; });
             track.addEventListener('touchend', () => { isPaused = false; });
             let manualScrollTimer;
-            track.addEventListener('scroll', () => {
-                if (!isPaused) {
-                    stopAuto();
-                    clearTimeout(manualScrollTimer);
-                    manualScrollTimer = setTimeout(() => { startAuto(); }, 1500);
-                }
-            });
+            track.addEventListener('scroll', () => { if (!isPaused) { stopAuto(); clearTimeout(manualScrollTimer); manualScrollTimer = setTimeout(() => { startAuto(); }, 1500); } });
             startAuto();
         });
 
         // ============ EMAILJS ============
         if (typeof emailjs !== 'undefined') {
-            try {
-                emailjs.init("t8ArtkcNiyPWxv7nZ");
-            } catch (err) {
-                console.error('EmailJS init error:', err);
-            }
+            try { emailjs.init("t8ArtkcNiyPWxv7nZ"); } catch (err) { console.error('EmailJS init error:', err); }
         }
 
         // ============ PROPOSAL FORM ============
@@ -2500,8 +1566,7 @@
                 (async () => {
                     try {
                         const { data: { user } } = await supabaseClient.auth.getUser();
-                        if (!user) { alert('Please login first.');
-                            openAuthModal(); return; }
+                        if (!user) { alert('Please login first.'); openAuthModal(); return; }
                         fs = true;
                         if (popup) popup.classList.remove('active');
                         if (sideT) sideT.classList.remove('active');
@@ -2512,10 +1577,8 @@
                         const service = document.getElementById('clientService') ? document.getElementById('clientService').value : '';
                         const message = document.getElementById('clientMessage') ? document.getElementById('clientMessage').value.trim() : '';
                         const btn = document.getElementById('submitBtn');
-                        if (!name || !phone || !service) { alert('Please fill required fields.');
-                            fs = false; return; }
-                        if (btn) { btn.textContent = '⏳ Submitting...';
-                            btn.disabled = true; }
+                        if (!name || !phone || !service) { alert('Please fill required fields.'); fs = false; return; }
+                        if (btn) { btn.textContent = '⏳ Submitting...'; btn.disabled = true; }
                         gtag('event', 'form_submit', { 'event_category': 'Proposal', 'event_label': service });
                         if (typeof emailjs !== 'undefined') {
                             emailjs.send("service_nl0bwlc", "template_qro89yc", { to_email: email, name: name, phone: phone, business: business || 'N/A', service: service, message: message || 'N/A' }).catch(() => {});
@@ -2523,18 +1586,14 @@
                         }
                         const leadData = { name, email, phone, business: business || "", service, message: message || "", userId: user.id };
                         fetch("https://script.google.com/macros/s/AKfycbw3hXnvZqSegfn9VYxY2pGe68zspmz8NpjqUQJ6rsPoGpilGrzkebQkCQwi_mYOYMFvXg/exec", {
-                            method: "POST",
-                            mode: "no-cors",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify(leadData)
+                            method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(leadData)
                         }).catch(err => console.log("Google Sheets error:", err));
                         if (btn) btn.textContent = '✅ Submitted!';
                         const successMsg = document.getElementById('successMsg');
                         if (successMsg) successMsg.style.display = 'block';
                         if (proposalForm) proposalForm.reset();
                         setTimeout(() => {
-                            if (btn) { btn.textContent = 'Submit & Get Proposal →';
-                                btn.disabled = false; }
+                            if (btn) { btn.textContent = 'Submit & Get Proposal →'; btn.disabled = false; }
                             if (successMsg) successMsg.style.display = 'none';
                         }, 5000);
                         const successPopup = document.getElementById('successPopup');
@@ -2549,15 +1608,9 @@
         }
 
         // ============ AOS INIT ============
-        try {
-            if (typeof AOS !== 'undefined') {
-                AOS.init({ duration: 800, once: true });
-            }
-        } catch (err) {
-            console.error('AOS init error:', err);
-        }
+        try { if (typeof AOS !== 'undefined') { AOS.init({ duration: 800, once: true }); } } catch (err) { console.error('AOS init error:', err); }
 
-        console.log('🎉 Kyrosh Digital Agency – Now powered by Supabase Edge Functions for login emails!');
+        console.log('🎉 Kyrosh now uses Magic Link login – no password required!');
     </script>
 </body>
 </html>
