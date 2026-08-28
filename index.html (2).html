@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kyrosh — No.1 Digital Agency</title>
+    <meta name="description" content="Kyrosh - India's No.1 Digital Agency. Websites, Software, Video Making, Graphics, Ads, SEO & GEO, Brand Uplifting." />
+    <meta name="keywords" content="digital agency, marketing, websites, SEO, branding, Kyrosh" />
+    <meta name="author" content="Kyrosh" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QGKZTHRCVB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-QGKZTHRCVB');
+    </script>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <style>
+        /* ========== FULL CSS ========== */
+        :root {
+            --primary: #7844D5;
+            --primary-light: #A78BFA;
+            --primary-dark: #5B2DA8;
+            --dark-bg: #0D0618;
+            --dark-card: #1A0B2E;
+            --white: #FFFFFF;
+            --gray: #B0A8C0;
+            --shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+        /* ----- SECTION HEADERS ----- */
+        .section-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            padding: 0 20px;
+            width: 100%;
+        }
+        .section-header .section-tag {
+            display: inline-block;
+            background: rgba(120,68,213,0.2);
+            border: 1.5px solid rgba(167,139,250,0.4);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            margin-bottom: 18px;
+            animation: badgeGlow 3s infinite;
+        }
+        .section-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .section-header h2 .highlight {
+            background: linear-gradient(135deg, #A78BFA 0%, #C4B5FD 25%, #A78BFA 50%, #7844D5 75%, #A78BFA 100%);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 5s ease infinite;
+            display: inline-block;
+        }
+        .section-header h2 .white-text { color: var(--white); display: inline-block; }
+        .section-header p {
+            color: var(--gray);
+            font-size: 17px;
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.65;
+            font-weight: 400;
+        }
+        .section-header .underline {
+            display: block;
+            width: 90px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+            margin: 22px auto 0;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            animation: underlinePulse 2.5s ease-in-out infinite;
+        }
+        .section-header .underline::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: underlineShine 2.5s ease-in-out infinite;
+        }
+        .section-header .underline-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .section-header .underline-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            animation: dotBounce 1.5s ease-in-out infinite;
+        }
+        .section-header .underline-dots span:nth-child(1) { animation-delay: 0s; }
+        .section-header .underline-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .section-header .underline-dots span:nth-child(3) { animation-delay: 0.4s; }
+        .section-header .underline-dots span:nth-child(4) { animation-delay: 0.6s; }
+        .section-header .underline-dots span:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes underlinePulse {
+            0%,100% { width:90px; opacity:1; }
+            50% { width:130px; opacity:.7; }
+        }
+        @keyframes underlineShine {
+            0% { left:-100%; }
+            100% { left:200%; }
+        }
+        @keyframes dotBounce {
+            0%,100% { transform:translateY(0) scale(1); opacity:.5; }
+            50% { transform:translateY(-8px) scale(1.3); opacity:1; }
+        }
+        @keyframes gradientFlow {
+            0% { background-position:0% 50%; }
+            50% { background-position:100% 50%; }
+            100% { background-position:0% 50%; }
+        }
+        .section-header[data-aos] {
+            opacity:0;
+            transform:translateY(40px);
+            transition:opacity .8s, transform .8s;
+        }
+        .section-header[data-aos].aos-animate {
+            opacity:1;
+            transform:translateY(0);
+        }
+
+        /* ----- KEYFRAMES ----- */
+        @keyframes badgeGlow {
+            0%,100% { box-shadow:0 0 20px rgba(120,68,213,0.4); }
+            50% { box-shadow:0 0 45px rgba(167,139,250,0.8); }
+        }
+        @keyframes preloaderPulse {
+            0%,100% { transform:scale(1); opacity:1; }
+            50% { transform:scale(1.1); opacity:.7; }
+        }
+        @keyframes floatUp {
+            0% { transform:translateY(100vh); opacity:0; }
+            10% { opacity:.4; }
+            90% { opacity:.4; }
+            100% { transform:translateY(-100vh); opacity:0; }
+        }
+        @keyframes blink {
+            0%,100% { opacity:1; }
+            50% { opacity:0; }
+        }
+        @keyframes marqueeScroll {
+            0% { transform:translateX(0); }
+            100% { transform:translateX(-50%); }
+        }
+        @keyframes orbFloat {
+            0%,100% { transform:translate(0,0) scale(1); }
+            50% { transform:translate(50px,-30px) scale(1.1); }
+        }
+        @keyframes popupBounce {
+            0% { transform:scale(0.3) rotate(-10deg); opacity:0; }
+            60% { transform:scale(1.1) rotate(3deg); opacity:1; }
+            100% { transform:scale(1) rotate(0); opacity:1; }
+        }
+        @keyframes fireAnimation {
+            0%,100% { transform:scale(1); }
+            50% { transform:scale(1.2); }
+        }
+        @keyframes pulse {
+            0%,100% { box-shadow:0 0 0 0 rgba(120,68,213,0.6); }
+            50% { box-shadow:0 0 0 20px rgba(120,68,213,0); }
+        }
+        @keyframes testimonialGlow {
+            0%,100% { border-color:rgba(120,68,213,0.2); box-shadow:0 0 15px rgba(120,68,213,0.1); }
+            50% { border-color:rgba(167,139,250,0.8); box-shadow:0 0 30px rgba(167,139,250,0.4); }
+        }
+        @keyframes testimonialShine {
+            0% { left:-100%; }
+            100% { left:200%; }
+        }
+        @keyframes starShine {
+            0%,100% { color:#FFD700; transform:scale(1); }
+            50% { color:#FFA500; transform:scale(1.3); }
+        }
+        @keyframes callRing {
+            0%,100% { transform:rotate(0); }
+            10% { transform:rotate(15deg); }
+            20% { transform:rotate(-15deg); }
+            30% { transform:rotate(10deg); }
+            40% { transform:rotate(-10deg); }
+            50% { transform:rotate(0); }
+        }
+        @keyframes offerGlow {
+            0%,100% { box-shadow:0 0 20px rgba(167,139,250,0.4); }
+            50% { box-shadow:0 0 40px rgba(167,139,250,0.7); }
+        }
+        @keyframes offerShine {
+            0% { background-position:-200% center; }
+            100% { background-position:200% center; }
+        }
+        @keyframes certShine {
+            0% { transform:translateX(-100%) rotate(45deg); }
+            100% { transform:translateX(200%) rotate(45deg); }
+        }
+        @keyframes certIconFloat {
+            0%,100% { transform:translateY(0); }
+            50% { transform:translateY(-10px); }
+        }
+        @keyframes verifiedGlow {
+            0%,100% { color:#4CAF50; text-shadow:0 0 10px rgba(76,175,80,0.5); }
+            50% { color:#8BC34A; text-shadow:0 0 20px rgba(76,175,80,0.9); }
+        }
+        @keyframes successBounce {
+            0% { transform:scale(0.2); opacity:0; }
+            50% { transform:scale(1.1); opacity:1; }
+            70% { transform:scale(0.9); }
+            100% { transform:scale(1); opacity:1; }
+        }
+        @keyframes successGlow {
+            0% { box-shadow:0 0 10px rgba(167,139,250,0.5); }
+            100% { box-shadow:0 0 25px rgba(167,139,250,0.9); }
+        }
+        @keyframes successShine {
+            0% { transform:translateX(-100%) rotate(45deg); }
+            100% { transform:translateX(100%) rotate(45deg); }
+        }
+        @keyframes slideDown {
+            0% { opacity:0; transform:translateY(-20px) scale(0.95); }
+            100% { opacity:1; transform:translateY(0) scale(1); }
+        }
+        @keyframes floatLabel {
+            0% { transform:translateY(0) scale(1); }
+            100% { transform:translateY(-28px) scale(0.85); color:var(--primary-light); }
+        }
+        @keyframes confettiFall {
+            0% { transform:translateY(-100vh) rotate(0deg); opacity:1; }
+            100% { transform:translateY(100vh) rotate(720deg); opacity:0; }
+        }
+        @keyframes spin {
+            0% { transform:rotate(0deg); }
+            100% { transform:rotate(360deg); }
+        }
+
+        /* ----- SUCCESS POPUP ----- */
+        .success-popup-overlay {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.6);
+            z-index:10001; display:none;
+            align-items:center; justify-content:center; padding:20px;
+        }
+        .success-popup-overlay.active { display:flex; }
+        .success-popup {
+            background:linear-gradient(135deg, #3A1C5A, #4A2B7A);
+            border:2px solid #A78BFA; border-radius:16px;
+            padding:20px 18px; text-align:center;
+            max-width:260px; width:100%;
+            position:relative; overflow:hidden;
+            animation:successBounce .5s cubic-bezier(.68,-.55,.265,1.55), successGlow 1.5s infinite alternate;
+        }
+        .success-popup::after {
+            content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+            background:radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation:successShine 3s linear infinite; pointer-events:none;
+        }
+        .success-popup .success-icon { font-size:36px; margin-bottom:8px; animation:fireAnimation 1s infinite; }
+        .success-popup h3 { font-size:18px; font-weight:800; color:#FFD700; margin-bottom:6px; }
+        .success-popup p { color:#FFFFFF; font-size:13px; margin-bottom:5px; line-height:1.4; }
+        .success-popup .highlight-offer { color:#FF4444; font-weight:900; font-size:16px; animation:fireAnimation 1s infinite; }
+        .success-popup .thank-you { color:#B0A8C0; font-size:11px; margin-top:4px; }
+
+        /* ----- LOGIN SUCCESS POPUP ----- */
+        .login-success-overlay {
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.72);
+            z-index:10006;
+            display:none;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+            backdrop-filter:blur(6px);
+        }
+        .login-success-overlay.active { display:flex; }
+        .login-success-popup {
+            width:min(360px, 100%);
+            padding:30px 24px;
+            text-align:center;
+            border:2px solid var(--primary-light);
+            border-radius:22px;
+            background:linear-gradient(145deg, #1A0B2E, #3A1C5A);
+            box-shadow:0 20px 70px rgba(120,68,213,.45);
+            animation:loginSuccessIn .55s cubic-bezier(.2,.8,.2,1);
+        }
+        .login-success-icon {
+            width:68px;
+            height:68px;
+            margin:0 auto 15px;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:linear-gradient(135deg,var(--primary),var(--primary-light));
+            color:#fff;
+            font-size:30px;
+            box-shadow:0 0 0 0 rgba(167,139,250,.55);
+            animation:loginSuccessPulse 1.2s ease-out;
+        }
+        .login-success-popup h3 {
+            color:#fff;
+            font-size:24px;
+            font-weight:800;
+            margin-bottom:7px;
+        }
+        .login-success-popup p {
+            color:var(--gray);
+            font-size:14px;
+        }
+        .login-success-popup strong { color:var(--primary-light); }
+        @keyframes loginSuccessIn {
+            0% { opacity:0; transform:translateY(25px) scale(.8); }
+            70% { opacity:1; transform:translateY(-4px) scale(1.03); }
+            100% { opacity:1; transform:translateY(0) scale(1); }
+        }
+        @keyframes loginSuccessPulse {
+            0% { transform:scale(.3); opacity:0; box-shadow:0 0 0 0 rgba(167,139,250,.7); }
+            55% { transform:scale(1.12); opacity:1; box-shadow:0 0 0 18px rgba(167,139,250,0); }
+            100% { transform:scale(1); opacity:1; box-shadow:0 0 0 0 rgba(167,139,250,0); }
+        }
+
+        /* ----- WELCOME POPUP ----- */
+        .welcome-popup-overlay {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.85);
+            z-index:10005; display:none;
+            align-items:center; justify-content:center; padding:20px;
+            backdrop-filter:blur(6px);
+        }
+        .welcome-popup-overlay.active { display:flex; }
+        .welcome-popup {
+            background:linear-gradient(135deg, #1A0B2E, #3A1C5A);
+            border:2px solid var(--primary-light);
+            border-radius:24px;
+            padding:30px 25px;
+            max-width:400px;
+            width:100%;
+            text-align:center;
+            position:relative;
+            animation:popupBounce .6s ease;
+            box-shadow:0 20px 60px rgba(0,0,0,0.7);
+            overflow:hidden;
+        }
+        .welcome-popup .confetti-container {
+            position:absolute;
+            top:0; left:0; width:100%; height:100%;
+            pointer-events:none;
+            overflow:hidden;
+        }
+        .welcome-popup .confetti-piece {
+            position:absolute;
+            width:10px; height:10px;
+            animation:confettiFall linear infinite;
+            opacity:0.8;
+        }
+        .welcome-popup .welcome-icon {
+            font-size:56px;
+            margin-bottom:12px;
+            animation:fireAnimation 1.5s infinite;
+        }
+        .welcome-popup h2 {
+            font-size:28px;
+            font-weight:900;
+            color:var(--white);
+            margin-bottom:8px;
+        }
+        .welcome-popup h2 span { color:var(--primary-light); }
+        .welcome-popup p {
+            color:var(--gray);
+            font-size:15px;
+            margin-bottom:20px;
+            line-height:1.6;
+        }
+        .welcome-popup .offer-highlight {
+            background:linear-gradient(135deg, #FF4444, #FF6B6B);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            font-weight:900;
+            font-size:22px;
+        }
+        .welcome-popup .btn-welcome {
+            background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color:white;
+            padding:12px 32px;
+            border:none;
+            border-radius:50px;
+            font-weight:700;
+            font-size:16px;
+            cursor:pointer;
+            transition:all .3s;
+            box-shadow:0 4px 20px rgba(120,68,213,0.4);
+        }
+        .welcome-popup .btn-welcome:hover {
+            transform:scale(1.05);
+            box-shadow:0 6px 30px rgba(120,68,213,0.6);
+        }
+        .welcome-popup .close-welcome {
+            position:absolute;
+            top:10px; right:15px;
+            font-size:22px;
+            color:var(--gray);
+            cursor:pointer;
+            background:none;
+            border:none;
+        }
+        .welcome-popup .close-welcome:hover { color:var(--white); }
+
+        /* ----- PRELOADER & PARTICLES ----- */
+        .preloader { position:fixed; top:0; left:0; width:100%; height:100%; background:var(--dark-bg); display:flex; align-items:center; justify-content:center; z-index:10000; transition:opacity .5s; }
+        .preloader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+        .preloader-logo { font-family:'Poppins', sans-serif; font-size:48px; font-weight:900; animation:preloaderPulse 1s infinite; }
+        .preloader-logo span { color:var(--primary-light); }
+        .particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+        .particle { position:absolute; background:var(--primary); border-radius:50%; animation:floatUp linear infinite; opacity:0.3; }
+
+        /* ----- OFFER POPUP ----- */
+        .offer-popup-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; display:none; align-items:center; justify-content:center; padding:20px; }
+        .offer-popup-overlay.active { display:flex; }
+        .offer-popup { background:linear-gradient(135deg, #1A0B2E, #2D1B4E); border:2px solid var(--primary-light); border-radius:14px; padding:18px 15px; max-width:250px; width:100%; text-align:center; position:relative; animation:popupBounce .6s, offerGlow 2s infinite; }
+        .offer-popup .close-popup { position:absolute; top:5px; right:10px; font-size:16px; cursor:pointer; color:var(--gray); background:none; border:none; }
+        .offer-popup .offer-icon { font-size:28px; color:var(--primary-light); margin-bottom:5px; animation:fireAnimation 1s infinite; }
+        .offer-popup h3 { font-size:16px; font-weight:900; color:var(--primary-light); text-transform:uppercase; }
+        .offer-popup .offer-percent { font-size:30px; font-weight:900; color:#FF4444; margin:5px 0; animation:fireAnimation 1s infinite; }
+        .offer-popup .offer-timer { font-size:20px; font-weight:900; color:var(--primary-light); margin:8px 0; background:rgba(0,0,0,0.5); padding:3px 10px; border-radius:8px; display:inline-block; }
+        .offer-popup .offer-services { display:flex; flex-wrap:wrap; gap:4px; justify-content:center; margin:8px 0; }
+        .offer-popup .offer-services span { background:rgba(167,139,250,0.2); border:1px solid rgba(167,139,250,0.4); padding:2px 8px; border-radius:50px; font-size:9px; color:var(--primary-light); }
+        .offer-popup .btn-offer { background:linear-gradient(135deg, #A78BFA, #7844D5, #A78BFA); background-size:200% auto; color:#fff; padding:8px 18px; border-radius:50px; text-decoration:none; font-weight:800; font-size:11px; display:inline-block; animation:offerShine 2s linear infinite; }
+        .side-timer { position:fixed; bottom:20px; left:10px; background:linear-gradient(135deg, #1A0B2E, #2D1B4E); border:1px solid var(--primary-light); border-radius:8px; padding:6px 10px; z-index:998; display:none; align-items:center; gap:6px; }
+        .side-timer.active { display:flex; }
+
+        /* ----- HEADER ----- */
+        header { position:fixed; top:0; left:0; width:100%; z-index:1000; padding:20px 0; background:transparent; transition:all .4s; }
+        header.scrolled { background:rgba(13,6,24,0.95); padding:12px 0; }
+        .nav-container { display:flex; justify-content:space-between; align-items:center; }
+        .logo { font-family:'Poppins', sans-serif; font-size:28px; font-weight:800; cursor:pointer; }
+        .logo span { color:var(--primary-light); }
+        .nav-links { display:flex; align-items:center; gap:25px; list-style:none; }
+        .nav-links li a { color:var(--white); text-decoration:none; font-size:14px; cursor:pointer; }
+        .nav-links li a:hover { color:var(--primary-light); }
+        .btn-primary { background:var(--primary); color:var(--white); padding:10px 22px; border-radius:50px; text-decoration:none; font-weight:600; cursor:pointer; border:2px solid var(--primary); display:inline-block; }
+        .btn-outline { background:transparent; color:var(--white); padding:10px 22px; border-radius:50px; text-decoration:none; font-weight:600; cursor:pointer; border:2px solid rgba(255,255,255,0.3); display:inline-block; }
+        .hamburger { display:none; font-size:28px; cursor:pointer; }
+
+        /* ----- AUTH BUTTONS & PROFILE DROPDOWN ----- */
+        .auth-buttons {
+            display:flex;
+            gap:10px;
+            align-items:center;
+            position:relative;
+        }
+        .btn-login {
+            background:transparent;
+            color:var(--white);
+            border:2px solid rgba(255,255,255,0.3);
+            padding:8px 18px;
+            border-radius:50px;
+            cursor:pointer;
+            font-weight:600;
+            transition:all .3s;
+            font-size:14px;
+        }
+        .btn-login:hover {
+            border-color:var(--primary-light);
+            color:var(--primary-light);
+        }
+        .profile-avatar {
+            display:flex;
+            align-items:center;
+            gap:6px;
+            cursor:pointer;
+            padding:4px 12px 4px 6px;
+            border-radius:50px;
+            border:2px solid rgba(167,139,250,0.4);
+            transition:all .3s;
+            background:rgba(120,68,213,0.15);
+        }
+        .profile-avatar:hover {
+            border-color:var(--primary-light);
+            background:rgba(120,68,213,0.25);
+        }
+        .profile-avatar .avatar-icon {
+            width:28px;
+            height:28px;
+            border-radius:50%;
+            background:var(--primary);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+            font-size:12px;
+            color:white;
+            flex-shrink:0;
+        }
+        .profile-avatar .avatar-name {
+            font-weight:600;
+            color:var(--white);
+            font-size:13px;
+            max-width:80px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+        }
+        .profile-avatar .avatar-arrow {
+            color:var(--primary-light);
+            font-size:11px;
+            transition:transform .3s;
+        }
+        .profile-avatar.open .avatar-arrow { transform:rotate(180deg); }
+
+        .profile-dropdown {
+            position:absolute;
+            top:calc(100% + 12px);
+            right:0;
+            background:linear-gradient(145deg, #1A0B2E, #2D1B4E);
+            border:2px solid rgba(167,139,250,0.4);
+            border-radius:16px;
+            padding:20px 18px;
+            min-width:220px;
+            box-shadow:var(--shadow);
+            opacity:0;
+            visibility:hidden;
+            transform:translateY(-10px) scale(0.96);
+            transition:all .3s ease;
+            z-index:100;
+            backdrop-filter:blur(10px);
+        }
+        .profile-dropdown.open {
+            opacity:1;
+            visibility:visible;
+            transform:translateY(0) scale(1);
+        }
+        .profile-dropdown .dropdown-user {
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding-bottom:12px;
+            border-bottom:1px solid rgba(167,139,250,0.2);
+            margin-bottom:12px;
+        }
+        .profile-dropdown .dropdown-user .big-avatar {
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            background:var(--primary);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+            font-size:18px;
+            color:white;
+            flex-shrink:0;
+        }
+        .profile-dropdown .dropdown-user .user-info h4 {
+            font-size:14px;
+            font-weight:700;
+            color:var(--white);
+        }
+        .profile-dropdown .dropdown-user .user-info p {
+            font-size:11px;
+            color:var(--gray);
+        }
+        .profile-dropdown .dropdown-section {
+            padding:4px 0;
+        }
+        .profile-dropdown .dropdown-item {
+            display:flex;
+            align-items:center;
+            gap:10px;
+            padding:8px 6px;
+            border-radius:10px;
+            color:var(--white);
+            text-decoration:none;
+            cursor:pointer;
+            transition:all .2s;
+            font-size:13px;
+            font-weight:500;
+            border:none;
+            background:transparent;
+            width:100%;
+            text-align:left;
+        }
+        .profile-dropdown .dropdown-item:hover {
+            background:rgba(120,68,213,0.2);
+            color:var(--primary-light);
+        }
+        .profile-dropdown .dropdown-item i {
+            width:18px;
+            color:var(--primary-light);
+            font-size:14px;
+        }
+        .profile-dropdown .dropdown-divider {
+            height:1px;
+            background:rgba(167,139,250,0.2);
+            margin:8px 0;
+        }
+        .profile-dropdown .dropdown-item.logout-item {
+            color:#FF6B6B;
+        }
+        .profile-dropdown .dropdown-item.logout-item:hover {
+            background:rgba(255,107,107,0.15);
+            color:#FF6B6B;
+        }
+        .profile-dropdown .dropdown-item.logout-item i {
+            color:#FF6B6B;
+        }
+
+        /* ----- AUTH MODAL ----- */
+        .auth-modal-overlay {
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background:rgba(0,0,0,0.8);
+            z-index:10002;
+            display:none;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+            backdrop-filter:blur(4px);
+        }
+        .auth-modal-overlay.active { display:flex; }
+        .auth-modal {
+            background:linear-gradient(145deg, #1A0B2E, #2D1B4E);
+            border:2px solid var(--primary-light);
+            border-radius:24px;
+            padding:35px 30px 30px;
+            max-width:420px;
+            width:100%;
+            position:relative;
+            animation:popupBounce .5s ease;
+            box-shadow:0 20px 60px rgba(0,0,0,0.6);
+        }
+        .auth-modal .close-modal {
+            position:absolute;
+            top:12px;
+            right:18px;
+            font-size:22px;
+            cursor:pointer;
+            color:var(--gray);
+            transition:all .2s;
+            background:none;
+            border:none;
+        }
+        .auth-modal .close-modal:hover { color:var(--white); transform:rotate(90deg); }
+        .auth-modal .modal-header {
+            text-align:center;
+            margin-bottom:25px;
+        }
+        .auth-modal .modal-header .icon-circle {
+            width:60px;
+            height:60px;
+            background:rgba(120,68,213,0.2);
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin:0 auto 12px;
+            font-size:28px;
+            color:var(--primary-light);
+            border:2px solid rgba(167,139,250,0.3);
+            animation:floatLabel 2s infinite alternate;
+        }
+        .auth-modal .modal-header h3 {
+            font-size:26px;
+            font-weight:800;
+            color:var(--white);
+            letter-spacing:-0.5px;
+        }
+        .auth-modal .modal-header p {
+            color:var(--gray);
+            font-size:14px;
+            margin-top:4px;
+        }
+        .auth-modal .input-group {
+            position:relative;
+            margin-bottom:20px;
+        }
+        .auth-modal .input-group i {
+            position:absolute;
+            left:14px;
+            top:50%;
+            transform:translateY(-50%);
+            color:var(--gray);
+            font-size:16px;
+            transition:color .3s;
+        }
+        .auth-modal .input-group input {
+            width:100%;
+            padding:14px 14px 14px 44px;
+            border:2px solid rgba(120,68,213,0.2);
+            border-radius:12px;
+            background:rgba(13,6,24,0.6);
+            color:white;
+            font-size:15px;
+            transition:all .3s;
+            outline:none;
+        }
+        .auth-modal .input-group input:focus {
+            border-color:var(--primary-light);
+            background:rgba(13,6,24,0.8);
+            box-shadow:0 0 0 4px rgba(167,139,250,0.15);
+        }
+        .auth-modal .input-group input:focus + i,
+        .auth-modal .input-group input:focus ~ i {
+            color:var(--primary-light);
+        }
+        .auth-modal .input-group input::placeholder {
+            color:var(--gray);
+            font-weight:300;
+        }
+        .auth-modal .auth-error {
+            color:#FF6B6B;
+            font-size:13px;
+            text-align:center;
+            margin-bottom:12px;
+            display:none;
+            background:rgba(255,107,107,0.1);
+            padding:8px;
+            border-radius:8px;
+            border-left:3px solid #FF6B6B;
+        }
+        .auth-modal .auth-submit {
+            width:100%;
+            background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color:white;
+            border:none;
+            padding:14px;
+            border-radius:12px;
+            font-weight:700;
+            font-size:16px;
+            cursor:pointer;
+            transition:all .3s;
+            letter-spacing:0.5px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+        }
+        .auth-modal .auth-submit:hover {
+            transform:scale(1.02);
+            box-shadow:0 4px 20px rgba(120,68,213,0.4);
+        }
+        .auth-modal .auth-submit:active { transform:scale(0.98); }
+        .auth-modal .auth-submit .spinner {
+            display:none;
+            animation:spin 1s linear infinite;
+        }
+        .auth-modal .auth-submit.loading .spinner {
+            display:inline-block;
+        }
+        .auth-modal .auth-submit.loading .btn-text {
+            opacity:0.7;
+        }
+        .auth-modal .auth-actions {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-top:12px;
+            flex-wrap:wrap;
+            gap:8px;
+        }
+        .auth-modal .forgot-password {
+            color:var(--primary-light);
+            font-size:13px;
+            cursor:pointer;
+            text-decoration:none;
+            transition:color .2s;
+            background:none;
+            border:none;
+            font-weight:500;
+        }
+        .auth-modal .forgot-password:hover {
+            color:#C4B5FD;
+            text-decoration:underline;
+        }
+        .auth-modal .auth-toggle {
+            text-align:center;
+            margin-top:12px;
+            color:var(--gray);
+            font-size:12px;
+        }
+
+        /* ----- EDIT PROFILE MODAL ----- */
+        .edit-profile-overlay {
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background:rgba(0,0,0,0.8);
+            z-index:10003;
+            display:none;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+            backdrop-filter:blur(4px);
+        }
+        .edit-profile-overlay.active { display:flex; }
+        .edit-profile-modal {
+            background:linear-gradient(145deg, #1A0B2E, #2D1B4E);
+            border:2px solid var(--primary-light);
+            border-radius:24px;
+            padding:35px 30px 30px;
+            max-width:420px;
+            width:100%;
+            animation:popupBounce .5s ease;
+            box-shadow:0 20px 60px rgba(0,0,0,0.6);
+            position:relative;
+        }
+        .edit-profile-modal .close-edit {
+            position:absolute;
+            top:12px;
+            right:18px;
+            font-size:22px;
+            cursor:pointer;
+            color:var(--gray);
+            background:none;
+            border:none;
+        }
+        .edit-profile-modal .close-edit:hover { color:var(--white); }
+        .edit-profile-modal h3 {
+            font-size:24px;
+            font-weight:800;
+            color:var(--white);
+            text-align:center;
+            margin-bottom:20px;
+        }
+        .edit-profile-modal .input-group {
+            position:relative;
+            margin-bottom:20px;
+        }
+        .edit-profile-modal .input-group i {
+            position:absolute;
+            left:14px;
+            top:50%;
+            transform:translateY(-50%);
+            color:var(--gray);
+            font-size:16px;
+        }
+        .edit-profile-modal .input-group input {
+            width:100%;
+            padding:14px 14px 14px 44px;
+            border:2px solid rgba(120,68,213,0.2);
+            border-radius:12px;
+            background:rgba(13,6,24,0.6);
+            color:white;
+            font-size:15px;
+            transition:all .3s;
+            outline:none;
+        }
+        .edit-profile-modal .input-group input:focus {
+            border-color:var(--primary-light);
+            background:rgba(13,6,24,0.8);
+            box-shadow:0 0 0 4px rgba(167,139,250,0.15);
+        }
+        .edit-profile-modal .edit-submit {
+            width:100%;
+            background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color:white;
+            border:none;
+            padding:14px;
+            border-radius:12px;
+            font-weight:700;
+            font-size:16px;
+            cursor:pointer;
+            transition:all .3s;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+        }
+        .edit-profile-modal .edit-submit:hover {
+            transform:scale(1.02);
+            box-shadow:0 4px 20px rgba(120,68,213,0.4);
+        }
+        .edit-profile-modal .edit-submit .spinner {
+            display:none;
+            animation:spin 1s linear infinite;
+        }
+        .edit-profile-modal .edit-submit.loading .spinner {
+            display:inline-block;
+        }
+        .edit-profile-modal .edit-submit.loading .btn-text {
+            opacity:0.7;
+        }
+        .edit-profile-modal .edit-error {
+            color:#FF6B6B;
+            font-size:13px;
+            text-align:center;
+            margin-bottom:12px;
+            display:none;
+        }
+        .edit-profile-modal .edit-success {
+            color:#4CAF50;
+            font-size:13px;
+            text-align:center;
+            margin-bottom:12px;
+            display:none;
+        }
+
+        /* ----- HERO ----- */
+        .hero { min-height:100vh; display:flex; align-items:center; background:radial-gradient(circle at 80% 20%, rgba(120,68,213,0.3), transparent 50%), var(--dark-bg); padding:120px 0 80px; position:relative; overflow:hidden; }
+        .hero-orb { position:absolute; border-radius:50%; filter:blur(80px); animation:orbFloat 8s infinite; }
+        .orb-1 { width:400px; height:400px; background:rgba(120,68,213,0.3); top:-100px; right:-100px; }
+        .orb-2 { width:300px; height:300px; background:rgba(167,139,250,0.2); bottom:-50px; left:-50px; animation-delay:2s; }
+        .hero h1 { font-family:'Poppins', sans-serif; font-size:55px; font-weight:900; line-height:1.1; margin-bottom:25px; }
+        .hero h1 .gradient-text { background:linear-gradient(135deg, #A78BFA, #C4B5FD, #7844D5); background-size:300% 300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:gradientFlow 4s infinite; }
+        .hero p { font-size:18px; color:var(--gray); margin-bottom:40px; }
+        .typing-text { color:var(--primary-light); font-weight:600; }
+        .typing-cursor { color:var(--primary-light); animation:blink .7s infinite; }
+        .hero-badge { display:inline-block; background:rgba(120,68,213,0.3); border:2px solid var(--primary-light); padding:8px 20px; border-radius:50px; font-size:14px; font-weight:700; margin-bottom:25px; letter-spacing:2px; animation:badgeGlow 2s infinite; }
+        .hero-buttons { display:flex; flex-wrap:wrap; gap:15px; }
+
+        /* ----- LOGO STRIP ----- */
+        .logo-strip { background:var(--dark-card); padding:30px 0; overflow:hidden; }
+        .logo-strip .marquee-wrapper { overflow:hidden; }
+        .logo-strip .logos { display:flex; gap:40px; white-space:nowrap; animation:marqueeScroll 15s linear infinite; width:max-content; }
+        .logo-strip .logos span { font-size:18px; font-weight:700; opacity:0.6; padding:0 20px; }
+
+        /* ----- MARQUEE ----- */
+        .marquee-section { padding:80px 0; position:relative; }
+        .marquee-scroll-container { overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none; padding:15px 0; cursor:grab; -webkit-overflow-scrolling:touch; }
+        .marquee-scroll-container::-webkit-scrollbar { display:none; }
+        .marquee-track { display:flex; gap:20px; white-space:nowrap; width:max-content; animation:marqueeScroll 30s linear infinite; will-change:transform; }
+        .marquee-track:hover, .marquee-track.touch { animation-play-state:paused; }
+        .marquee-card { flex:0 0 auto; width:280px; padding:28px 22px; border-radius:16px; background:var(--dark-card); border:1px solid rgba(120,68,213,0.15); text-align:center; transition:all .3s; white-space:normal; }
+        .marquee-card:hover { border-color:var(--primary); transform:translateY(-5px); box-shadow:0 15px 40px rgba(120,68,213,0.3); }
+        .marquee-card .service-icon, .marquee-card .certificate-icon { width:60px; height:60px; background:rgba(120,68,213,0.2); border-radius:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:28px; color:var(--primary-light); }
+        .marquee-card h3 { font-size:20px; font-weight:700; margin-bottom:10px; }
+        .marquee-card p { color:var(--gray); font-size:14px; line-height:1.6; }
+
+        /* Ads marquee */
+        .ads-marquee .ads-item { flex:0 0 auto; width:280px; aspect-ratio:1; border-radius:12px; overflow:hidden; border:2px solid rgba(120,68,213,0.3); transition:all .5s; cursor:pointer; }
+        .ads-marquee .ads-item img { width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+        .ads-marquee .ads-item:hover img { transform:scale(1.1); }
+        .ads-marquee .ads-item:hover { border-color:var(--primary); box-shadow:0 10px 30px rgba(120,68,213,0.4); }
+
+        /* Work */
+        .work { background:var(--dark-card); padding:80px 0; }
+        .work-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:20px; }
+        .work-card { position:relative; border-radius:16px; overflow:hidden; height:250px; cursor:pointer; transition:all .5s; }
+        .work-card:hover { transform:scale(1.03); }
+        .work-card img { width:100%; height:100%; object-fit:cover; transition:all .5s; }
+        .work-card:hover img { transform:scale(1.1); }
+        .work-card-overlay { position:absolute; bottom:0; left:0; right:0; padding:20px; background:linear-gradient(transparent, rgba(13,6,24,0.95)); }
+
+        /* Team */
+        #team { padding:80px 0; }
+        .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:25px; }
+        .team-card { background:var(--dark-card); border:2px solid rgba(120,68,213,0.3); border-radius:16px; overflow:hidden; text-align:center; transition:all .5s; }
+        .team-card:hover { transform:translateY(-10px); border-color:var(--primary); }
+        .team-card .team-img { width:100%; height:280px; object-fit:cover; display:block; }
+        .team-card h3 { font-size:20px; font-weight:700; padding:15px 0 5px; }
+        .team-card .team-role { color:var(--primary-light); font-size:13px; text-transform:uppercase; padding-bottom:15px; }
+
+        /* Certificates */
+        #certificates { padding:80px 0; background:var(--dark-card); }
+        #certificates .marquee-card { background:linear-gradient(135deg, #1A0B2E, #2D1B4E); border:2px solid rgba(167,139,250,0.4); position:relative; overflow:hidden; }
+        #certificates .marquee-card::before { content:''; position:absolute; top:0; left:-100%; width:50%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); animation:certShine 3s infinite; }
+        #certificates .marquee-card:hover { border-color:var(--primary-light); box-shadow:0 25px 60px rgba(167,139,250,0.3); transform:translateY(-10px) scale(1.03); }
+        #certificates .certificate-icon { width:70px; height:70px; background:#fff; border-radius:50%; font-size:35px; animation:certIconFloat 3s infinite; }
+        #certificates .marquee-card:hover .certificate-icon { transform:rotate(360deg) scale(1.2); box-shadow:0 0 30px rgba(167,139,250,0.5); }
+        #certificates .cert-desc { color:var(--gray); font-size:11px; margin-bottom:5px; }
+        #certificates .cert-id { color:#8B7BA8; font-size:10px; font-family:monospace; letter-spacing:1px; }
+        #certificates .cert-badge { display:inline-block; margin-top:12px; background:rgba(76,175,80,0.2); border:1px solid #4CAF50; padding:6px 15px; border-radius:50px; font-size:11px; font-weight:700; letter-spacing:1px; animation:verifiedGlow 2s infinite; }
+
+        /* Ads Gallery */
+        #adsGallery { padding:80px 0; }
+
+        /* Testimonials */
+        #testimonials { padding:80px 0; background:var(--dark-card); }
+        #testimonials .marquee-card { background:linear-gradient(145deg, #1A0B2E 0%, #2D1B4E 100%); border:1px solid rgba(120,68,213,0.25); animation:testimonialGlow 5s infinite; position:relative; overflow:hidden; transition:all .4s; text-align:left; padding:30px 25px; }
+        #testimonials .marquee-card::before { content:'"'; position:absolute; top:-10px; left:10px; font-size:80px; color:rgba(120,68,213,0.2); font-family:'Poppins', sans-serif; }
+        #testimonials .marquee-card::after { content:''; position:absolute; top:0; left:-100%; width:50%; height:100%; background:linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); animation:testimonialShine 4s ease-in-out infinite; }
+        #testimonials .marquee-card:hover { transform:translateY(-8px) scale(1.02); border-color:var(--primary-light); box-shadow:0 20px 40px rgba(120,68,213,0.5); animation:none; }
+        #testimonials .stars { color:#FFD700; font-size:16px; margin-bottom:10px; letter-spacing:2px; }
+        #testimonials .stars i { animation:starShine 2.5s infinite; }
+        #testimonials .stars i:nth-child(1) { animation-delay:0s; }
+        #testimonials .stars i:nth-child(2) { animation-delay:.3s; }
+        #testimonials .stars i:nth-child(3) { animation-delay:.6s; }
+        #testimonials .stars i:nth-child(4) { animation-delay:.9s; }
+        #testimonials .stars i:nth-child(5) { animation-delay:1.2s; }
+        #testimonials .marquee-card p { font-style:italic; margin-bottom:15px; font-size:14px; line-height:1.6; color:#E0D8EC; white-space:normal; position:relative; z-index:1; }
+        .testimonial-author { display:flex; align-items:center; gap:12px; position:relative; z-index:1; }
+        .testimonial-avatar { width:45px; height:45px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; color:white; }
+
+        /* Proposal */
+        #proposal { padding:80px 0; }
+        .proposal-form-wrapper { max-width:550px; margin:0 auto; background:var(--dark-card); border:1px solid rgba(120,68,213,0.3); border-radius:20px; padding:35px; }
+        .form-group { margin-bottom:15px; }
+        .form-group label { display:block; margin-bottom:5px; font-weight:600; font-size:13px; color:var(--primary-light); }
+        .form-group input, .form-group select, .form-group textarea { width:100%; padding:12px 15px; border:2px solid rgba(120,68,213,0.2); border-radius:10px; background:rgba(13,6,24,0.6); color:var(--white); font-size:14px; }
+        .form-group select option { background:var(--dark-card); }
+        .submit-btn { width:100%; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); color:var(--white); padding:14px; border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer; }
+
+        /* Instagram */
+        #instagram { padding:80px 0; background:var(--dark-card); }
+        #instagram .marquee-card { background:var(--dark-card); border:1px solid rgba(120,68,213,0.3); border-radius:16px; padding:25px 20px; text-align:center; transition:all .4s; width:220px; flex:0 0 220px; min-height:220px; box-shadow:0 4px 15px rgba(0,0,0,0.3); }
+        #instagram .marquee-card:hover { transform:translateY(-5px) scale(1.02); border-color:var(--primary); box-shadow:0 15px 30px rgba(120,68,213,0.5); }
+        #instagram .marquee-card i { font-size:38px; color:var(--primary-light); margin-bottom:15px; transition:all .4s; }
+        #instagram .marquee-card:hover i { transform:scale(1.2) rotate(10deg); }
+        #instagram .marquee-card h3 { font-size:20px; font-weight:700; margin-bottom:8px; color:var(--white); }
+        #instagram .marquee-card p { color:var(--gray); font-size:13px; margin-bottom:15px; white-space:normal; line-height:1.4; }
+        .insta-buttons { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+        .btn-insta { background:linear-gradient(135deg, #E4405F, #833AB4); color:white; padding:6px 12px; border-radius:50px; text-decoration:none; font-weight:600; font-size:12px; transition:all .3s; display:inline-flex; align-items:center; gap:6px; }
+        .btn-call-now { background:#25D366; color:white; padding:6px 12px; border-radius:50px; text-decoration:none; font-weight:700; font-size:12px; transition:all .3s; display:inline-flex; align-items:center; gap:6px; }
+        .btn-call-now i { animation:callRing 2s infinite; color:white; font-size:12px; margin:0; }
+
+        /* Floating */
+        .call-float { position:fixed; bottom:95px; right:30px; width:45px; height:45px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; color:white; z-index:999; text-decoration:none; animation:pulse 2s infinite .5s; }
+        .chat-float { position:fixed; bottom:160px; right:30px; width:55px; height:55px; background:#007bff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; color:white; z-index:999; cursor:pointer; animation:pulse 2s infinite .3s; }
+
+        /* Footer */
+        footer { background:#080310; padding:50px 0 20px; }
+        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:30px; margin-bottom:30px; }
+        .footer-grid a { color:var(--gray); text-decoration:none; display:block; margin-bottom:8px; font-size:13px; cursor:pointer; transition:all .3s; }
+        .footer-grid a:hover { color:var(--primary-light); transform:translateX(5px); }
+        .footer-bottom { text-align:center; color:var(--gray); font-size:13px; }
+
+        /* Responsive */
+        @media (max-width:768px) {
+            .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:var(--dark-bg); flex-direction:column; padding:20px; }
+            .nav-links.active { display:flex; }
+            .hamburger { display:block; }
+            .hero h1 { font-size:35px; }
+            .section-header h2 { font-size:32px; }
+            .section-header p { font-size:15px; }
+            .team-grid { grid-template-columns:1fr; }
+            .footer-grid { grid-template-columns:1fr; }
+            .marquee-card { width:240px; }
+            .ads-marquee .ads-item { width:240px; }
+            #instagram .marquee-card { width:200px; flex:0 0 200px; padding:15px 10px; }
+            #instagram .marquee-card h3 { font-size:16px; }
+            .profile-dropdown { min-width:200px; right:-10px; }
+            .auth-modal { padding:25px 18px; }
+            .profile-avatar .avatar-name { font-size:12px; max-width:60px; }
+            .profile-avatar { padding:3px 8px 3px 4px; }
+            .profile-avatar .avatar-icon { width:24px; height:24px; font-size:11px; }
+            .welcome-popup { padding:25px 18px; }
+            .welcome-popup h2 { font-size:22px; }
+        }
+        @media (min-width:769px) {
+            .offer-popup { max-width:320px; padding:25px 20px; }
+            .offer-popup .offer-icon { font-size:36px; margin-bottom:8px; }
+            .offer-popup h3 { font-size:20px; }
+            .offer-popup .offer-percent { font-size:40px; margin:8px 0; }
+            .offer-popup .offer-timer { font-size:24px; padding:5px 15px; }
+            .offer-popup .offer-services span { font-size:10px; padding:3px 10px; }
+            .offer-popup .btn-offer { padding:10px 22px; font-size:13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader"><div class="preloader-logo">KYROSH<span>.</span></div></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Success Popup -->
+    <div class="success-popup-overlay" id="successPopup">
+        <div class="success-popup">
+            <div class="success-icon">🎉</div>
+            <h3>Congratulations!</h3>
+            <p>You are eligible for <span class="highlight-offer">50% OFF</span> on all our services!</p>
+            <p class="thank-you">Thank you for contacting Kyrosh. Our team will contact you soon.</p>
+        </div>
+    </div>
+
+    <!-- Login Success Popup -->
+    <div class="login-success-overlay" id="loginSuccessPopup" aria-live="polite" aria-atomic="true">
+        <div class="login-success-popup">
+            <div class="login-success-icon"><i class="fas fa-check"></i></div>
+            <h3>Login Successful!</h3>
+            <p>Welcome back, <strong id="loginSuccessName">User</strong> 👋</p>
+        </div>
+    </div>
+
+    <!-- Welcome Popup -->
+    <div class="welcome-popup-overlay" id="welcomePopup">
+        <div class="welcome-popup">
+            <button class="close-welcome" id="closeWelcome">✕</button>
+            <div class="confetti-container" id="confettiContainer"></div>
+            <div class="welcome-icon">🎊</div>
+            <h2>Welcome to <span>Kyrosh</span> Family!</h2>
+            <p>🎁 You've just unlocked an exclusive <span class="offer-highlight">50% OFF</span> on all our services!<br>Don't miss this limited opportunity.</p>
+            <button class="btn-welcome" id="welcomeOfferBtn">Claim Your Offer →</button>
+        </div>
+    </div>
+
+    <!-- Offer Popup -->
+    <div class="offer-popup-overlay" id="offerPopup">
+        <div class="offer-popup">
+            <button class="close-popup" id="closePopup">✕</button>
+            <div class="offer-icon">🔥</div>
+            <h3>HURRY UP!</h3>
+            <div class="offer-percent">50% OFF</div>
+            <p style="color:var(--white);font-weight:600;font-size:11px;">ON EVERYTHING!</p>
+            <p style="color:var(--gray);font-size:9px;">Websites • Software • Ads • Graphics • Video • SEO</p>
+            <p style="color:var(--white);font-weight:700;font-size:10px;margin:5px 0;">⏰ OFFER ENDS IN:</p>
+            <div class="offer-timer" id="offerTimer">01:00:00</div>
+            <div class="offer-services"><span>🌐 Web</span><span>💻 Software</span><span>📢 Ads</span><span>🎨 Graphics</span><span>🎬 Video</span><span>🔍 SEO</span></div>
+            <a href="#proposal" class="btn-offer" id="offerBtn">Claim Offer →</a>
+            <p style="color:var(--primary-light);font-size:9px;margin-top:5px;font-weight:700;">Limited Time Only!</p>
+        </div>
+    </div>
+
+    <!-- Side Timer -->
+    <div class="side-timer" id="sideTimer">
+        <span>🔥</span>
+        <span style="font-size:9px;color:var(--primary-light);">ENDS:</span>
+        <span style="font-size:11px;color:#FF4444;font-weight:900;" id="sideTimerCount">01:00:00</span>
+        <button style="background:var(--primary-light);color:#000;border:none;padding:3px 8px;border-radius:5px;font-size:8px;cursor:pointer;" id="reopenOffer">VIEW</button>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal-overlay" id="authModal">
+        <div class="auth-modal">
+            <button class="close-modal" id="closeAuthModal">✕</button>
+            <div class="modal-header">
+                <div class="icon-circle"><i class="fas fa-user-lock"></i></div>
+                <h3 id="authModalTitle">Welcome Back</h3>
+                <p id="authModalSub">Login or create your account</p>
+            </div>
+            <div id="authError" class="auth-error"></div>
+            <form id="authForm">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="authName" placeholder="Full Name" required />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="authPhone" placeholder="Phone Number" required />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="authEmail" placeholder="Email Address" required />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="authPassword" placeholder="Password" required minlength="6" />
+                </div>
+                <button type="submit" class="auth-submit" id="authSubmitBtn">
+                    <span class="spinner"><i class="fas fa-spinner"></i></span>
+                    <span class="btn-text">Login / Sign Up</span>
+                </button>
+                <div class="auth-actions">
+                    <button type="button" class="forgot-password" id="forgotPasswordBtn">🔑 Forgot Password?</button>
+                </div>
+            </form>
+            <p class="auth-toggle" style="color:var(--gray);font-size:12px;">By continuing, you agree to our Terms & Privacy Policy.</p>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="edit-profile-overlay" id="editProfileModal">
+        <div class="edit-profile-modal">
+            <button class="close-edit" id="closeEditModal">✕</button>
+            <h3><i class="fas fa-user-edit" style="color:var(--primary-light);margin-right:10px;"></i>Edit Profile</h3>
+            <div id="editError" class="edit-error"></div>
+            <div id="editSuccess" class="edit-success">✅ Profile updated successfully!</div>
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="editName" placeholder="Full Name" />
+            </div>
+            <div class="input-group">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="editPhone" placeholder="Phone Number" />
+            </div>
+            <button class="edit-submit" id="editSubmitBtn">
+                <span class="spinner"><i class="fas fa-spinner"></i></span>
+                <span class="btn-text">Update Profile</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a class="logo" id="logoHome">KYROSH<span>.</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a id="navHome">Home</a></li>
+                <li><a id="navServices">Services</a></li>
+                <li><a id="navWork">Work</a></li>
+                <li><a id="navTeam">Team</a></li>
+                <li><a id="navCertificates">Certificates</a></li>
+                <li><a id="navContact">Contact</a></li>
+                <li><a class="btn-primary" id="navStartProject">Start a Project</a></li>
+            </ul>
+            <div class="auth-buttons" id="authButtons"></div>
+            <div class="hamburger" id="hamburger">☰</div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-orb orb-1"></div>
+        <div class="hero-orb orb-2"></div>
+        <div class="container">
+            <span class="hero-badge">NO.1 DIGITAL AGENCY</span>
+            <h1>We Don't Just Market.<br>We Build <span class="gradient-text">Digital Empires.</span></h1>
+            <p>Kyrosh is your complete brand uplifting partner. We do <span class="typing-text" id="typingText"></span><span class="typing-cursor">|</span></p>
+            <div class="hero-buttons">
+                <a class="btn-primary" id="heroViewWork">View Our Work</a>
+                <a class="btn-outline" id="heroStrategyCall">Get a Free Strategy Call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Strip -->
+    <div class="logo-strip">
+        <p style="text-align:center;color:var(--gray);font-size:14px;margin-bottom:20px;letter-spacing:2px;">Trusted by ambitious brands & startups</p>
+        <div class="marquee-wrapper">
+            <div class="logos">
+                <span>BRAND A ✦ COMPANY B ✦ STARTUP C ✦ ENTERPRISE D ✦ STUDIO E ✦</span>
+                <span>BRAND A ✦ COMPANY B ✦ STARTUP C ✦ ENTERPRISE D ✦ STUDIO E ✦</span>
+                <span>BRAND A ✦ COMPANY B ✦ STARTUP C ✦ ENTERPRISE D ✦ STUDIO E ✦</span>
+                <span>BRAND A ✦ COMPANY B ✦ STARTUP C ✦ ENTERPRISE D ✦ STUDIO E ✦</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Section -->
+    <section id="video" style="background:linear-gradient(135deg, #1A0B2E, #0D0618); padding:80px 0; text-align:center;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Showcase</span>
+                <h2>Watch <span class="highlight">Kyrosh</span> <span class="white-text">in Action</span></h2>
+                <p>See how we transform brands into digital empires with cutting-edge strategy and execution.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <div style="max-width:360px; margin:0 auto; border-radius:20px; overflow:hidden; border:3px solid rgba(120,68,213,0.3); aspect-ratio:9/16;" data-aos="zoom-in" data-aos-delay="200">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/AiunSaRwP4E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="marquee-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Expertise</span>
+                <h2>Everything Your Brand Needs. <span class="highlight">Under One Roof.</span></h2>
+                <p>No juggling multiple vendors. Kyrosh provides end-to-end digital solutions for ambitious brands.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <div class="marquee-scroll-container" data-aos="fade-up" data-aos-delay="150">
+            <div class="marquee-track services-marquee" ontouchstart="this.classList.add('touch')" ontouchend="this.classList.remove('touch')">
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-globe"></i></div><h3>Websites</h3><p>Business websites, e-commerce stores, landing pages, and custom web solutions that convert visitors into customers.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-code"></i></div><h3>Software</h3><p>Custom dashboards, web applications, automation tools, and software solutions built for your unique needs.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-video"></i></div><h3>Video Making</h3><p>High-quality ads, explainer videos, reels, corporate films, and content that captures attention instantly.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-palette"></i></div><h3>Graphics</h3><p>Logos, branding, social media creatives, packaging design, and visuals that make your brand unforgettable.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-bullhorn"></i></div><h3>Ads & Performance</h3><p>Google Ads, Meta Ads, funnel building, and performance marketing that drives real ROI and growth.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-search"></i></div><h3>SEO & GEO</h3><p>Search Engine Optimization and Generative Engine Optimization to make your brand discoverable everywhere.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-rocket"></i></div><h3>Brand Uplifting</h3><p>Complete brand strategy, identity, positioning, and transformation that elevates your business.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-star"></i></div><h3>Complete Digital Works</h3><p>Anything digital your business needs — we handle it all. One team, one vision, total domination.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-globe"></i></div><h3>Websites</h3><p>Business websites, e-commerce stores, landing pages, and custom web solutions that convert visitors into customers.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-code"></i></div><h3>Software</h3><p>Custom dashboards, web applications, automation tools, and software solutions built for your unique needs.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-video"></i></div><h3>Video Making</h3><p>High-quality ads, explainer videos, reels, corporate films, and content that captures attention instantly.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-palette"></i></div><h3>Graphics</h3><p>Logos, branding, social media creatives, packaging design, and visuals that make your brand unforgettable.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-bullhorn"></i></div><h3>Ads & Performance</h3><p>Google Ads, Meta Ads, funnel building, and performance marketing that drives real ROI and growth.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-search"></i></div><h3>SEO & GEO</h3><p>Search Engine Optimization and Generative Engine Optimization to make your brand discoverable everywhere.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-rocket"></i></div><h3>Brand Uplifting</h3><p>Complete brand strategy, identity, positioning, and transformation that elevates your business.</p></div>
+                <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-star"></i></div><h3>Complete Digital Works</h3><p>Anything digital your business needs — we handle it all. One team, one vision, total domination.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work -->
+    <section id="work" class="work">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Portfolio</span>
+                <h2>Work That <span class="highlight">Speaks</span></h2>
+                <p>Real projects. Real results. Real transformations for brands that dared to dream bigger.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <div class="work-grid" data-aos="fade-up" data-aos-delay="150">
+                <div class="work-card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Website"><div class="work-card-overlay"><h3>E-Commerce Website</h3><p>Website Design & Development</p></div></div>
+                <div class="work-card"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" alt="Brand"><div class="work-card-overlay"><h3>Brand Identity</h3><p>Complete Brand Uplifting</p></div></div>
+                <div class="work-card"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Analytics"><div class="work-card-overlay"><h3>Growth Campaign</h3><p>Ads & Performance Marketing</p></div></div>
+                <div class="work-card"><img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=600&h=400&fit=crop" alt="Video"><div class="work-card-overlay"><h3>Video Production</h3><p>Video Production & Editing</p></div></div>
+                <div class="work-card"><img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop" alt="SEO"><div class="work-card-overlay"><h3>SEO Domination</h3><p>SEO & GEO Optimization</p></div></div>
+                <div class="work-card"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop" alt="Software"><div class="work-card-overlay"><h3>Software Solution</h3><p>Custom Software Development</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Leadership</span>
+                <h2>Meet Our <span class="highlight">Team</span></h2>
+                <p>The visionaries behind Kyrosh's success — driving innovation, creativity, and growth.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <div class="team-grid" data-aos="fade-up" data-aos-delay="150">
+                <div class="team-card"><img src="https://i.imgur.com/uqsgRlD.png" alt="Shaiban Puttur" class="team-img" onerror="this.src='https://via.placeholder.com/400x400/7844D5/FFFFFF?text=Shaiban+Puttur'"><h3>Shaiban Puttur</h3><span class="team-role">Founder</span></div>
+                <div class="team-card"><img src="https://i.imgur.com/Idf2smC.jpeg" alt="Irfan Vtl" class="team-img" onerror="this.src='https://via.placeholder.com/400x400/7844D5/FFFFFF?text=Irfan+Vtl'"><h3>Irfan Vtl</h3><span class="team-role">CEO</span></div>
+                <div class="team-card"><img src="https://i.imgur.com/6j1VKK7.png" alt="Shafeeq Sullia" class="team-img" onerror="this.src='https://via.placeholder.com/400x400/7844D5/FFFFFF?text=Shafeeq+Sullia'"><h3>Shafeeq Sullia</h3><span class="team-role">CTO</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates -->
+    <section id="certificates" class="marquee-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Credentials</span>
+                <h2>Our <span class="highlight">Certifications</span></h2>
+                <p>We are a <span style="color:var(--primary-light);font-weight:800;">Certified Digital Marketing Agency</span> — proven expertise you can trust.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <div class="marquee-scroll-container" data-aos="fade-up" data-aos-delay="150">
+            <div class="marquee-track" ontouchstart="this.classList.add('touch')" ontouchend="this.classList.remove('touch')">
+                <div class="certificate-card marquee-card"><div class="certificate-icon" style="color:#4285F4;"><i class="fab fa-google"></i></div><h3>Google Digital Marketing</h3><p class="cert-desc">Certified Professional</p><p class="cert-id">CERT ID: GDM-2024-7844</p><span class="cert-badge"><i class="fas fa-check-circle"></i> VERIFIED</span></div>
+                <div class="certificate-card marquee-card"><div class="certificate-icon" style="color:#1877F2;"><i class="fab fa-facebook"></i></div><h3>Meta Ads Expert</h3><p class="cert-desc">Facebook & Instagram Advertising</p><p class="cert-id">CERT ID: MAE-2024-2150</p><span class="cert-badge"><i class="fas fa-check-circle"></i> VERIFIED</span></div>
+                <div class="certificate-card marquee-card"><div class="certificate-icon" style="color:#FF7A59;"><i class="fab fa-hubspot"></i></div><h3>HubSpot Marketing</h3><p class="cert-desc">Inbound Marketing Certified</p><p class="cert-id">CERT ID: HSM-2024-3391</p><span class="cert-badge"><i class="fas fa-check-circle"></i> VERIFIED</span></div>
+                <div class="certificate-card marquee-card"><div class="certificate-icon" style="color:#E10098;"><i class="fas fa-chart-line"></i></div><h3>SEO Specialist</h3><p class="cert-desc">Advanced SEO & GEO Expert</p><p class="cert-id">CERT ID: SEO-2024-5627</p><span class="cert-badge"><i class="fas fa-check-circle"></i> VERIFIED</span></div>
+                <div class="certificate-card marquee-card"><div class="certificate-icon" style="color:#4285F4;"><i class="fab fa-google"></i></div><h3>Google Digital Marketing</h3><p class="cert-desc">Certified Professional</p><p class="cert-id">CERT ID: GDM-2024-7844</p><span class="cert-badge"><i class="fas fa-check-circle"></i> VERIFIED</span></div>
+                <div class="certificate-card marquee-card"><div class="certificate-icon" style="color:#1877F2;"><i class="fab fa-facebook"></i></div><h3>Meta Ads Expert</h3><p class="cert-desc">Facebook & Instagram Advertising</p><p class="cert-id">CERT ID: MAE-2024-2150</p><span class="cert-badge"><i class="fas fa-check-circle"></i> VERIFIED</span></div>
+                <div class="certificate-card marquee-card"><div class="certificate-icon" style="color:#FF7A59;"><i class="fab fa-hubspot"></i></div><h3>HubSpot Marketing</h3><p class="cert-desc">Inbound Marketing Certified</p><p class="cert-id">CERT ID: HSM-2024-3391</p><span class="cert-badge"><i class="fas fa-check-circle"></i> VERIFIED</span></div>
+                <div class="certificate-card marquee-card"><div class="certificate-icon" style="color:#E10098;"><i class="fas fa-chart-line"></i></div><h3>SEO Specialist</h3><p class="cert-desc">Advanced SEO & GEO Expert</p><p class="cert-id">CERT ID: SEO-2024-5627</p><span class="cert-badge"><i class="fas fa-check-circle"></i> VERIFIED</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ads Gallery -->
+    <section id="adsGallery">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Creative Gallery</span>
+                <h2>Kyrosh <span class="highlight">Ads Gallery</span></h2>
+                <p>Our latest advertising campaigns and creative work — scroll through our visual masterpieces.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <div class="marquee-scroll-container" data-aos="fade-up" data-aos-delay="150">
+                <div class="marquee-track ads-marquee" ontouchstart="this.classList.add('touch')" ontouchend="this.classList.remove('touch')">
+                    <div class="ads-item"><img src="https://i.imgur.com/mWatkD2.jpeg" alt="Ad 1" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+1'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/hUcJNl9.jpeg" alt="Ad 2" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+2'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/tlPv8TI.jpeg" alt="Ad 3" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+3'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/nF33Ruw.jpeg" alt="Ad 4" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+4'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/tLv63JY.jpeg" alt="Ad 5" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+5'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/4p1jsqg.jpeg" alt="Ad 6" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+6'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/mWatkD2.jpeg" alt="Ad 1" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+1'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/hUcJNl9.jpeg" alt="Ad 2" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+2'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/tlPv8TI.jpeg" alt="Ad 3" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+3'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/nF33Ruw.jpeg" alt="Ad 4" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+4'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/tLv63JY.jpeg" alt="Ad 5" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+5'"></div>
+                    <div class="ads-item"><img src="https://i.imgur.com/4p1jsqg.jpeg" alt="Ad 6" onerror="this.src='https://via.placeholder.com/600x600/7844D5/FFFFFF?text=Ad+6'"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="marquee-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Client Love</span>
+                <h2>What Clients <span class="highlight">Say</span></h2>
+                <p>Real results, real relationships, real words from our amazing clients worldwide.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <div class="marquee-scroll-container" data-aos="fade-up" data-aos-delay="150">
+            <div class="marquee-track" ontouchstart="this.classList.add('touch')" ontouchend="this.classList.remove('touch')">
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Kyrosh transformed our online presence. Sales doubled in 3 months!"</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">R</div><div><h5>Rahul Sharma</h5><span>Founder, BrightCart</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                    <p>"Great team! They handle everything from graphics to SEO efficiently."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">P</div><div><h5>Priya Patel</h5><span>Owner, GlowNest</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Custom software boosted our operational efficiency by 60%."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">A</div><div><h5>Amit Verma</h5><span>Director, SwiftSolve</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                    <p>"Good results overall, though communication could be slightly faster."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">Z</div><div><h5>Zahid</h5><span>Owner, FreshBloom</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Video quality is top-notch! Engagement went through the roof."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">M</div><div><h5>Mazin Ahmad</h5><span>Marketing Head, FitCore</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                    <p>"Delivered on time, quality exceeded expectations. ROI speaks for itself."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><h5>Swadiq MKR</h5><span>CEO, LearnPro Academy</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Kyrosh transformed our online presence. Sales doubled in 3 months!"</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">R</div><div><h5>Rahul Sharma</h5><span>Founder, BrightCart</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                    <p>"Great team! They handle everything from graphics to SEO efficiently."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">P</div><div><h5>Priya Patel</h5><span>Owner, GlowNest</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Custom software boosted our operational efficiency by 60%."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">A</div><div><h5>Amit Verma</h5><span>Director, SwiftSolve</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                    <p>"Good results overall, though communication could be slightly faster."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">Z</div><div><h5>Zahid</h5><span>Owner, FreshBloom</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Video quality is top-notch! Engagement went through the roof."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">M</div><div><h5>Mazin Ahmad</h5><span>Marketing Head, FitCore</span></div></div>
+                </div>
+                <div class="testimonial-card marquee-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                    <p>"Delivered on time, quality exceeded expectations. ROI speaks for itself."</p>
+                    <div class="testimonial-author"><div class="testimonial-avatar">S</div><div><h5>Swadiq MKR</h5><span>CEO, LearnPro Academy</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proposal -->
+    <section id="proposal">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Start Today</span>
+                <h2>Get Your <span class="highlight">Free Proposal</span></h2>
+                <p>Fill in your details and we'll get back to you with a custom proposal tailored to your business.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <div id="proposalContent">
+                <div class="proposal-form-wrapper" data-aos="fade-up" data-aos-delay="150" id="proposalFormWrapper" style="display:none;">
+                    <h3 style="text-align:center;margin-bottom:10px;">Start Your Project</h3>
+                    <p style="text-align:center;color:var(--gray);margin-bottom:25px;font-size:14px;">Tell us about your project and we'll contact you on WhatsApp + send thank you email</p>
+                    <form id="proposalForm">
+                        <div class="form-group"><label>Your Name *</label><input type="text" id="clientName" required></div>
+                        <div class="form-group"><label>Your Email *</label><input type="email" id="clientEmail" required></div>
+                        <div class="form-group"><label>Phone Number *</label><input type="tel" id="clientPhone" required></div>
+                        <div class="form-group"><label>Business Name</label><input type="text" id="clientBusiness"></div>
+                        <div class="form-group"><label>Service Needed *</label><select id="clientService" required><option value="">Select a service</option><option>Website Development</option><option>Software Development</option><option>Video Making</option><option>Graphics Design</option><option>Ads & Performance Marketing</option><option>SEO & GEO</option><option>Brand Uplifting</option><option>Complete Digital Package</option></select></div>
+                        <div class="form-group"><label>Project Details</label><textarea id="clientMessage" rows="3" placeholder="Tell us about your project, goals, timeline, budget..."></textarea></div>
+                        <button type="submit" class="submit-btn" id="submitBtn">Submit & Get Proposal →</button>
+                    </form>
+                    <p style="text-align:center;margin-top:15px;color:#4CAF50;font-weight:600;display:none;" id="successMsg">✅ Thank you for joining Kyrosh family! We received your proposal.</p>
+                </div>
+                <div id="loginPrompt" style="text-align:center; padding:40px; display:block;">
+                    <i class="fas fa-lock" style="font-size:48px; color:var(--primary-light); margin-bottom:20px;"></i>
+                    <h3 style="margin-bottom:15px;">Please Login to Continue</h3>
+                    <p style="color:var(--gray); margin-bottom:25px;">You need to be logged in to submit a proposal and claim your exclusive 50% offer.</p>
+                    <button class="btn-primary" id="promptLoginBtn">Login / Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram -->
+    <section id="instagram">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Connect With Us</span>
+                <h2>Follow <span class="highlight">Kyrosh</span> <span class="white-text">on Instagram</span></h2>
+                <p>See our latest work, behind-the-scenes, and brand transformations — join our creative community.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <div class="marquee-scroll-container" data-aos="fade-up" data-aos-delay="150">
+                <div class="marquee-track" ontouchstart="this.classList.add('touch')" ontouchend="this.classList.remove('touch')">
+                    <div class="marquee-card instagram-card">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Kyrosh Brand</h3>
+                        <p>Brand Uplifting & Complete Digital Solutions</p>
+                        <div class="insta-buttons">
+                            <a href="https://www.instagram.com/kyrosh_brand" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="tel:+919019958415" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9019958415</a>
+                        </div>
+                    </div>
+                    <div class="marquee-card instagram-card">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Kyrosh Ads</h3>
+                        <p>Performance Marketing & Advertising</p>
+                        <div class="insta-buttons">
+                            <a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="tel:+919741892884" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9741892884</a>
+                        </div>
+                    </div>
+                    <div class="marquee-card instagram-card">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Kyrosh Brand</h3>
+                        <p>Brand Uplifting & Complete Digital Solutions</p>
+                        <div class="insta-buttons">
+                            <a href="https://www.instagram.com/kyrosh_brand" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="tel:+919019958415" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9019958415</a>
+                        </div>
+                    </div>
+                    <div class="marquee-card instagram-card">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Kyrosh Ads</h3>
+                        <p>Performance Marketing & Advertising</p>
+                        <div class="insta-buttons">
+                            <a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="tel:+919741892884" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9741892884</a>
+                        </div>
+                    </div>
+                    <div class="marquee-card instagram-card">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Kyrosh Brand</h3>
+                        <p>Brand Uplifting & Complete Digital Solutions</p>
+                        <div class="insta-buttons">
+                            <a href="https://www.instagram.com/kyrosh_brand" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="tel:+919019958415" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9019958415</a>
+                        </div>
+                    </div>
+                    <div class="marquee-card instagram-card">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Kyrosh Ads</h3>
+                        <p>Performance Marketing & Advertising</p>
+                        <div class="insta-buttons">
+                            <a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="tel:+919741892884" class="btn-call-now"><i class="fas fa-phone"></i> Call: 9741892884</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div><h4 style="font-size:24px;">KYROSH<span style="color:var(--primary-light);">.</span></h4><p style="color:var(--gray);font-size:13px;margin-top:15px;">Full-stack digital agency providing websites, software, videos, graphics, ads, SEO, GEO, and complete brand uplifting services.</p></div>
+                <div><h4>Quick Links</h4><a id="footerHome">Home</a><a id="footerServices">Services</a><a id="footerWork">Work</a><a id="footerTeam">Team</a><a id="footerCertificates">Certificates</a><a id="footerContact">Contact</a></div>
+                <div><h4>Services</h4><a>Websites</a><a>Software</a><a>Video Making</a><a>Graphics</a><a>SEO & GEO</a></div>
+                <div><h4>Contact</h4><a href="mailto:kyroshbrand@gmail.com">📧 kyroshbrand@gmail.com</a><a href="tel:+919019958415">📞 +91 9019958415</a><a href="tel:+919741892884">📞 +91 9741892884</a><a href="https://www.instagram.com/kyrosh_brand" target="_blank"><i class="fab fa-instagram"></i> @kyrosh_brand</a><a href="https://www.instagram.com/kyrosh_ads" target="_blank"><i class="fab fa-instagram"></i> @kyrosh_ads</a></div>
+            </div>
+            <div class="footer-bottom"><p>© 2024 Kyrosh. All Rights Reserved. Built by Kyrosh.</p></div>
+        </div>
+    </footer>
+
+    <!-- Floating buttons -->
+    <a href="tel:+919019958415" class="call-float"><i class="fas fa-phone"></i></a>
+    <a href="https://wa.me/919019958415?text=Hi%20Kyrosh!%20I%20want%20to%20chat" target="_blank" class="chat-float" title="Chat with us"><i class="fas fa-comment-dots"></i></a>
+
+    <script>
+        // ============ SUPABASE INIT (FIXED – UNIQUE NAME) ============
+        const SUPABASE_URL = 'https://qihxvqtetktpqszkxjkk.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_xtgsAZuCdU_0b3C87IgtxA_V8apZy2a';
+        // IMPORTANT:
+        // For password login/signup without a Supabase confirmation email:
+        // Supabase Dashboard -> Authentication -> Providers -> Email
+        // -> turn OFF "Confirm email".
+
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // ============ PRELOADER HIDE ============
+        setTimeout(() => {
+            const preloader = document.getElementById('preloader');
+            if (preloader) preloader.classList.add('hidden');
+        }, 1500);
+
+        // ============ DOM REFS ============
+        const authButtons = document.getElementById('authButtons');
+        const authModal = document.getElementById('authModal');
+        const closeAuthModal = document.getElementById('closeAuthModal');
+        const authForm = document.getElementById('authForm');
+        const authEmail = document.getElementById('authEmail');
+        const authPassword = document.getElementById('authPassword');
+        const authName = document.getElementById('authName');
+        const authPhone = document.getElementById('authPhone');
+        const authSubmitBtn = document.getElementById('authSubmitBtn');
+        const authError = document.getElementById('authError');
+        const forgotPasswordBtn = document.getElementById('forgotPasswordBtn');
+        const editProfileModal = document.getElementById('editProfileModal');
+        const closeEditModal = document.getElementById('closeEditModal');
+        const editName = document.getElementById('editName');
+        const editPhone = document.getElementById('editPhone');
+        const editSubmitBtn = document.getElementById('editSubmitBtn');
+        const editError = document.getElementById('editError');
+        const editSuccess = document.getElementById('editSuccess');
+        const proposalFormWrapper = document.getElementById('proposalFormWrapper');
+        const loginPrompt = document.getElementById('loginPrompt');
+        const promptLoginBtn = document.getElementById('promptLoginBtn');
+        const welcomePopup = document.getElementById('welcomePopup');
+        const closeWelcome = document.getElementById('closeWelcome');
+        const welcomeOfferBtn = document.getElementById('welcomeOfferBtn');
+        const confettiContainer = document.getElementById('confettiContainer');
+        const loginSuccessPopup = document.getElementById('loginSuccessPopup');
+        const loginSuccessName = document.getElementById('loginSuccessName');
+        let loginSuccessTimer = null;
+
+        // ============ HELPER FUNCTIONS ============
+        async function getProfile(userId) {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', userId)
+                    .single();
+                if (error && error.code !== 'PGRST116') {
+                    console.error('Error fetching profile:', error);
+                    return null;
+                }
+                return data;
+            } catch (err) {
+                console.error('getProfile error:', err);
+                return null;
+            }
+        }
+
+        async function upsertProfile(userId, updates) {
+            try {
+                const { error } = await supabaseClient
+                    .from('profiles')
+                    .upsert({ id: userId, ...updates }, { onConflict: 'id' });
+                if (error) console.error('Error upserting profile:', error);
+                return !error;
+            } catch (err) {
+                console.error('upsertProfile error:', err);
+                return false;
+            }
+        }
+
+        async function logLogin(user, profile = {}) {
+            if (!user) return;
+
+            const loginTime = new Date().toISOString();
+            const name = profile.name || user.user_metadata?.name || user.email || 'User';
+            const phone = profile.phone || user.user_metadata?.phone || '';
+
+            // Store every login event in Supabase.
+            // Create the login_logs table using the SQL supplied below this file.
+            try {
+                const { error } = await supabaseClient
+                    .from('login_logs')
+                    .insert({
+                        user_id: user.id,
+                        name: name,
+                        email: user.email || '',
+                        phone: phone || '',
+                        login_time: loginTime,
+                        user_agent: navigator.userAgent,
+                        ip_note: 'Client-side login event'
+                    });
+
+                if (error) {
+                    console.error('Supabase login log error:', error);
+                }
+            } catch (err) {
+                console.error('Supabase login log exception:', err);
+            }
+
+            // Also send the same login information to Google Sheets.
+            try {
+                await fetch("https://script.google.com/macros/s/AKfycbw3hXnvZqSegfn9VYxY2pGe68zspmz8NpjqUQJ6rsPoGpilGrzkebQkCQwi_mYOYMFvXg/exec", {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        type: "login",
+                        userId: user.id,
+                        name: name,
+                        email: user.email || '',
+                        phone: phone || '',
+                        loginTime: loginTime,
+                        userAgent: navigator.userAgent
+                    })
+                });
+            } catch (err) {
+                console.error('Google Sheets login log error:', err);
+            }
+        }
+
+        function showLoginSuccess(name) {
+            if (!loginSuccessPopup) return;
+
+            if (loginSuccessTimer) clearTimeout(loginSuccessTimer);
+            if (loginSuccessName) {
+                loginSuccessName.textContent = name || 'User';
+            }
+
+            loginSuccessPopup.classList.add('active');
+
+            loginSuccessTimer = setTimeout(() => {
+                loginSuccessPopup.classList.remove('active');
+            }, 3000);
+        }
+
+        function sendWelcomeEmail(name, email) {
+            try {
+                if (typeof emailjs !== 'undefined') {
+                    emailjs.send("service_nl0bwlc", "template_welcome", {
+                        to_name: name,
+                        to_email: email,
+                        offer_link: "#proposal"
+                    }).then(() => console.log('Welcome email sent')).catch(err => console.log('Email error:', err));
+                }
+            } catch (err) {
+                console.error('sendWelcomeEmail error:', err);
+            }
+        }
+
+        function launchConfetti() {
+            try {
+                const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#9B59B6', '#FF9F43'];
+                for (let i = 0; i < 50; i++) {
+                    const piece = document.createElement('div');
+                    piece.className = 'confetti-piece';
+                    piece.style.left = Math.random() * 100 + '%';
+                    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    piece.style.width = (Math.random() * 8 + 4) + 'px';
+                    piece.style.height = (Math.random() * 8 + 4) + 'px';
+                    piece.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    piece.style.animationDelay = (Math.random() * 2) + 's';
+                    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    confettiContainer.appendChild(piece);
+                }
+                setTimeout(() => { confettiContainer.innerHTML = ''; }, 5000);
+            } catch (err) {
+                console.error('launchConfetti error:', err);
+            }
+        }
+
+        // ============ UPDATE HEADER ============
+        async function updateAuthUI(session, options = {}) {
+            try {
+                const user = session?.user;
+
+                if (user) {
+                    const profile = await getProfile(user.id);
+                    const displayName = profile?.name || user.user_metadata?.name || user.email || 'User';
+                    const phone = profile?.phone || user.user_metadata?.phone || 'Not set';
+                    const initial = displayName.charAt(0).toUpperCase();
+
+                    if (authButtons) {
+                        authButtons.innerHTML = `
+                            <div class="profile-avatar" id="profileToggle">
+                                <span class="avatar-icon">${initial}</span>
+                                <span class="avatar-name">${displayName}</span>
+                                <span class="avatar-arrow"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div class="profile-dropdown" id="profileDropdown">
+                                <div class="dropdown-user">
+                                    <div class="big-avatar">${initial}</div>
+                                    <div class="user-info">
+                                        <h4>${displayName}</h4>
+                                        <p>${user.email || ''}</p>
+                                        <p style="font-size:11px;color:var(--gray);">📱 ${phone}</p>
+                                    </div>
+                                </div>
+                                <div class="dropdown-section">
+                                    <button class="dropdown-item" id="editProfileBtn"><i class="fas fa-user-edit"></i> Edit Profile</button>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-section">
+                                    <button class="dropdown-item logout-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                </div>
+                            </div>
+                        `;
+
+                        const profileToggle = document.getElementById('profileToggle');
+                        const profileDropdown = document.getElementById('profileDropdown');
+
+                        if (profileToggle && profileDropdown) {
+                            profileToggle.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                profileToggle.classList.toggle('open');
+                                profileDropdown.classList.toggle('open');
+                            });
+
+                            document.addEventListener('click', (e) => {
+                                if (authButtons && !authButtons.contains(e.target)) {
+                                    profileToggle.classList.remove('open');
+                                    profileDropdown.classList.remove('open');
+                                }
+                            });
+                        }
+
+                        const editBtn = document.getElementById('editProfileBtn');
+                        if (editBtn) {
+                            editBtn.addEventListener('click', () => {
+                                if (profileToggle) profileToggle.classList.remove('open');
+                                if (profileDropdown) profileDropdown.classList.remove('open');
+                                if (editName) editName.value = displayName;
+                                if (editPhone) editPhone.value = phone === 'Not set' ? '' : phone;
+                                if (editError) editError.style.display = 'none';
+                                if (editSuccess) editSuccess.style.display = 'none';
+                                if (editProfileModal) editProfileModal.classList.add('active');
+                            });
+                        }
+
+                        const logoutBtn = document.getElementById('logoutBtn');
+                        if (logoutBtn) {
+                            logoutBtn.addEventListener('click', async () => {
+                                const { error } = await supabaseClient.auth.signOut();
+                                if (error) {
+                                    console.error('Logout error:', error);
+                                    return;
+                                }
+                                updateAuthUI(null);
+                            });
+                        }
+                    }
+
+                    if (proposalFormWrapper) proposalFormWrapper.style.display = 'block';
+                    if (loginPrompt) loginPrompt.style.display = 'none';
+
+                    const clientEmail = document.getElementById('clientEmail');
+                    const clientName = document.getElementById('clientName');
+                    if (clientEmail) clientEmail.value = user.email || '';
+                    if (clientName) clientName.value = displayName;
+
+                    // Only run these after an actual successful login/signup,
+                    // not during the initial session check.
+                    if (options.justLoggedIn) {
+                        await logLogin(user, { name: displayName, phone: phone === 'Not set' ? '' : phone });
+                        showLoginSuccess(displayName);
+                    }
+
+                } else {
+                    if (authButtons) {
+                        authButtons.innerHTML = `
+                            <button class="btn-login" id="loginBtn">Login</button>
+                        `;
+                        const loginBtn = document.getElementById('loginBtn');
+                        if (loginBtn) loginBtn.addEventListener('click', () => openAuthModal());
+                    }
+
+                    if (proposalFormWrapper) proposalFormWrapper.style.display = 'none';
+                    if (loginPrompt) loginPrompt.style.display = 'block';
+                }
+            } catch (err) {
+                console.error('updateAuthUI error:', err);
+            }
+        }
+
+        // ============ AUTH MODAL ============
+        function openAuthModal() {
+            if (authError) { authError.style.display = 'none';
+                authError.textContent = ''; }
+            if (authSubmitBtn) {
+                authSubmitBtn.classList.remove('loading');
+                const btnText = authSubmitBtn.querySelector('.btn-text');
+                if (btnText) btnText.textContent = 'Login / Sign Up';
+            }
+            if (authForm) authForm.reset();
+            if (authModal) authModal.classList.add('active');
+        }
+
+        if (closeAuthModal) {
+            closeAuthModal.addEventListener('click', () => {
+                if (authModal) authModal.classList.remove('active');
+            });
+        }
+        if (authModal) {
+            authModal.addEventListener('click', (e) => {
+                if (e.target === authModal) authModal.classList.remove('active');
+            });
+        }
+        if (promptLoginBtn) {
+            promptLoginBtn.addEventListener('click', openAuthModal);
+        }
+
+        // ============ FORGOT PASSWORD ============
+        if (forgotPasswordBtn) {
+            forgotPasswordBtn.addEventListener('click', async () => {
+                const email = authEmail ? authEmail.value.trim() : '';
+                if (!email) {
+                    if (authError) {
+                        authError.textContent = 'Please enter your email address first.';
+                        authError.style.display = 'block';
+                    }
+                    return;
+                }
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(email);
+                if (error) {
+                    if (authError) {
+                        authError.textContent = error.message;
+                        authError.style.display = 'block';
+                    }
+                } else {
+                    if (authError) {
+                        authError.style.display = 'block';
+                        authError.style.color = '#4CAF50';
+                        authError.style.borderLeftColor = '#4CAF50';
+                        authError.textContent = '✅ Password reset email sent! Check your inbox.';
+                    }
+                }
+            });
+        }
+
+        // ============ AUTH FORM SUBMIT ============
+        if (authForm) {
+            authForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const email = authEmail ? authEmail.value.trim() : '';
+                const password = authPassword ? authPassword.value : '';
+                const name = authName ? authName.value.trim() : '';
+                const phone = authPhone ? authPhone.value.trim() : '';
+
+                if (!email || !password || !name || !phone) {
+                    if (authError) {
+                        authError.textContent = 'Please enter your name, phone, email and password.';
+                        authError.style.display = 'block';
+                    }
+                    return;
+                }
+
+                if (authError) {
+                    authError.style.display = 'none';
+                    authError.textContent = '';
+                    authError.style.color = '#FF6B6B';
+                    authError.style.borderLeftColor = '#FF6B6B';
+                }
+
+                if (authSubmitBtn) {
+                    authSubmitBtn.classList.add('loading');
+                    const btnText = authSubmitBtn.querySelector('.btn-text');
+                    if (btnText) btnText.textContent = 'Processing...';
+                }
+
+                try {
+                    // First try normal login.
+                    const { data: signInData, error: signInError } =
+                        await supabaseClient.auth.signInWithPassword({ email, password });
+
+                    if (!signInError && signInData?.user) {
+                        const user = signInData.user;
+
+                        // Keep the user's name and phone in Supabase Auth metadata.
+                        const { error: metadataError } = await supabaseClient.auth.updateUser({
+                            data: { name, phone }
+                        });
+                        if (metadataError) console.warn('Auth metadata update:', metadataError.message);
+
+                        // Keep the same information in the public profiles table.
+                        const profileSaved = await upsertProfile(user.id, {
+                            name,
+                            phone,
+                            email: user.email || email,
+                            updated_at: new Date().toISOString()
+                        });
+
+                        if (!profileSaved) {
+                            console.warn('Profile row could not be updated. Check the profiles table/RLS policies.');
+                        }
+
+                        if (authModal) authModal.classList.remove('active');
+                        if (authForm) authForm.reset();
+
+                        await updateAuthUI({ user }, { justLoggedIn: true });
+                        return;
+                    }
+
+                    // If login failed because the account does not exist, create it.
+                    // This makes the same form work for both Sign Up and Login.
+                    const { data: signUpData, error: signUpError } =
+                        await supabaseClient.auth.signUp({
+                            email,
+                            password,
+                            options: {
+                                data: { name, phone }
+                            }
+                        });
+
+                    if (signUpError) {
+                        if (authError) {
+                            authError.textContent = signUpError.message;
+                            authError.style.display = 'block';
+                        }
+                        return;
+                    }
+
+                    if (!signUpData?.user) {
+                        throw new Error('Account could not be created.');
+                    }
+
+                    // IMPORTANT:
+                    // If Supabase "Confirm email" is enabled, signUp returns no session
+                    // and Supabase will send a confirmation email. The dashboard setting
+                    // must be disabled if you want instant login without that email.
+                    if (!signUpData.session) {
+                        if (authError) {
+                            authError.textContent =
+                                'Account created, but Supabase email confirmation is enabled. Disable "Confirm email" in Supabase Authentication settings for instant login.';
+                            authError.style.display = 'block';
+                        }
+                        return;
+                    }
+
+                    const user = signUpData.user;
+
+                    await upsertProfile(user.id, {
+                        name,
+                        phone,
+                        email: user.email || email,
+                        first_login_done: true,
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    });
+
+                    if (authModal) authModal.classList.remove('active');
+                    if (authForm) authForm.reset();
+
+                    await updateAuthUI({ user }, { justLoggedIn: true });
+
+                } catch (err) {
+                    console.error('Authentication error:', err);
+                    if (authError) {
+                        authError.textContent = err.message || 'Something went wrong. Please try again.';
+                        authError.style.display = 'block';
+                    }
+                } finally {
+                    if (authSubmitBtn) {
+                        authSubmitBtn.classList.remove('loading');
+                        const btnText = authSubmitBtn.querySelector('.btn-text');
+                        if (btnText) btnText.textContent = 'Login / Sign Up';
+                    }
+                }
+            });
+        }
+
+        // ============ EDIT PROFILE ============
+        if (closeEditModal) {
+            closeEditModal.addEventListener('click', () => {
+                if (editProfileModal) editProfileModal.classList.remove('active');
+            });
+        }
+        if (editProfileModal) {
+            editProfileModal.addEventListener('click', (e) => {
+                if (e.target === editProfileModal) editProfileModal.classList.remove('active');
+            });
+        }
+
+        if (editSubmitBtn) {
+            editSubmitBtn.addEventListener('click', async () => {
+                try {
+                    const { data: { user } } = await supabaseClient.auth.getUser();
+                    if (!user) { alert('Please login first.'); return; }
+                    const newName = editName ? editName.value.trim() : '';
+                    const newPhone = editPhone ? editPhone.value.trim() : '';
+                    if (!newName) {
+                        if (editError) {
+                            editError.textContent = 'Name cannot be empty.';
+                            editError.style.display = 'block';
+                        }
+                        if (editSuccess) editSuccess.style.display = 'none';
+                        return;
+                    }
+                    if (editError) editError.style.display = 'none';
+                    if (editSuccess) editSuccess.style.display = 'none';
+                    if (editSubmitBtn) {
+                        editSubmitBtn.classList.add('loading');
+                        const btnText = editSubmitBtn.querySelector('.btn-text');
+                        if (btnText) btnText.textContent = 'Updating...';
+                    }
+
+                    const success = await upsertProfile(user.id, { name: newName, phone: newPhone });
+                    if (success) {
+                        await supabaseClient.auth.updateUser({ data: { name: newName } });
+                        if (editSuccess) editSuccess.style.display = 'block';
+                        setTimeout(() => {
+                            if (editSuccess) editSuccess.style.display = 'none';
+                            if (editProfileModal) editProfileModal.classList.remove('active');
+                            supabaseClient.auth.getSession().then(({ data }) => updateAuthUI(data.session));
+                        }, 1500);
+                    } else {
+                        if (editError) {
+                            editError.textContent = 'Failed to update profile.';
+                            editError.style.display = 'block';
+                        }
+                    }
+                } catch (err) {
+                    if (editError) {
+                        editError.textContent = err.message || 'An error occurred.';
+                        editError.style.display = 'block';
+                    }
+                }
+                if (editSubmitBtn) {
+                    editSubmitBtn.classList.remove('loading');
+                    const btnText = editSubmitBtn.querySelector('.btn-text');
+                    if (btnText) btnText.textContent = 'Update Profile';
+                }
+            });
+        }
+
+        // ============ WELCOME POPUP ============
+        if (closeWelcome) {
+            closeWelcome.addEventListener('click', () => {
+                if (welcomePopup) welcomePopup.classList.remove('active');
+            });
+        }
+        if (welcomeOfferBtn) {
+            welcomeOfferBtn.addEventListener('click', () => {
+                if (welcomePopup) welcomePopup.classList.remove('active');
+                const proposal = document.getElementById('proposal');
+                if (proposal) proposal.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // ============ SESSION LISTENER ============
+        supabaseClient.auth.onAuthStateChange((event, session) => {
+            if (event === 'SIGNED_IN' && session?.user) {
+                // updateAuthUI is also called directly after submit, so this listener
+                // only refreshes the header without creating a duplicate login log.
+                updateAuthUI(session, { justLoggedIn: false });
+            } else if (event === 'SIGNED_OUT') {
+                updateAuthUI(null);
+            }
+        });
+
+        // ============ INITIAL SESSION CHECK ============
+        (async () => {
+            try {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                await updateAuthUI(session);
+            } catch (err) {
+                console.error('Initial session error:', err);
+                if (authButtons) {
+                    authButtons.innerHTML = `
+                        <button class="btn-login" id="loginBtn">Login</button>
+                    `;
+                    const loginBtn = document.getElementById('loginBtn');
+                    if (loginBtn) loginBtn.addEventListener('click', () => openAuthModal());
+                }
+            }
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                if (preloader) preloader.classList.add('hidden');
+            }, 1500);
+        })();
+
+        // ============ HEADER SCROLL ============
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                if (header) header.classList.add('scrolled');
+            } else {
+                if (header) header.classList.remove('scrolled');
+            }
+        });
+
+        // ============ HAMBURGER ============
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                if (navLinks) navLinks.classList.toggle('active');
+            });
+        }
+
+        // ============ NAVIGATION ============
+        function go(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            if (navLinks) navLinks.classList.remove('active');
+        }
+
+        const navMap = {
+            'navHome': 'home',
+            'navServices': 'services',
+            'navWork': 'work',
+            'navTeam': 'team',
+            'navCertificates': 'certificates',
+            'navContact': 'proposal',
+            'navStartProject': 'proposal',
+            'heroViewWork': 'work',
+            'heroStrategyCall': 'proposal',
+            'logoHome': 'home',
+            'footerHome': 'home',
+            'footerServices': 'services',
+            'footerWork': 'work',
+            'footerTeam': 'team',
+            'footerCertificates': 'certificates',
+            'footerContact': 'proposal'
+        };
+        Object.keys(navMap).forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('click', () => go(navMap[id]));
+            }
+        });
+
+        // ============ PARTICLES ============
+        const pc = document.getElementById('particles');
+        function makeParticle() {
+            if (!pc) return;
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.width = p.style.height = (Math.random() * 5 + 2) + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            pc.appendChild(p);
+            setTimeout(() => { if (p.parentNode) p.remove(); }, 25000);
+        }
+        for (let i = 0; i < 30; i++) setTimeout(makeParticle, Math.random() * 3000);
+        setInterval(makeParticle, 2000);
+
+        // ============ TYPING ============
+        const tt = document.getElementById('typingText');
+        if (tt) {
+            const words = ['Websites.', 'Software.', 'Video Making.', 'Graphics.', 'Ads & Performance.', 'SEO & GEO.', 'Complete Brand Uplifting.'];
+            let wi = 0,
+                ci = 0,
+                del = false;
+
+            function type() {
+                const w = words[wi];
+                if (!del) {
+                    tt.textContent = w.substring(0, ci + 1);
+                    ci++;
+                    if (ci === w.length) { del = true;
+                        setTimeout(type, 2000); return; }
+                } else {
+                    tt.textContent = w.substring(0, ci - 1);
+                    ci--;
+                    if (ci === 0) { del = false;
+                        wi = (wi + 1) % words.length; }
+                }
+                setTimeout(type, del ? 50 : 100);
+            }
+            type();
+        }
+
+        // ============ OFFER POPUP ============
+        const popup = document.getElementById('offerPopup');
+        const closeP = document.getElementById('closePopup');
+        const offerB = document.getElementById('offerBtn');
+        const timer = document.getElementById('offerTimer');
+        const sideT = document.getElementById('sideTimer');
+        const sideC = document.getElementById('sideTimerCount');
+        const reopen = document.getElementById('reopenOffer');
+        let shown = false,
+            total = 3600,
+            interval = null,
+            fs = false;
+
+        function fmt(s) {
+            const h = Math.floor(s / 3600),
+                m = Math.floor((s % 3600) / 60),
+                se = s % 60;
+            return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(se).padStart(2,'0')}`;
+        }
+
+        function startT() {
+            if (interval) clearInterval(interval);
+            interval = setInterval(() => {
+                total--;
+                if (total <= 0) {
+                    clearInterval(interval);
+                    if (popup) popup.classList.remove('active');
+                    if (sideT) sideT.classList.remove('active');
+                    return;
+                }
+                const t = fmt(total);
+                if (timer) timer.textContent = t;
+                if (sideC) sideC.textContent = t;
+            }, 1000);
+        }
+
+        function show() {
+            if (!shown && !fs) {
+                shown = true;
+                if (popup) popup.classList.add('active');
+                startT();
+            }
+        }
+        setTimeout(show, 10000);
+        if (closeP) closeP.onclick = () => { if (popup) popup.classList.remove('active'); if (sideT) sideT.classList.add('active'); };
+        if (reopen) reopen.onclick = () => { if (sideT) sideT.classList.remove('active'); if (popup) popup.classList.add('active'); };
+        if (offerB) {
+            offerB.onclick = (e) => {
+                e.preventDefault();
+                if (popup) popup.classList.remove('active');
+                if (sideT) sideT.classList.add('active');
+                go('proposal');
+            };
+        }
+
+        // ============ MARQUEE AUTO-SCROLL ============
+        const tracks = document.querySelectorAll('.marquee-track');
+        tracks.forEach(track => {
+            let autoScroll,
+                isPaused = false;
+            const speed = 0.5;
+
+            function startAuto() {
+                autoScroll = setInterval(() => {
+                    if (!isPaused && track) {
+                        track.scrollLeft += speed;
+                        if (track.scrollLeft >= track.scrollWidth - track.clientWidth) track.scrollLeft = 0;
+                    }
+                }, 16);
+            }
+
+            function stopAuto() { if (autoScroll) clearInterval(autoScroll); }
+            track.addEventListener('mouseenter', () => { isPaused = true; });
+            track.addEventListener('mouseleave', () => { isPaused = false; });
+            track.addEventListener('touchstart', () => { isPaused = true; });
+            track.addEventListener('touchend', () => { isPaused = false; });
+            let manualScrollTimer;
+            track.addEventListener('scroll', () => {
+                if (!isPaused) {
+                    stopAuto();
+                    clearTimeout(manualScrollTimer);
+                    manualScrollTimer = setTimeout(() => { startAuto(); }, 1500);
+                }
+            });
+            startAuto();
+        });
+
+        // ============ EMAILJS ============
+        if (typeof emailjs !== 'undefined') {
+            try {
+                emailjs.init("t8ArtkcNiyPWxv7nZ");
+            } catch (err) {
+                console.error('EmailJS init error:', err);
+            }
+        }
+
+        // ============ PROPOSAL FORM ============
+        const proposalForm = document.getElementById('proposalForm');
+        if (proposalForm) {
+            proposalForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                (async () => {
+                    try {
+                        const { data: { user } } = await supabaseClient.auth.getUser();
+                        if (!user) { alert('Please login first.');
+                            openAuthModal(); return; }
+                        fs = true;
+                        if (popup) popup.classList.remove('active');
+                        if (sideT) sideT.classList.remove('active');
+                        const name = document.getElementById('clientName') ? document.getElementById('clientName').value.trim() : '';
+                        const email = document.getElementById('clientEmail') ? document.getElementById('clientEmail').value.trim() : '';
+                        const phone = document.getElementById('clientPhone') ? document.getElementById('clientPhone').value.trim() : '';
+                        const business = document.getElementById('clientBusiness') ? document.getElementById('clientBusiness').value.trim() : '';
+                        const service = document.getElementById('clientService') ? document.getElementById('clientService').value : '';
+                        const message = document.getElementById('clientMessage') ? document.getElementById('clientMessage').value.trim() : '';
+                        const btn = document.getElementById('submitBtn');
+                        if (!name || !phone || !service) { alert('Please fill required fields.');
+                            fs = false; return; }
+                        if (btn) { btn.textContent = '⏳ Submitting...';
+                            btn.disabled = true; }
+                        gtag('event', 'form_submit', { 'event_category': 'Proposal', 'event_label': service });
+                        if (typeof emailjs !== 'undefined') {
+                            emailjs.send("service_nl0bwlc", "template_qro89yc", { to_email: email, name: name, phone: phone, business: business || 'N/A', service: service, message: message || 'N/A' }).catch(() => {});
+                            emailjs.send("service_nl0bwlc", "template_fjiw3aj", { name: name, email: email, phone: phone, business: business || 'N/A', service: service, message: message || 'N/A' }).catch(() => {});
+                        }
+                        const leadData = { name, email, phone, business: business || "", service, message: message || "", userId: user.id };
+                        fetch("https://script.google.com/macros/s/AKfycbw3hXnvZqSegfn9VYxY2pGe68zspmz8NpjqUQJ6rsPoGpilGrzkebQkCQwi_mYOYMFvXg/exec", {
+                            method: "POST",
+                            mode: "no-cors",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(leadData)
+                        }).catch(err => console.log("Google Sheets error:", err));
+                        if (btn) btn.textContent = '✅ Submitted!';
+                        const successMsg = document.getElementById('successMsg');
+                        if (successMsg) successMsg.style.display = 'block';
+                        if (proposalForm) proposalForm.reset();
+                        setTimeout(() => {
+                            if (btn) { btn.textContent = 'Submit & Get Proposal →';
+                                btn.disabled = false; }
+                            if (successMsg) successMsg.style.display = 'none';
+                        }, 5000);
+                        const successPopup = document.getElementById('successPopup');
+                        if (successPopup) successPopup.classList.add('active');
+                        setTimeout(() => { if (successPopup) successPopup.classList.remove('active'); }, 4000);
+                    } catch (err) {
+                        console.error('Proposal form error:', err);
+                        alert('Something went wrong. Please try again.');
+                    }
+                })();
+            });
+        }
+
+        // ============ AOS INIT ============
+        try {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true });
+            }
+        } catch (err) {
+            console.error('AOS init error:', err);
+        }
+
+        console.log('🎉 Kyrosh Digital Agency – Now powered by Supabase!');
+    </script>
+</body>
+</html>
