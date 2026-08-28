@@ -28,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <style>
-        /* ========== FULL CSS (unchanged – all your existing styles) ========== */
+        /* ========== FULL CSS ========== */
         :root {
             --primary: #7844D5;
             --primary-light: #A78BFA;
@@ -168,7 +168,7 @@
             transform:translateY(0);
         }
 
-        /* ----- KEYFRAMES (all) ----- */
+        /* ----- KEYFRAMES ----- */
         @keyframes badgeGlow {
             0%,100% { box-shadow:0 0 20px rgba(120,68,213,0.4); }
             50% { box-shadow:0 0 45px rgba(167,139,250,0.8); }
@@ -424,7 +424,7 @@
         .profile-dropdown .dropdown-item.logout-item:hover { background:rgba(255,107,107,0.15); color:#FF6B6B; }
         .profile-dropdown .dropdown-item.logout-item i { color:#FF6B6B; }
 
-        /* ----- AUTH MODAL (modified: now includes Name, Phone, Email, no Password) ----- */
+        /* ----- AUTH MODAL (Magic Link – with Name, Phone, Email) ----- */
         .auth-modal-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10002; display:none; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(4px); }
         .auth-modal-overlay.active { display:flex; }
         .auth-modal { background:linear-gradient(145deg, #1A0B2E, #2D1B4E); border:2px solid var(--primary-light); border-radius:24px; padding:35px 30px 30px; max-width:420px; width:100%; position:relative; animation:popupBounce .5s ease; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
@@ -448,11 +448,10 @@
         .auth-modal .auth-submit.loading .spinner { display:inline-block; }
         .auth-modal .auth-submit.loading .btn-text { opacity:0.7; }
         .auth-modal .auth-actions { display:flex; justify-content:space-between; align-items:center; margin-top:12px; flex-wrap:wrap; gap:8px; }
-        /* We hide the forgot password button since no password */
         .auth-modal .forgot-password { display:none; }
         .auth-modal .auth-toggle { text-align:center; margin-top:12px; color:var(--gray); font-size:12px; }
 
-        /* ----- EDIT PROFILE MODAL (unchanged) ----- */
+        /* ----- EDIT PROFILE MODAL ----- */
         .edit-profile-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10003; display:none; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(4px); }
         .edit-profile-overlay.active { display:flex; }
         .edit-profile-modal { background:linear-gradient(145deg, #1A0B2E, #2D1B4E); border:2px solid var(--primary-light); border-radius:24px; padding:35px 30px 30px; max-width:420px; width:100%; animation:popupBounce .5s ease; box-shadow:0 20px 60px rgba(0,0,0,0.6); position:relative; }
@@ -716,7 +715,6 @@
                     <span class="btn-text">Send Magic Link</span>
                 </button>
                 <div class="auth-actions">
-                    <!-- Forgot password hidden (no password) -->
                     <button type="button" class="forgot-password" id="forgotPasswordBtn" style="display:none;">🔑 Forgot Password?</button>
                 </div>
             </form>
@@ -821,6 +819,7 @@
         </div>
         <div class="marquee-scroll-container" data-aos="fade-up" data-aos-delay="150">
             <div class="marquee-track services-marquee" ontouchstart="this.classList.add('touch')" ontouchend="this.classList.remove('touch')">
+                <!-- Service cards -->
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-globe"></i></div><h3>Websites</h3><p>Business websites, e-commerce stores, landing pages, and custom web solutions that convert visitors into customers.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-code"></i></div><h3>Software</h3><p>Custom dashboards, web applications, automation tools, and software solutions built for your unique needs.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-video"></i></div><h3>Video Making</h3><p>High-quality ads, explainer videos, reels, corporate films, and content that captures attention instantly.</p></div>
@@ -829,7 +828,7 @@
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-search"></i></div><h3>SEO & GEO</h3><p>Search Engine Optimization and Generative Engine Optimization to make your brand discoverable everywhere.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-rocket"></i></div><h3>Brand Uplifting</h3><p>Complete brand strategy, identity, positioning, and transformation that elevates your business.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-star"></i></div><h3>Complete Digital Works</h3><p>Anything digital your business needs — we handle it all. One team, one vision, total domination.</p></div>
-                <!-- Duplicated for seamless marquee -->
+                <!-- Duplicate for seamless marquee -->
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-globe"></i></div><h3>Websites</h3><p>Business websites, e-commerce stores, landing pages, and custom web solutions that convert visitors into customers.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-code"></i></div><h3>Software</h3><p>Custom dashboards, web applications, automation tools, and software solutions built for your unique needs.</p></div>
                 <div class="service-card marquee-card"><div class="service-icon"><i class="fas fa-video"></i></div><h3>Video Making</h3><p>High-quality ads, explainer videos, reels, corporate films, and content that captures attention instantly.</p></div>
@@ -954,7 +953,7 @@
                 <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div><p>"Good results overall, though communication could be slightly faster."</p><div class="testimonial-author"><div class="testimonial-avatar">Z</div><div><h5>Zahid</h5><span>Owner, FreshBloom</span></div></div></div>
                 <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Video quality is top-notch! Engagement went through the roof."</p><div class="testimonial-author"><div class="testimonial-avatar">M</div><div><h5>Mazin Ahmad</h5><span>Marketing Head, FitCore</span></div></div></div>
                 <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><p>"Delivered on time, quality exceeded expectations. ROI speaks for itself."</p><div class="testimonial-author"><div class="testimonial-avatar">S</div><div><h5>Swadiq MKR</h5><span>CEO, LearnPro Academy</span></div></div></div>
-                <!-- Duplicates for seamless scrolling -->
+                <!-- Duplicates -->
                 <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Kyrosh transformed our online presence. Sales doubled in 3 months!"</p><div class="testimonial-author"><div class="testimonial-avatar">R</div><div><h5>Rahul Sharma</h5><span>Founder, BrightCart</span></div></div></div>
                 <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><p>"Great team! They handle everything from graphics to SEO efficiently."</p><div class="testimonial-author"><div class="testimonial-avatar">P</div><div><h5>Priya Patel</h5><span>Owner, GlowNest</span></div></div></div>
                 <div class="testimonial-card marquee-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>"Custom software boosted our operational efficiency by 60%."</p><div class="testimonial-author"><div class="testimonial-avatar">A</div><div><h5>Amit Verma</h5><span>Director, SwiftSolve</span></div></div></div>
@@ -1237,11 +1236,11 @@
                     if (clientEmail) clientEmail.value = user.email || '';
                     if (clientName) clientName.value = displayName;
 
-                    // Send login notification & welcome email via Edge Function (same as before)
+                    // Send login notification & welcome email via Edge Function
                     if (options.justLoggedIn) {
                         await logLogin(user, { name: displayName, phone: phone === 'Not set' ? '' : phone });
                         showLoginSuccess(displayName);
-                        // Send login notification
+                        // Login notification
                         try {
                             const response = await fetch(
                                 'https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email',
@@ -1336,17 +1335,12 @@
                 }
 
                 try {
-                    // Store name and phone in sessionStorage to be used after magic link login
                     sessionStorage.setItem('pending_name', name);
                     sessionStorage.setItem('pending_phone', phone);
 
-                    // Send magic link
                     const { data, error } = await supabaseClient.auth.signInWithOtp({
                         email: email,
-                        options: {
-                            // Optional redirect
-                            // redirectTo: window.location.origin,
-                        }
+                        options: {}
                     });
 
                     if (error) {
@@ -1361,7 +1355,6 @@
                         return;
                     }
 
-                    // Success: show message
                     if (authError) {
                         authError.style.display = 'block';
                         authError.style.color = '#4CAF50';
@@ -1387,43 +1380,32 @@
         }
 
         // ============ SESSION LISTENER ============
-        // This handles magic link callback and also normal sign-in
-        let isProcessingMagicLink = false;
+        let _justLoggedIn = false;
         supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session?.user) {
                 const user = session.user;
-                // Check if we have pending name/phone from sessionStorage
                 const pendingName = sessionStorage.getItem('pending_name');
                 const pendingPhone = sessionStorage.getItem('pending_phone');
                 if (pendingName && pendingPhone) {
-                    // This is a magic link login with pending data
-                    isProcessingMagicLink = true;
-                    // Create or update profile with the pending data
                     await upsertProfile(user.id, {
                         name: pendingName,
                         phone: pendingPhone,
                         email: user.email,
-                        first_login_done: false, // will be set after welcome email
+                        first_login_done: false,
                         updated_at: new Date().toISOString()
                     });
-                    // Clear storage
                     sessionStorage.removeItem('pending_name');
                     sessionStorage.removeItem('pending_phone');
                 }
-                // Fetch profile (maybe just created)
-                const profile = await getProfile(user.id);
-                // Now update UI with justLoggedIn = true
-                // Use a flag to avoid multiple triggers
-                if (!window._justLoggedIn) {
-                    window._justLoggedIn = true;
+                if (!_justLoggedIn) {
+                    _justLoggedIn = true;
                     await updateAuthUI(session, { justLoggedIn: true });
-                    // Reset flag after a short delay
-                    setTimeout(() => { window._justLoggedIn = false; }, 2000);
+                    setTimeout(() => { _justLoggedIn = false; }, 2000);
                 } else {
                     await updateAuthUI(session, { justLoggedIn: false });
                 }
             } else if (event === 'SIGNED_OUT') {
-                window._justLoggedIn = false;
+                _justLoggedIn = false;
                 updateAuthUI(null);
             }
         });
@@ -1433,7 +1415,7 @@
             try {
                 const { data: { session } } = await supabaseClient.auth.getSession();
                 if (session) {
-                    window._justLoggedIn = false;
+                    _justLoggedIn = false;
                     await updateAuthUI(session, { justLoggedIn: false });
                 } else {
                     updateAuthUI(null);
@@ -1553,12 +1535,12 @@
             startAuto();
         });
 
-        // ============ EMAILJS ============
+        // ============ EMAILJS (kept for any other use) ============
         if (typeof emailjs !== 'undefined') {
             try { emailjs.init("t8ArtkcNiyPWxv7nZ"); } catch (err) { console.error('EmailJS init error:', err); }
         }
 
-        // ============ PROPOSAL FORM ============
+        // ============ PROPOSAL FORM (uses Edge Function instead of EmailJS) ============
         const proposalForm = document.getElementById('proposalForm');
         if (proposalForm) {
             proposalForm.addEventListener('submit', function(e) {
@@ -1580,14 +1562,94 @@
                         if (!name || !phone || !service) { alert('Please fill required fields.'); fs = false; return; }
                         if (btn) { btn.textContent = '⏳ Submitting...'; btn.disabled = true; }
                         gtag('event', 'form_submit', { 'event_category': 'Proposal', 'event_label': service });
-                        if (typeof emailjs !== 'undefined') {
-                            emailjs.send("service_nl0bwlc", "template_qro89yc", { to_email: email, name: name, phone: phone, business: business || 'N/A', service: service, message: message || 'N/A' }).catch(() => {});
-                            emailjs.send("service_nl0bwlc", "template_fjiw3aj", { name: name, email: email, phone: phone, business: business || 'N/A', service: service, message: message || 'N/A' }).catch(() => {});
+
+                        // --- 1. Client confirmation email (via Edge Function) ---
+                        try {
+                            const responseClient = await fetch(
+                                'https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email',
+                                {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                                    },
+                                    body: JSON.stringify({
+                                        to: email,
+                                        subject: `✅ Your proposal request to Kyrosh has been received`,
+                                        html: `
+                                            <h2>Thank you, ${name}!</h2>
+                                            <p>We have received your proposal request for <strong>${service}</strong>.</p>
+                                            <p>Our team will review your project and get back to you within 24 hours.</p>
+                                            <p><strong>Details:</strong></p>
+                                            <ul>
+                                                <li><strong>Name:</strong> ${name}</li>
+                                                <li><strong>Phone:</strong> ${phone}</li>
+                                                <li><strong>Business:</strong> ${business || 'N/A'}</li>
+                                                <li><strong>Service:</strong> ${service}</li>
+                                                <li><strong>Message:</strong> ${message || 'N/A'}</li>
+                                            </ul>
+                                            <p>👉 You can check your proposal status anytime by logging in to your account.</p>
+                                            <br>
+                                            <p>Stay awesome,<br>The Kyrosh Team</p>
+                                        `
+                                    })
+                                }
+                            );
+                            const resultClient = await responseClient.json();
+                            if (resultClient.success) {
+                                console.log('✅ Client confirmation email sent to', email);
+                            } else {
+                                console.warn('⚠️ Client email failed:', resultClient.error);
+                            }
+                        } catch (err) {
+                            console.error('❌ Client email error:', err.message);
                         }
+
+                        // --- 2. Owner notification (via Edge Function) ---
+                        try {
+                            const responseOwner = await fetch(
+                                'https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email',
+                                {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                                    },
+                                    body: JSON.stringify({
+                                        to: 'kyroshbrand@gmail.com',
+                                        subject: `📩 New Proposal Request from ${name}`,
+                                        html: `
+                                            <h2>New Proposal Request</h2>
+                                            <p><strong>Name:</strong> ${name}</p>
+                                            <p><strong>Email:</strong> ${email}</p>
+                                            <p><strong>Phone:</strong> ${phone}</p>
+                                            <p><strong>Business:</strong> ${business || 'N/A'}</p>
+                                            <p><strong>Service:</strong> ${service}</p>
+                                            <p><strong>Message:</strong> ${message || 'N/A'}</p>
+                                            <p><strong>User ID:</strong> ${user.id}</p>
+                                        `
+                                    })
+                                }
+                            );
+                            const resultOwner = await responseOwner.json();
+                            if (resultOwner.success) {
+                                console.log('✅ Owner notification sent');
+                            } else {
+                                console.warn('⚠️ Owner email failed:', resultOwner.error);
+                            }
+                        } catch (err) {
+                            console.error('❌ Owner email error:', err.message);
+                        }
+
+                        // --- 3. Send to Google Sheets (optional) ---
                         const leadData = { name, email, phone, business: business || "", service, message: message || "", userId: user.id };
                         fetch("https://script.google.com/macros/s/AKfycbw3hXnvZqSegfn9VYxY2pGe68zspmz8NpjqUQJ6rsPoGpilGrzkebQkCQwi_mYOYMFvXg/exec", {
-                            method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(leadData)
+                            method: "POST",
+                            mode: "no-cors",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(leadData)
                         }).catch(err => console.log("Google Sheets error:", err));
+
                         if (btn) btn.textContent = '✅ Submitted!';
                         const successMsg = document.getElementById('successMsg');
                         if (successMsg) successMsg.style.display = 'block';
@@ -1610,7 +1672,7 @@
         // ============ AOS INIT ============
         try { if (typeof AOS !== 'undefined') { AOS.init({ duration: 800, once: true }); } } catch (err) { console.error('AOS init error:', err); }
 
-        console.log('🎉 Kyrosh now uses Magic Link login – no password required!');
+        console.log('🎉 Kyrosh now uses Magic Link login and Edge Function for all emails!');
     </script>
 </body>
 </html>
