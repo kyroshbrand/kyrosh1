@@ -2109,10 +2109,10 @@
                     if (signInError) {
                         if (authError) {
                             // ✅ CUSTOM ERROR MESSAGES FOR LOGIN
-                            if (signInError.message.includes('Invalid login credentials')) {
+                            if (signInError.message.includes('Email not confirmed')) {
+                                authError.textContent = '⚠️ Please confirm your email before logging in. Check your inbox for the confirmation link.';
+                            } else if (signInError.message.includes('Invalid login credentials')) {
                                 authError.textContent = '❌ Password is incorrect. Please try again.';
-                            } else if (signInError.message.includes('Email not confirmed')) {
-                                authError.textContent = '⚠️ Please confirm your email before logging in.';
                             } else {
                                 authError.textContent = '❌ ' + signInError.message;
                             }
@@ -2146,24 +2146,29 @@
 
                     // IMPORTANT:
                     // If Supabase "Confirm email" is enabled, signUp returns no session
-                    // and Supabase will send a confirmation email. The dashboard setting
-                    // must be disabled if you want instant login without that email.
+                    // and Supabase will send a confirmation email. 
+                    // We show a friendly message and do NOT attempt to auto-login.
                     if (!signUpData.session) {
                         if (authError) {
-                            authError.textContent =
-                                'Account created, but Supabase email confirmation is enabled. Disable "Confirm email" in Supabase Authentication settings for instant login.';
                             authError.style.display = 'block';
+                            authError.style.color = '#4CAF50';
+                            authError.style.borderLeftColor = '#4CAF50';
+                            authError.textContent = '✅ Account created! Please check your email to confirm your account before logging in.';
                         }
+                        // Clear form and close modal after showing message?
+                        // We keep modal open so user can see the message.
+                        // They will close it themselves.
                         return;
                     }
 
+                    // If we get here, session exists (confirmation is off)
                     const user = signUpData.user;
 
                     await upsertProfile(user.id, {
                         name,
                         phone,
                         email: user.email || email,
-                        first_login_done: true, // Mark as done since they just signed up
+                        first_login_done: true,
                         created_at: new Date().toISOString(),
                         updated_at: new Date().toISOString()
                     });
