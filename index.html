@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Force new deployment -->
     <title>Kyrosh — No.1 Digital Agency</title>
     <meta name="description" content="Kyrosh - India's No.1 Digital Agency. Websites, Software, Video Making, Graphics, Ads, SEO & GEO, Brand Uplifting." />
     <meta name="keywords" content="digital agency, marketing, websites, SEO, branding, Kyrosh" />
@@ -1606,7 +1605,7 @@
     <a href="https://wa.me/919019958415?text=Hi%20Kyrosh!%20I%20want%20to%20chat" target="_blank" class="chat-float" title="Chat with us"><i class="fas fa-comment-dots"></i></a>
 
     <script>
-        // ============ SUPABASE INIT (FIXED – UNIQUE NAME) ============
+        // ============ SUPABASE INIT ============
         const SUPABASE_URL = 'https://qihxvqtetktpqszkxjkk.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_xtgsAZuCdU_0b3C87IgtxA_V8apZy2a';
         // IMPORTANT:
@@ -1873,11 +1872,90 @@
                     if (clientEmail) clientEmail.value = user.email || '';
                     if (clientName) clientName.value = displayName;
 
-                    // Only run these after an actual successful login/signup,
-                    // not during the initial session check.
+                    // ============================================================
+                    // 🚀 SEND EMAILS USING YOUR NEW EDGE FUNCTION
+                    // ============================================================
                     if (options.justLoggedIn) {
+                        // 1. Log the login to your sheet/database
                         await logLogin(user, { name: displayName, phone: phone === 'Not set' ? '' : phone });
+
+                        // 2. Show the success popup
                         showLoginSuccess(displayName);
+
+                        // 3. 📧 Send Login Notification (every login)
+                        try {
+                            const response = await fetch(
+                                'https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email',
+                                {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                                    },
+                                    body: JSON.stringify({
+                                        to: user.email,
+                                        subject: `🔐 New Login to Your Kyrosh Account`,
+                                        html: `
+                                            <h2>Hi ${displayName},</h2>
+                                            <p>We noticed a new login to your Kyrosh account.</p>
+                                            <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+                                            <p><strong>Device:</strong> ${navigator.userAgent}</p>
+                                            <p>If this was you, great! 🎉</p>
+                                            <p>If you didn't log in, please contact us immediately.</p>
+                                            <br>
+                                            <p>Stay awesome,<br>The Kyrosh Team</p>
+                                        `
+                                    })
+                                }
+                            );
+                            const result = await response.json();
+                            if (result.success) {
+                                console.log('✅ Login notification sent to', user.email);
+                            } else {
+                                console.warn('⚠️ Email service returned:', result.error);
+                            }
+                        } catch (err) {
+                            console.error('❌ Login email failed:', err.message);
+                        }
+
+                        // 4. 🎉 Send Welcome Email (First time only)
+                        if (!profile?.first_login_done) {
+                            try {
+                                const response = await fetch(
+                                    'https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email',
+                                    {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                                        },
+                                        body: JSON.stringify({
+                                            to: user.email,
+                                            subject: `🎉 Welcome to the Kyrosh Family, ${displayName}!`,
+                                            html: `
+                                                <h2>Welcome, ${displayName}!</h2>
+                                                <p>Thank you for joining Kyrosh — India's No.1 Digital Agency.</p>
+                                                <p>You've unlocked an exclusive <strong style="color:#FF4444;">50% OFF</strong> on all our services!</p>
+                                                <p>👉 <a href="${window.location.origin}#proposal" style="background:#7844D5;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;">Claim Your Offer Now</a></p>
+                                                <br>
+                                                <p>Let's build your digital empire together.</p>
+                                                <p>The Kyrosh Team</p>
+                                            `
+                                        })
+                                    }
+                                );
+                                const result = await response.json();
+                                if (result.success) {
+                                    console.log('🎉 Welcome email sent to', user.email);
+                                    // Mark first login as done so they don't get it again
+                                    await upsertProfile(user.id, { first_login_done: true });
+                                } else {
+                                    console.warn('⚠️ Welcome email service returned:', result.error);
+                                }
+                            } catch (err) {
+                                console.error('❌ Welcome email failed:', err.message);
+                            }
+                        }
                     }
 
                 } else {
@@ -2058,7 +2136,7 @@
                         name,
                         phone,
                         email: user.email || email,
-                        first_login_done: true,
+                        first_login_done: true, // Mark as done since they just signed up
                         created_at: new Date().toISOString(),
                         updated_at: new Date().toISOString()
                     });
@@ -2447,7 +2525,7 @@
             console.error('AOS init error:', err);
         }
 
-        console.log('🎉 Kyrosh Digital Agency – Now powered by Supabase!');
+        console.log('🎉 Kyrosh Digital Agency – Now powered by Supabase Edge Functions for login emails!');
     </script>
 </body>
 </html>
