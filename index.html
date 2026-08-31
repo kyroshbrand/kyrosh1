@@ -28,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <style>
-        /* ========== FULL CSS (unchanged – same as previous) ========== */
+        /* ========== FULL CSS (unchanged) ========== */
         :root {
             --primary: #7844D5;
             --primary-light: #A78BFA;
@@ -168,7 +168,7 @@
             transform:translateY(0);
         }
 
-        /* ----- KEYFRAMES (all) ----- */
+        /* ----- KEYFRAMES ----- */
         @keyframes badgeGlow {
             0%,100% { box-shadow:0 0 20px rgba(120,68,213,0.4); }
             50% { box-shadow:0 0 45px rgba(167,139,250,0.8); }
@@ -306,7 +306,7 @@
         .success-popup .highlight-offer { color:#FF4444; font-weight:900; font-size:16px; animation:fireAnimation 1s infinite; }
         .success-popup .thank-you { color:#B0A8C0; font-size:11px; margin-top:4px; }
 
-        /* ----- LOGIN SUCCESS POPUP (now with session flag) ----- */
+        /* ----- LOGIN SUCCESS POPUP ----- */
         .login-success-overlay {
             position:fixed; inset:0; background:rgba(0,0,0,0.72); z-index:10006; display:none;
             align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(6px);
@@ -424,7 +424,7 @@
         .profile-dropdown .dropdown-item.logout-item:hover { background:rgba(255,107,107,0.15); color:#FF6B6B; }
         .profile-dropdown .dropdown-item.logout-item i { color:#FF6B6B; }
 
-        /* ----- AUTH MODAL (Magic Link – with Name, Phone, Email) ----- */
+        /* ----- AUTH MODAL ----- */
         .auth-modal-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10002; display:none; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(4px); }
         .auth-modal-overlay.active { display:flex; }
         .auth-modal { background:linear-gradient(145deg, #1A0B2E, #2D1B4E); border:2px solid var(--primary-light); border-radius:24px; padding:35px 30px 30px; max-width:420px; width:100%; position:relative; animation:popupBounce .5s ease; box-shadow:0 20px 60px rgba(0,0,0,0.6); }
@@ -694,22 +694,18 @@
             </div>
             <div id="authError" class="auth-error"></div>
             <form id="authForm">
-                <!-- Name Field -->
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" id="authName" placeholder="Full Name" required />
                 </div>
-                <!-- Phone Field -->
                 <div class="input-group">
                     <i class="fas fa-phone"></i>
                     <input type="tel" id="authPhone" placeholder="Phone Number" required />
                 </div>
-                <!-- Email Field -->
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
                     <input type="email" id="authEmail" placeholder="Email Address" required />
                 </div>
-                <!-- No Password field -->
                 <button type="submit" class="auth-submit" id="authSubmitBtn">
                     <span class="spinner"><i class="fas fa-spinner"></i></span>
                     <span class="btn-text">Send Magic Link</span>
@@ -1141,19 +1137,29 @@
         // ✅ FIX: Show login success popup only once per session
         function showLoginSuccess(name) {
             if (!loginSuccessPopup) return;
+
             // Check if already shown in this session
             if (sessionStorage.getItem('login_success_shown')) {
                 console.log('Login popup already shown this session – skipping');
                 return;
             }
+
+            // Also check if this is a fresh login (within last 5 seconds)
+            const lastLoginTime = sessionStorage.getItem('last_login_time');
+            const now = Date.now();
+            if (lastLoginTime && (now - parseInt(lastLoginTime)) > 5000) {
+                console.log('Login was more than 5 seconds ago – skipping popup');
+                return;
+            }
+
             if (loginSuccessTimer) clearTimeout(loginSuccessTimer);
             if (loginSuccessName) loginSuccessName.textContent = name || 'User';
+
             loginSuccessPopup.classList.add('active');
-            // Set flag so it won't show again
             sessionStorage.setItem('login_success_shown', 'true');
+
             loginSuccessTimer = setTimeout(() => {
                 loginSuccessPopup.classList.remove('active');
-                // Optionally clear the flag after popup closes? Better to keep it.
             }, 3000);
         }
 
@@ -1233,8 +1239,8 @@
                         if (logoutBtn) {
                             logoutBtn.addEventListener('click', async () => {
                                 await supabaseClient.auth.signOut();
-                                // Clear the session flag on logout
                                 sessionStorage.removeItem('login_success_shown');
+                                sessionStorage.removeItem('last_login_time');
                                 updateAuthUI(null);
                             });
                         }
@@ -1249,10 +1255,18 @@
                     // Send login notification & welcome email via Edge Function
                     if (options.justLoggedIn) {
                         await logLogin(user, { name: displayName, phone: phone === 'Not set' ? '' : phone });
-                        // Only show popup if not already shown
-                        if (!sessionStorage.getItem('login_success_shown')) {
+
+                        // Only show popup if not already shown AND this is a fresh login
+                        const lastLoginTime = sessionStorage.getItem('last_login_time');
+                        const now = Date.now();
+                        const isFreshLogin = lastLoginTime && (now - parseInt(lastLoginTime)) < 5000;
+
+                        if (!sessionStorage.getItem('login_success_shown') && isFreshLogin) {
                             showLoginSuccess(displayName);
+                        } else {
+                            console.log('Skipping popup – not a fresh login or already shown');
                         }
+
                         // Login notification
                         try {
                             const response = await fetch(
@@ -1271,6 +1285,7 @@
                             if (result.success) console.log('✅ Login notification sent to', user.email);
                             else console.warn('⚠️ Email service returned:', result.error);
                         } catch (err) { console.error('❌ Login email failed:', err.message); }
+
                         // Welcome email (first time only)
                         if (!profile?.first_login_done) {
                             try {
@@ -1399,9 +1414,13 @@
         supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session?.user) {
                 const user = session.user;
+
+                // Check if we have pending data (magic link login)
                 const pendingName = sessionStorage.getItem('pending_name');
                 const pendingPhone = sessionStorage.getItem('pending_phone');
+
                 if (pendingName && pendingPhone) {
+                    // This is a fresh magic link login
                     await upsertProfile(user.id, {
                         name: pendingName,
                         phone: pendingPhone,
@@ -1411,21 +1430,28 @@
                     });
                     sessionStorage.removeItem('pending_name');
                     sessionStorage.removeItem('pending_phone');
+                    // Set timestamp for this fresh login
+                    sessionStorage.setItem('last_login_time', Date.now().toString());
                 }
+
                 if (!_justLoggedIn) {
                     _justLoggedIn = true;
                     await updateAuthUI(session, { justLoggedIn: true });
-                    setTimeout(() => {
-                        window.location.href = window.location.pathname + window.location.search;
-                    }, 1000);
+
+                    // Only reload if this is a fresh login (has pending data or last_login_time)
+                    if (pendingName || pendingPhone || sessionStorage.getItem('last_login_time')) {
+                        setTimeout(() => {
+                            window.location.href = window.location.pathname + window.location.search;
+                        }, 1000);
+                    }
                     setTimeout(() => { _justLoggedIn = false; }, 2000);
                 } else {
                     await updateAuthUI(session, { justLoggedIn: false });
                 }
             } else if (event === 'SIGNED_OUT') {
                 _justLoggedIn = false;
-                // Clear session flag on logout
                 sessionStorage.removeItem('login_success_shown');
+                sessionStorage.removeItem('last_login_time');
                 updateAuthUI(null);
             }
         });
