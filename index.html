@@ -28,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <style>
-        /* ========== FULL CSS ========== */
+        /* ========== FULL CSS (unchanged – same as previous) ========== */
         :root {
             --primary: #7844D5;
             --primary-light: #A78BFA;
@@ -694,22 +694,18 @@
             </div>
             <div id="authError" class="auth-error"></div>
             <form id="authForm">
-                <!-- Name Field -->
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" id="authName" placeholder="Full Name" required />
                 </div>
-                <!-- Phone Field -->
                 <div class="input-group">
                     <i class="fas fa-phone"></i>
                     <input type="tel" id="authPhone" placeholder="Phone Number" required />
                 </div>
-                <!-- Email Field -->
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
                     <input type="email" id="authEmail" placeholder="Email Address" required />
                 </div>
-                <!-- No Password field -->
                 <button type="submit" class="auth-submit" id="authSubmitBtn">
                     <span class="spinner"><i class="fas fa-spinner"></i></span>
                     <span class="btn-text">Send Magic Link</span>
@@ -1378,7 +1374,7 @@
             });
         }
 
-        // ============ SESSION LISTENER ============
+        // ============ SESSION LISTENER (with login fix) ============
         let _justLoggedIn = false;
         supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session?.user) {
@@ -1399,9 +1395,10 @@
                 if (!_justLoggedIn) {
                     _justLoggedIn = true;
                     await updateAuthUI(session, { justLoggedIn: true });
+                    // ✅ FIX: wait 1 second then reload to clear the hash and show logged-in state
                     setTimeout(() => {
                         window.location.href = window.location.pathname + window.location.search;
-                    }, 500);
+                    }, 1000);
                     setTimeout(() => { _justLoggedIn = false; }, 2000);
                 } else {
                     await updateAuthUI(session, { justLoggedIn: false });
