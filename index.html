@@ -306,7 +306,7 @@
         .success-popup .highlight-offer { color:#FF4444; font-weight:900; font-size:16px; animation:fireAnimation 1s infinite; }
         .success-popup .thank-you { color:#B0A8C0; font-size:11px; margin-top:4px; }
 
-        /* ----- LOGIN SUCCESS POPUP ----- */
+        /* ----- LOGIN SUCCESS POPUP (now with session flag) ----- */
         .login-success-overlay {
             position:fixed; inset:0; background:rgba(0,0,0,0.72); z-index:10006; display:none;
             align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(6px);
@@ -694,18 +694,22 @@
             </div>
             <div id="authError" class="auth-error"></div>
             <form id="authForm">
+                <!-- Name Field -->
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" id="authName" placeholder="Full Name" required />
                 </div>
+                <!-- Phone Field -->
                 <div class="input-group">
                     <i class="fas fa-phone"></i>
                     <input type="tel" id="authPhone" placeholder="Phone Number" required />
                 </div>
+                <!-- Email Field -->
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
                     <input type="email" id="authEmail" placeholder="Email Address" required />
                 </div>
+                <!-- No Password field -->
                 <button type="submit" class="auth-submit" id="authSubmitBtn">
                     <span class="spinner"><i class="fas fa-spinner"></i></span>
                     <span class="btn-text">Send Magic Link</span>
@@ -1134,12 +1138,23 @@
             } catch (err) { console.error('Google Sheets login log error:', err); }
         }
 
+        // ✅ FIX: Show login success popup only once per session
         function showLoginSuccess(name) {
             if (!loginSuccessPopup) return;
+            // Check if already shown in this session
+            if (sessionStorage.getItem('login_success_shown')) {
+                console.log('Login popup already shown this session – skipping');
+                return;
+            }
             if (loginSuccessTimer) clearTimeout(loginSuccessTimer);
             if (loginSuccessName) loginSuccessName.textContent = name || 'User';
             loginSuccessPopup.classList.add('active');
-            loginSuccessTimer = setTimeout(() => loginSuccessPopup.classList.remove('active'), 3000);
+            // Set flag so it won't show again
+            sessionStorage.setItem('login_success_shown', 'true');
+            loginSuccessTimer = setTimeout(() => {
+                loginSuccessPopup.classList.remove('active');
+                // Optionally clear the flag after popup closes? Better to keep it.
+            }, 3000);
         }
 
         function launchConfetti() {
@@ -1218,6 +1233,8 @@
                         if (logoutBtn) {
                             logoutBtn.addEventListener('click', async () => {
                                 await supabaseClient.auth.signOut();
+                                // Clear the session flag on logout
+                                sessionStorage.removeItem('login_success_shown');
                                 updateAuthUI(null);
                             });
                         }
@@ -1232,7 +1249,10 @@
                     // Send login notification & welcome email via Edge Function
                     if (options.justLoggedIn) {
                         await logLogin(user, { name: displayName, phone: phone === 'Not set' ? '' : phone });
-                        showLoginSuccess(displayName);
+                        // Only show popup if not already shown
+                        if (!sessionStorage.getItem('login_success_shown')) {
+                            showLoginSuccess(displayName);
+                        }
                         // Login notification
                         try {
                             const response = await fetch(
@@ -1298,7 +1318,7 @@
         if (authModal) authModal.addEventListener('click', (e) => { if (e.target === authModal) authModal.classList.remove('active'); });
         if (promptLoginBtn) promptLoginBtn.addEventListener('click', openAuthModal);
 
-        // ============ AUTH FORM SUBMIT (Magic Link – with redirectTo) ============
+        // ============ AUTH FORM SUBMIT ============
         if (authForm) {
             authForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -1374,7 +1394,7 @@
             });
         }
 
-        // ============ SESSION LISTENER (with login fix) ============
+        // ============ SESSION LISTENER ============
         let _justLoggedIn = false;
         supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session?.user) {
@@ -1395,7 +1415,6 @@
                 if (!_justLoggedIn) {
                     _justLoggedIn = true;
                     await updateAuthUI(session, { justLoggedIn: true });
-                    // ✅ FIX: wait 1 second then reload to clear the hash and show logged-in state
                     setTimeout(() => {
                         window.location.href = window.location.pathname + window.location.search;
                     }, 1000);
@@ -1405,6 +1424,8 @@
                 }
             } else if (event === 'SIGNED_OUT') {
                 _justLoggedIn = false;
+                // Clear session flag on logout
+                sessionStorage.removeItem('login_success_shown');
                 updateAuthUI(null);
             }
         });
@@ -1534,12 +1555,12 @@
             startAuto();
         });
 
-        // ============ EMAILJS (kept for any other use) ============
+        // ============ EMAILJS ============
         if (typeof emailjs !== 'undefined') {
             try { emailjs.init("t8ArtkcNiyPWxv7nZ"); } catch (err) { console.error('EmailJS init error:', err); }
         }
 
-        // ============ PROPOSAL FORM (Saves to Supabase + Google Sheets + Emails) ============
+        // ============ PROPOSAL FORM ============
         const proposalForm = document.getElementById('proposalForm');
         if (proposalForm) {
             proposalForm.addEventListener('submit', function(e) {
