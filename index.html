@@ -1228,43 +1228,225 @@
         .confetti-container { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
         .confetti-piece { position:absolute; width:10px; height:10px; animation:confettiFall linear infinite; }
 
-        /* Responsive */
-        @media (max-width: 1100px) { .sensory-dock { display: none; } }
-        @media (max-width: 1024px) {
-            .roi-wrapper { grid-template-columns:1fr; padding:36px 24px; }
-            .scheduler-card { grid-template-columns:1fr; padding:32px 20px; }
-            .stats-grid { grid-template-columns:repeat(3, 1fr); }
-            .process-grid { grid-template-columns:repeat(2, 1fr); }
-            .process-grid::before { display:none; }
-            .pricing-grid { grid-template-columns:1fr; max-width:500px; margin:0 auto; }
-            .pricing-card.featured { transform:scale(1); }
-            .milestones-checklist { grid-template-columns:repeat(2, 1fr); }
+        /* ====================================================
+           ðŸ“± ULTRA-CLEAN RESPONSIVE MEDIA QUERIES (MOBILE FIRST)
+        ==================================================== */
+        @media (max-width: 1100px) {
+            .sensory-dock { display: none; }
         }
+
+        @media (max-width: 1024px) {
+            .roi-wrapper { grid-template-columns: 1fr; padding: 36px 24px; }
+            .scheduler-card { grid-template-columns: 1fr; padding: 32px 20px; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-grid::before { display: none; }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+            .pricing-card.featured { transform: scale(1); }
+            .milestones-checklist { grid-template-columns: repeat(2, 1fr); }
+            .services-modern-grid { grid-template-columns: repeat(2, 1fr); }
+            .certs-modern-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-modern-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 768px) {
-            .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:var(--dark-bg); flex-direction:column; padding:25px; border-bottom:1px solid var(--dark-border); }
-            .nav-links.active { display:flex; }
-            .hamburger { display:block; }
-            .hero h1 { font-size:38px; }
-            .section-header h2 { font-size:32px; }
-            .stats-grid { grid-template-columns:1fr 1fr; }
-            .process-grid { grid-template-columns:1fr; }
-            .team-grid { grid-template-columns:1fr; }
-            .footer-grid { grid-template-columns:1fr; }
-            .case-metrics-grid { grid-template-columns:1fr; }
-            .live-status-pill { bottom:18px; right:15px; }
-            .dashboard-stats-strip { grid-template-columns:1fr; }
-            .ai-chat-window { width: calc(100vw - 32px); left: 16px; bottom: 85px; height: 480px; }
-            .ai-bot-float-btn { left: 16px; bottom: 20px; }
-            .insta-grid { grid-template-columns: 1fr; }
+            /* Hide Desktop Custom Cursor & Ambient Lights on Touch */
+            .cursor-dot, .cursor-ring, .mouse-glow { display: none !important; }
+
+            /* Navigation & Header */
+            .nav-container { padding: 0 16px; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(9, 3, 18, 0.98);
+                flex-direction: column;
+                padding: 25px 20px;
+                border-bottom: 2px solid var(--dark-border-glow);
+                box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+                gap: 16px;
+                backdrop-filter: blur(20px);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links li a { font-size: 16px; font-weight: 700; display: block; padding: 8px 0; }
+            .hamburger { display: block; font-size: 24px; }
+
+            /* Hero Typography & CTAs */
+            .hero { padding: 110px 0 60px; min-height: auto; text-align: center; }
+            .hero-content { max-width: 100%; }
+            .hero-badge { font-size: 11px; padding: 7px 16px; letter-spacing: 1px; margin-bottom: 18px; }
+            .hero h1 { font-size: 34px; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; }
+            .hero p.hero-desc { font-size: 15.5px; line-height: 1.6; margin-bottom: 28px; }
+            .hero-buttons { flex-direction: column; gap: 12px; width: 100%; }
+            .hero-buttons a { width: 100%; justify-content: center; text-align: center; padding: 13px 20px; font-size: 14.5px; }
+            .hero-trust-badges { flex-direction: column; gap: 10px; align-items: center; margin-top: 30px; padding-top: 20px; }
+
+            /* Section Headers */
+            .section-header h2 { font-size: 28px; line-height: 1.25; }
+            .section-header p { font-size: 14px; }
+
+            /* Stats Grid */
+            .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+            .stat-card { padding: 24px 16px; }
+            .stat-number { font-size: 34px; }
+
+            /* Funnel Scanner */
+            #scanner { padding: 70px 0; }
+            .scanner-card { padding: 26px 18px; }
+            .scanner-input-box { flex-direction: column; gap: 12px; margin-bottom: 20px; }
+            .scanner-input { width: 100%; font-size: 14px; padding: 14px 18px; }
+            .scanner-btn { width: 100%; justify-content: center; padding: 14px; font-size: 14px; }
+            .scan-score-header { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+            .scan-metrics-breakdown { grid-template-columns: 1fr; }
+
+            /* 1-on-1 Strategy Call Scheduler */
+            #scheduler { padding: 70px 0; }
+            .scheduler-card { padding: 24px 16px; }
+            .call-types-grid { grid-template-columns: 1fr; }
+            .date-picker-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .slot-picker-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .date-btn, .slot-btn { padding: 10px 8px; }
+
+            /* ROI Simulator */
+            #roi-calculator { padding: 70px 0; }
+            .roi-wrapper { padding: 24px 16px; }
+            .roi-metrics-grid { grid-template-columns: 1fr; gap: 12px; }
+            .roi-presets { flex-wrap: wrap; gap: 6px; }
+            .roi-preset-btn { font-size: 11px; padding: 5px 10px; }
+
+            /* Before/After Split Slider */
+            #transformations { padding: 70px 0; }
+            .ba-tabs { flex-wrap: wrap; gap: 6px; justify-content: center; }
+            .ba-tab-btn { font-size: 12px; padding: 8px 14px; }
+            .ba-slider-container { height: 260px; }
+
+            /* Portfolio Work & Case Studies */
+            #work { padding: 70px 0; }
+            .work-filters { flex-wrap: wrap; gap: 6px; justify-content: center; }
+            .work-filter-btn { font-size: 12px; padding: 7px 14px; }
+            .work-grid { grid-template-columns: 1fr; gap: 20px; }
+            .device-previewer-section { padding: 24px 14px; margin-top: 36px; }
+            .device-tabs { flex-wrap: wrap; gap: 8px; }
+            .device-tab-btn { font-size: 12px; padding: 8px 14px; }
             .mockup-laptop { width: 100%; }
             .mockup-tablet { width: 100%; }
+            .mockup-mobile .mockup-screen { height: 380px; }
+
+            /* Services Showcase Grid */
+            #services { padding: 70px 0; }
+            .services-modern-grid { grid-template-columns: 1fr; gap: 18px; }
+            .service-card-modern { padding: 28px 20px; }
+
+            /* 4-Step Process Blueprint */
+            #process { padding: 70px 0; }
+            .process-grid { grid-template-columns: 1fr; gap: 20px; }
+            .process-card { padding: 28px 20px; }
+
+            /* Pricing */
+            #pricing { padding: 70px 0; }
+            .pricing-grid { grid-template-columns: 1fr; gap: 24px; }
+            .pricing-card { padding: 32px 22px; }
+
+            /* Careers */
+            #careers { padding: 70px 0; }
+            .careers-grid { grid-template-columns: 1fr; gap: 20px; }
+            .career-card { padding: 26px 20px; }
+
+            /* Leadership Team Showcase */
+            #team { padding: 70px 0; }
+            .team-grid { grid-template-columns: 1fr; gap: 22px; max-width: 360px; margin: 0 auto; }
+            .team-card .team-img { height: 280px; }
+
+            /* Certified Credentials Grid */
+            #certificates { padding: 70px 0; }
+            .certs-modern-grid { grid-template-columns: 1fr; gap: 18px; max-width: 360px; margin: 0 auto; }
+            .cert-card-modern { padding: 28px 20px; }
+
+            /* Testimonials Review Grid */
+            #testimonials { padding: 70px 0; }
+            .testimonials-modern-grid { grid-template-columns: 1fr; gap: 20px; }
+            .testimonial-card-modern { padding: 26px 20px; }
+
+            /* Instagram Clean Showcase */
+            #instagram { padding: 70px 0; }
+            .insta-grid { grid-template-columns: 1fr; gap: 20px; }
+            .insta-profile-card { padding: 24px 18px; }
+
+            /* FAQ Accordion */
+            #faq { padding: 70px 0; }
+            .faq-question h3 { font-size: 15px; }
+
+            /* Proposal Lead Form */
+            #proposal { padding: 70px 0; }
+            .proposal-form-wrapper { padding: 28px 18px; }
+
+            /* Footer */
+            footer { padding: 60px 0 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: left; }
+
+            /* Mobile Modals (Case Study, Dashboard, Career) */
+            .case-study-modal { padding: 26px 18px; max-height: 90vh; }
+            .case-metrics-grid { grid-template-columns: 1fr; gap: 10px; }
+            .dashboard-modal { padding: 26px 16px; max-height: 90vh; }
+            .dashboard-stats-strip { grid-template-columns: 1fr; gap: 10px; }
+            .career-modal { padding: 26px 18px; max-height: 90vh; }
+
+            /* Mobile Clean Floating Dock & Side Timer */
+            .live-status-pill { display: none; }
+            .side-timer {
+                top: 72px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 11px;
+                padding: 4px 14px;
+                white-space: nowrap;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            }
+            .ai-bot-float-btn {
+                left: 14px;
+                bottom: 18px;
+                padding: 8px 14px;
+                font-size: 12px;
+                box-shadow: 0 6px 25px rgba(0,0,0,0.6);
+            }
+            .ai-chat-window {
+                width: calc(100vw - 28px);
+                left: 14px;
+                bottom: 75px;
+                height: 480px;
+            }
+            .wheel-float-btn {
+                bottom: 75px;
+                left: 14px;
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+            .wheel-float-badge { display: none; }
+            .chat-float {
+                bottom: 75px;
+                right: 14px;
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            .call-float {
+                bottom: 135px;
+                right: 14px;
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
         }
+
         @media (max-width: 480px) {
-            .stats-grid { grid-template-columns:1fr; }
-            .hero h1 { font-size:32px; }
-            .date-picker-grid { grid-template-columns:repeat(2, 1fr); }
-            .slot-picker-grid { grid-template-columns:repeat(2, 1fr); }
-            .call-types-grid { grid-template-columns:1fr; }
+            .hero h1 { font-size: 30px; }
+            .hero-buttons a { font-size: 13.5px; }
+            .pricing-price .amount { font-size: 38px; }
+            .date-picker-grid { grid-template-columns: repeat(2, 1fr); }
+            .slot-picker-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -2639,7 +2821,7 @@
                         <a href="https://www.instagram.com/kyrosh_ads" target="_blank" class="btn-insta-follow">
                             <i class="fab fa-instagram"></i> Follow @kyrosh_ads
                         </a>
-                        <a href="tel:+919741892884" class="btn-insta-call" title="Call Ads Lead">
+                        <a href="tel:+919526196421" class="btn-insta-call" title="Call Ads Lead">
                             <i class="fas fa-phone"></i> Call
                         </a>
                     </div>
@@ -2678,7 +2860,7 @@
                     <h4>Direct Contact</h4>
                     <a href="mailto:kyroshbrand@gmail.com"><i class="fas fa-envelope" style="color:var(--primary-light); margin-right:6px;"></i> kyroshbrand@gmail.com</a>
                     <a href="tel:+919019958415"><i class="fas fa-phone" style="color:var(--primary-light); margin-right:6px;"></i> +91 9019958415</a>
-                    <a href="tel:+919741892884"><i class="fas fa-phone" style="color:var(--primary-light); margin-right:6px;"></i> +91 9741892884</a>
+                    <a href="tel:+919526196421"><i class="fas fa-phone" style="color:var(--primary-light); margin-right:6px;"></i> +91 9526196421</a>
                     <a href="https://wa.me/919019958415" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366; margin-right:6px;"></i> WhatsApp Live Chat</a>
                 </div>
             </div>
@@ -3565,10 +3747,37 @@
                             body: JSON.stringify({
                                 to: email,
                                 subject: `ðŸ“… Strategy Call Confirmed: ${selectedDate} at ${selectedSlot} with Kyrosh`,
-                                html: `<h2>Hi ${name},</h2><p>Your 1-on-1 VIP Strategy Session for <strong>${selectedCallType}</strong> is successfully booked!</p><p><strong>Date & Time:</strong> ${selectedDate} at ${selectedSlot}</p><p><strong>Meeting Channel:</strong> Google Meet / WhatsApp Video Call</p><p>Our growth directors look forward to scaling your brand.</p><br><p>The Kyrosh Executive Team</p>`
+                                html: `<h2>Hi ${name}! ðŸ‘‹</h2>
+                                       <p>Your 1-on-1 VIP Strategy Session for <strong>${selectedCallType}</strong> is successfully confirmed!</p>
+                                       <p><strong>Date & Time:</strong> ${selectedDate} at ${selectedSlot}</p>
+                                       <p><strong>Website / Brand:</strong> ${website || 'Direct Consulting'}</p>
+                                       <p><strong>Meeting Channel:</strong> Google Meet / Direct WhatsApp Call</p>
+                                       <hr style="border:none; border-top:1px solid #eee; margin:16px 0;" />
+                                       <p>Click below to open a direct WhatsApp chat with Founder Shaiban (+91 9019958415) to confirm your meeting link:</p>
+                                       <p><a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20booked%20a%20Strategy%20Call%20for%20${encodeURIComponent(selectedDate)}%20at%20${encodeURIComponent(selectedSlot)}" style="background:#25D366; color:#fff; padding:10px 20px; border-radius:50px; text-decoration:none; font-weight:bold; display:inline-block;">ðŸ’¬ Connect on WhatsApp</a></p>
+                                       <br /><p>The Kyrosh Executive Team</p>`
                             })
                         });
                     } catch (err) { console.error('Scheduler email err:', err); }
+
+                    // ============ ðŸ”” OWNER CALL ALERT ============
+                    try {
+                        await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+                            body: JSON.stringify({
+                                to: 'kyroshbrand@gmail.com',
+                                subject: `ðŸ“… NEW STRATEGY CALL BOOKED: ${name} (${selectedDate} @ ${selectedSlot})`,
+                                html: `<h2>New 1-on-1 Strategy Call Booked</h2>
+                                       <p><strong>Client:</strong> ${name}</p>
+                                       <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a> | <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}">WhatsApp Client</a></p>
+                                       <p><strong>Email:</strong> ${email}</p>
+                                       <p><strong>Type:</strong> ${selectedCallType}</p>
+                                       <p><strong>Slot:</strong> ${selectedDate} at ${selectedSlot}</p>
+                                       <p><strong>Website:</strong> ${website}</p>`
+                            })
+                        });
+                    } catch (err) { console.error('Owner call email err:', err); }
 
                     SoundFX.success();
                     schedSubmitBtn.innerHTML = 'âœ… Strategy Call Confirmed!';
@@ -4605,44 +4814,77 @@
                                 phone: phone,
                                 business: business || '',
                                 service: service,
-                                message: `[Currency: ${currentCurrency}] ` + (message || ''),
+                                message: `[Currency: ${currentCurrency}] [Newsletter: Enrolled (Bi-Weekly Drip)] ` + (message || ''),
                                 status: 'in_production',
                                 created_at: new Date().toISOString(),
                                 updated_at: new Date().toISOString()
                             });
                         } catch (err) { console.error('Supabase proposal insert error:', err); }
 
+                        // ============ ðŸ“§ ENROLL IN BI-WEEKLY EMAIL SEQUENCE ============
+                        try {
+                            await upsertProfile(user.id, {
+                                name: name,
+                                phone: phone,
+                                email: email,
+                                updated_at: new Date().toISOString()
+                            });
+                        } catch (err) { console.error('Profile newsletter sync error:', err); }
+
+                        // ============ ðŸ“Š GOOGLE SHEETS REDUNDANT BACKUP ============
                         try {
                             await fetch("https://script.google.com/macros/s/AKfycbw3hXnvZqSegfn9VYxY2pGe68zspmz8NpjqUQJ6rsPoGpilGrzkebQkCQwi_mYOYMFvXg/exec", {
                                 method: "POST",
                                 mode: "no-cors",
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
-                                    name, email, phone, business, service, message: `[Currency: ${currentCurrency}] ` + message, userId: user.id, timestamp: new Date().toISOString()
+                                    name, email, phone, business, service, message: `[Currency: ${currentCurrency}] [Newsletter: Bi-Weekly Drip Enrolled] ` + message, userId: user.id, timestamp: new Date().toISOString()
                                 })
                             });
                         } catch (err) { console.error('Google Sheets proposal error:', err); }
 
+                        // ============ âœ‰ï¸ CLIENT CONFIRMATION EMAIL (WELCOME & 50% DISCOUNT) ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: email,
-                                    subject: `ðŸŽ‰ Proposal Received â€” Welcome to Kyrosh Family!`,
-                                    html: `<h2>Thank You, ${name}!</h2><p>Your proposal request for <strong>${service}</strong> has been received by our lead strategists.</p><p>You are successfully eligible for our limited-time <strong style="color:#FF4444;">50% OFF</strong> welcome rate in <strong>${currentCurrency}</strong>!</p><br><p>Our team will contact you via WhatsApp within 24 hours.</p><p>The Kyrosh Team</p>`
+                                    subject: `ðŸŽ‰ Proposal Received â€” 50% Discount Locked & Welcome to Kyrosh!`,
+                                    html: `<h2>Hi ${name}! ðŸ‘‹</h2>
+                                           <p>Founder Shaiban and the Kyrosh engineering team have received your project proposal for <strong>${service}</strong>.</p>
+                                           <p>You have successfully locked in our limited-time <strong style="color:#FF4444;">50% OFF</strong> welcome rate in <strong>${currentCurrency}</strong>!</p>
+                                           <hr style="border:none; border-top:1px solid #eee; margin:20px 0;" />
+                                           <h3>ðŸ“¬ Your VIP Growth Sequence:</h3>
+                                           <p>You are now enrolled in our exclusive twice-weekly Growth Briefings:</p>
+                                           <ul>
+                                               <li><strong>Tuesday 10:00 AM:</strong> ðŸ“ˆ 10x ROAS Case Studies & E-Commerce / SaaS conversion teardowns.</li>
+                                               <li><strong>Friday 04:00 PM:</strong> ðŸŽ¬ Founder Shaiban's Weekly Teardown & VIP 50% Client Spotlight.</li>
+                                           </ul>
+                                           <br />
+                                           <p>Want instant 5-minute confirmation? Click below to chat directly with Founder Shaiban on WhatsApp:</p>
+                                           <p><a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20submitted%20my%20proposal%20for%20${encodeURIComponent(service)}%20and%20want%20to%20discuss%20next%20steps." style="background:#25D366; color:#fff; padding:12px 24px; border-radius:50px; text-decoration:none; font-weight:bold; display:inline-block;">ðŸ’¬ Chat on WhatsApp (+91 9019958415)</a></p>
+                                           <br /><p>Best regards,<br><strong>Shaiban Puttur & The Kyrosh Squad</strong></p>`
                                 })
                             });
                         } catch (err) { console.error('Client email dispatch error:', err); }
 
+                        // ============ ðŸ”” OWNER INSTANT LEAD ALERT (EMAIL & TELEGRAM/WHATSAPP DISPATCH) ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: 'kyroshbrand@gmail.com',
-                                    subject: `ðŸ”¥ New Proposal [${currentCurrency}]: ${name} (${service})`,
-                                    html: `<h2>New Proposal Submission</h2><p><strong>Name:</strong> ${name}</p><p><strong>Phone:</strong> ${phone}</p><p><strong>Email:</strong> ${email}</p><p><strong>Business:</strong> ${business}</p><p><strong>Service:</strong> ${service}</p><p><strong>Currency:</strong> ${currentCurrency}</p><p><strong>Message:</strong> ${message}</p>`
+                                    subject: `ðŸ”¥ HOT NEW PROPOSAL [${currentCurrency}]: ${name} (${service})`,
+                                    html: `<h2>ðŸ”¥ New Lead Alert â€” 50% Proposal Form</h2>
+                                           <p><strong>Candidate / Client:</strong> ${name}</p>
+                                           <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a> | <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}">WhatsApp Client</a></p>
+                                           <p><strong>Email:</strong> ${email}</p>
+                                           <p><strong>Company / Brand:</strong> ${business || 'Not provided'}</p>
+                                           <p><strong>Service Requested:</strong> ${service}</p>
+                                           <p><strong>Message / Notes:</strong> ${message || 'None'}</p>
+                                           <p><strong>Newsletter Status:</strong> Enrolled in Bi-Weekly Drip (Tue & Fri)</p>`
                                 })
                             });
                         } catch (err) { console.error('Owner email notification error:', err); }
