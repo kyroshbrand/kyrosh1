@@ -1230,10 +1230,15 @@
         .auth-modal .input-group { position:relative; margin-bottom:18px; }
         .auth-modal .input-group i { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--gray); font-size:16px; }
         .auth-modal .input-group input { width:100%; padding:14px 16px 14px 46px; border:2px solid var(--dark-border); border-radius:12px; background:rgba(9,3,18,0.7); color:white; font-size:15px; outline:none; transition:all .3s; }
-        .auth-modal .input-group input:focus { border-color:var(--primary-light); background:rgba(9,3,18,0.9); box-shadow:0 0 0 4px var(--primary-glow); }
         .auth-modal .auth-submit, .edit-submit { width:100%; background:linear-gradient(135deg, var(--primary), var(--primary-dark)); color:white; border:none; padding:15px; border-radius:12px; font-weight:800; font-size:16px; cursor:pointer; transition:all .3s; display:flex; align-items:center; justify-content:center; gap:10px; }
         .auth-error, .edit-error { color:#FF6B6B; font-size:13px; text-align:center; margin-bottom:12px; display:none; background:rgba(255,107,107,0.12); padding:9px; border-radius:8px; border-left:3px solid #FF6B6B; }
         .edit-success { color:#10B981; font-size:13px; text-align:center; margin-bottom:12px; display:none; background:rgba(16,185,129,0.12); padding:9px; border-radius:8px; }
+        .auth-otp-step { display:none; }
+        .auth-otp-input { width:100%; padding:14px 16px; border:2px solid var(--primary-light); border-radius:12px; background:rgba(9,3,18,0.9); color:#38BDF8; font-size:22px; font-weight:900; letter-spacing:6px; text-align:center; outline:none; box-shadow:0 0 20px var(--primary-glow); transition:all .3s; margin-bottom:14px; font-family:'Space Grotesk', monospace, sans-serif; }
+        .auth-otp-input:focus { border-color:#38BDF8; box-shadow:0 0 25px rgba(56,189,248,0.5); }
+        .auth-resend-btn { background:none; border:none; color:var(--primary-light); font-size:13px; font-weight:700; cursor:pointer; text-decoration:underline; padding:6px; transition:color .2s; }
+        .auth-resend-btn:hover { color:#fff; }
+        .auth-resend-btn:disabled { color:var(--gray); text-decoration:none; cursor:not-allowed; }
 
         /* Team Showcase (3 Columns Side by Side with Animated Badges & Glow) */
         #team { padding: 100px 0; background: var(--dark-bg); position: relative; }
@@ -1776,10 +1781,12 @@
         <div class="auth-modal">
             <button class="close-modal" id="closeAuthModal"><i class="fas fa-times"></i></button>
             <div class="modal-header">
-                <h3 style="font-size:24px; font-weight:800;"><i class="fas fa-lock" style="color:var(--primary-light); margin-right:6px;"></i> Client Login</h3>
-                <p style="color:var(--gray); font-size:13.5px; margin-top:4px;">Enter your details to receive an instant Magic Link</p>
+                <h3 style="font-size:24px; font-weight:800;" id="authModalTitle"><i class="fas fa-lock" style="color:var(--primary-light); margin-right:6px;"></i> Client Login</h3>
+                <p style="color:var(--gray); font-size:13.5px; margin-top:4px;" id="authModalSubtitle">Enter your details to receive an instant Magic Link & 6-Digit OTP</p>
             </div>
             <div id="authError" class="auth-error"></div>
+            
+            <!-- Step 1: Request Magic Link / Code -->
             <form id="authForm">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
@@ -1794,11 +1801,35 @@
                     <input type="email" id="authEmail" placeholder="Work / Personal Email *" required />
                 </div>
                 <button type="submit" class="auth-submit" id="authSubmitBtn">
-                    <span class="spinner" style="display:none;"><i class="fas fa-spinner"></i></span>
-                    <span class="btn-text">Send Magic Link ?</span>
+                    <span class="spinner" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    <span class="btn-text">Send Magic Link & OTP ?</span>
                 </button>
             </form>
-            <p style="color:var(--gray); font-size:12px; text-align:center; margin-top:14px;">We'll email you a secure one-click sign in link.</p>
+
+            <!-- Step 2: Enter 6-Digit OTP Code OR Click Email Link -->
+            <div id="authOtpStep" class="auth-otp-step">
+                <div style="background:rgba(120,68,213,0.15); border:1px solid var(--primary-light); border-radius:14px; padding:14px; margin-bottom:16px; text-align:center;">
+                    <div style="font-size:22px; margin-bottom:4px;">??</div>
+                    <p style="font-size:13.5px; color:#fff; margin:0 0 4px; font-weight:700;">Check Your Email Inbox!</p>
+                    <p style="font-size:12px; color:var(--gray-light); margin:0;">We sent a login email to <strong id="authSentEmail" style="color:#38BDF8;"></strong></p>
+                </div>
+
+                <p style="font-size:12.5px; color:#CBD5E1; text-align:center; margin-bottom:8px; font-weight:600;">Option 1: Enter 6-Digit OTP Code from Email:</p>
+                <input type="text" id="authOtpCode" class="auth-otp-input" maxlength="6" placeholder="? ? ? ? ? ?" autocomplete="one-time-code" />
+
+                <button type="button" class="auth-submit" id="authVerifyOtpBtn" style="background:linear-gradient(135deg, #10B981, #059669); margin-bottom:12px;">
+                    <span class="spinner" style="display:none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    <span class="btn-text">Verify & Log In ??</span>
+                </button>
+
+                <div style="text-align:center; padding:8px 0; border-top:1px solid rgba(255,255,255,0.08); margin-top:10px;">
+                    <p style="color:var(--gray); font-size:11.5px; margin-bottom:6px;">Option 2: You can also simply click the <strong>"Log In"</strong> button inside the email!</p>
+                    <button type="button" class="auth-resend-btn" id="authResendBtn">Resend Code (30s)</button>
+                    <div style="margin-top:6px;"><a href="#" id="authBackBtn" style="color:var(--gray-light); font-size:12px; text-decoration:none;"><i class="fas fa-arrow-left"></i> Change Email / Details</a></div>
+                </div>
+            </div>
+
+            <p style="color:var(--gray); font-size:12px; text-align:center; margin-top:14px;" id="authFootnote">Instant passwordless authentication powered by Supabase.</p>
         </div>
     </div>
 
@@ -4526,9 +4557,11 @@
             } catch (err) { console.error('updateAuthUI error:', err); }
         }
 
-        // ============ AUTH MODAL CONTROLLER ============
+        // ============ AUTH MODAL & DUAL LOGIN CONTROLLER ============
         const authModal = document.getElementById('authModal');
         const closeAuthModal = document.getElementById('closeAuthModal');
+        const authModalTitle = document.getElementById('authModalTitle');
+        const authModalSubtitle = document.getElementById('authModalSubtitle');
         const authForm = document.getElementById('authForm');
         const authEmail = document.getElementById('authEmail');
         const authName = document.getElementById('authName');
@@ -4536,11 +4569,29 @@
         const authSubmitBtn = document.getElementById('authSubmitBtn');
         const authError = document.getElementById('authError');
         const promptLoginBtn = document.getElementById('promptLoginBtn');
+        const authOtpStep = document.getElementById('authOtpStep');
+        const authSentEmail = document.getElementById('authSentEmail');
+        const authOtpCode = document.getElementById('authOtpCode');
+        const authVerifyOtpBtn = document.getElementById('authVerifyOtpBtn');
+        const authResendBtn = document.getElementById('authResendBtn');
+        const authBackBtn = document.getElementById('authBackBtn');
+        const authFootnote = document.getElementById('authFootnote');
+
+        let resendTimer = null;
+        let resendSeconds = 30;
 
         function openAuthModal() {
             if (authError) { authError.style.display = 'none'; authError.textContent = ''; }
-            if (authSubmitBtn) { authSubmitBtn.classList.remove('loading'); const btnText = authSubmitBtn.querySelector('.btn-text'); if (btnText) btnText.textContent = 'Send Magic Link ?'; }
-            if (authForm) authForm.reset();
+            if (authForm) { authForm.style.display = 'block'; authForm.reset(); }
+            if (authOtpStep) authOtpStep.style.display = 'none';
+            if (authModalTitle) authModalTitle.innerHTML = '<i class="fas fa-lock" style="color:var(--primary-light); margin-right:6px;"></i> Client Login';
+            if (authModalSubtitle) authModalSubtitle.textContent = 'Enter your details to receive an instant Magic Link & 6-Digit OTP';
+            if (authSubmitBtn) {
+                const spinner = authSubmitBtn.querySelector('.spinner');
+                const btnText = authSubmitBtn.querySelector('.btn-text');
+                if (spinner) spinner.style.display = 'none';
+                if (btnText) btnText.textContent = 'Send Magic Link & OTP ?';
+            }
             if (authModal) authModal.classList.add('active');
         }
 
@@ -4558,6 +4609,85 @@
             });
         }
 
+        function startResendCountdown() {
+            if (!authResendBtn) return;
+            clearInterval(resendTimer);
+            resendSeconds = 30;
+            authResendBtn.disabled = true;
+            authResendBtn.textContent = `Resend Code (${resendSeconds}s)`;
+            resendTimer = setInterval(() => {
+                resendSeconds--;
+                if (resendSeconds <= 0) {
+                    clearInterval(resendTimer);
+                    authResendBtn.disabled = false;
+                    authResendBtn.textContent = 'Resend Code Now';
+                } else {
+                    authResendBtn.textContent = `Resend Code (${resendSeconds}s)`;
+                }
+            }, 1000);
+        }
+
+        if (authBackBtn) {
+            authBackBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (authForm) authForm.style.display = 'block';
+                if (authOtpStep) authOtpStep.style.display = 'none';
+                if (authModalTitle) authModalTitle.innerHTML = '<i class="fas fa-lock" style="color:var(--primary-light); margin-right:6px;"></i> Client Login';
+                if (authModalSubtitle) authModalSubtitle.textContent = 'Enter your details to receive an instant Magic Link & 6-Digit OTP';
+                if (authError) authError.style.display = 'none';
+            });
+        }
+
+        async function triggerOtpSend() {
+            const name = authName ? authName.value.trim() : (sessionStorage.getItem('pending_name') || '');
+            const phone = authPhone ? authPhone.value.trim() : (sessionStorage.getItem('pending_phone') || '');
+            const email = authEmail ? authEmail.value.trim() : (sessionStorage.getItem('pending_email') || '');
+
+            if (!email) {
+                if (authError) {
+                    authError.textContent = 'Please enter your email address.';
+                    authError.style.display = 'block';
+                }
+                return false;
+            }
+
+            sessionStorage.setItem('pending_name', name);
+            sessionStorage.setItem('pending_phone', phone);
+            sessionStorage.setItem('pending_email', email);
+            localStorage.setItem('kyrosh_auth_email', email);
+            localStorage.setItem('kyrosh_auth_name', name);
+            localStorage.setItem('kyrosh_auth_phone', phone);
+
+            // Compute current URL without hashes for redirect
+            let redirectUrl = window.location.href.split('#')[0].split('?')[0];
+            if (redirectUrl.startsWith('file://')) {
+                redirectUrl = window.location.href;
+            }
+
+            const { data, error } = await supabaseClient.auth.signInWithOtp({
+                email: email,
+                options: {
+                    data: { name: name, phone: phone },
+                    emailRedirectTo: redirectUrl,
+                    shouldCreateUser: true
+                }
+            });
+
+            if (error) {
+                if (authError) {
+                    authError.textContent = error.message.includes('rate limit')
+                        ? '? Too many requests. Please wait a minute before requesting another code.'
+                        : '? ' + error.message;
+                    authError.style.display = 'block';
+                    authError.style.color = '#FF6B6B';
+                    authError.style.borderLeftColor = '#FF6B6B';
+                }
+                return false;
+            }
+
+            return true;
+        }
+
         if (authForm) {
             authForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -4569,6 +4699,8 @@
                     if (authError) {
                         authError.textContent = 'Please fill in all fields (Name, Phone, and Email).';
                         authError.style.display = 'block';
+                        authError.style.color = '#FF6B6B';
+                        authError.style.borderLeftColor = '#FF6B6B';
                     }
                     return;
                 }
@@ -4582,40 +4714,21 @@
                     const spinner = authSubmitBtn.querySelector('.spinner');
                     const btnText = authSubmitBtn.querySelector('.btn-text');
                     if (spinner) spinner.style.display = 'inline-block';
-                    if (btnText) btnText.textContent = 'Sending Magic Link...';
+                    if (btnText) btnText.textContent = 'Sending Magic Link & OTP...';
                 }
 
                 try {
-                    sessionStorage.setItem('pending_name', name);
-                    sessionStorage.setItem('pending_phone', phone);
-
-                    const { data, error } = await supabaseClient.auth.signInWithOtp({
-                        email: email,
-                        options: {
-                            data: { name: name, phone: phone },
-                            redirectTo: window.location.origin,
-                        }
-                    });
-
-                    if (error) {
-                        if (authError) {
-                            authError.textContent = error.message.includes('rate limit')
-                                ? '? Too many requests. Please wait a minute.'
-                                : '? ' + error.message;
-                            authError.style.display = 'block';
-                        }
-                        return;
+                    const success = await triggerOtpSend();
+                    if (success) {
+                        SoundFX.success();
+                        if (authForm) authForm.style.display = 'none';
+                        if (authOtpStep) authOtpStep.style.display = 'block';
+                        if (authSentEmail) authSentEmail.textContent = email;
+                        if (authModalTitle) authModalTitle.innerHTML = '<i class="fas fa-key" style="color:#38BDF8; margin-right:6px;"></i> Verify Login';
+                        if (authModalSubtitle) authModalSubtitle.textContent = 'Enter the 6-digit code or click the email link';
+                        if (authOtpCode) { authOtpCode.value = ''; authOtpCode.focus(); }
+                        startResendCountdown();
                     }
-
-                    SoundFX.success();
-                    if (authError) {
-                        authError.style.display = 'block';
-                        authError.style.color = '#10B981';
-                        authError.style.borderLeftColor = '#10B981';
-                        authError.textContent = '? Magic Link sent! Please check your email inbox to log in.';
-                    }
-                    if (authForm) authForm.reset();
-
                 } catch (err) {
                     if (authError) {
                         authError.textContent = err.message || 'Something went wrong. Please try again.';
@@ -4626,26 +4739,124 @@
                         const spinner = authSubmitBtn.querySelector('.spinner');
                         const btnText = authSubmitBtn.querySelector('.btn-text');
                         if (spinner) spinner.style.display = 'none';
-                        if (btnText) btnText.textContent = 'Send Magic Link ?';
+                        if (btnText) btnText.textContent = 'Send Magic Link & OTP ?';
                     }
                 }
             });
         }
 
-        // ============ AUTH STATE LISTENER ============
-        const _isMagicLinkCallback = window.location.hash.includes('access_token') || 
-                                     window.location.hash.includes('type=magiclink') || 
-                                     window.location.hash.includes('type=signup') || 
-                                     window.location.hash.includes('type=recovery') || 
-                                     window.location.search.includes('code=');
+        if (authResendBtn) {
+            authResendBtn.addEventListener('click', async () => {
+                if (authResendBtn.disabled) return;
+                authResendBtn.disabled = true;
+                authResendBtn.textContent = 'Sending...';
+                const success = await triggerOtpSend();
+                if (success) {
+                    SoundFX.success();
+                    if (authError) {
+                        authError.style.display = 'block';
+                        authError.style.color = '#10B981';
+                        authError.style.borderLeftColor = '#10B981';
+                        authError.textContent = '? New OTP Code & Magic Link sent!';
+                    }
+                    startResendCountdown();
+                } else {
+                    authResendBtn.disabled = false;
+                    authResendBtn.textContent = 'Resend Code';
+                }
+            });
+        }
 
+        async function verifyOtpCode() {
+            const email = authEmail?.value.trim() || sessionStorage.getItem('pending_email') || localStorage.getItem('kyrosh_auth_email');
+            const token = authOtpCode ? authOtpCode.value.trim().replace(/\s/g, '') : '';
+
+            if (!token || token.length < 6) {
+                if (authError) {
+                    authError.textContent = 'Please enter the complete 6-digit OTP code sent to your email.';
+                    authError.style.display = 'block';
+                    authError.style.color = '#FF6B6B';
+                    authError.style.borderLeftColor = '#FF6B6B';
+                }
+                return;
+            }
+
+            if (!email) {
+                if (authError) {
+                    authError.textContent = 'Email address missing. Please restart login.';
+                    authError.style.display = 'block';
+                }
+                return;
+            }
+
+            if (authVerifyOtpBtn) {
+                const spinner = authVerifyOtpBtn.querySelector('.spinner');
+                const btnText = authVerifyOtpBtn.querySelector('.btn-text');
+                if (spinner) spinner.style.display = 'inline-block';
+                if (btnText) btnText.textContent = 'Verifying Code...';
+            }
+
+            try {
+                const { data, error } = await supabaseClient.auth.verifyOtp({
+                    email: email,
+                    token: token,
+                    type: 'email'
+                });
+
+                if (error) {
+                    if (authError) {
+                        authError.textContent = '? Invalid or expired OTP code. Please check your email or resend code.';
+                        authError.style.display = 'block';
+                        authError.style.color = '#FF6B6B';
+                        authError.style.borderLeftColor = '#FF6B6B';
+                    }
+                    return;
+                }
+
+                if (data?.session?.user) {
+                    SoundFX.success();
+                    if (authModal) authModal.classList.remove('active');
+                    const pendingName = sessionStorage.getItem('pending_name') || localStorage.getItem('kyrosh_auth_name') || data.session.user.user_metadata?.name || 'User';
+                    showLoginSuccess(pendingName);
+                    await updateAuthUI(data.session);
+                }
+
+            } catch (err) {
+                if (authError) {
+                    authError.textContent = err.message || 'Error verifying OTP.';
+                    authError.style.display = 'block';
+                }
+            } finally {
+                if (authVerifyOtpBtn) {
+                    const spinner = authVerifyOtpBtn.querySelector('.spinner');
+                    const btnText = authVerifyOtpBtn.querySelector('.btn-text');
+                    if (spinner) spinner.style.display = 'none';
+                    if (btnText) btnText.textContent = 'Verify & Log In ??';
+                }
+            }
+        }
+
+        if (authVerifyOtpBtn) {
+            authVerifyOtpBtn.addEventListener('click', verifyOtpCode);
+        }
+
+        if (authOtpCode) {
+            authOtpCode.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') verifyOtpCode();
+                if (authOtpCode.value.trim().length === 6) {
+                    verifyOtpCode();
+                }
+            });
+        }
+
+        // ============ AUTH STATE LISTENER & URL CALLBACK PROCESSOR ============
         let _magicLinkProcessed = false;
 
         supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session?.user) {
                 const user = session.user;
-                const pendingName = sessionStorage.getItem('pending_name') || user.user_metadata?.name;
-                const pendingPhone = sessionStorage.getItem('pending_phone') || user.user_metadata?.phone;
+                const pendingName = sessionStorage.getItem('pending_name') || localStorage.getItem('kyrosh_auth_name') || user.user_metadata?.name;
+                const pendingPhone = sessionStorage.getItem('pending_phone') || localStorage.getItem('kyrosh_auth_phone') || user.user_metadata?.phone;
 
                 if (pendingName || pendingPhone) {
                     await upsertProfile(user.id, {
@@ -4654,12 +4865,9 @@
                         email: user.email,
                         updated_at: new Date().toISOString()
                     });
-                    sessionStorage.removeItem('pending_name');
-                    sessionStorage.removeItem('pending_phone');
                 }
 
-                // ONLY trigger the "Login Successful!" popup if the user actually arrived via Magic Link email link
-                if (_isMagicLinkCallback && !_magicLinkProcessed) {
+                if (!_magicLinkProcessed) {
                     _magicLinkProcessed = true;
                     const profile = await getProfile(user.id);
                     const displayName = profile?.name || pendingName || user.email || 'User';
@@ -4667,12 +4875,13 @@
                     await logLogin(user, { name: displayName, phone: phone });
                     showLoginSuccess(displayName);
 
-                    // Clean URL hash so token isn't visible or re-triggered on reload
+                    // Clean URL hash and query params
                     if (window.history && window.history.replaceState) {
                         window.history.replaceState(null, document.title, window.location.pathname);
                     }
                 }
 
+                if (authModal) authModal.classList.remove('active');
                 await updateAuthUI(session);
             } else if (event === 'SIGNED_OUT') {
                 _magicLinkProcessed = false;
@@ -4680,10 +4889,51 @@
             }
         });
 
-        // ============ INITIAL SESSION CHECK ============
+        // ============ INITIAL SESSION & MAGIC LINK URL PARSING ============
         (async () => {
             try {
                 setCurrency(currentCurrency);
+
+                // 1. Check for token_hash in URL (Supabase v2 Verify Link)
+                const urlParams = new URLSearchParams(window.location.search);
+                const token_hash = urlParams.get('token_hash');
+                const type = urlParams.get('type') || 'email';
+                if (token_hash) {
+                    try {
+                        const { data, error } = await supabaseClient.auth.verifyOtp({ token_hash, type });
+                        if (data?.session) {
+                            await updateAuthUI(data.session);
+                        }
+                    } catch (err) { console.error('token_hash verify error:', err); }
+                }
+
+                // 2. Check for PKCE code in URL
+                const code = urlParams.get('code');
+                if (code) {
+                    try {
+                        const { data, error } = await supabaseClient.auth.exchangeCodeForSession(code);
+                        if (data?.session) {
+                            await updateAuthUI(data.session);
+                        }
+                    } catch (err) { console.error('PKCE exchange error:', err); }
+                }
+
+                // 3. Check for implicit hash tokens (#access_token=...&refresh_token=...)
+                if (window.location.hash.includes('access_token')) {
+                    try {
+                        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+                        const access_token = hashParams.get('access_token');
+                        const refresh_token = hashParams.get('refresh_token');
+                        if (access_token && refresh_token) {
+                            const { data, error } = await supabaseClient.auth.setSession({ access_token, refresh_token });
+                            if (data?.session) {
+                                await updateAuthUI(data.session);
+                            }
+                        }
+                    } catch (err) { console.error('Hash session error:', err); }
+                }
+
+                // 4. Check active persistent session
                 const { data: { session } } = await supabaseClient.auth.getSession();
                 if (session) {
                     await updateAuthUI(session);
@@ -4691,7 +4941,7 @@
                     updateAuthUI(null);
                 }
             } catch (err) {
-                console.error('Initial session error:', err);
+                console.error('Initial session check error:', err);
                 updateAuthUI(null);
             }
             const preloader = document.getElementById('preloader');
