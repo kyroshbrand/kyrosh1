@@ -15,14 +15,15 @@
     <link rel="canonical" href="https://kyrosh.com/" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%237844D5'/><text x='50%' y='68%' font-size='52' font-family='sans-serif' font-weight='900' fill='white' text-anchor='middle'>K.</text></svg>" />
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%237844D5'/><text x='50%' y='68%' font-size='52' font-family='sans-serif' font-weight='900' fill='white' text-anchor='middle'>K.</text></svg>" />
+    <link rel="icon" type="image/jpeg" href="kyrosh_logo.jpg" />
+    <link rel="apple-touch-icon" href="kyrosh_logo.jpg" />
 
     <!-- Open Graph (Facebook / LinkedIn) Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://kyrosh.com/" />
     <meta property="og:title" content="Kyrosh ??? No.1 Digital Growth Agency | Websites, Software & Ads" />
     <meta property="og:description" content="Global full-stack digital agency delivering high-converting websites, bespoke software, performance ads, cinematic video, and SEO domination." />
+    <meta property="og:image" content="kyrosh_logo.jpg" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop" />
     <meta property="og:site_name" content="Kyrosh Digital Agency" />
     <meta property="og:locale" content="en_US" />
@@ -270,18 +271,25 @@
         /* Preloader */
         .preloader { position:fixed; top:0; left:0; width:100%; height:100%; background:var(--dark-bg); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:100000; transition:opacity .6s, visibility .6s; }
         .preloader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
-        .preloader-logo { font-family:'Poppins', sans-serif; font-size:52px; font-weight:900; letter-spacing:2px; animation:preloaderPulse 1.2s infinite; }
+        .preloader-logo { font-family:'Poppins', sans-serif; font-size:42px; font-weight:900; letter-spacing:2px; animation:preloaderPulse 1.2s infinite; display:flex; flex-direction:column; align-items:center; }
+        .preloader-logo-img { width:72px; height:72px; border-radius:18px; margin-bottom:12px; box-shadow:0 0 35px var(--primary-glow); }
         .preloader-logo span { color:var(--primary-light); }
         .preloader-sub { color:var(--gray); font-size:13px; letter-spacing:3px; text-transform:uppercase; margin-top:8px; font-weight:600; }
         .particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
         .particle { position:absolute; background:var(--primary-light); border-radius:50%; animation:floatUp linear infinite; opacity:0.25; filter:blur(1px); }
 
         /* Header */
-        header { position:fixed; top:0; left:0; width:100%; z-index:1000; padding:18px 0; background:transparent; transition:all .4s ease; }
-        header.scrolled { background:rgba(9, 3, 18, 0.94); padding:12px 0; backdrop-filter:blur(16px); border-bottom:1px solid var(--dark-border); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        header { position:fixed; top:0; left:0; width:100%; z-index:1000; padding:16px 0; background:transparent; transition:all .4s ease; }
+        header.scrolled { background:rgba(9, 3, 18, 0.94); padding:10px 0; backdrop-filter:blur(16px); border-bottom:1px solid var(--dark-border); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .nav-container { display:flex; justify-content:space-between; align-items:center; gap:12px; }
-        .logo { font-family:'Poppins', sans-serif; font-size:28px; font-weight:900; cursor:pointer; letter-spacing:-0.5px; text-decoration:none; color:#fff; display:flex; align-items:center; gap:3px; }
-        .logo span { color:var(--primary-light); font-size:36px; line-height:0; }
+        .logo { font-family:'Poppins', sans-serif; font-size:24px; font-weight:900; cursor:pointer; letter-spacing:-0.5px; text-decoration:none; color:#fff; display:flex; align-items:center; gap:9px; }
+        .logo-img { width:32px; height:32px; border-radius:8px; object-fit:cover; box-shadow:0 0 14px var(--primary-glow); transition:transform .3s ease; }
+        .logo:hover .logo-img { transform:scale(1.08) rotate(3deg); }
+        .footer-logo-img { width:28px; height:28px; border-radius:7px; object-fit:cover; box-shadow:0 0 10px var(--primary-glow); }
+        .modal-logo-img { width:52px; height:52px; border-radius:14px; margin-bottom:8px; box-shadow:0 0 25px var(--primary-glow); }
+        .hero-brand-emblem { display:inline-flex; align-items:center; gap:8px; background:rgba(120,68,213,0.15); border:1.5px solid var(--dark-border); padding:5px 14px; border-radius:50px; margin-bottom:16px; backdrop-filter:blur(10px); animation:badgeGlow 3s infinite; }
+        .hero-emblem-img { width:22px; height:22px; border-radius:6px; object-fit:cover; }
+        .hero-emblem-badge { font-size:11px; font-weight:800; letter-spacing:1.5px; color:var(--primary-light); }
         .nav-links { display:flex; align-items:center; gap:18px; list-style:none; }
         .nav-links li a { color:var(--gray-light); text-decoration:none; font-size:13px; font-weight:500; cursor:pointer; transition:all .25s ease; position:relative; }
         .nav-links li a:hover { color:var(--white); }
@@ -1444,16 +1452,81 @@
             #scheduler { order: 17 !important; } /* Priority Booking right before Official Channels! */
             #instagram { order: 18 !important; } /* Official Channels */
 
-            /* Hero Section: Short, Clean & Focused */
-            .hero { padding: 75px 0 30px !important; min-height: auto !important; text-align: center !important; }
-            .hero-content { max-width: 100% !important; }
-            .hero-badge { font-size: 10px !important; padding: 4px 10px !important; letter-spacing: 1px !important; margin-bottom: 10px !important; }
-            .hero h1 { font-size: 21px !important; line-height: 1.25 !important; letter-spacing: -0.2px !important; margin: 0 auto 10px !important; max-width: 320px !important; text-align: center !important; }
-            .hero p.hero-desc { font-size: 13px !important; line-height: 1.45 !important; margin-bottom: 16px !important; max-width: 100% !important; }
-            .hero-buttons { flex-direction: column !important; gap: 8px !important; width: 100% !important; }
-            .hero-buttons a { width: 100% !important; justify-content: center !important; text-align: center !important; padding: 10px 14px !important; font-size: 13px !important; border-radius: 10px !important; }
+            /* Hero Section: Attractive, High-Tech & Clean on Mobile */
+            .hero {
+                padding: 68px 0 24px !important;
+                min-height: auto !important;
+                text-align: center !important;
+                background: radial-gradient(circle at 50% 18%, rgba(120,68,213,0.2) 0%, transparent 65%) !important;
+            }
+            .hero-content {
+                max-width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+            .hero-brand-emblem {
+                display: inline-flex !important;
+                align-items: center !important;
+                gap: 7px !important;
+                padding: 4px 12px !important;
+                margin-bottom: 12px !important;
+                border-radius: 50px !important;
+            }
+            .hero-emblem-img { width: 18px !important; height: 18px !important; border-radius: 5px !important; }
+            .hero-emblem-badge { font-size: 10px !important; letter-spacing: 1px !important; }
+            .hero h1 {
+                font-size: 22px !important;
+                line-height: 1.22 !important;
+                letter-spacing: -0.2px !important;
+                margin: 0 auto 10px !important;
+                max-width: 320px !important;
+                text-align: center !important;
+            }
+            .hero p.hero-desc {
+                font-size: 12.5px !important;
+                line-height: 1.45 !important;
+                margin: 0 auto 16px !important;
+                max-width: 300px !important;
+                color: var(--gray-light) !important;
+            }
+            .hero-buttons {
+                flex-direction: column !important;
+                gap: 8px !important;
+                width: 100% !important;
+                max-width: 300px !important;
+                margin: 0 auto !important;
+            }
+            .hero-buttons a {
+                width: 100% !important;
+                justify-content: center !important;
+                text-align: center !important;
+                padding: 11px 16px !important;
+                font-size: 13px !important;
+                border-radius: 12px !important;
+                font-weight: 800 !important;
+            }
             #heroCalculateRoi { display: none !important; }
-            .hero-trust-badges { flex-direction: column !important; gap: 6px !important; align-items: center !important; margin-top: 16px !important; padding-top: 12px !important; font-size: 11.5px !important; }
+            .hero-trust-badges {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 6px !important;
+                margin-top: 14px !important;
+                padding-top: 12px !important;
+                border-top: 1px solid rgba(255,255,255,0.08) !important;
+                width: 100% !important;
+            }
+            .hero-trust-item {
+                font-size: 11px !important;
+                background: rgba(255,255,255,0.05) !important;
+                border: 1px solid rgba(255,255,255,0.1) !important;
+                padding: 4px 10px !important;
+                border-radius: 50px !important;
+                color: var(--gray-light) !important;
+                white-space: nowrap !important;
+            }
 
             /* Stats Grid */
             #stats { padding: 20px 0 !important; }
@@ -1686,7 +1759,10 @@
 
     <!-- Preloader -->
     <div class="preloader" id="preloader">
-        <div class="preloader-logo">KYROSH<span>.</span></div>
+        <div class="preloader-logo">
+            <img src="kyrosh_logo.jpg" alt="Kyrosh Logo" class="preloader-logo-img">
+            <div>KYROSH<span>.</span></div>
+        </div>
         <div class="preloader-sub">Building Digital Empires Worldwide</div>
     </div>
     <div class="particles" id="particles"></div>
@@ -1721,7 +1797,7 @@
         <div class="auth-modal">
             <button class="close-modal" id="closeAuthModal"><i class="fas fa-times"></i></button>
             <div class="modal-header">
-                <div class="icon-circle"><i class="fas fa-user-circle"></i></div>
+                <img src="kyrosh_logo.jpg" alt="Kyrosh Logo" class="modal-logo-img">
                 <h3 style="font-size:24px; font-weight:800;">Client Login</h3>
                 <p style="color:var(--gray); font-size:13.5px; margin-top:4px;">Enter your details to receive an instant Magic Link</p>
             </div>
@@ -1959,7 +2035,7 @@
     <!-- Header Navigation -->
     <header id="header">
         <div class="container nav-container">
-            <a class="logo" id="logoHome">KYROSH<span>.</span></a>
+            <a class="logo" id="logoHome"><img src="kyrosh_logo.jpg" alt="Kyrosh Logo" class="logo-img"><span>KYROSH<span style="color:var(--primary-light);">.</span></span></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" id="navHome">Home</a></li>
                 <li><a href="#scanner" id="navScanner">Scanner</a></li>
@@ -2002,7 +2078,10 @@
         <div class="hero-orb orb-3"></div>
         <div class="container">
             <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
-                <span class="hero-badge"><i class="fas fa-crown"></i> GLOBAL DIGITAL EMPIRE BUILDER</span>
+                <div class="hero-brand-emblem">
+                    <img src="kyrosh_logo.jpg" alt="Kyrosh Emblem" class="hero-emblem-img">
+                    <span class="hero-emblem-badge"><i class="fas fa-crown"></i> GLOBAL DIGITAL EMPIRE BUILDER</span>
+                </div>
                 <h1>We Don't Just Market.<br>We Build <span class="gradient-text">Digital Empires.</span></h1>
                 <p class="hero-desc">Kyrosh accelerates ambitious brands into global market leaders with bespoke <span class="typing-text" id="typingText"></span><span class="typing-cursor">|</span></p>
                 <div class="hero-buttons">
@@ -3011,8 +3090,11 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <h4 style="font-size:26px; font-weight:900;">KYROSH<span style="color:var(--primary-light);">.</span></h4>
-                    <p style="color:var(--gray); font-size:14px; margin-top:14px; line-height:1.7;">Global full-stack digital agency delivering high-converting websites, custom software, cinematic video ads, and full brand acceleration.</p>
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+                        <img src="kyrosh_logo.jpg" alt="Kyrosh Logo" class="footer-logo-img">
+                        <h4 style="font-size:26px; font-weight:900; margin:0;">KYROSH<span style="color:var(--primary-light);">.</span></h4>
+                    </div>
+                    <p style="color:var(--gray); font-size:14px; margin-top:10px; line-height:1.7;">Global full-stack digital agency delivering high-converting websites, custom software, cinematic video ads, and full brand acceleration.</p>
                 </div>
                 <div>
                     <h4>Navigation</h4>
@@ -4514,20 +4596,14 @@
             const loginSuccessPopup = document.getElementById('loginSuccessPopup');
             const loginSuccessName = document.getElementById('loginSuccessName');
             if (!loginSuccessPopup) return;
-            if (sessionStorage.getItem('login_success_shown')) return;
-
-            const lastLoginTime = sessionStorage.getItem('last_login_time');
-            const now = Date.now();
-            if (lastLoginTime && (now - parseInt(lastLoginTime)) > 6000) return;
 
             if (loginSuccessName) loginSuccessName.textContent = name || 'User';
             loginSuccessPopup.classList.add('active');
-            sessionStorage.setItem('login_success_shown', 'true');
             SoundFX.success();
 
             setTimeout(() => {
                 loginSuccessPopup.classList.remove('active');
-            }, 3200);
+            }, 3500);
         }
 
         // ============ UPDATE AUTH UI ============
@@ -4626,18 +4702,6 @@
                     if (schedEmail) schedEmail.value = user.email || '';
                     if (schedName) schedName.value = displayName;
                     if (schedPhone && phone !== 'Not set') schedPhone.value = phone;
-
-                    if (options.justLoggedIn) {
-                        await logLogin(user, { name: displayName, phone: phone === 'Not set' ? '' : phone });
-
-                        const lastLoginTime = sessionStorage.getItem('last_login_time');
-                        const now = Date.now();
-                        const isFreshLogin = lastLoginTime && (now - parseInt(lastLoginTime)) < 6000;
-
-                        if (!sessionStorage.getItem('login_success_shown') && isFreshLogin) {
-                            showLoginSuccess(displayName);
-                        }
-                    }
                 } else {
                     if (authButtons) {
                         authButtons.innerHTML = `<button class="btn-login" id="loginBtn" title="Client Login"><i class="fas fa-user-circle"></i> <span class="login-label">Login</span></button>`;
@@ -4757,7 +4821,14 @@
         }
 
         // ============ AUTH STATE LISTENER ============
-        let _justLoggedIn = false;
+        const _isMagicLinkCallback = window.location.hash.includes('access_token') || 
+                                     window.location.hash.includes('type=magiclink') || 
+                                     window.location.hash.includes('type=signup') || 
+                                     window.location.hash.includes('type=recovery') || 
+                                     window.location.search.includes('code=');
+
+        let _magicLinkProcessed = false;
+
         supabaseClient.auth.onAuthStateChange(async (event, session) => {
             if (event === 'SIGNED_IN' && session?.user) {
                 const user = session.user;
@@ -4773,20 +4844,26 @@
                     });
                     sessionStorage.removeItem('pending_name');
                     sessionStorage.removeItem('pending_phone');
-                    sessionStorage.setItem('last_login_time', Date.now().toString());
                 }
 
-                if (!_justLoggedIn) {
-                    _justLoggedIn = true;
-                    await updateAuthUI(session, { justLoggedIn: true });
-                    setTimeout(() => { _justLoggedIn = false; }, 2500);
-                } else {
-                    await updateAuthUI(session, { justLoggedIn: false });
+                // ONLY trigger the "Login Successful!" popup if the user actually arrived via Magic Link email link
+                if (_isMagicLinkCallback && !_magicLinkProcessed) {
+                    _magicLinkProcessed = true;
+                    const profile = await getProfile(user.id);
+                    const displayName = profile?.name || pendingName || user.email || 'User';
+                    const phone = profile?.phone || pendingPhone || '';
+                    await logLogin(user, { name: displayName, phone: phone });
+                    showLoginSuccess(displayName);
+
+                    // Clean URL hash so token isn't visible or re-triggered on reload
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState(null, document.title, window.location.pathname);
+                    }
                 }
+
+                await updateAuthUI(session);
             } else if (event === 'SIGNED_OUT') {
-                _justLoggedIn = false;
-                sessionStorage.removeItem('login_success_shown');
-                sessionStorage.removeItem('last_login_time');
+                _magicLinkProcessed = false;
                 updateAuthUI(null);
             }
         });
@@ -4797,8 +4874,7 @@
                 setCurrency(currentCurrency);
                 const { data: { session } } = await supabaseClient.auth.getSession();
                 if (session) {
-                    _justLoggedIn = false;
-                    await updateAuthUI(session, { justLoggedIn: false });
+                    await updateAuthUI(session);
                 } else {
                     updateAuthUI(null);
                 }
