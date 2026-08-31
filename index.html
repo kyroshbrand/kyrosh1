@@ -1420,11 +1420,35 @@
             .nav-links li a { font-size: 14.5px; font-weight: 700; display: block; padding: 5px 0; }
             .hamburger { display: block; font-size: 22px; }
 
-            /* Hero Section: Short, Clean & Impactful */
+            /* Main Section Mobile Re-ordering (Priority Booking placed right before Official Channels) */
+            #pageMain {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            #home { order: 1 !important; }
+            .logo-strip { order: 2 !important; }
+            #stats { order: 3 !important; }
+            #scanner { order: 4 !important; }
+            #roi-calculator { order: 5 !important; display: none !important; }
+            #transformations { order: 6 !important; }
+            #work { order: 7 !important; }
+            #services { order: 8 !important; }
+            #process { order: 9 !important; }
+            #pricing { order: 10 !important; }
+            #careers { order: 11 !important; }
+            #team { order: 12 !important; }
+            #certificates { order: 13 !important; }
+            #testimonials { order: 14 !important; }
+            #faq { order: 15 !important; }
+            #proposal { order: 16 !important; }
+            #scheduler { order: 17 !important; } /* Priority Booking right before Official Channels! */
+            #instagram { order: 18 !important; } /* Official Channels */
+
+            /* Hero Section: Short, Clean & Focused */
             .hero { padding: 75px 0 30px !important; min-height: auto !important; text-align: center !important; }
             .hero-content { max-width: 100% !important; }
             .hero-badge { font-size: 10px !important; padding: 4px 10px !important; letter-spacing: 1px !important; margin-bottom: 10px !important; }
-            .hero h1 { font-size: 25px !important; line-height: 1.2 !important; letter-spacing: -0.5px !important; margin-bottom: 10px !important; }
+            .hero h1 { font-size: 21px !important; line-height: 1.25 !important; letter-spacing: -0.2px !important; margin: 0 auto 10px !important; max-width: 320px !important; text-align: center !important; }
             .hero p.hero-desc { font-size: 13px !important; line-height: 1.45 !important; margin-bottom: 16px !important; max-width: 100% !important; }
             .hero-buttons { flex-direction: column !important; gap: 8px !important; width: 100% !important; }
             .hero-buttons a { width: 100% !important; justify-content: center !important; text-align: center !important; padding: 10px 14px !important; font-size: 13px !important; border-radius: 10px !important; }
@@ -1640,7 +1664,7 @@
             }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 24px !important; }
+            .hero h1 { font-size: 20px !important; line-height: 1.25 !important; }
             .hero-buttons a { font-size: 12.5px !important; }
             .price-strikethrough-secret { font-size: 24px !important; }
             .date-picker-grid { grid-template-columns: repeat(3, 1fr) !important; }
@@ -1692,41 +1716,6 @@
         </div>
     </div>
 
-    <!-- Welcome Popup -->
-    <div class="welcome-popup-overlay" id="welcomePopup">
-        <div class="welcome-popup" style="text-align:center;">
-            <button class="close-welcome" id="closeWelcome"><i class="fas fa-times"></i></button>
-            <div class="confetti-container" id="confettiContainer"></div>
-            <div style="font-size:50px; margin-bottom:12px;">????</div>
-            <h2 style="font-size:26px; font-weight:900; margin-bottom:8px;">Welcome to <span style="color:var(--primary-light);">Kyrosh</span>!</h2>
-            <p style="color:var(--gray); font-size:14.5px; margin-bottom:20px; line-height:1.6;">???? You've unlocked an exclusive <strong style="color:#FF4444; font-size:18px;">50% OFF</strong> welcome offer on all digital services!</p>
-            <button class="btn-primary" id="welcomeOfferBtn" style="width:100%; justify-content:center;">Claim Your 50% Offer ???</button>
-        </div>
-    </div>
-
-    <!-- Offer Popup -->
-    <div class="offer-popup-overlay" id="offerPopup">
-        <div class="offer-popup">
-            <button class="close-popup" id="closePopup"><i class="fas fa-times"></i></button>
-            <div class="offer-icon">????</div>
-            <h3 style="color:var(--primary-light); font-size:18px; font-weight:900;">FLASH DISCOUNT</h3>
-            <div class="offer-percent">50% OFF</div>
-            <p style="color:#fff; font-weight:700; font-size:11px;">ON ALL SERVICES TODAY</p>
-            <p style="color:var(--gray); font-size:10px; margin:4px 0;">Websites ??? Software ??? Ads ??? Video ??? SEO</p>
-            <div class="offer-timer" id="offerTimer">01:00:00</div>
-            <br>
-            <a href="#proposal" class="btn-offer" id="offerBtn">Claim Offer Now ???</a>
-        </div>
-    </div>
-
-    <!-- Side Timer -->
-    <div class="side-timer" id="sideTimer">
-        <span>????</span>
-        <span style="font-size:9.5px; color:var(--primary-light); font-weight:700;">ENDS:</span>
-        <span style="font-size:12px; color:#FF4444; font-weight:900;" id="sideTimerCount">01:00:00</span>
-        <button style="background:var(--primary-light); color:#000; border:none; padding:4px 9px; border-radius:5px; font-size:9px; font-weight:800; cursor:pointer;" id="reopenOffer">VIEW</button>
-    </div>
-
     <!-- Auth Modal -->
     <div class="auth-modal-overlay" id="authModal">
         <div class="auth-modal">
@@ -1734,7 +1723,7 @@
             <div class="modal-header">
                 <div class="icon-circle"><i class="fas fa-user-circle"></i></div>
                 <h3 style="font-size:24px; font-weight:800;">Client Login</h3>
-                <p style="color:var(--gray); font-size:13.5px; margin-top:4px;">Enter your details to log in instantly & claim your 50% discount</p>
+                <p style="color:var(--gray); font-size:13.5px; margin-top:4px;">Enter your details to receive an instant Magic Link</p>
             </div>
             <div id="authError" class="auth-error"></div>
             <form id="authForm">
@@ -1752,7 +1741,7 @@
                 </div>
                 <button type="submit" class="auth-submit" id="authSubmitBtn">
                     <span class="spinner" style="display:none;"><i class="fas fa-spinner"></i></span>
-                    <span class="btn-text">Login ???</span>
+                    <span class="btn-text">Send Magic Link ???</span>
                 </button>
             </form>
             <p style="color:var(--gray); font-size:12px; text-align:center; margin-top:14px;">We'll email you a secure one-click sign in link.</p>
@@ -2005,6 +1994,7 @@
         </div>
     </header>
 
+    <main id="pageMain">
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-orb orb-1"></div>
@@ -2845,13 +2835,13 @@
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ Section -->
     <section id="faq">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag"><i class="fas fa-question-circle"></i> Got Questions?</span>
-                <h2>Frequently Asked <span class="highlight">Questions</span></h2>
-                <p>Everything you need to know about working with Kyrosh and claiming your 50% discount.</p>
+                <span class="section-tag"><i class="fas fa-info-circle"></i> Direct Answers</span>
+                <h2>Frequently Asked <span class="highlight">Information</span></h2>
+                <p>Key details regarding our execution model, timelines, and deliverables.</p>
                 <span class="underline"></span>
                 <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
             </div>
@@ -2859,41 +2849,31 @@
             <div class="faq-wrapper" data-aos="fade-up" data-aos-delay="150">
                 <div class="faq-item active">
                     <div class="faq-question">
-                        <h3>How does Kyrosh differ from traditional digital agencies?</h3>
+                        <h3>Integrated Full-Stack Agency Model</h3>
                         <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="faq-answer">
-                        <p>Unlike traditional agencies that outsource or deliver siloed services, Kyrosh provides an integrated, end-to-end growth ecosystem. We unite full-stack software engineers, viral video creators, and performance media buyers under one cohesive strategy focused strictly on revenue growth.</p>
+                        <p>We unite full-stack software engineers, viral video creators, and performance ad media buyers under one cohesive strategy focused strictly on accelerating your revenue.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>How does the 50% limited-time offer work?</h3>
+                        <h3>Launch Timelines and Speed to Market</h3>
                         <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="faq-answer">
-                        <p>All first-time clients who log in and submit their project proposal today automatically lock in our 50% welcome discount on all packages. Once submitted, your discount rate is locked in for 48 hours while our team reviews your scope.</p>
+                        <p>High-converting websites and performance ad funnels launch within <strong>5 to 10 business days</strong>. Custom software platforms and full brand systems deploy in 2 to 4 weeks.</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>How fast can we launch our project or ad campaigns?</h3>
+                        <h3>Global Client Operations and Multi-Currency Support</h3>
                         <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="faq-answer">
-                        <p>Standard websites and performance campaigns can be launched in as little as <strong>5 to 10 business days</strong>. Custom software platforms and full brand uplifting packages typically range from 2 to 4 weeks depending on scope.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you work with international clients across the US, UK, UAE & Europe?</h3>
-                        <div class="faq-icon"><i class="fas fa-chevron-down"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes! Over 40% of our portfolio comprises clients based across the United States, United Kingdom, United Arab Emirates, and Europe. We accept payments in USD, AED, GBP, EUR, and INR with dedicated global account managers.</p>
+                        <p>We serve brands worldwide across the United States, United Kingdom, UAE, and Europe, supporting seamless multi-currency invoicing in USD, AED, GBP, EUR, and INR.</p>
                     </div>
                 </div>
             </div>
@@ -3024,6 +3004,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -3913,16 +3894,54 @@
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: email,
-                                subject: `???? Strategy Call Confirmed: ${selectedDate} at ${selectedSlot} with Kyrosh`,
-                                html: `<h2>Hi ${name}! ????</h2>
-                                       <p>Your 1-on-1 VIP Strategy Session for <strong>${selectedCallType}</strong> is successfully confirmed!</p>
-                                       <p><strong>Date & Time:</strong> ${selectedDate} at ${selectedSlot}</p>
-                                       <p><strong>Website / Brand:</strong> ${website || 'Direct Consulting'}</p>
-                                       <p><strong>Meeting Channel:</strong> Google Meet / Direct WhatsApp Call</p>
-                                       <hr style="border:none; border-top:1px solid #eee; margin:16px 0;" />
-                                       <p>Click below to open a direct WhatsApp chat with Founder Shaiban (+91 9019958415) to confirm your meeting link:</p>
-                                       <p><a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20booked%20a%20Strategy%20Call%20for%20${encodeURIComponent(selectedDate)}%20at%20${encodeURIComponent(selectedSlot)}" style="background:#25D366; color:#fff; padding:10px 20px; border-radius:50px; text-decoration:none; font-weight:bold; display:inline-block;">???? Connect on WhatsApp</a></p>
-                                       <br /><p>The Kyrosh Executive Team</p>`
+                                subject: `???? Strategy Session Confirmed: ${selectedDate} @ ${selectedSlot} | Kyrosh`,
+                                html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:1px solid #7844D5; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.6);">
+    <tr>
+      <td style="background:linear-gradient(135deg, #7844D5, #0284C7); padding:28px 24px; text-align:center;">
+        <h1 style="color:#ffffff; margin:0; font-size:26px; font-weight:900; letter-spacing:1px;">KYROSH<span style="color:#FFD700;">.</span></h1>
+        <p style="color:#E0E7FF; margin:6px 0 0; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px;">VIP 1-on-1 Strategy Session Confirmed</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:28px 24px;">
+        <h2 style="color:#ffffff; font-size:20px; font-weight:800; margin-top:0; margin-bottom:12px;">Hi ${name}! ????</h2>
+        <p style="color:#CBD5E1; font-size:14.5px; line-height:1.6; margin-bottom:20px;">Your private 1-on-1 Growth Consultation with our executive directors has been scheduled.</p>
+        
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1E0F38; border:1px solid rgba(120,68,213,0.4); border-radius:14px; padding:16px; margin-bottom:24px;">
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Date & Time:</td>
+            <td style="padding:6px 0; color:#38BDF8; font-weight:800; font-size:14px; text-align:right;">${selectedDate} at ${selectedSlot}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Consultation Focus:</td>
+            <td style="padding:6px 0; color:#34D399; font-weight:700; font-size:13px; text-align:right;">${selectedCallType}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Website / Brand:</td>
+            <td style="padding:6px 0; color:#FFD700; font-size:13px; text-align:right;">${website || 'Direct Advisory'}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Meeting Platform:</td>
+            <td style="padding:6px 0; color:#ffffff; font-size:13px; text-align:right;">Google Meet / Direct WhatsApp Video</td>
+          </tr>
+        </table>
+
+        <div style="text-align:center; margin:26px 0 16px;">
+          <a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20booked%20a%20Strategy%20Call%20for%20${encodeURIComponent(selectedDate)}%20at%20${encodeURIComponent(selectedSlot)}." style="background:linear-gradient(135deg, #10B981, #059669); color:#ffffff; text-decoration:none; padding:14px 28px; border-radius:50px; font-size:14px; font-weight:800; display:inline-block; box-shadow:0 6px 20px rgba(16,185,129,0.4);">
+            ???? Confirm on WhatsApp (+91 90199 58415)
+          </a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="background:#0F051C; padding:18px 24px; text-align:center; border-top:1px solid rgba(255,255,255,0.08);">
+        <p style="color:#64748B; font-size:12px; margin:0 0 6px;">?? 2024 Kyrosh Digital Agency. All Rights Reserved.</p>
+        <p style="color:#94A3B8; font-size:11.5px; margin:0;">Shaiban Puttur (Founder) ??? Irfan Vtl (CEO) ??? Shafeeq Sullia (CTO)</p>
+      </td>
+    </tr>
+  </table>
+</div>`
                             })
                         });
                     } catch (err) { console.error('Scheduler email err:', err); }
@@ -3935,13 +3954,57 @@
                             body: JSON.stringify({
                                 to: 'kyroshbrand@gmail.com',
                                 subject: `???? NEW STRATEGY CALL BOOKED: ${name} (${selectedDate} @ ${selectedSlot})`,
-                                html: `<h2>New 1-on-1 Strategy Call Booked</h2>
-                                       <p><strong>Client:</strong> ${name}</p>
-                                       <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a> | <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}">WhatsApp Client</a></p>
-                                       <p><strong>Email:</strong> ${email}</p>
-                                       <p><strong>Type:</strong> ${selectedCallType}</p>
-                                       <p><strong>Slot:</strong> ${selectedDate} at ${selectedSlot}</p>
-                                       <p><strong>Website:</strong> ${website}</p>`
+                                html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:2px solid #38BDF8; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(56,189,248,0.3);">
+    <tr>
+      <td style="background:linear-gradient(135deg, #0284C7, #7844D5); padding:24px; text-align:center;">
+        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">???? STRATEGY CALL BOOKED</h1>
+        <p style="color:#E0F2FE; margin:4px 0 0; font-size:13px; font-weight:700; text-transform:uppercase;">${selectedDate} at ${selectedSlot}</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:24px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1E0F38; border:1px solid rgba(120,68,213,0.4); border-radius:14px; padding:16px; margin-bottom:20px;">
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Client Name:</td>
+            <td style="padding:6px 0; color:#ffffff; font-weight:800; font-size:14px; text-align:right;">${name}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Phone / WhatsApp:</td>
+            <td style="padding:6px 0; color:#38BDF8; font-weight:700; font-size:13px; text-align:right;">${phone}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Email Address:</td>
+            <td style="padding:6px 0; color:#ffffff; font-size:13px; text-align:right;">${email}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Session Focus:</td>
+            <td style="padding:6px 0; color:#34D399; font-weight:800; font-size:13px; text-align:right;">${selectedCallType}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Website / Brand:</td>
+            <td style="padding:6px 0; color:#FFD700; font-size:13px; text-align:right;">${website || 'None'}</td>
+          </tr>
+        </table>
+
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="text-align:center; padding-right:6px;">
+              <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}?text=Hi%20${encodeURIComponent(name)}!%20This%20is%20Shaiban%20from%20Kyrosh.%20Confirming%20our%20strategy%20call%20for%20${encodeURIComponent(selectedDate)}%20at%20${encodeURIComponent(selectedSlot)}." style="background:#25D366; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
+                ???? WhatsApp Client
+              </a>
+            </td>
+            <td style="text-align:center; padding-left:6px;">
+              <a href="tel:${phone}" style="background:#7844D5; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
+                ???? Direct Call
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>`
                             })
                         });
                     } catch (err) { console.error('Owner call email err:', err); }
@@ -4600,7 +4663,7 @@
 
         function openAuthModal() {
             if (authError) { authError.style.display = 'none'; authError.textContent = ''; }
-            if (authSubmitBtn) { authSubmitBtn.classList.remove('loading'); const btnText = authSubmitBtn.querySelector('.btn-text'); if (btnText) btnText.textContent = 'Login ???'; }
+            if (authSubmitBtn) { authSubmitBtn.classList.remove('loading'); const btnText = authSubmitBtn.querySelector('.btn-text'); if (btnText) btnText.textContent = 'Send Magic Link ???'; }
             if (authForm) authForm.reset();
             if (authModal) authModal.classList.add('active');
         }
@@ -4643,7 +4706,7 @@
                     const spinner = authSubmitBtn.querySelector('.spinner');
                     const btnText = authSubmitBtn.querySelector('.btn-text');
                     if (spinner) spinner.style.display = 'inline-block';
-                    if (btnText) btnText.textContent = 'Logging in...';
+                    if (btnText) btnText.textContent = 'Sending Magic Link...';
                 }
 
                 try {
@@ -4673,7 +4736,7 @@
                         authError.style.display = 'block';
                         authError.style.color = '#10B981';
                         authError.style.borderLeftColor = '#10B981';
-                        authError.textContent = '??? Login link sent! Please check your email inbox to confirm.';
+                        authError.textContent = '??? Magic Link sent! Please check your email inbox to log in.';
                     }
                     if (authForm) authForm.reset();
 
@@ -4687,7 +4750,7 @@
                         const spinner = authSubmitBtn.querySelector('.spinner');
                         const btnText = authSubmitBtn.querySelector('.btn-text');
                         if (spinner) spinner.style.display = 'none';
-                        if (btnText) btnText.textContent = 'Login ???';
+                        if (btnText) btnText.textContent = 'Send Magic Link ???';
                     }
                 }
             });
@@ -4878,53 +4941,7 @@
             type();
         }
 
-        // ============ OFFER POPUP TIMER ============
-        const popup = document.getElementById('offerPopup');
-        const closeP = document.getElementById('closePopup');
-        const offerB = document.getElementById('offerBtn');
-        const timer = document.getElementById('offerTimer');
-        const sideT = document.getElementById('sideTimer');
-        const sideC = document.getElementById('sideTimerCount');
-        const reopen = document.getElementById('reopenOffer');
-        let shown = false, total = 3600, interval = null, formSubmitted = false;
-
-        function fmt(s) {
-            const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), se = s % 60;
-            return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(se).padStart(2,'0')}`;
-        }
-        function startT() {
-            if (interval) clearInterval(interval);
-            interval = setInterval(() => {
-                total--;
-                if (total <= 0) {
-                    clearInterval(interval);
-                    if (popup) popup.classList.remove('active');
-                    if (sideT) sideT.classList.remove('active');
-                    return;
-                }
-                const t = fmt(total);
-                if (timer) timer.textContent = t;
-                if (sideC) sideC.textContent = t;
-            }, 1000);
-        }
-        function showOffer() {
-            if (!shown && !formSubmitted) {
-                shown = true;
-                if (popup) popup.classList.add('active');
-                startT();
-            }
-        }
-        setTimeout(showOffer, 8000);
-        if (closeP) closeP.onclick = () => { if (popup) popup.classList.remove('active'); if (sideT) sideT.classList.add('active'); };
-        if (reopen) reopen.onclick = () => { if (sideT) sideT.classList.remove('active'); if (popup) popup.classList.add('active'); };
-        if (offerB) {
-            offerB.onclick = (e) => {
-                e.preventDefault();
-                if (popup) popup.classList.remove('active');
-                if (sideT) sideT.classList.add('active');
-                go('proposal');
-            };
-        }
+        // Offer Popups disabled per user direction
 
         // ============ MARQUEE AUTO-SCROLL CONTROLLER ============
         const tracks = document.querySelectorAll('.marquee-track');
@@ -5028,26 +5045,64 @@
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: email,
-                                    subject: `???? Proposal Received ??? 50% Discount Locked & Welcome to Kyrosh!`,
-                                    html: `<h2>Hi ${name}! ????</h2>
-                                           <p>Founder Shaiban and the Kyrosh engineering team have received your project proposal for <strong>${service}</strong>.</p>
-                                           <p>You have successfully locked in our limited-time <strong style="color:#FF4444;">50% OFF</strong> welcome rate in <strong>${currentCurrency}</strong>!</p>
-                                           <hr style="border:none; border-top:1px solid #eee; margin:20px 0;" />
-                                           <h3>???? Your VIP Growth Sequence:</h3>
-                                           <p>You are now enrolled in our exclusive twice-weekly Growth Briefings:</p>
-                                           <ul>
-                                               <li><strong>Tuesday 10:00 AM:</strong> ???? 10x ROAS Case Studies & E-Commerce / SaaS conversion teardowns.</li>
-                                               <li><strong>Friday 04:00 PM:</strong> ???? Founder Shaiban's Weekly Teardown & VIP 50% Client Spotlight.</li>
-                                           </ul>
-                                           <br />
-                                           <p>Want instant 5-minute confirmation? Click below to chat directly with Founder Shaiban on WhatsApp:</p>
-                                           <p><a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20submitted%20my%20proposal%20for%20${encodeURIComponent(service)}%20and%20want%20to%20discuss%20next%20steps." style="background:#25D366; color:#fff; padding:12px 24px; border-radius:50px; text-decoration:none; font-weight:bold; display:inline-block;">???? Chat on WhatsApp (+91 9019958415)</a></p>
-                                           <br /><p>Best regards,<br><strong>Shaiban Puttur & The Kyrosh Squad</strong></p>`
+                                    subject: `???? Proposal Received ??? 50% Welcome Rate Locked | Kyrosh`,
+                                    html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:1px solid #7844D5; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.6);">
+    <tr>
+      <td style="background:linear-gradient(135deg, #7844D5, #0284C7); padding:28px 24px; text-align:center;">
+        <h1 style="color:#ffffff; margin:0; font-size:26px; font-weight:900; letter-spacing:1px;">KYROSH<span style="color:#FFD700;">.</span></h1>
+        <p style="color:#E0E7FF; margin:6px 0 0; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px;">Official Project Confirmation & 50% Rate Locked</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:28px 24px;">
+        <h2 style="color:#ffffff; font-size:20px; font-weight:800; margin-top:0; margin-bottom:12px;">Hi ${name}! ????</h2>
+        <p style="color:#CBD5E1; font-size:14.5px; line-height:1.6; margin-bottom:20px;">Founder Shaiban Puttur and our executive engineering squad have received your project proposal. Your <strong>50% Welcome Discount</strong> is locked in!</p>
+        
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1E0F38; border:1px solid rgba(120,68,213,0.4); border-radius:14px; padding:16px; margin-bottom:24px;">
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Selected Service:</td>
+            <td style="padding:6px 0; color:#38BDF8; font-weight:700; font-size:13px; text-align:right;">${service}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Currency Rate:</td>
+            <td style="padding:6px 0; color:#34D399; font-weight:700; font-size:13px; text-align:right;">${currentCurrency} (50% OFF Applied)</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Direct Phone:</td>
+            <td style="padding:6px 0; color:#ffffff; font-size:13px; text-align:right;">${phone}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Company / Brand:</td>
+            <td style="padding:6px 0; color:#FFD700; font-size:13px; text-align:right;">${business || 'Direct Project'}</td>
+          </tr>
+        </table>
+
+        <h3 style="color:#FFD700; font-size:15px; font-weight:800; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.8px;">??? Next Steps (Within 12 Hours):</h3>
+        <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 6px;">1. <strong>Strategic Scope Teardown</strong>: Our technical director audits your positioning and bottlenecks.</p>
+        <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 6px;">2. <strong>Architecture Blueprint & Quote</strong>: Custom timeline and discounted invoice delivered.</p>
+        <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 20px;">3. <strong>Production Kickoff</strong>: Rapid deployment to market.</p>
+
+        <div style="text-align:center; margin:26px 0 16px;">
+          <a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20submitted%20my%20proposal%20for%20${encodeURIComponent(service)}%20and%20want%20to%20fast-track%20kickoff." style="background:linear-gradient(135deg, #10B981, #059669); color:#ffffff; text-decoration:none; padding:14px 28px; border-radius:50px; font-size:14px; font-weight:800; display:inline-block; box-shadow:0 6px 20px rgba(16,185,129,0.4);">
+            ???? Fast-Track on WhatsApp (+91 90199 58415)
+          </a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="background:#0F051C; padding:18px 24px; text-align:center; border-top:1px solid rgba(255,255,255,0.08);">
+        <p style="color:#64748B; font-size:12px; margin:0 0 6px;">?? 2024 Kyrosh Digital Agency. All Rights Reserved.</p>
+        <p style="color:#94A3B8; font-size:11.5px; margin:0;">Shaiban Puttur (Founder) ??? Irfan Vtl (CEO) ??? Shafeeq Sullia (CTO)</p>
+      </td>
+    </tr>
+  </table>
+</div>`
                                 })
                             });
                         } catch (err) { console.error('Client email dispatch error:', err); }
 
-                        // ============ ???? OWNER INSTANT LEAD ALERT (EMAIL & TELEGRAM/WHATSAPP DISPATCH) ============
+                        // ============ ???? OWNER INSTANT LEAD ALERT ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
@@ -5055,14 +5110,61 @@
                                 body: JSON.stringify({
                                     to: 'kyroshbrand@gmail.com',
                                     subject: `???? HOT NEW PROPOSAL [${currentCurrency}]: ${name} (${service})`,
-                                    html: `<h2>???? New Lead Alert ??? 50% Proposal Form</h2>
-                                           <p><strong>Candidate / Client:</strong> ${name}</p>
-                                           <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a> | <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}">WhatsApp Client</a></p>
-                                           <p><strong>Email:</strong> ${email}</p>
-                                           <p><strong>Company / Brand:</strong> ${business || 'Not provided'}</p>
-                                           <p><strong>Service Requested:</strong> ${service}</p>
-                                           <p><strong>Message / Notes:</strong> ${message || 'None'}</p>
-                                           <p><strong>Newsletter Status:</strong> Enrolled in Bi-Weekly Drip (Tue & Fri)</p>`
+                                    html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:2px solid #EF4444; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(239,68,68,0.3);">
+    <tr>
+      <td style="background:linear-gradient(135deg, #DC2626, #7844D5); padding:24px; text-align:center;">
+        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">???? HOT LEAD ALERT</h1>
+        <p style="color:#FEE2E2; margin:4px 0 0; font-size:13px; font-weight:700; text-transform:uppercase;">New 50% Proposal Submitted [${currentCurrency}]</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:24px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1E0F38; border:1px solid rgba(120,68,213,0.4); border-radius:14px; padding:16px; margin-bottom:20px;">
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Client Name:</td>
+            <td style="padding:6px 0; color:#ffffff; font-weight:800; font-size:14px; text-align:right;">${name}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Phone / WhatsApp:</td>
+            <td style="padding:6px 0; color:#38BDF8; font-weight:700; font-size:13px; text-align:right;">${phone}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Email Address:</td>
+            <td style="padding:6px 0; color:#ffffff; font-size:13px; text-align:right;">${email}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Company / Brand:</td>
+            <td style="padding:6px 0; color:#FFD700; font-size:13px; text-align:right;">${business || 'Not specified'}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Requested Service:</td>
+            <td style="padding:6px 0; color:#34D399; font-weight:800; font-size:13px; text-align:right;">${service}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Project Goals / Notes:</td>
+            <td style="padding:6px 0; color:#E2E8F0; font-size:12.5px; text-align:right;">${message || 'None provided'}</td>
+          </tr>
+        </table>
+
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="text-align:center; padding-right:6px;">
+              <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}?text=Hi%20${encodeURIComponent(name)}!%20This%20is%20Shaiban%20from%20Kyrosh.%20I%20received%20your%20proposal%20for%20${encodeURIComponent(service)}." style="background:#25D366; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
+                ???? WhatsApp Client
+              </a>
+            </td>
+            <td style="text-align:center; padding-left:6px;">
+              <a href="tel:${phone}" style="background:#7844D5; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
+                ???? Direct Call
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>`
                                 })
                             });
                         } catch (err) { console.error('Owner email notification error:', err); }
