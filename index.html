@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kyrosh â€” No.1 Digital Agency | Websites, Software, Ads & Brand Growth</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Kyrosh — No.1 Digital Agency | Websites, Software, Ads & Brand Growth</title>
     <meta name="description" content="Kyrosh - Premier Full-Stack Digital Agency. Bespoke Websites, Custom Software, High-ROI Performance Ads, Video Production, SEO & GEO Domination." />
     <meta name="keywords" content="digital agency, marketing, custom websites, software development, SEO, GEO, branding, performance ads, Kyrosh, ROI calculator, strategy call scheduler, AI copilot" />
     <meta name="author" content="Kyrosh" />
@@ -350,11 +350,11 @@
         .ba-tabs { display:flex; justify-content:center; gap:12px; margin-bottom:38px; flex-wrap:wrap; }
         .ba-tab-btn { background:rgba(255,255,255,0.05); border:1.5px solid var(--dark-border); color:var(--gray-light); padding:10px 22px; border-radius:50px; font-size:13.5px; font-weight:700; cursor:pointer; transition:all .3s; }
         .ba-tab-btn.active, .ba-tab-btn:hover { background:linear-gradient(135deg, var(--primary), var(--primary-dark)); border-color:var(--primary-light); color:#fff; box-shadow:0 6px 20px var(--primary-glow); }
-        .ba-slider-container { max-width:920px; margin:0 auto; position:relative; border-radius:24px; overflow:hidden; border:2px solid var(--dark-border-glow); box-shadow:var(--shadow-glass); aspect-ratio:16/9; user-select:none; }
+        .ba-slider-container { width:100%; max-width:920px; margin:0 auto; position:relative; border-radius:24px; overflow:hidden; border:2px solid var(--dark-border-glow); box-shadow:var(--shadow-glass); aspect-ratio:16/9; user-select:none; }
         .ba-image-wrapper { position:relative; width:100%; height:100%; }
         .ba-img { width:100%; height:100%; object-fit:cover; display:block; }
         .ba-after-img-wrap { position:absolute; top:0; left:0; height:100%; width:50%; overflow:hidden; z-index:2; border-right:3px solid #fff; box-shadow:5px 0 25px rgba(0,0,0,0.5); }
-        .ba-after-img-wrap .ba-img { width:920px; max-width:none; height:100%; object-fit:cover; }
+        .ba-after-img-wrap .ba-img { width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0; width:100%; }
         .ba-handle { position:absolute; top:50%; left:50%; width:46px; height:46px; background:linear-gradient(135deg, var(--primary-light), var(--primary)); border:3px solid #fff; border-radius:50%; transform:translate(-50%, -50%); z-index:10; display:flex; align-items:center; justify-content:center; color:#fff; cursor:ew-resize; box-shadow:0 0 25px var(--primary-glow); font-size:16px; }
         .ba-label { position:absolute; bottom:20px; padding:6px 16px; border-radius:50px; font-size:12px; font-weight:800; letter-spacing:1px; text-transform:uppercase; backdrop-filter:blur(8px); z-index:3; }
         .ba-label.before { left:20px; background:rgba(239,68,68,0.75); color:#fff; }
@@ -977,7 +977,7 @@
         .status-dot { width:9px; height:9px; border-radius:50%; background:#10B981; animation:pulseBeacon 2s infinite; }
 
         /* ====================================================
-           ðŸ¤– AI AGENCY COPILOT FLOATING DRAWER & CHATBOT
+           🤖 AI AGENCY COPILOT FLOATING DRAWER & CHATBOT
         ==================================================== */
         .ai-bot-float-btn {
             position: fixed;
@@ -1229,7 +1229,7 @@
         .confetti-piece { position:absolute; width:10px; height:10px; animation:confettiFall linear infinite; }
 
         /* ====================================================
-           ðŸ“± ULTRA-CLEAN RESPONSIVE MEDIA QUERIES (MOBILE FIRST)
+           📱 ULTRA-CLEAN RESPONSIVE MEDIA QUERIES (MOBILE FIRST)
         ==================================================== */
         @media (max-width: 1100px) {
             .sensory-dock { display: none; }
@@ -1472,7 +1472,7 @@
     <!-- Success Popup -->
     <div class="success-popup-overlay" id="successPopup">
         <div class="success-popup" style="text-align:center;">
-            <div style="font-size:42px; margin-bottom:10px;">ðŸŽ‰</div>
+            <div style="font-size:42px; margin-bottom:10px;">🎉</div>
             <h3 style="color:#FFD700; font-size:22px; font-weight:800; margin-bottom:8px;">Congratulations!</h3>
             <p style="color:#fff; font-size:14px; line-height:1.5;">You have unlocked an exclusive <strong style="color:#FF4444; font-size:17px;">50% OFF</strong> on all services!</p>
             <p style="color:var(--gray); font-size:12px; margin-top:8px;">Our lead strategist will contact you via WhatsApp shortly.</p>
@@ -1484,40 +1484,40 @@
         <div class="login-success-popup" style="text-align:center;">
             <div style="width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-light)); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:26px; color:#fff;"><i class="fas fa-check"></i></div>
             <h3 style="color:#fff; font-size:22px; font-weight:800; margin-bottom:6px;">Login Successful!</h3>
-            <p style="color:var(--gray); font-size:14px;">Welcome back, <strong id="loginSuccessName" style="color:var(--primary-light);">User</strong> ðŸ‘‹</p>
+            <p style="color:var(--gray); font-size:14px;">Welcome back, <strong id="loginSuccessName" style="color:var(--primary-light);">User</strong> 👋</p>
         </div>
     </div>
 
     <!-- Welcome Popup -->
     <div class="welcome-popup-overlay" id="welcomePopup">
         <div class="welcome-popup" style="text-align:center;">
-            <button class="close-welcome" id="closeWelcome">âœ•</button>
+            <button class="close-welcome" id="closeWelcome"><i class="fas fa-times"></i></button>
             <div class="confetti-container" id="confettiContainer"></div>
-            <div style="font-size:50px; margin-bottom:12px;">ðŸŽŠ</div>
+            <div style="font-size:50px; margin-bottom:12px;">🎊</div>
             <h2 style="font-size:26px; font-weight:900; margin-bottom:8px;">Welcome to <span style="color:var(--primary-light);">Kyrosh</span>!</h2>
-            <p style="color:var(--gray); font-size:14.5px; margin-bottom:20px; line-height:1.6;">ðŸŽ You've unlocked an exclusive <strong style="color:#FF4444; font-size:18px;">50% OFF</strong> welcome offer on all digital services!</p>
-            <button class="btn-primary" id="welcomeOfferBtn" style="width:100%; justify-content:center;">Claim Your 50% Offer â†’</button>
+            <p style="color:var(--gray); font-size:14.5px; margin-bottom:20px; line-height:1.6;">🎁 You've unlocked an exclusive <strong style="color:#FF4444; font-size:18px;">50% OFF</strong> welcome offer on all digital services!</p>
+            <button class="btn-primary" id="welcomeOfferBtn" style="width:100%; justify-content:center;">Claim Your 50% Offer →</button>
         </div>
     </div>
 
     <!-- Offer Popup -->
     <div class="offer-popup-overlay" id="offerPopup">
         <div class="offer-popup">
-            <button class="close-popup" id="closePopup">âœ•</button>
-            <div class="offer-icon">ðŸ”¥</div>
+            <button class="close-popup" id="closePopup"><i class="fas fa-times"></i></button>
+            <div class="offer-icon">🔥</div>
             <h3 style="color:var(--primary-light); font-size:18px; font-weight:900;">FLASH DISCOUNT</h3>
             <div class="offer-percent">50% OFF</div>
             <p style="color:#fff; font-weight:700; font-size:11px;">ON ALL SERVICES TODAY</p>
-            <p style="color:var(--gray); font-size:10px; margin:4px 0;">Websites â€¢ Software â€¢ Ads â€¢ Video â€¢ SEO</p>
+            <p style="color:var(--gray); font-size:10px; margin:4px 0;">Websites • Software • Ads • Video • SEO</p>
             <div class="offer-timer" id="offerTimer">01:00:00</div>
             <br>
-            <a href="#proposal" class="btn-offer" id="offerBtn">Claim Offer Now â†’</a>
+            <a href="#proposal" class="btn-offer" id="offerBtn">Claim Offer Now →</a>
         </div>
     </div>
 
     <!-- Side Timer -->
     <div class="side-timer" id="sideTimer">
-        <span>ðŸ”¥</span>
+        <span>🔥</span>
         <span style="font-size:9.5px; color:var(--primary-light); font-weight:700;">ENDS:</span>
         <span style="font-size:12px; color:#FF4444; font-weight:900;" id="sideTimerCount">01:00:00</span>
         <button style="background:var(--primary-light); color:#000; border:none; padding:4px 9px; border-radius:5px; font-size:9px; font-weight:800; cursor:pointer;" id="reopenOffer">VIEW</button>
@@ -1526,7 +1526,7 @@
     <!-- Auth Modal -->
     <div class="auth-modal-overlay" id="authModal">
         <div class="auth-modal">
-            <button class="close-modal" id="closeAuthModal">âœ•</button>
+            <button class="close-modal" id="closeAuthModal"><i class="fas fa-times"></i></button>
             <div class="modal-header">
                 <div class="icon-circle"><i class="fas fa-magic"></i></div>
                 <h3 style="font-size:24px; font-weight:800;">Magic Link Login</h3>
@@ -1548,7 +1548,7 @@
                 </div>
                 <button type="submit" class="auth-submit" id="authSubmitBtn">
                     <span class="spinner" style="display:none;"><i class="fas fa-spinner"></i></span>
-                    <span class="btn-text">Send Instant Magic Link âœ¨</span>
+                    <span class="btn-text">Send Instant Magic Link ✨</span>
                 </button>
             </form>
             <p style="color:var(--gray); font-size:12px; text-align:center; margin-top:14px;">We'll email you a secure one-click sign in link.</p>
@@ -1558,14 +1558,14 @@
     <!-- Cinematic Showreel Lightbox Modal (Founder Words) -->
     <div class="showreel-modal-overlay" id="showreelModal">
         <div class="showreel-modal" style="max-width:440px; border-radius:28px;">
-            <button class="close-modal" id="closeShowreelModal" style="z-index:20; color:#fff; top:12px; right:16px;">âœ•</button>
+            <button class="close-modal" id="closeShowreelModal" style="z-index:20; color:#fff; top:12px; right:16px;"><i class="fas fa-times"></i></button>
             <div class="showreel-video-container" style="padding-bottom:177.77%; /* 9:16 Vertical Short */">
-                <iframe id="showreelIframe" src="" title="What is Kyrosh â€” Words From Founder Shaiban" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="showreelIframe" src="" title="What is Kyrosh — Words From Founder Shaiban" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div style="padding:18px 20px; text-align:center; background:#100620;">
                 <h4 style="font-size:17px; font-weight:800; color:#fff; margin-bottom:4px;">What is Kyrosh</h4>
                 <p style="font-size:12.5px; color:var(--primary-light); font-weight:600; margin-bottom:14px;">Words From Founder Shaiban</p>
-                <button class="btn-primary" id="showreelClaimBtn" style="width:100%; justify-content:center; padding:10px 18px; font-size:13px;"><i class="fas fa-rocket"></i> Work With Kyrosh (50% OFF) â†’</button>
+                <button class="btn-primary" id="showreelClaimBtn" style="width:100%; justify-content:center; padding:10px 18px; font-size:13px;"><i class="fas fa-rocket"></i> Work With Kyrosh (50% OFF) →</button>
             </div>
         </div>
     </div>
@@ -1573,8 +1573,8 @@
     <!-- Gamified Spin-to-Win Fortune Wheel Modal -->
     <div class="wheel-modal-overlay" id="wheelModal">
         <div class="wheel-modal">
-            <button class="close-modal" id="closeWheelModal">âœ•</button>
-            <div style="font-size:36px; margin-bottom:4px;">ðŸŽ</div>
+            <button class="close-modal" id="closeWheelModal"><i class="fas fa-times"></i></button>
+            <div style="font-size:36px; margin-bottom:4px;">🎁</div>
             <h3 style="font-size:24px; font-weight:900; margin-bottom:4px;">Spin & Win <span style="color:var(--primary-light);">Growth Perks</span></h3>
             <p style="color:var(--gray); font-size:13px;">Tap SPIN to unlock an exclusive high-value growth voucher for your brand!</p>
 
@@ -1585,9 +1585,9 @@
             </div>
 
             <div class="wheel-result-box" id="wheelResultBox">
-                <h4 style="color:#FFD700; font-size:18px; font-weight:800;" id="wheelResultTitle">ðŸŽ‰ Congratulations!</h4>
-                <p style="color:#fff; font-size:14px; margin:6px 0;" id="wheelResultDesc">You unlocked: <strong>ðŸ”¥ Extra 10% Off Any Package</strong></p>
-                <button class="btn-primary" id="claimWheelPerkBtn" style="width:100%; justify-content:center; margin-top:10px;"><i class="fas fa-gift"></i> Claim This Perk on My Proposal â†’</button>
+                <h4 style="color:#FFD700; font-size:18px; font-weight:800;" id="wheelResultTitle">🎉 Congratulations!</h4>
+                <p style="color:#fff; font-size:14px; margin:6px 0;" id="wheelResultDesc">You unlocked: <strong>🔥 Extra 10% Off Any Package</strong></p>
+                <button class="btn-primary" id="claimWheelPerkBtn" style="width:100%; justify-content:center; margin-top:10px;"><i class="fas fa-gift"></i> Claim This Perk on My Proposal →</button>
             </div>
         </div>
     </div>
@@ -1595,7 +1595,7 @@
     <!-- Careers Application Modal -->
     <div class="career-modal-overlay" id="careerModal">
         <div class="career-modal">
-            <button class="close-modal" id="closeCareerModal">âœ•</button>
+            <button class="close-modal" id="closeCareerModal"><i class="fas fa-times"></i></button>
             <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
                 <div style="width:44px; height:44px; border-radius:50%; background:var(--primary-glow); border:1.5px solid var(--primary-light); display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--primary-light);"><i class="fas fa-briefcase"></i></div>
                 <div>
@@ -1625,19 +1625,19 @@
                     <label>Briefly Introduce Yourself & Why Kyrosh</label>
                     <textarea id="careerBio" rows="3" placeholder="Tell us about top projects you've built and what drives you..."></textarea>
                 </div>
-                <button type="submit" class="submit-btn" id="careerSubmitBtn" style="padding:14px;"><i class="fas fa-paper-plane"></i> Submit Application â†’</button>
+                <button type="submit" class="submit-btn" id="careerSubmitBtn" style="padding:14px;"><i class="fas fa-paper-plane"></i> Submit Application →</button>
             </form>
-            <p style="text-align:center; margin-top:12px; color:#10B981; font-weight:700; display:none; font-size:13px;" id="careerSuccessMsg">âœ… Application received! Our talent squad will review your portfolio within 48h.</p>
+            <p style="text-align:center; margin-top:12px; color:#10B981; font-weight:700; display:none; font-size:13px;" id="careerSuccessMsg">✅ Application received! Our talent squad will review your portfolio within 48h.</p>
         </div>
     </div>
 
     <!-- Edit Profile Modal -->
     <div class="edit-profile-overlay" id="editProfileModal">
         <div class="edit-profile-modal">
-            <button class="close-edit" id="closeEditModal">âœ•</button>
+            <button class="close-edit" id="closeEditModal"><i class="fas fa-times"></i></button>
             <h3 style="font-size:22px; font-weight:800; text-align:center; margin-bottom:18px;"><i class="fas fa-user-edit" style="color:var(--primary-light); margin-right:8px;"></i>Edit Profile</h3>
             <div id="editError" class="edit-error"></div>
-            <div id="editSuccess" class="edit-success">âœ… Profile updated successfully!</div>
+            <div id="editSuccess" class="edit-success">✅ Profile updated successfully!</div>
             <div class="input-group">
                 <i class="fas fa-user"></i>
                 <input type="text" id="editName" placeholder="Full Name" />
@@ -1656,7 +1656,7 @@
     <!-- Client Dashboard Modal -->
     <div class="dashboard-overlay" id="dashboardModal">
         <div class="dashboard-modal">
-            <button class="close-dash" id="closeDashboardModal">âœ•</button>
+            <button class="close-dash" id="closeDashboardModal"><i class="fas fa-times"></i></button>
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-bottom:1px solid var(--dark-border); padding-bottom:18px;">
                 <div>
                     <h2 style="font-size:24px; font-weight:900;"><i class="fas fa-columns" style="color:var(--primary-light); margin-right:8px;"></i> Client Growth Portal</h2>
@@ -1685,7 +1685,7 @@
     <!-- Case Study Modal -->
     <div class="case-study-overlay" id="caseStudyModal">
         <div class="case-study-modal">
-            <button class="close-case" id="closeCaseModal">âœ•</button>
+            <button class="close-case" id="closeCaseModal"><i class="fas fa-times"></i></button>
             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
                 <span class="roi-badge" id="caseCategory">E-COMMERCE & D2C</span>
                 <span style="font-size:11.5px; font-weight:700; color:var(--accent-gold);" id="caseTimeline"><i class="fas fa-bolt"></i> 45 Days to Record Scale</span>
@@ -1711,7 +1711,7 @@
 
             <div class="case-quote-box" id="caseQuote">
                 "Kyrosh didn't just build us a website; they engineered an automated sales machine."
-                <div style="font-weight:700; color:#fff; margin-top:6px; font-size:12px;" id="caseAuthor">â€” Verified Founder</div>
+                <div style="font-weight:700; color:#fff; margin-top:6px; font-size:12px;" id="caseAuthor">— Verified Founder</div>
             </div>
 
             <div style="background:rgba(9,3,18,0.5); border-radius:14px; padding:18px; margin-bottom:20px; border:1px solid var(--dark-border);">
@@ -1719,12 +1719,12 @@
                 <p id="caseTech" style="color:var(--gray); font-size:13px;">Next.js, Tailwind CSS, Supabase, Meta Ads Advantage+, Automated Retention Funnels.</p>
             </div>
 
-            <button class="btn-primary" id="caseStudyCta" style="width:100%; justify-content:center;"><i class="fas fa-rocket"></i> Launch Similar Strategy For My Brand â†’</button>
+            <button class="btn-primary" id="caseStudyCta" style="width:100%; justify-content:center;"><i class="fas fa-rocket"></i> Launch Similar Strategy For My Brand →</button>
         </div>
     </div>
 
     <!-- ====================================================
-       ðŸ¤– AI AGENCY GROWTH COPILOT (INTERACTIVE CHATBOT)
+       🤖 AI AGENCY GROWTH COPILOT (INTERACTIVE CHATBOT)
     ==================================================== -->
     <div class="ai-bot-float-btn" id="aiBotFloatBtn">
         <div class="ai-bot-avatar-icon"><i class="fas fa-robot"></i></div>
@@ -1738,21 +1738,21 @@
                 <div class="ai-bot-avatar-icon"><i class="fas fa-robot"></i></div>
                 <div>
                     <h4 style="font-size:13.5px; font-weight:800; color:#fff;">Kyrosh AI Copilot</h4>
-                    <span style="font-size:10.5px; color:#10B981; font-weight:700;"><i class="fas fa-circle" style="font-size:8px;"></i> Online â€¢ Instant Strategy</span>
+                    <span style="font-size:10.5px; color:#10B981; font-weight:700;"><i class="fas fa-circle" style="font-size:8px;"></i> Online • Instant Strategy</span>
                 </div>
             </div>
-            <button class="close-ai" id="closeAiChat" style="position:static; font-size:18px;">âœ•</button>
+            <button class="close-ai" id="closeAiChat" style="position:static; font-size:18px;"><i class="fas fa-times"></i></button>
         </div>
 
         <div class="ai-chat-body" id="aiChatBody">
             <div class="ai-message bot">
-                ðŸ‘‹ <strong>Hello! I am your Kyrosh AI Growth Copilot.</strong><br>
+                👋 <strong>Hello! I am your Kyrosh AI Growth Copilot.</strong><br>
                 How can I accelerate your brand today? Select a quick topic or ask me anything:
                 <div class="ai-quick-chips">
-                    <button class="ai-chip-btn" data-query="Recommend a package for my E-Commerce brand">ðŸ›’ E-Commerce Plan</button>
-                    <button class="ai-chip-btn" data-query="How does the 50% discount work?">ðŸŽ 50% Discount Info</button>
-                    <button class="ai-chip-btn" data-query="How fast can you build custom software?">âš¡ Software Timeline</button>
-                    <button class="ai-chip-btn" data-query="Book a 1-on-1 strategy call">ðŸ“… Book Call</button>
+                    <button class="ai-chip-btn" data-query="Recommend a package for my E-Commerce brand">🛒 E-Commerce Plan</button>
+                    <button class="ai-chip-btn" data-query="How does the 50% discount work?">🎁 50% Discount Info</button>
+                    <button class="ai-chip-btn" data-query="How fast can you build custom software?">⚡ Software Timeline</button>
+                    <button class="ai-chip-btn" data-query="Book a 1-on-1 strategy call">📅 Book Call</button>
                 </div>
             </div>
         </div>
@@ -1793,7 +1793,7 @@
                 <div class="auth-buttons" id="authButtons"></div>
             </div>
             
-            <div class="hamburger" id="hamburger">â˜°</div>
+            <div class="hamburger" id="hamburger">☰</div>
         </div>
     </header>
 
@@ -1826,9 +1826,9 @@
         <p style="text-align:center; color:var(--gray); font-size:13px; margin-bottom:16px; letter-spacing:2.5px; text-transform:uppercase; font-weight:700;">Powering High-Growth Startups & Industry Leaders Globally</p>
         <div class="marquee-wrapper">
             <div class="logos">
-                <span>TECHCORP âœ¦ GLOBAL BRAND âœ¦ NEXUS DIGITAL âœ¦ HYPERGROWTH âœ¦ LUMINA STUDIO âœ¦ APEX VENTURES âœ¦</span>
-                <span>TECHCORP âœ¦ GLOBAL BRAND âœ¦ NEXUS DIGITAL âœ¦ HYPERGROWTH âœ¦ LUMINA STUDIO âœ¦ APEX VENTURES âœ¦</span>
-                <span>TECHCORP âœ¦ GLOBAL BRAND âœ¦ NEXUS DIGITAL âœ¦ HYPERGROWTH âœ¦ LUMINA STUDIO âœ¦ APEX VENTURES âœ¦</span>
+                <span>TECHCORP ✦ GLOBAL BRAND ✦ NEXUS DIGITAL ✦ HYPERGROWTH ✦ LUMINA STUDIO ✦ APEX VENTURES ✦</span>
+                <span>TECHCORP ✦ GLOBAL BRAND ✦ NEXUS DIGITAL ✦ HYPERGROWTH ✦ LUMINA STUDIO ✦ APEX VENTURES ✦</span>
+                <span>TECHCORP ✦ GLOBAL BRAND ✦ NEXUS DIGITAL ✦ HYPERGROWTH ✦ LUMINA STUDIO ✦ APEX VENTURES ✦</span>
             </div>
         </div>
     </div>
@@ -1886,7 +1886,7 @@
                     <div class="scan-progress-bar-bg">
                         <div class="scan-progress-fill" id="scanProgressFill"></div>
                     </div>
-                    <div class="scan-status-text" id="scanStatusText">ðŸš€ Initializing Kyrosh Diagnostic Core...</div>
+                    <div class="scan-status-text" id="scanStatusText">🚀 Initializing Kyrosh Diagnostic Core...</div>
                 </div>
 
                 <div class="scan-results-container" id="scanResultsContainer">
@@ -1902,7 +1902,7 @@
                                 <p style="color:var(--gray); font-size:13px;">Your site is currently losing an estimated <strong>35% to 55%</strong> of potential buyers due to friction.</p>
                             </div>
                         </div>
-                        <button class="btn-primary" id="scanFixBtn" style="padding:12px 24px;"><i class="fas fa-wrench"></i> Fix These Bottlenecks (50% OFF) â†’</button>
+                        <button class="btn-primary" id="scanFixBtn" style="padding:12px 24px;"><i class="fas fa-wrench"></i> Fix These Bottlenecks (50% OFF) →</button>
                     </div>
 
                     <div class="scan-breakdown-grid">
@@ -2003,7 +2003,7 @@
                         <div style="background:var(--primary-glow); border:1px solid var(--dark-border); border-radius:12px; padding:10px 14px; margin-bottom:16px; font-size:12px; color:var(--gray-light);">
                             <i class="fas fa-video" style="color:var(--accent-cyan); margin-right:6px;"></i> Hosted via <strong>Google Meet / WhatsApp Video</strong>. Link sent instantly.
                         </div>
-                        <button class="btn-primary" id="schedSubmitBtn" style="width:100%; justify-content:center; padding:14px;"><i class="fas fa-check-circle"></i> Confirm Free Strategy Call â†’</button>
+                        <button class="btn-primary" id="schedSubmitBtn" style="width:100%; justify-content:center; padding:14px;"><i class="fas fa-check-circle"></i> Confirm Free Strategy Call →</button>
                     </div>
                 </div>
             </div>
@@ -2026,7 +2026,7 @@
                     <div class="roi-field">
                         <label>
                             <span><i class="fas fa-wallet" style="color:var(--primary-light); margin-right:6px;"></i> Monthly Marketing Budget</span>
-                            <span class="val-display" id="roiBudgetDisplay">â‚¹1,00,000</span>
+                            <span class="val-display" id="roiBudgetDisplay">₹1,00,000</span>
                         </label>
                         <input type="range" min="20000" max="1000000" step="10000" value="100000" class="roi-range-slider" id="roiBudgetSlider">
                         <div class="roi-presets" id="roiPresetsContainer"></div>
@@ -2048,7 +2048,7 @@
                     <div class="roi-field">
                         <label>
                             <span><i class="fas fa-tag" style="color:var(--accent-gold); margin-right:6px;"></i> Average Order / Customer Value</span>
-                            <span class="val-display" id="roiAovDisplay">â‚¹2,500</span>
+                            <span class="val-display" id="roiAovDisplay">₹2,500</span>
                         </label>
                         <input type="range" min="500" max="25000" step="500" value="2500" class="roi-range-slider" id="roiAovSlider">
                     </div>
@@ -2057,7 +2057,7 @@
                 <div class="roi-results-box tilt-card">
                     <span class="roi-badge"><i class="fas fa-bolt"></i> ESTIMATED MONTHLY RESULTS</span>
                     <div class="roi-rev-label">Projected Monthly Revenue</div>
-                    <div class="roi-rev-number" id="roiProjectedRevenue">â‚¹5,60,000</div>
+                    <div class="roi-rev-number" id="roiProjectedRevenue">₹5,60,000</div>
 
                     <div class="roi-stats-mini-grid">
                         <div class="roi-mini-card">
@@ -2069,7 +2069,7 @@
                             <div class="roi-mini-lbl">New Monthly Customers</div>
                         </div>
                         <div class="roi-mini-card">
-                            <div class="roi-mini-val" id="roiProjectedProfit">â‚¹4,60,000</div>
+                            <div class="roi-mini-val" id="roiProjectedProfit">₹4,60,000</div>
                             <div class="roi-mini-lbl">Gross Added Revenue</div>
                         </div>
                         <div class="roi-mini-card">
@@ -2078,7 +2078,7 @@
                         </div>
                     </div>
 
-                    <button class="btn-primary" id="roiClaimBtn" style="width:100%; justify-content:center;"><i class="fas fa-lock"></i> Lock In This Growth with 50% OFF â†’</button>
+                    <button class="btn-primary" id="roiClaimBtn" style="width:100%; justify-content:center;"><i class="fas fa-lock"></i> Lock In This Growth with 50% OFF →</button>
                     <p style="font-size:11px; color:var(--gray); margin-top:10px;">*Calculations based on aggregated Kyrosh client performance data.</p>
                 </div>
             </div>
@@ -2137,7 +2137,7 @@
             </div>
 
             <div class="work-grid" data-aos="fade-up" data-aos-delay="150" id="workGrid">
-                <div class="work-card tilt-card" data-category="web" data-title="Luxe E-Commerce Storefront" data-desc="Built a high-performance headless Next.js storefront for a luxury fashion brand with sub-second page loads." data-metric1="+340%" data-metriclbl1="Revenue Growth" data-metric2="5.8x" data-metriclbl2="Average ROAS" data-metric3="-45%" data-metriclbl3="Cart Dropoff" data-timeline="30 Days to Launch" data-quote="Kyrosh took our slow Shopify template and turned it into an ultra-fast global storefront that tripled our checkout conversion." data-author="â€” Anya R., Founder of Luxe Atelier" data-tech="Next.js, Tailwind CSS, Shopify API, Supabase, Cloudflare Edge">
+                <div class="work-card tilt-card" data-category="web" data-title="Luxe E-Commerce Storefront" data-desc="Built a high-performance headless Next.js storefront for a luxury fashion brand with sub-second page loads." data-metric1="+340%" data-metriclbl1="Revenue Growth" data-metric2="5.8x" data-metriclbl2="Average ROAS" data-metric3="-45%" data-metriclbl3="Cart Dropoff" data-timeline="30 Days to Launch" data-quote="Kyrosh took our slow Shopify template and turned it into an ultra-fast global storefront that tripled our checkout conversion." data-author="— Anya R., Founder of Luxe Atelier" data-tech="Next.js, Tailwind CSS, Shopify API, Supabase, Cloudflare Edge">
                     <span class="work-card-badge">E-Commerce Web</span>
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="E-Commerce" loading="lazy">
                     <div class="work-card-overlay">
@@ -2147,7 +2147,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="branding" data-title="Apex Brand Identity Overhaul" data-desc="Complete visual rebranding, typography systems, and packaging architecture for an emerging fintech brand." data-metric1="+220%" data-metriclbl1="Trust Perception" data-metric2="4.4x" data-metriclbl2="Investor Interest" data-metric3="99.2%" data-metriclbl3="Brand Recall" data-timeline="4 Weeks Complete" data-quote="The brand identity Kyrosh created helped us close our $2.5M Seed round. Unbelievable eye for modern aesthetics." data-author="â€” Marcus V., CEO at Apex Fintech" data-tech="Figma, Adobe Illustrator, 3D Brand Guidelines, Motion Design">
+                <div class="work-card tilt-card" data-category="branding" data-title="Apex Brand Identity Overhaul" data-desc="Complete visual rebranding, typography systems, and packaging architecture for an emerging fintech brand." data-metric1="+220%" data-metriclbl1="Trust Perception" data-metric2="4.4x" data-metriclbl2="Investor Interest" data-metric3="99.2%" data-metriclbl3="Brand Recall" data-timeline="4 Weeks Complete" data-quote="The brand identity Kyrosh created helped us close our $2.5M Seed round. Unbelievable eye for modern aesthetics." data-author="— Marcus V., CEO at Apex Fintech" data-tech="Figma, Adobe Illustrator, 3D Brand Guidelines, Motion Design">
                     <span class="work-card-badge">Branding & Identity</span>
                     <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" alt="Brand Identity" loading="lazy">
                     <div class="work-card-overlay">
@@ -2157,7 +2157,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="ads" data-title="10x Omnichannel Ad Funnel" data-desc="Engineered a multi-tiered Meta & Google Ads machine generating over â‚¹1.8 Crore in tracked monthly revenue." data-metric1="+450%" data-metriclbl1="Monthly Revenue" data-metric2="6.4x" data-metriclbl2="Blended ROAS" data-metric3="-38%" data-metriclbl3="Cost Per Lead" data-timeline="60 Days to 10x" data-quote="Our previous agency burned budget. Kyrosh cut our CPA in half and scaled our ad spend with extreme profitability." data-author="â€” Rahul K., Growth Lead at HyperCart" data-tech="Meta Ads Manager, Google Ads 360, GA4, Multi-Touch Attribution">
+                <div class="work-card tilt-card" data-category="ads" data-title="10x Omnichannel Ad Funnel" data-desc="Engineered a multi-tiered Meta & Google Ads machine generating over ₹1.8 Crore in tracked monthly revenue." data-metric1="+450%" data-metriclbl1="Monthly Revenue" data-metric2="6.4x" data-metriclbl2="Blended ROAS" data-metric3="-38%" data-metriclbl3="Cost Per Lead" data-timeline="60 Days to 10x" data-quote="Our previous agency burned budget. Kyrosh cut our CPA in half and scaled our ad spend with extreme profitability." data-author="— Rahul K., Growth Lead at HyperCart" data-tech="Meta Ads Manager, Google Ads 360, GA4, Multi-Touch Attribution">
                     <span class="work-card-badge">Performance Marketing</span>
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Analytics" loading="lazy">
                     <div class="work-card-overlay">
@@ -2167,7 +2167,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="video" data-title="Viral 3D Product Commercial" data-desc="Produced a cinematic 3D product commercial and UGC video funnel generating 2.4 Million organic impressions." data-metric1="2.4M+" data-metriclbl1="Organic Views" data-metric2="4.9%" data-metriclbl2="Click-Through Rate" data-metric3="+180%" data-metriclbl3="Social Engagement" data-timeline="14 Days Turnaround" data-quote="The motion graphics and 3D renders were Hollywood-grade. The ad paid for itself within 48 hours of launch." data-author="â€” Sarah J., Marketing VP" data-tech="Cinema 4D, After Effects, DaVinci Resolve, 4K Color Grading">
+                <div class="work-card tilt-card" data-category="video" data-title="Viral 3D Product Commercial" data-desc="Produced a cinematic 3D product commercial and UGC video funnel generating 2.4 Million organic impressions." data-metric1="2.4M+" data-metriclbl1="Organic Views" data-metric2="4.9%" data-metriclbl2="Click-Through Rate" data-metric3="+180%" data-metriclbl3="Social Engagement" data-timeline="14 Days Turnaround" data-quote="The motion graphics and 3D renders were Hollywood-grade. The ad paid for itself within 48 hours of launch." data-author="— Sarah J., Marketing VP" data-tech="Cinema 4D, After Effects, DaVinci Resolve, 4K Color Grading">
                     <span class="work-card-badge">Cinematic Video</span>
                     <img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=600&h=400&fit=crop" alt="Video" loading="lazy">
                     <div class="work-card-overlay">
@@ -2177,7 +2177,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="web" data-title="Global SEO & GEO Domination" data-desc="Propelled 140+ high-intent keywords to position #1 on Google Search and ChatGPT/Perplexity AI results." data-metric1="#1 Rank" data-metriclbl1="140+ Keywords" data-metric2="+520%" data-metriclbl2="Organic Inbound" data-metric3="180K/mo" data-metriclbl3="Monthly Traffic" data-timeline="90 Days Organic Surge" data-quote="We now dominate Google Search and AI engines for our core commercial terms without paying for clicks." data-author="â€” David M., SaaS Co-Founder" data-tech="SEMrush, Ahrefs, GEO Generative Optimization, Schema Engine">
+                <div class="work-card tilt-card" data-category="web" data-title="Global SEO & GEO Domination" data-desc="Propelled 140+ high-intent keywords to position #1 on Google Search and ChatGPT/Perplexity AI results." data-metric1="#1 Rank" data-metriclbl1="140+ Keywords" data-metric2="+520%" data-metriclbl2="Organic Inbound" data-metric3="180K/mo" data-metriclbl3="Monthly Traffic" data-timeline="90 Days Organic Surge" data-quote="We now dominate Google Search and AI engines for our core commercial terms without paying for clicks." data-author="— David M., SaaS Co-Founder" data-tech="SEMrush, Ahrefs, GEO Generative Optimization, Schema Engine">
                     <span class="work-card-badge">SEO & GEO Search</span>
                     <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop" alt="SEO" loading="lazy">
                     <div class="work-card-overlay">
@@ -2187,7 +2187,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="software" data-title="Cloud CRM & AI Automations" data-desc="Built a bespoke operational ERP dashboard saving the enterprise client 160 operational hours each week." data-metric1="160 Hrs" data-metriclbl1="Weekly Time Saved" data-metric2="99.99%" data-metriclbl2="Uptime Reliability" data-metric3="-60%" data-metriclbl3="Manual Labor Cost" data-timeline="6 Weeks Build & Deploy" data-quote="Kyrosh replaced 4 expensive SaaS subscriptions with one custom dashboard that streamlined our entire company." data-author="â€” Elena B., COO at Nexus Logistics" data-tech="React, Node.js, Python FastAPI, PostgreSQL, AWS Lambda">
+                <div class="work-card tilt-card" data-category="software" data-title="Cloud CRM & AI Automations" data-desc="Built a bespoke operational ERP dashboard saving the enterprise client 160 operational hours each week." data-metric1="160 Hrs" data-metriclbl1="Weekly Time Saved" data-metric2="99.99%" data-metriclbl2="Uptime Reliability" data-metric3="-60%" data-metriclbl3="Manual Labor Cost" data-timeline="6 Weeks Build & Deploy" data-quote="Kyrosh replaced 4 expensive SaaS subscriptions with one custom dashboard that streamlined our entire company." data-author="— Elena B., COO at Nexus Logistics" data-tech="React, Node.js, Python FastAPI, PostgreSQL, AWS Lambda">
                     <span class="work-card-badge">Custom Software</span>
                     <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop" alt="Software" loading="lazy">
                     <div class="work-card-overlay">
@@ -2223,7 +2223,7 @@
     <section id="services">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag"><i class="fas fa-cubes"></i> 360Â° Digital Arsenal</span>
+                <span class="section-tag"><i class="fas fa-cubes"></i> 360° Digital Arsenal</span>
                 <h2>Everything Your Brand Needs. <span class="highlight">Under One Roof.</span></h2>
                 <p>No juggling multiple disjointed agencies. We build, design, automate, market, and scale your brand.</p>
                 <span class="underline"></span>
@@ -2237,7 +2237,7 @@
                         <h3>Websites & Web Apps</h3>
                         <p>Blazing-fast e-commerce storefronts, custom SaaS web apps, and ultra-high-converting interactive portals.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Next.js â€¢ React â€¢ Headless</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Next.js • React • Headless</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2246,7 +2246,7 @@
                         <h3>Custom Software & AI</h3>
                         <p>Enterprise operational dashboards, custom backend automations, CRM integrations, and specialized AI pipelines.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Python â€¢ Node â€¢ AI Integrations</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Python • Node • AI Integrations</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2255,7 +2255,7 @@
                         <h3>Cinematic Video & 3D Ads</h3>
                         <p>Scroll-stopping UGC ads, Hollywood-grade 3D product animations, viral reels, and commercial productions.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Cinema 4D â€¢ VFX â€¢ Viral Hooks</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Cinema 4D • VFX • Viral Hooks</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2264,7 +2264,7 @@
                         <h3>Branding & Design Systems</h3>
                         <p>Iconic visual identities, comprehensive design guidelines, 3D packaging, and high-impact social asset suites.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Figma â€¢ Vector Systems â€¢ 3D Assets</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Figma • Vector Systems • 3D Assets</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2273,7 +2273,7 @@
                         <h3>Performance Marketing</h3>
                         <p>Precision-targeted Meta & Google Ads 360 funnels fine-tuned for lowest customer acquisition cost and 10x ROAS.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Meta Ads â€¢ Google 360 â€¢ Scaling</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Meta Ads • Google 360 • Scaling</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2282,7 +2282,7 @@
                         <h3>SEO & GEO AI Domination</h3>
                         <p>Traditional search ranking + Generative Engine Optimization for top placement in Google, ChatGPT & Perplexity.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> #1 Rank â€¢ GEO Schema â€¢ AI Inbound</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> #1 Rank • GEO Schema • AI Inbound</span>
                 </div>
             </div>
         </div>
@@ -2345,9 +2345,9 @@
                         <p>Perfect for emerging startups and businesses ready to establish strong brand authority.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="currency" id="price1Curr">â‚¹</span><span class="amount" id="price1Amt">19,999</span><span class="period" id="price1Period"> / project</span>
+                        <span class="currency" id="price1Curr">₹</span><span class="amount" id="price1Amt">19,999</span><span class="period" id="price1Period"> / project</span>
                         <br>
-                        <span class="discount-pill">ðŸŽ 50% OFF Applied</span>
+                        <span class="discount-pill">🎁 50% OFF Applied</span>
                     </div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check-circle"></i> High-Converting Business Website</li>
@@ -2357,19 +2357,19 @@
                         <li class="disabled"><i class="fas fa-times-circle"></i> Custom Software Development</li>
                         <li class="disabled"><i class="fas fa-times-circle"></i> Meta & Google Performance Ads</li>
                     </ul>
-                    <button class="btn-outline select-plan-btn" data-plan="Website Development" style="width:100%; justify-content:center;">Select Starter Plan â†’</button>
+                    <button class="btn-outline select-plan-btn" data-plan="Website Development" style="width:100%; justify-content:center;">Select Starter Plan →</button>
                 </div>
 
                 <div class="pricing-card featured tilt-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="pricing-badge">â­ MOST POPULAR & BEST ROI</div>
+                    <div class="pricing-badge">⭐ MOST POPULAR & BEST ROI</div>
                     <div class="pricing-header">
                         <h3>Scale & Dominance</h3>
                         <p>Complete marketing & digital ecosystem designed to aggressively double your sales.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="currency" id="price2Curr">â‚¹</span><span class="amount" id="price2Amt">49,999</span><span class="period" id="price2Period"> / mo</span>
+                        <span class="currency" id="price2Curr">₹</span><span class="amount" id="price2Amt">49,999</span><span class="period" id="price2Period"> / mo</span>
                         <br>
-                        <span class="discount-pill">ðŸ”¥ 50% Welcome Discount</span>
+                        <span class="discount-pill">🔥 50% Welcome Discount</span>
                     </div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check-circle"></i> Premium Web Application / E-Store</li>
@@ -2379,7 +2379,7 @@
                         <li><i class="fas fa-check-circle"></i> Bi-Weekly Growth & Conversion Audits</li>
                         <li><i class="fas fa-check-circle"></i> Dedicated Account Strategist</li>
                     </ul>
-                    <button class="btn-primary select-plan-btn" data-plan="Complete Digital Package" style="width:100%; justify-content:center;">Claim 50% Offer on Scale Plan â†’</button>
+                    <button class="btn-primary select-plan-btn" data-plan="Complete Digital Package" style="width:100%; justify-content:center;">Claim 50% Offer on Scale Plan →</button>
                 </div>
 
                 <div class="pricing-card tilt-card" data-aos="fade-up" data-aos-delay="300">
@@ -2388,9 +2388,9 @@
                         <p>Bespoke software architecture, multi-million ad scaling, and full omnichannel takeover.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="currency" id="price3Curr">â‚¹</span><span class="amount" id="price3Amt">99,999</span><span class="period" id="price3Period"> / mo</span>
+                        <span class="currency" id="price3Curr">₹</span><span class="amount" id="price3Amt">99,999</span><span class="period" id="price3Period"> / mo</span>
                         <br>
-                        <span class="discount-pill">ðŸ‘‘ Full VIP Treatment</span>
+                        <span class="discount-pill">👑 Full VIP Treatment</span>
                     </div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check-circle"></i> Custom Software & AI Workflows</li>
@@ -2400,7 +2400,7 @@
                         <li><i class="fas fa-check-circle"></i> Dedicated Squad (Dev, Copy, Media Buyer)</li>
                         <li><i class="fas fa-check-circle"></i> Guaranteed ROI SLA</li>
                     </ul>
-                    <button class="btn-outline select-plan-btn" data-plan="Software Development" style="width:100%; justify-content:center;">Book Enterprise Consultation â†’</button>
+                    <button class="btn-outline select-plan-btn" data-plan="Software Development" style="width:100%; justify-content:center;">Book Enterprise Consultation →</button>
                 </div>
             </div>
         </div>
@@ -2422,7 +2422,7 @@
                     <div>
                         <div class="career-header-row">
                             <span class="career-tag-pill">ENGINEERING & AI</span>
-                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">â— FAST-TRACK HIRING</span>
+                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">● FAST-TRACK HIRING</span>
                         </div>
                         <h3>Senior Next.js & AI Engineer</h3>
                         <div class="career-meta-row">
@@ -2437,14 +2437,14 @@
                             <li><i class="fas fa-check-circle"></i> 100% remote flexibility & cutting-edge AI tool access</li>
                         </ul>
                     </div>
-                    <button class="btn-primary apply-role-btn" data-role="Senior Next.js & AI Engineer" style="width:100%; justify-content:center;">Apply for Position â†’</button>
+                    <button class="btn-primary apply-role-btn" data-role="Senior Next.js & AI Engineer" style="width:100%; justify-content:center;">Apply for Position →</button>
                 </div>
 
                 <div class="career-card tilt-card">
                     <div>
                         <div class="career-header-row">
                             <span class="career-tag-pill" style="color:#FF7A59; border-color:#FF7A59;">PERFORMANCE MEDIA</span>
-                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">â— IMMEDIATE OPENING</span>
+                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">● IMMEDIATE OPENING</span>
                         </div>
                         <h3>Lead Performance Media Buyer</h3>
                         <div class="career-meta-row">
@@ -2459,14 +2459,14 @@
                             <li><i class="fas fa-check-circle"></i> Dedicated in-house video & design support team</li>
                         </ul>
                     </div>
-                    <button class="btn-primary apply-role-btn" data-role="Lead Performance Media Buyer" style="width:100%; justify-content:center;">Apply for Position â†’</button>
+                    <button class="btn-primary apply-role-btn" data-role="Lead Performance Media Buyer" style="width:100%; justify-content:center;">Apply for Position →</button>
                 </div>
 
                 <div class="career-card tilt-card">
                     <div>
                         <div class="career-header-row">
                             <span class="career-tag-pill" style="color:var(--primary-light); border-color:var(--primary-light);">CREATIVE STUDIO</span>
-                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">â— HIGH PRIORITY</span>
+                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">● HIGH PRIORITY</span>
                         </div>
                         <h3>Cinematic 3D Motion & VFX Artist</h3>
                         <div class="career-meta-row">
@@ -2480,14 +2480,14 @@
                             <li><i class="fas fa-check-circle"></i> Creative freedom to pioneer futuristic visual aesthetics</li>
                         </ul>
                     </div>
-                    <button class="btn-primary apply-role-btn" data-role="Cinematic 3D Motion & VFX Artist" style="width:100%; justify-content:center;">Apply for Position â†’</button>
+                    <button class="btn-primary apply-role-btn" data-role="Cinematic 3D Motion & VFX Artist" style="width:100%; justify-content:center;">Apply for Position →</button>
                 </div>
 
                 <div class="career-card tilt-card">
                     <div>
                         <div class="career-header-row">
                             <span class="career-tag-pill" style="color:var(--accent-gold); border-color:var(--accent-gold);">SEARCH & GEO</span>
-                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">â— OPEN</span>
+                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">● OPEN</span>
                         </div>
                         <h3>SEO & Generative AI (GEO) Lead</h3>
                         <div class="career-meta-row">
@@ -2501,7 +2501,7 @@
                             <li><i class="fas fa-check-circle"></i> Flexible hours and high-impact ownership</li>
                         </ul>
                     </div>
-                    <button class="btn-primary apply-role-btn" data-role="SEO & GEO Growth Lead" style="width:100%; justify-content:center;">Apply for Position â†’</button>
+                    <button class="btn-primary apply-role-btn" data-role="SEO & GEO Growth Lead" style="width:100%; justify-content:center;">Apply for Position →</button>
                 </div>
             </div>
         </div>
@@ -2740,9 +2740,9 @@
                             </select>
                         </div>
                         <div class="form-group"><label>Project Details & Goals</label><textarea id="clientMessage" rows="3" placeholder="Tell us about your goals, timeline, and current bottlenecks..."></textarea></div>
-                        <button type="submit" class="submit-btn" id="submitBtn">Submit & Claim 50% Proposal â†’</button>
+                        <button type="submit" class="submit-btn" id="submitBtn">Submit & Claim 50% Proposal →</button>
                     </form>
-                    <p style="text-align:center; margin-top:16px; color:#10B981; font-weight:700; display:none;" id="successMsg">âœ… Proposal received! Check your email and WhatsApp for next steps.</p>
+                    <p style="text-align:center; margin-top:16px; color:#10B981; font-weight:700; display:none;" id="successMsg">✅ Proposal received! Check your email and WhatsApp for next steps.</p>
                 </div>
 
                 <div id="loginPrompt" style="text-align:center; padding:50px 20px; background:var(--dark-card); border-radius:24px; border:1.5px solid var(--dark-border); max-width:550px; margin:0 auto; box-shadow:var(--shadow-glass);" data-aos="fade-up">
@@ -2865,7 +2865,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Â© 2024 Kyrosh Digital Agency. All Rights Reserved. Engineered with ðŸ’œ by Kyrosh.</p>
+                <p>© 2024 Kyrosh Digital Agency. All Rights Reserved. Engineered with 💜 by Kyrosh.</p>
             </div>
         </div>
     </footer>
@@ -2878,7 +2878,7 @@
 
     <!-- Floating Action Buttons -->
     <div class="wheel-float-btn" id="wheelFloatBtn" title="Spin to Win Exclusive Growth Perks!">
-        <span class="wheel-float-badge">ðŸŽ Spin & Win Perk!</span>
+        <span class="wheel-float-badge">🎁 Spin & Win Perk!</span>
         <i class="fas fa-gift"></i>
     </div>
     <a href="tel:+919019958415" class="call-float" title="Call Us"><i class="fas fa-phone"></i></a>
@@ -2894,7 +2894,7 @@
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // ====================================================
-        // ðŸ”Š SYNTHESIZED WEB AUDIO SOUND DESIGN ENGINE
+        // 🔊 SYNTHESIZED WEB AUDIO SOUND DESIGN ENGINE
         // ====================================================
         let audioCtx = null;
         let soundEnabled = localStorage.getItem('kyrosh_sound') !== 'false';
@@ -2976,7 +2976,7 @@
         setTimeout(attachAudioTriggers, 500);
 
         // ====================================================
-        // ðŸŽ¨ DYNAMIC ACCENT COLOR THEME PICKER
+        // 🎨 DYNAMIC ACCENT COLOR THEME PICKER
         // ====================================================
         let currentTheme = localStorage.getItem('kyrosh_theme') || 'purple';
 
@@ -3004,7 +3004,7 @@
         setTheme(currentTheme);
 
         // ====================================================
-        // ðŸ§² MAGNETIC CUSTOM CURSOR
+        // 🧲 MAGNETIC CUSTOM CURSOR
         // ====================================================
         const cursorDot = document.getElementById('cursorDot');
         const cursorRing = document.getElementById('cursorRing');
@@ -3062,7 +3062,7 @@
         setTimeout(setupMagneticCursor, 600);
 
         // ====================================================
-        // ðŸ¤– LIVE AI AGENCY COPILOT ENGINE (KYROSH AI)
+        // 🤖 LIVE AI AGENCY COPILOT ENGINE (KYROSH AI)
         // ====================================================
         const aiBotFloatBtn = document.getElementById('aiBotFloatBtn');
         const aiChatWindow = document.getElementById('aiChatWindow');
@@ -3111,41 +3111,41 @@
             let reply = "";
 
             if (q.includes('e-commerce') || q.includes('d2c') || q.includes('store') || q.includes('shopify')) {
-                reply = `ðŸ›ï¸ <strong>E-Commerce Growth Recommendation:</strong><br>
-                For scaling an online store, we recommend our <strong>Scale & Dominance Package</strong> (â‚¹49,999/mo with 50% OFF).<br><br>
-                â€¢ Next.js / Shopify High-Speed Storefront<br>
-                â€¢ Meta Advantage+ & Google Shopping Ad Funnels (Avg 5.6x ROAS)<br>
-                â€¢ 8 High-Converting UGC Video Creatives<br><br>
-                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;">Claim 50% E-Commerce Deal â†’</button>`;
+                reply = `🛍️ <strong>E-Commerce Growth Recommendation:</strong><br>
+                For scaling an online store, we recommend our <strong>Scale & Dominance Package</strong> (₹49,999/mo with 50% OFF).<br><br>
+                • Next.js / Shopify High-Speed Storefront<br>
+                • Meta Advantage+ & Google Shopping Ad Funnels (Avg 5.6x ROAS)<br>
+                • 8 High-Converting UGC Video Creatives<br><br>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;">Claim 50% E-Commerce Deal →</button>`;
             } else if (q.includes('50%') || q.includes('discount') || q.includes('offer') || q.includes('price') || q.includes('cost')) {
-                reply = `ðŸŽ <strong>Exclusive 50% Welcome Discount:</strong><br>
+                reply = `🎁 <strong>Exclusive 50% Welcome Discount:</strong><br>
                 All new clients submitting a proposal today lock in 50% off across all packages:<br><br>
-                â€¢ <strong>Starter Plan:</strong> â‚¹19,999 / project<br>
-                â€¢ <strong>Scale & Dominance:</strong> â‚¹49,999 / month<br>
-                â€¢ <strong>Enterprise Custom:</strong> â‚¹99,999 / month<br><br>
-                <button class="btn-primary" onclick="go('pricing'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;">View All Pricing Packages â†’</button>`;
+                • <strong>Starter Plan:</strong> ₹19,999 / project<br>
+                • <strong>Scale & Dominance:</strong> ₹49,999 / month<br>
+                • <strong>Enterprise Custom:</strong> ₹99,999 / month<br><br>
+                <button class="btn-primary" onclick="go('pricing'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;">View All Pricing Packages →</button>`;
             } else if (q.includes('timeline') || q.includes('how fast') || q.includes('days') || q.includes('time')) {
-                reply = `âš¡ <strong>Turnaround Timelines:</strong><br>
-                â€¢ <strong>High-Converting Websites:</strong> 5 â€“ 10 Business Days<br>
-                â€¢ <strong>Performance Ad Funnels:</strong> 3 â€“ 5 Days to Launch<br>
-                â€¢ <strong>Custom Software & AI ERPs:</strong> 2 â€“ 4 Weeks<br>
-                â€¢ <strong>3D Video Ads & UGC:</strong> 7 â€“ 10 Days<br><br>
+                reply = `⚡ <strong>Turnaround Timelines:</strong><br>
+                • <strong>High-Converting Websites:</strong> 5 – 10 Business Days<br>
+                • <strong>Performance Ad Funnels:</strong> 3 – 5 Days to Launch<br>
+                • <strong>Custom Software & AI ERPs:</strong> 2 – 4 Weeks<br>
+                • <strong>3D Video Ads & UGC:</strong> 7 – 10 Days<br><br>
                 Need an emergency fast-track? We can initiate Discovery within 24 hours.`;
             } else if (q.includes('call') || q.includes('book') || q.includes('meet') || q.includes('consult')) {
-                reply = `ðŸ“… <strong>Schedule a 1-on-1 VIP Strategy Session:</strong><br>
+                reply = `📅 <strong>Schedule a 1-on-1 VIP Strategy Session:</strong><br>
                 Pick a business date and time slot to consult directly with our growth directors via Google Meet or WhatsApp Video.<br><br>
-                <button class="btn-primary" onclick="go('scheduler'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-calendar-check"></i> Open Call Scheduler â†’</button>`;
+                <button class="btn-primary" onclick="go('scheduler'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-calendar-check"></i> Open Call Scheduler →</button>`;
             } else if (q.includes('software') || q.includes('saas') || q.includes('app') || q.includes('ai') || q.includes('backend')) {
-                reply = `ðŸ’» <strong>Custom Software & AI Architecture:</strong><br>
+                reply = `💻 <strong>Custom Software & AI Architecture:</strong><br>
                 We build scalable Next.js web applications, custom CRM platforms, automated AI pipelines, and internal ERP systems that save teams over 140+ hours per month.<br><br>
-                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Software Development'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;">Request Tech Blueprint â†’</button>`;
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Software Development'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;">Request Tech Blueprint →</button>`;
             } else {
-                reply = `âœ¨ <strong>Kyrosh Growth Strategy:</strong><br>
+                reply = `✨ <strong>Kyrosh Growth Strategy:</strong><br>
                 Whether you need bespoke websites, 10x performance ad funnels, cinematic video production, or SEO domination, we engineer end-to-end digital empires.<br><br>
                 Would you like our directors to prepare a custom proposal with <strong>50% OFF</strong> for your brand?
                 <div class="ai-quick-chips">
-                    <button class="ai-chip-btn" data-query="Yes, prepare my custom proposal">ðŸ“ Yes, Get Custom Proposal</button>
-                    <button class="ai-chip-btn" data-query="Book a 1-on-1 strategy call">ðŸ“… Book Strategy Call</button>
+                    <button class="ai-chip-btn" data-query="Yes, prepare my custom proposal">📝 Yes, Get Custom Proposal</button>
+                    <button class="ai-chip-btn" data-query="Book a 1-on-1 strategy call">📅 Book Strategy Call</button>
                 </div>`;
             }
 
@@ -3181,11 +3181,11 @@
         attachAiChipEvents();
 
         // ====================================================
-        // ðŸ‡®ðŸ‡³ CURRENCY SYSTEM (INR â‚¹ ONLY)
+        // 🇮🇳 CURRENCY SYSTEM (INR ₹ ONLY)
         // ====================================================
         const currentCurrency = 'INR';
         const currencyConfigs = {
-            INR: { symbol: 'â‚¹', prefix: 'â‚¹', p1Amt: '19,999', p2Amt: '49,999', p3Amt: '99,999', sliderMin: 20000, sliderMax: 1000000, sliderStep: 10000, sliderDefault: 100000, aovMin: 500, aovMax: 25000, aovStep: 500, aovDefault: 2500, presets: [ { label: 'â‚¹50K', val: 50000 }, { label: 'â‚¹1 Lakh', val: 100000 }, { label: 'â‚¹2.5 Lakh', val: 250000 }, { label: 'â‚¹5 Lakh', val: 500000 }, { label: 'â‚¹10 Lakh+', val: 1000000 } ] }
+            INR: { symbol: '₹', prefix: '₹', p1Amt: '19,999', p2Amt: '49,999', p3Amt: '99,999', sliderMin: 20000, sliderMax: 1000000, sliderStep: 10000, sliderDefault: 100000, aovMin: 500, aovMax: 25000, aovStep: 500, aovDefault: 2500, presets: [ { label: '₹50K', val: 50000 }, { label: '₹1 Lakh', val: 100000 }, { label: '₹2.5 Lakh', val: 250000 }, { label: '₹5 Lakh', val: 500000 }, { label: '₹10 Lakh+', val: 1000000 } ] }
         };
 
         function setCurrency() {
@@ -3244,7 +3244,7 @@
         }
 
         // ====================================================
-        // ðŸŽ¬ SHOWREEL LIGHTBOX & 3D DEVICE PREVIEWER CONTROLLERS
+        // 🎬 SHOWREEL LIGHTBOX & 3D DEVICE PREVIEWER CONTROLLERS
         // ====================================================
         const heroWatchShowreel = document.getElementById('heroWatchShowreel');
         const showreelModal = document.getElementById('showreelModal');
@@ -3314,7 +3314,7 @@
         });
 
         // ====================================================
-        // ðŸ’¼ CAREERS & TALENT APPLICATION PORTAL CONTROLLER
+        // 💼 CAREERS & TALENT APPLICATION PORTAL CONTROLLER
         // ====================================================
         const careerModal = document.getElementById('careerModal');
         const closeCareerModal = document.getElementById('closeCareerModal');
@@ -3368,7 +3368,7 @@
                             email: email,
                             phone: phone,
                             business: portfolio,
-                            service: `ðŸ’¼ Career: ${currentApplyingRole}`,
+                            service: `💼 Career: ${currentApplyingRole}`,
                             message: `[Portfolio/GitHub: ${portfolio}] Bio: ${bio}`,
                             status: 'career_application',
                             created_at: new Date().toISOString(),
@@ -3382,7 +3382,7 @@
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: 'kyroshbrand@gmail.com',
-                                subject: `ðŸ’¼ New Talent Application: ${name} (${currentApplyingRole})`,
+                                subject: `💼 New Talent Application: ${name} (${currentApplyingRole})`,
                                 html: `<h2>New Job Application Received</h2><p><strong>Candidate:</strong> ${name}</p><p><strong>Role:</strong> ${currentApplyingRole}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone}</p><p><strong>Portfolio:</strong> <a href="${portfolio}">${portfolio}</a></p><p><strong>Bio:</strong> ${bio}</p>`
                             })
                         });
@@ -3390,13 +3390,13 @@
 
                     SoundFX.success();
                     if (careerSuccessMsg) careerSuccessMsg.style.display = 'block';
-                    if (careerSubmitBtn) careerSubmitBtn.innerHTML = 'âœ… Application Submitted!';
+                    if (careerSubmitBtn) careerSubmitBtn.innerHTML = '✅ Application Submitted!';
                     if (careerAppForm) careerAppForm.reset();
 
                     setTimeout(() => {
                         if (careerModal) careerModal.classList.remove('active');
                         if (careerSubmitBtn) {
-                            careerSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application â†’';
+                            careerSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application →';
                             careerSubmitBtn.disabled = false;
                         }
                     }, 2800);
@@ -3405,7 +3405,7 @@
                     console.error('Career submit err:', err);
                     alert('Something went wrong. Please try again.');
                     if (careerSubmitBtn) {
-                        careerSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application â†’';
+                        careerSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application →';
                         careerSubmitBtn.disabled = false;
                     }
                 }
@@ -3413,7 +3413,7 @@
         }
 
         // ====================================================
-        // ðŸŽ GAMIFIED "SPIN-TO-WIN" FORTUNE WHEEL ENGINE
+        // 🎁 GAMIFIED "SPIN-TO-WIN" FORTUNE WHEEL ENGINE
         // ====================================================
         const wheelModal = document.getElementById('wheelModal');
         const wheelFloatBtn = document.getElementById('wheelFloatBtn');
@@ -3425,12 +3425,12 @@
         const claimWheelPerkBtn = document.getElementById('claimWheelPerkBtn');
 
         const wheelPrizes = [
-            { text: "ðŸ”¥ Extra 10% Off", color: "#7844D5" },
-            { text: "ðŸŽ¬ 3D Video Hook", color: "#DC2626" },
-            { text: "âš¡ Free Speed Audit", color: "#0284C7" },
-            { text: "ðŸ‘‘ VIP Priority Slot", color: "#D97706" },
-            { text: "ðŸš€ Free GEO Audit", color: "#059669" },
-            { text: "ðŸŽ 50% Voucher", color: "#9333EA" }
+            { text: "🔥 Extra 10% Off", color: "#7844D5" },
+            { text: "🎬 3D Video Hook", color: "#DC2626" },
+            { text: "⚡ Free Speed Audit", color: "#0284C7" },
+            { text: "👑 VIP Priority Slot", color: "#D97706" },
+            { text: "🚀 Free GEO Audit", color: "#059669" },
+            { text: "🎁 50% Voucher", color: "#9333EA" }
         ];
 
         let currentWheelAngle = 0;
@@ -3552,7 +3552,7 @@
         }
 
         // ====================================================
-        // âš¡ INSTANT FUNNEL & WEBSITE HEALTH SCANNER ENGINE
+        // ⚡ INSTANT FUNNEL & WEBSITE HEALTH SCANNER ENGINE
         // ====================================================
         const scannerUrlInput = document.getElementById('scannerUrlInput');
         const scannerRunBtn = document.getElementById('scannerRunBtn');
@@ -3580,10 +3580,10 @@
                 if (scanProgressArea) scanProgressArea.style.display = 'block';
 
                 const scanSteps = [
-                    { progress: 25, text: "ðŸš€ Testing Server Core Web Vitals & TTFB Latency..." },
-                    { progress: 50, text: "ðŸ“± Analyzing Mobile Viewport & UX Friction Index..." },
-                    { progress: 75, text: "ðŸ” Checking Generative Search (GEO) & Schema Markup..." },
-                    { progress: 100, text: "ðŸŽ¯ Auditing Ad Pixel Tracking & Conversion Funnels..." }
+                    { progress: 25, text: "🚀 Testing Server Core Web Vitals & TTFB Latency..." },
+                    { progress: 50, text: "📱 Analyzing Mobile Viewport & UX Friction Index..." },
+                    { progress: 75, text: "🔍 Checking Generative Search (GEO) & Schema Markup..." },
+                    { progress: 100, text: "🎯 Auditing Ad Pixel Tracking & Conversion Funnels..." }
                 ];
 
                 let currentStep = 0;
@@ -3622,7 +3622,7 @@
         }
 
         // ====================================================
-        // ðŸ“… STRATEGY CALL SCHEDULER CONTROLLER
+        // 📅 STRATEGY CALL SCHEDULER CONTROLLER
         // ====================================================
         let selectedDate = null;
         let selectedSlot = null;
@@ -3732,7 +3732,7 @@
                             email: email,
                             phone: phone,
                             business: website,
-                            service: `ðŸ“… Strategy Call: ${selectedCallType}`,
+                            service: `📅 Strategy Call: ${selectedCallType}`,
                             message: `Scheduled Date: ${selectedDate} at ${selectedSlot} (${currentCurrency}). Website: ${website}`,
                             status: 'scheduled',
                             created_at: new Date().toISOString(),
@@ -3746,28 +3746,28 @@
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: email,
-                                subject: `ðŸ“… Strategy Call Confirmed: ${selectedDate} at ${selectedSlot} with Kyrosh`,
-                                html: `<h2>Hi ${name}! ðŸ‘‹</h2>
+                                subject: `📅 Strategy Call Confirmed: ${selectedDate} at ${selectedSlot} with Kyrosh`,
+                                html: `<h2>Hi ${name}! 👋</h2>
                                        <p>Your 1-on-1 VIP Strategy Session for <strong>${selectedCallType}</strong> is successfully confirmed!</p>
                                        <p><strong>Date & Time:</strong> ${selectedDate} at ${selectedSlot}</p>
                                        <p><strong>Website / Brand:</strong> ${website || 'Direct Consulting'}</p>
                                        <p><strong>Meeting Channel:</strong> Google Meet / Direct WhatsApp Call</p>
                                        <hr style="border:none; border-top:1px solid #eee; margin:16px 0;" />
                                        <p>Click below to open a direct WhatsApp chat with Founder Shaiban (+91 9019958415) to confirm your meeting link:</p>
-                                       <p><a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20booked%20a%20Strategy%20Call%20for%20${encodeURIComponent(selectedDate)}%20at%20${encodeURIComponent(selectedSlot)}" style="background:#25D366; color:#fff; padding:10px 20px; border-radius:50px; text-decoration:none; font-weight:bold; display:inline-block;">ðŸ’¬ Connect on WhatsApp</a></p>
+                                       <p><a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20booked%20a%20Strategy%20Call%20for%20${encodeURIComponent(selectedDate)}%20at%20${encodeURIComponent(selectedSlot)}" style="background:#25D366; color:#fff; padding:10px 20px; border-radius:50px; text-decoration:none; font-weight:bold; display:inline-block;">💬 Connect on WhatsApp</a></p>
                                        <br /><p>The Kyrosh Executive Team</p>`
                             })
                         });
                     } catch (err) { console.error('Scheduler email err:', err); }
 
-                    // ============ ðŸ”” OWNER CALL ALERT ============
+                    // ============ 🔔 OWNER CALL ALERT ============
                     try {
                         await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: 'kyroshbrand@gmail.com',
-                                subject: `ðŸ“… NEW STRATEGY CALL BOOKED: ${name} (${selectedDate} @ ${selectedSlot})`,
+                                subject: `📅 NEW STRATEGY CALL BOOKED: ${name} (${selectedDate} @ ${selectedSlot})`,
                                 html: `<h2>New 1-on-1 Strategy Call Booked</h2>
                                        <p><strong>Client:</strong> ${name}</p>
                                        <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a> | <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}">WhatsApp Client</a></p>
@@ -3780,26 +3780,26 @@
                     } catch (err) { console.error('Owner call email err:', err); }
 
                     SoundFX.success();
-                    schedSubmitBtn.innerHTML = 'âœ… Strategy Call Confirmed!';
+                    schedSubmitBtn.innerHTML = '✅ Strategy Call Confirmed!';
                     const successPopup = document.getElementById('successPopup');
                     if (successPopup) successPopup.classList.add('active');
                     setTimeout(() => {
                         if (successPopup) successPopup.classList.remove('active');
-                        schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call â†’';
+                        schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call →';
                         schedSubmitBtn.disabled = false;
                     }, 4000);
 
                 } catch (err) {
                     console.error('Scheduler error:', err);
                     alert('Something went wrong. Please try again.');
-                    schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call â†’';
+                    schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call →';
                     schedSubmitBtn.disabled = false;
                 }
             });
         }
 
         // ====================================================
-        // ðŸ“Š CLIENT PROJECT STATUS DASHBOARD
+        // 📊 CLIENT PROJECT STATUS DASHBOARD
         // ====================================================
         const dashboardModal = document.getElementById('dashboardModal');
         const closeDashboardModal = document.getElementById('closeDashboardModal');
@@ -3847,7 +3847,7 @@
                                     <h3 style="font-size:18px; font-weight:800; color:#fff;">${p.service || 'Digital Empire Build'}</h3>
                                     <p style="font-size:12px; color:var(--gray-light);">Brand: <strong style="color:var(--primary-light);">${p.business || 'Your Brand'}</strong></p>
                                 </div>
-                                <span class="status-badge-live">â— ${statusText}</span>
+                                <span class="status-badge-live">● ${statusText}</span>
                             </div>
 
                             <div style="display:flex; justify-content:space-between; font-size:12.5px; font-weight:700; color:var(--gray-light);">
@@ -3967,7 +3967,7 @@
         }
 
         // ====================================================
-        // ðŸ”¥ ROI CALCULATOR ENGINE (CURRENCY-AWARE)
+        // 🔥 ROI CALCULATOR ENGINE (CURRENCY-AWARE)
         // ====================================================
         const roiBudgetSlider = document.getElementById('roiBudgetSlider');
         const roiBudgetDisplay = document.getElementById('roiBudgetDisplay');
@@ -3983,7 +3983,7 @@
         function formatCurrency(val) {
             const cfg = currencyConfigs[currentCurrency] || currencyConfigs.INR;
             if (currentCurrency === 'INR') {
-                return 'â‚¹' + Number(val).toLocaleString('en-IN');
+                return '₹' + Number(val).toLocaleString('en-IN');
             } else if (currentCurrency === 'AED') {
                 return Number(val).toLocaleString('en-US') + ' AED';
             } else {
@@ -4028,7 +4028,7 @@
         }
 
         // ====================================================
-        // ðŸ”¥ BEFORE / AFTER SLIDER CONTROLLER
+        // 🔥 BEFORE / AFTER SLIDER CONTROLLER
         // ====================================================
         const baSlider = document.getElementById('baSlider');
         const baAfterWrap = document.getElementById('baAfterWrap');
@@ -4319,7 +4319,7 @@
                                     <div class="user-info">
                                         <h4>${displayName}</h4>
                                         <p>${user.email || ''}</p>
-                                        <p style="font-size:11px; color:var(--gray);">ðŸ“± ${phone}</p>
+                                        <p style="font-size:11px; color:var(--gray);">📱 ${phone}</p>
                                     </div>
                                 </div>
                                 <div class="dropdown-section">
@@ -4399,8 +4399,8 @@
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: user.email,
-                                    subject: `ðŸ” New Login to Your Kyrosh Account`,
-                                    html: `<h2>Hi ${displayName},</h2><p>We noticed a new login to your Kyrosh account.</p><p><strong>Time:</strong> ${new Date().toLocaleString()}</p><p>If this was you, great! ðŸŽ‰</p><br><p>The Kyrosh Team</p>`
+                                    subject: `🔐 New Login to Your Kyrosh Account`,
+                                    html: `<h2>Hi ${displayName},</h2><p>We noticed a new login to your Kyrosh account.</p><p><strong>Time:</strong> ${new Date().toLocaleString()}</p><p>If this was you, great! 🎉</p><br><p>The Kyrosh Team</p>`
                                 })
                             });
                         } catch (err) { console.error('Login email failed:', err); }
@@ -4430,7 +4430,7 @@
 
         function openAuthModal() {
             if (authError) { authError.style.display = 'none'; authError.textContent = ''; }
-            if (authSubmitBtn) { authSubmitBtn.classList.remove('loading'); const btnText = authSubmitBtn.querySelector('.btn-text'); if (btnText) btnText.textContent = 'Send Instant Magic Link âœ¨'; }
+            if (authSubmitBtn) { authSubmitBtn.classList.remove('loading'); const btnText = authSubmitBtn.querySelector('.btn-text'); if (btnText) btnText.textContent = 'Send Instant Magic Link ✨'; }
             if (authForm) authForm.reset();
             if (authModal) authModal.classList.add('active');
         }
@@ -4481,8 +4481,8 @@
                     if (error) {
                         if (authError) {
                             authError.textContent = error.message.includes('rate limit')
-                                ? 'â³ Too many requests. Please wait a minute.'
-                                : 'âŒ ' + error.message;
+                                ? '⏳ Too many requests. Please wait a minute.'
+                                : '❌ ' + error.message;
                             authError.style.display = 'block';
                         }
                         return;
@@ -4493,7 +4493,7 @@
                         authError.style.display = 'block';
                         authError.style.color = '#10B981';
                         authError.style.borderLeftColor = '#10B981';
-                        authError.textContent = 'âœ… Magic link sent! Please check your email inbox.';
+                        authError.textContent = '✅ Magic link sent! Please check your email inbox.';
                     }
                     if (authForm) authForm.reset();
 
@@ -4507,7 +4507,7 @@
                         const spinner = authSubmitBtn.querySelector('.spinner');
                         const btnText = authSubmitBtn.querySelector('.btn-text');
                         if (spinner) spinner.style.display = 'none';
-                        if (btnText) btnText.textContent = 'Send Instant Magic Link âœ¨';
+                        if (btnText) btnText.textContent = 'Send Instant Magic Link ✨';
                     }
                 }
             });
@@ -4803,7 +4803,7 @@
                         const btn = document.getElementById('submitBtn');
 
                         if (!name || !phone || !service) { alert('Please fill in all required fields.'); return; }
-                        if (btn) { btn.textContent = 'â³ Submitting Proposal...'; btn.disabled = true; }
+                        if (btn) { btn.textContent = '⏳ Submitting Proposal...'; btn.disabled = true; }
                         gtag('event', 'form_submit', { 'event_category': 'Proposal', 'event_label': service });
 
                         try {
@@ -4821,7 +4821,7 @@
                             });
                         } catch (err) { console.error('Supabase proposal insert error:', err); }
 
-                        // ============ ðŸ“§ ENROLL IN BI-WEEKLY EMAIL SEQUENCE ============
+                        // ============ 📧 ENROLL IN BI-WEEKLY EMAIL SEQUENCE ============
                         try {
                             await upsertProfile(user.id, {
                                 name: name,
@@ -4831,7 +4831,7 @@
                             });
                         } catch (err) { console.error('Profile newsletter sync error:', err); }
 
-                        // ============ ðŸ“Š GOOGLE SHEETS REDUNDANT BACKUP ============
+                        // ============ 📊 GOOGLE SHEETS REDUNDANT BACKUP ============
                         try {
                             await fetch("https://script.google.com/macros/s/AKfycbw3hXnvZqSegfn9VYxY2pGe68zspmz8NpjqUQJ6rsPoGpilGrzkebQkCQwi_mYOYMFvXg/exec", {
                                 method: "POST",
@@ -4843,41 +4843,41 @@
                             });
                         } catch (err) { console.error('Google Sheets proposal error:', err); }
 
-                        // ============ âœ‰ï¸ CLIENT CONFIRMATION EMAIL (WELCOME & 50% DISCOUNT) ============
+                        // ============ ✉️ CLIENT CONFIRMATION EMAIL (WELCOME & 50% DISCOUNT) ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: email,
-                                    subject: `ðŸŽ‰ Proposal Received â€” 50% Discount Locked & Welcome to Kyrosh!`,
-                                    html: `<h2>Hi ${name}! ðŸ‘‹</h2>
+                                    subject: `🎉 Proposal Received — 50% Discount Locked & Welcome to Kyrosh!`,
+                                    html: `<h2>Hi ${name}! 👋</h2>
                                            <p>Founder Shaiban and the Kyrosh engineering team have received your project proposal for <strong>${service}</strong>.</p>
                                            <p>You have successfully locked in our limited-time <strong style="color:#FF4444;">50% OFF</strong> welcome rate in <strong>${currentCurrency}</strong>!</p>
                                            <hr style="border:none; border-top:1px solid #eee; margin:20px 0;" />
-                                           <h3>ðŸ“¬ Your VIP Growth Sequence:</h3>
+                                           <h3>📬 Your VIP Growth Sequence:</h3>
                                            <p>You are now enrolled in our exclusive twice-weekly Growth Briefings:</p>
                                            <ul>
-                                               <li><strong>Tuesday 10:00 AM:</strong> ðŸ“ˆ 10x ROAS Case Studies & E-Commerce / SaaS conversion teardowns.</li>
-                                               <li><strong>Friday 04:00 PM:</strong> ðŸŽ¬ Founder Shaiban's Weekly Teardown & VIP 50% Client Spotlight.</li>
+                                               <li><strong>Tuesday 10:00 AM:</strong> 📈 10x ROAS Case Studies & E-Commerce / SaaS conversion teardowns.</li>
+                                               <li><strong>Friday 04:00 PM:</strong> 🎬 Founder Shaiban's Weekly Teardown & VIP 50% Client Spotlight.</li>
                                            </ul>
                                            <br />
                                            <p>Want instant 5-minute confirmation? Click below to chat directly with Founder Shaiban on WhatsApp:</p>
-                                           <p><a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20submitted%20my%20proposal%20for%20${encodeURIComponent(service)}%20and%20want%20to%20discuss%20next%20steps." style="background:#25D366; color:#fff; padding:12px 24px; border-radius:50px; text-decoration:none; font-weight:bold; display:inline-block;">ðŸ’¬ Chat on WhatsApp (+91 9019958415)</a></p>
+                                           <p><a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20submitted%20my%20proposal%20for%20${encodeURIComponent(service)}%20and%20want%20to%20discuss%20next%20steps." style="background:#25D366; color:#fff; padding:12px 24px; border-radius:50px; text-decoration:none; font-weight:bold; display:inline-block;">💬 Chat on WhatsApp (+91 9019958415)</a></p>
                                            <br /><p>Best regards,<br><strong>Shaiban Puttur & The Kyrosh Squad</strong></p>`
                                 })
                             });
                         } catch (err) { console.error('Client email dispatch error:', err); }
 
-                        // ============ ðŸ”” OWNER INSTANT LEAD ALERT (EMAIL & TELEGRAM/WHATSAPP DISPATCH) ============
+                        // ============ 🔔 OWNER INSTANT LEAD ALERT (EMAIL & TELEGRAM/WHATSAPP DISPATCH) ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: 'kyroshbrand@gmail.com',
-                                    subject: `ðŸ”¥ HOT NEW PROPOSAL [${currentCurrency}]: ${name} (${service})`,
-                                    html: `<h2>ðŸ”¥ New Lead Alert â€” 50% Proposal Form</h2>
+                                    subject: `🔥 HOT NEW PROPOSAL [${currentCurrency}]: ${name} (${service})`,
+                                    html: `<h2>🔥 New Lead Alert — 50% Proposal Form</h2>
                                            <p><strong>Candidate / Client:</strong> ${name}</p>
                                            <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a> | <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}">WhatsApp Client</a></p>
                                            <p><strong>Email:</strong> ${email}</p>
@@ -4890,13 +4890,13 @@
                         } catch (err) { console.error('Owner email notification error:', err); }
 
                         SoundFX.success();
-                        if (btn) btn.textContent = 'âœ… Proposal Submitted!';
+                        if (btn) btn.textContent = '✅ Proposal Submitted!';
                         const successMsg = document.getElementById('successMsg');
                         if (successMsg) successMsg.style.display = 'block';
                         if (proposalForm) proposalForm.reset();
 
                         setTimeout(() => {
-                            if (btn) { btn.textContent = 'Submit & Claim 50% Proposal â†’'; btn.disabled = false; }
+                            if (btn) { btn.textContent = 'Submit & Claim 50% Proposal →'; btn.disabled = false; }
                             if (successMsg) successMsg.style.display = 'none';
                         }, 5000);
 
@@ -4915,7 +4915,7 @@
         // ============ AOS INITIALIZATION ============
         try { if (typeof AOS !== 'undefined') { AOS.init({ duration: 800, once: true }); } } catch (err) { console.error('AOS init error:', err); }
 
-        console.log('ðŸ¤– Kyrosh AI Copilot is online and ready to convert visitors!');
+        console.log('🤖 Kyrosh AI Copilot is online and ready to convert visitors!');
     </script>
 </body>
 </html>
