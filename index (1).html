@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="notranslate" translate="no">
 <head>
     <meta charset="UTF-8" />
@@ -268,14 +268,9 @@
         @keyframes verifiedGlow { 0%,100% { color:#10B981; text-shadow:0 0 10px rgba(16,185,129,0.5); } 50% { color:#34D399; text-shadow:0 0 20px rgba(16,185,129,0.9); } }
         @keyframes confettiFall { 0% { transform:translateY(-100vh) rotate(0deg); opacity:1; } 100% { transform:translateY(100vh) rotate(720deg); opacity:0; } }
 
-        @keyframes autoDismissPreloader {
-            0% { opacity: 1; visibility: visible; }
-            70% { opacity: 1; visibility: visible; }
-            100% { opacity: 0; visibility: hidden; pointer-events: none; display: none; }
-        }
         /* Preloader */
-        .preloader { position:fixed; top:0; left:0; width:100%; height:100%; background:var(--dark-bg); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:100000; transition:opacity .5s ease, visibility .5s ease; animation:autoDismissPreloader 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; pointer-events:none; }
-        .preloader.hidden { opacity:0 !important; visibility:hidden !important; pointer-events:none !important; display:none !important; }
+        .preloader { position:fixed; top:0; left:0; width:100%; height:100%; background:var(--dark-bg); display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:100000; transition:opacity .6s, visibility .6s; }
+        .preloader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
         .preloader-logo { font-family:'Poppins', sans-serif; font-size:42px; font-weight:900; letter-spacing:2px; animation:preloaderPulse 1.2s infinite; display:flex; flex-direction:column; align-items:center; }
         .preloader-logo span { color:var(--primary-light); }
         .preloader-sub { color:var(--gray); font-size:13px; letter-spacing:3px; text-transform:uppercase; margin-top:8px; font-weight:600; }
@@ -2363,17 +2358,6 @@
         <div class="preloader-logo">KYROSH<span>.</span></div>
         <div class="preloader-sub">Building Digital Empires Worldwide</div>
     </div>
-    <script>
-        (function() {
-            var p = document.getElementById('preloader');
-            if (p) {
-                setTimeout(function() {
-                    p.classList.add('hidden');
-                    p.style.display = 'none';
-                }, 350);
-            }
-        })();
-    </script>
     <div class="particles" id="particles"></div>
 
     <!-- Success Popup -->
@@ -4154,94 +4138,94 @@
             let reply = "";
 
             if (q.includes('ad') || q.includes('meta') || q.includes('facebook') || q.includes('instagram') || q.includes('tiktok') || q.includes('roas') || q.includes('cpa') || q.includes('media buy') || q.includes('creative') || q.includes('gallery')) {
-                reply = <i class="fas fa-chart-line" style="color:var(--accent-cyan);"></i> <strong>10x ROAS Performance Ads Machine:</strong><br>
+                reply = `<i class="fas fa-chart-line" style="color:var(--accent-cyan);"></i> <strong>10x ROAS Performance Ads Machine:</strong><br>
                 Kyrosh engineers multi-tier Meta, Google 360, and TikTok ad funnels with direct-response psychological triggers, multi-touch attribution, and rapid creative iteration.<br><br>
-                â€¢ <strong>Track Record:</strong> Scaled brands to 6.4x â€“ 9.4x ROAS while cutting CPA by up to 45%<br>
-                â€¢ <strong>Creative Arsenal:</strong> High-CTR static hooks, 3D motion ads, and viral UGC funnels<br><br>
+                • <strong>Track Record:</strong> Scaled brands to 6.4x – 9.4x ROAS while cutting CPA by up to 45%<br>
+                • <strong>Creative Arsenal:</strong> High-CTR static hooks, 3D motion ads, and viral UGC funnels<br><br>
                 <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;">
                     <button class="btn-primary" onclick="go('ads-gallery'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-images"></i> View Ads Gallery &rarr;</button>
                     <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-bolt"></i> Claim 50% Off Ads &rarr;</button>
-                </div>;
+                </div>`;
             } else if (q.includes('e-commerce') || q.includes('d2c') || q.includes('store') || q.includes('shopify')) {
-                reply = <i class="fas fa-shopping-cart" style="color:var(--accent-green);"></i> <strong>E-Commerce Growth & Scaling Architecture:</strong><br>
-                For scaling an online store, we deploy our flagship <strong>Scale & Dominance Package</strong> (â‚¹29,000/mo with 50% OFF applied today).<br><br>
-                â€¢ <strong>Next.js / Shopify Headless Storefront:</strong> Sub-second page loads & 3x checkout conversions<br>
-                â€¢ <strong>Meta Advantage+ & Google Shopping:</strong> Multi-tier funnels averaging 5.8x ROAS<br>
-                â€¢ <strong>8 High-Converting UGC & 3D Creatives:</strong> Fresh ad batches produced monthly<br><br>
-                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-rocket"></i> Claim 50% E-Commerce Deal &rarr;</button>;
+                reply = `<i class="fas fa-shopping-cart" style="color:var(--accent-green);"></i> <strong>E-Commerce Growth & Scaling Architecture:</strong><br>
+                For scaling an online store, we deploy our flagship <strong>Scale & Dominance Package</strong> (₹29,000/mo with 50% OFF applied today).<br><br>
+                • <strong>Next.js / Shopify Headless Storefront:</strong> Sub-second page loads & 3x checkout conversions<br>
+                • <strong>Meta Advantage+ & Google Shopping:</strong> Multi-tier funnels averaging 5.8x ROAS<br>
+                • <strong>8 High-Converting UGC & 3D Creatives:</strong> Fresh ad batches produced monthly<br><br>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-rocket"></i> Claim 50% E-Commerce Deal &rarr;</button>`;
             } else if (q.includes('seo') || q.includes('geo') || q.includes('search') || q.includes('rank') || q.includes('chatgpt') || q.includes('perplexity') || q.includes('google')) {
-                reply = <i class="fas fa-search-plus" style="color:var(--accent-cyan);"></i> <strong>SEO & GEO (Generative Engine Optimization) Domination:</strong><br>
+                reply = `<i class="fas fa-search-plus" style="color:var(--accent-cyan);"></i> <strong>SEO & GEO (Generative Engine Optimization) Domination:</strong><br>
                 We position your brand at #1 on Google Search and guarantee recommendations inside AI answer engines like <strong>ChatGPT, Perplexity AI, and Claude</strong>.<br><br>
-                â€¢ <strong>140+ Commercial Keywords:</strong> Position #1 organic dominance<br>
-                â€¢ <strong>Structured Schema Architecture:</strong> LLM training data extraction & citation mapping<br>
-                â€¢ <strong>Zero Ad Spend Inbound:</strong> Generate steady high-intent enterprise pipeline<br><br>
-                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='SEO & Generative Engine Optimization (GEO)'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-chart-line"></i> Unlock GEO Domination (50% OFF) &rarr;</button>;
+                • <strong>140+ Commercial Keywords:</strong> Position #1 organic dominance<br>
+                • <strong>Structured Schema Architecture:</strong> LLM training data extraction & citation mapping<br>
+                • <strong>Zero Ad Spend Inbound:</strong> Generate steady high-intent enterprise pipeline<br><br>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='SEO & Generative Engine Optimization (GEO)'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-chart-line"></i> Unlock GEO Domination (50% OFF) &rarr;</button>`;
             } else if (q.includes('video') || q.includes('3d') || q.includes('ugc') || q.includes('motion') || q.includes('vfx') || q.includes('commercial')) {
-                reply = <i class="fas fa-video" style="color:#FF4444;"></i> <strong>Cinematic 3D Video & UGC Production:</strong><br>
+                reply = `<i class="fas fa-video" style="color:#FF4444;"></i> <strong>Cinematic 3D Video & UGC Production:</strong><br>
                 We produce Hollywood-grade 3D product animations, motion graphics, and viral UGC video funnels in Cinema 4D and DaVinci Resolve.<br><br>
-                â€¢ <strong>Viral Attention Hooks:</strong> Stop the scroll in the first 1.5 seconds<br>
-                â€¢ <strong>Organic & Paid Lift:</strong> Generated 2.4M+ organic views for client campaigns<br>
-                â€¢ <strong>Full Turnkey Production:</strong> Scripting, 3D modeling, color grade, & sound design<br><br>
-                <button class="btn-primary" onclick="go('ads-gallery'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-play"></i> Explore Ads & Video Portfolio &rarr;</button>;
+                • <strong>Viral Attention Hooks:</strong> Stop the scroll in the first 1.5 seconds<br>
+                • <strong>Organic & Paid Lift:</strong> Generated 2.4M+ organic views for client campaigns<br>
+                • <strong>Full Turnkey Production:</strong> Scripting, 3D modeling, color grade, & sound design<br><br>
+                <button class="btn-primary" onclick="go('ads-gallery'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-play"></i> Explore Ads & Video Portfolio &rarr;</button>`;
             } else if (q.includes('stack') || q.includes('website') || q.includes('web') || q.includes('tech') || q.includes('speed') || q.includes('next.js') || q.includes('react')) {
-                reply = <i class="fas fa-bolt" style="color:var(--accent-gold);"></i> <strong>Modern High-Speed Web Architecture:</strong><br>
+                reply = `<i class="fas fa-bolt" style="color:var(--accent-gold);"></i> <strong>Modern High-Speed Web Architecture:</strong><br>
                 We develop bespoke, ultra-fast web applications without slow generic templates.<br><br>
-                â€¢ <strong>Frontend:</strong> Next.js 14, React, Tailwind CSS, Vanilla JS, WebGL 3D<br>
-                â€¢ <strong>Backend & Data:</strong> Node.js, Python FastAPI, Supabase, PostgreSQL, Cloudflare Edge<br>
-                â€¢ <strong>Performance Score:</strong> 99+ Google Lighthouse score with sub-second TTFB latency<br><br>
-                <button class="btn-primary" onclick="go('services'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-desktop"></i> View Digital Services &rarr;</button>;
+                • <strong>Frontend:</strong> Next.js 14, React, Tailwind CSS, Vanilla JS, WebGL 3D<br>
+                • <strong>Backend & Data:</strong> Node.js, Python FastAPI, Supabase, PostgreSQL, Cloudflare Edge<br>
+                • <strong>Performance Score:</strong> 99+ Google Lighthouse score with sub-second TTFB latency<br><br>
+                <button class="btn-primary" onclick="go('services'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-desktop"></i> View Digital Services &rarr;</button>`;
             } else if (q.includes('brand') || q.includes('logo') || q.includes('identity') || q.includes('packaging') || q.includes('figma')) {
-                reply = <i class="fas fa-palette" style="color:var(--primary-light);"></i> <strong>Iconic Brand Identity & 3D Packaging:</strong><br>
+                reply = `<i class="fas fa-palette" style="color:var(--primary-light);"></i> <strong>Iconic Brand Identity & 3D Packaging:</strong><br>
                 We build memorable visual identities that command premium pricing and investor confidence.<br><br>
-                â€¢ <strong>Comprehensive Guidelines:</strong> Vector logo systems, color theory, typography hierarchy<br>
-                â€¢ <strong>3D Packaging & Assets:</strong> Photorealistic product renders and social media design kits<br>
-                â€¢ <strong>Proven Value:</strong> Rebranded clients closed multi-million dollar fundraising rounds<br><br>
-                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Branding & Creative Design'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-palette"></i> Request Branding Scope &rarr;</button>;
+                • <strong>Comprehensive Guidelines:</strong> Vector logo systems, color theory, typography hierarchy<br>
+                • <strong>3D Packaging & Assets:</strong> Photorealistic product renders and social media design kits<br>
+                • <strong>Proven Value:</strong> Rebranded clients closed multi-million dollar fundraising rounds<br><br>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Branding & Creative Design'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-palette"></i> Request Branding Scope &rarr;</button>`;
             } else if (q.includes('scanner') || q.includes('audit') || q.includes('diagnostic') || q.includes('health') || q.includes('vitals')) {
-                reply = <i class="fas fa-stethoscope" style="color:var(--accent-green);"></i> <strong>Live Funnel & Website Diagnostic Scanner:</strong><br>
+                reply = `<i class="fas fa-stethoscope" style="color:var(--accent-green);"></i> <strong>Live Funnel & Website Diagnostic Scanner:</strong><br>
                 Use our built-in health scanner to instantly evaluate your website's performance, mobile UX friction, Core Web Vitals, and GEO search readiness.<br><br>
-                â€¢ <strong>100% Free & Real-time:</strong> Enter your domain to generate a prioritized revenue fix list.<br><br>
-                <button class="btn-primary" onclick="go('scanner'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-wrench"></i> Open Diagnostic Scanner &rarr;</button>;
+                • <strong>100% Free & Real-time:</strong> Enter your domain to generate a prioritized revenue fix list.<br><br>
+                <button class="btn-primary" onclick="go('scanner'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-wrench"></i> Open Diagnostic Scanner &rarr;</button>`;
             } else if (q.includes('50%') || q.includes('discount') || q.includes('offer') || q.includes('price') || q.includes('cost') || q.includes('pricing') || q.includes('rate')) {
-                reply = <i class="fas fa-tag" style="color:#FF4444;"></i> <strong>Exclusive 50% Welcome Discount:</strong><br>
+                reply = `<i class="fas fa-tag" style="color:#FF4444;"></i> <strong>Exclusive 50% Welcome Discount:</strong><br>
                 All clients submitting a project proposal today permanently lock in 50% off across all Kyrosh packages:<br><br>
-                â€¢ <strong>Starter Package:</strong> â‚¹9,000 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹18,000)</span> / project<br>
-                â€¢ <strong>Scale & Dominance:</strong> â‚¹29,000 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹58,000)</span> / month<br>
-                â€¢ <strong>Enterprise Custom:</strong> â‚¹49,000 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹98,000)</span> / month<br><br>
-                <button class="btn-primary" onclick="go('pricing'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-tags"></i> View Pricing & Lock 50% OFF &rarr;</button>;
+                • <strong>Starter Package:</strong> ₹9,000 <span style="text-decoration:line-through; opacity:0.6;">(₹18,000)</span> / project<br>
+                • <strong>Scale & Dominance:</strong> ₹29,000 <span style="text-decoration:line-through; opacity:0.6;">(₹58,000)</span> / month<br>
+                • <strong>Enterprise Custom:</strong> ₹49,000 <span style="text-decoration:line-through; opacity:0.6;">(₹98,000)</span> / month<br><br>
+                <button class="btn-primary" onclick="go('pricing'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-tags"></i> View Pricing & Lock 50% OFF &rarr;</button>`;
             } else if (q.includes('timeline') || q.includes('how fast') || q.includes('days') || q.includes('time') || q.includes('delivery')) {
-                reply = <i class="fas fa-clock" style="color:var(--accent-gold);"></i> <strong>Guaranteed Turnaround Timelines:</strong><br>
-                â€¢ <strong>High-Converting Websites:</strong> 5 â€“ 10 Business Days<br>
-                â€¢ <strong>Performance Ad Funnels:</strong> 3 â€“ 5 Days to Live Launch<br>
-                â€¢ <strong>Custom Software & AI ERPs:</strong> 2 â€“ 4 Weeks Full Deployment<br>
-                â€¢ <strong>3D Video Ads & UGC:</strong> 7 â€“ 10 Days Turnaround<br><br>
-                Need emergency delivery? We can fast-track discovery within 24 hours.;
+                reply = `<i class="fas fa-clock" style="color:var(--accent-gold);"></i> <strong>Guaranteed Turnaround Timelines:</strong><br>
+                • <strong>High-Converting Websites:</strong> 5 – 10 Business Days<br>
+                • <strong>Performance Ad Funnels:</strong> 3 – 5 Days to Live Launch<br>
+                • <strong>Custom Software & AI ERPs:</strong> 2 – 4 Weeks Full Deployment<br>
+                • <strong>3D Video Ads & UGC:</strong> 7 – 10 Days Turnaround<br><br>
+                Need emergency delivery? We can fast-track discovery within 24 hours.`;
             } else if (q.includes('call') || q.includes('book') || q.includes('meet') || q.includes('consult') || q.includes('scheduler')) {
-                reply = <i class="fas fa-calendar-check" style="color:var(--accent-cyan);"></i> <strong>Schedule a 1-on-1 VIP Strategy Session:</strong><br>
+                reply = `<i class="fas fa-calendar-check" style="color:var(--accent-cyan);"></i> <strong>Schedule a 1-on-1 VIP Strategy Session:</strong><br>
                 Reserve a complimentary 30-minute growth consultation with our founding partners via Google Meet or WhatsApp Video.<br><br>
-                <button class="btn-primary" onclick="go('scheduler'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-calendar-check"></i> Open VIP Call Scheduler &rarr;</button>;
+                <button class="btn-primary" onclick="go('scheduler'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-calendar-check"></i> Open VIP Call Scheduler &rarr;</button>`;
             } else if (q.includes('software') || q.includes('saas') || q.includes('app') || q.includes('ai') || q.includes('backend') || q.includes('erp') || q.includes('crm')) {
-                reply = <i class="fas fa-laptop-code" style="color:var(--primary-light);"></i> <strong>Custom Software & AI Architecture:</strong><br>
+                reply = `<i class="fas fa-laptop-code" style="color:var(--primary-light);"></i> <strong>Custom Software & AI Architecture:</strong><br>
                 We engineer bespoke internal ERP platforms, custom CRM pipelines, and intelligent automated workflows saving enterprise clients 140+ hours every month.<br><br>
-                â€¢ <strong>Stack:</strong> React, Python FastAPI, Node.js, PostgreSQL, AWS & Cloudflare<br>
-                â€¢ <strong>Reliability:</strong> 99.99% uptime with bank-grade data security<br><br>
-                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Software Development'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-code"></i> Request Tech Blueprint &rarr;</button>;
+                • <strong>Stack:</strong> React, Python FastAPI, Node.js, PostgreSQL, AWS & Cloudflare<br>
+                • <strong>Reliability:</strong> 99.99% uptime with bank-grade data security<br><br>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Software Development'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-code"></i> Request Tech Blueprint &rarr;</button>`;
             } else if (q.includes('founder') || q.includes('shaiban') || q.includes('irfan') || q.includes('shafeeq') || q.includes('team') || q.includes('leadership')) {
-                reply = <i class="fas fa-users" style="color:var(--accent-green);"></i> <strong>Kyrosh Leadership Squad:</strong><br>
-                â€¢ <strong>Shaiban Puttur:</strong> Founder & Chief Growth Strategist<br>
-                â€¢ <strong>Irfan Vtl:</strong> Chief Executive Officer (CEO)<br>
-                â€¢ <strong>Shafeeq Sullia:</strong> Chief Technology Officer (CTO)<br><br>
+                reply = `<i class="fas fa-users" style="color:var(--accent-green);"></i> <strong>Kyrosh Leadership Squad:</strong><br>
+                • <strong>Shaiban Puttur:</strong> Founder & Chief Growth Strategist<br>
+                • <strong>Irfan Vtl:</strong> Chief Executive Officer (CEO)<br>
+                • <strong>Shafeeq Sullia:</strong> Chief Technology Officer (CTO)<br><br>
                 We have generated tens of crores in client revenue with a relentless obsession for performance.<br><br>
-                <button class="btn-primary" onclick="go('team'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-users"></i> Meet the Founders &rarr;</button>;
+                <button class="btn-primary" onclick="go('team'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-users"></i> Meet the Founders &rarr;</button>`;
             } else {
-                reply = <i class="fas fa-robot" style="color:var(--primary-light);"></i> <strong>Kyrosh Full-Stack Growth Engine:</strong><br>
+                reply = `<i class="fas fa-robot" style="color:var(--primary-light);"></i> <strong>Kyrosh Full-Stack Growth Engine:</strong><br>
                 Whether you need bespoke websites, 10x ROAS performance ads, cinematic video production, or SEO domination, we engineer end-to-end digital empires.<br><br>
                 Would you like our directors to prepare a custom proposal with <strong>50% OFF</strong> for your brand?
                 <div class="ai-quick-chips">
                     <button class="ai-chip-btn" data-query="Yes, prepare my custom proposal"><i class="fas fa-bolt"></i> Yes, Get Custom Proposal</button>
                     <button class="ai-chip-btn" data-query="How do your Performance Ads achieve 10x ROAS?"><i class="fas fa-chart-line"></i> 10x Ads Strategy</button>
                     <button class="ai-chip-btn" data-query="Book a 1-on-1 strategy call"><i class="fas fa-calendar-check"></i> Book Strategy Call</button>
-                </div>;
+                </div>`;
             }
 
             setTimeout(() => {
