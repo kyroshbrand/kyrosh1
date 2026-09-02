@@ -451,34 +451,6 @@
         .ba-label.before { left:16px; background:rgba(239,68,68,0.9); border:1px solid rgba(255,255,255,0.3); color:#fff; }
         .ba-label.after { right:16px; background:rgba(16,185,129,0.9); border:1px solid rgba(255,255,255,0.3); color:#fff; }
 
-        /* Portfolio */
-        .work { background:var(--dark-surface); padding:90px 0; }
-        .work-filters { display:flex; justify-content:center; gap:10px; margin-bottom:40px; flex-wrap:wrap; }
-        .work-filter-btn { background:rgba(255,255,255,0.05); border:1.5px solid var(--dark-border); color:var(--gray-light); padding:9px 20px; border-radius:50px; font-size:13px; font-weight:700; cursor:pointer; transition:all .3s; }
-        .work-filter-btn.active, .work-filter-btn:hover { background:linear-gradient(135deg, var(--primary), var(--primary-dark)); border-color:var(--primary-light); color:#fff; box-shadow:0 6px 20px var(--primary-glow); }
-        .work-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:24px; }
-        .work-card { position:relative; border-radius:20px; overflow:hidden; height:280px; cursor:pointer; transition:all .5s cubic-bezier(.2,.8,.2,1); border:1px solid var(--dark-border); }
-        .work-card.hidden { display:none !important; }
-        .work-card:hover { transform:translateY(-8px) scale(1.02); border-color:var(--primary-light); box-shadow:0 20px 50px var(--primary-glow); }
-        .work-card img { width:100%; height:100%; object-fit:cover; transition:all .6s ease; }
-        .work-card:hover img { transform:scale(1.12); }
-        .work-card-badge { position:absolute; top:16px; right:16px; background:rgba(9,3,18,0.75); border:1px solid var(--dark-border); padding:4px 12px; border-radius:50px; font-size:11px; font-weight:700; color:var(--accent-cyan); backdrop-filter:blur(6px); z-index:2; }
-        .work-card-overlay { position:absolute; bottom:0; left:0; right:0; padding:24px; background:linear-gradient(transparent, rgba(9,3,18,0.96) 60%); }
-        .work-card-overlay h3 { font-size:20px; font-weight:800; color:#fff; margin-bottom:4px; }
-        .work-card-overlay p { font-size:13px; color:var(--primary-light); font-weight:600; text-transform:uppercase; letter-spacing:1px; }
-        .btn-view-study { background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.3); padding:6px 14px; border-radius:50px; font-size:11.5px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:6px; margin-top:10px; transition:all .2s; }
-        .btn-view-study:hover { background:var(--primary); border-color:var(--primary-light); }
-
-        /* Case Study Modal */
-        .case-study-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:10008; display:none; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(10px); }
-        .case-study-overlay.active { display:flex; }
-        .case-study-modal { background:linear-gradient(145deg, var(--dark-card), var(--dark-surface)); border:2px solid var(--primary-light); border-radius:24px; padding:38px 32px; max-width:700px; width:100%; position:relative; animation:popupBounce .5s ease; box-shadow:0 30px 80px rgba(0,0,0,0.8); max-height:92vh; overflow-y:auto; }
-        .case-metrics-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin:20px 0; }
-        .case-metric-box { background:rgba(9,3,18,0.7); border:1px solid var(--dark-border); border-radius:14px; padding:16px 12px; text-align:center; }
-        .case-metric-num { font-family:'Space Grotesk', sans-serif; font-size:26px; font-weight:900; color:var(--accent-cyan); }
-        .case-metric-lbl { font-size:11.5px; color:var(--gray); margin-top:2px; font-weight:600; }
-        .case-quote-box { background:var(--primary-glow); border-left:4px solid var(--primary-light); border-radius:10px; padding:14px 18px; margin:18px 0; font-style:italic; color:#E0D8EC; font-size:13.5px; }
-
         /* Process */
         #process { padding:100px 0; background:var(--dark-bg); position:relative; }
         .process-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; position:relative; }
@@ -1466,8 +1438,7 @@
 
             /* Hide matching links from mobile navigation drawer */
             #navLinks a[href="#transformations"],
-            #navLinks a[href="#work"],
-            #navLinks a[href="#process"] {
+                        #navLinks a[href="#process"] {
                 display: none !important;
             }
 
@@ -1679,17 +1650,6 @@
             .ba-label.after { right: 8px !important; }
             .ba-handle { width: 32px !important; height: 32px !important; font-size: 10px !important; }
 
-            /* Portfolio Work Grid */
-            #work { padding: 34px 0 !important; }
-            .work-filters { flex-wrap: wrap !important; gap: 4px !important; justify-content: center !important; margin-bottom: 16px !important; }
-            .work-filter-btn { font-size: 10.5px !important; padding: 4px 10px !important; }
-            .work-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
-            .work-card { height: 200px !important; border-radius: 14px !important; }
-            .work-card-overlay { padding: 12px !important; }
-            .work-card-overlay h3 { font-size: 14.5px !important; margin-bottom: 2px !important; }
-            .work-card-overlay p { font-size: 10.5px !important; }
-            .btn-view-study { font-size: 9.5px !important; padding: 4px 8px !important; margin-top: 4px !important; }
-
             /* Services Showcase Grid */
             #services { padding: 34px 0 !important; }
             .services-modern-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
@@ -1786,9 +1746,7 @@
             .footer-bottom { margin-top: 20px !important; padding-top: 12px !important; font-size: 10.5px !important; }
 
             /* Mobile Modals (Case Study, Dashboard, Career) */
-            .case-study-modal { padding: 20px 14px !important; max-height: 90vh !important; }
-            .case-metrics-grid { grid-template-columns: 1fr !important; gap: 6px !important; }
-            .dashboard-modal { padding: 20px 12px !important; max-height: 90vh !important; }
+                        .dashboard-modal { padding: 20px 12px !important; max-height: 90vh !important; }
             .dashboard-stats-strip { grid-template-columns: 1fr !important; gap: 6px !important; }
             .career-modal { padding: 20px 14px !important; max-height: 90vh !important; }
 
@@ -2582,47 +2540,6 @@
         </div>
     </div>
 
-    <!-- Case Study Modal -->
-    <div class="case-study-overlay" id="caseStudyModal">
-        <div class="case-study-modal">
-            <button class="close-case" id="closeCaseModal"><i class="fas fa-times"></i></button>
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-                <span class="roi-badge" id="caseCategory">E-COMMERCE & D2C</span>
-                <span style="font-size:11.5px; font-weight:700; color:var(--accent-gold);" id="caseTimeline"><i class="fas fa-bolt"></i> 45 Days to Record Scale</span>
-            </div>
-            
-            <h2 id="caseTitle" style="font-size:26px; font-weight:900; margin:10px 0 12px;">E-Commerce Revenue Surge</h2>
-            <p id="caseDescription" style="color:var(--gray-light); font-size:14.5px; line-height:1.6;">How Kyrosh transformed an emerging brand with a high-converting Next.js storefront and multi-tiered Meta Ads funnels.</p>
-            
-            <div class="case-metrics-grid">
-                <div class="case-metric-box">
-                    <div class="case-metric-num" id="caseMetric1">+310%</div>
-                    <div class="case-metric-lbl" id="caseMetricLbl1">Revenue Growth</div>
-                </div>
-                <div class="case-metric-box">
-                    <div class="case-metric-num" id="caseMetric2">5.4x</div>
-                    <div class="case-metric-lbl" id="caseMetricLbl2">Average ROAS</div>
-                </div>
-                <div class="case-metric-box">
-                    <div class="case-metric-num" id="caseMetric3">-42%</div>
-                    <div class="case-metric-lbl" id="caseMetricLbl3">Customer Acq. Cost</div>
-                </div>
-            </div>
-
-            <div class="case-quote-box" id="caseQuote">
-                "Kyrosh didn't just build us a website; they engineered an automated sales machine."
-                <div style="font-weight:700; color:#fff; margin-top:6px; font-size:12px;" id="caseAuthor">✓ Verified Founder</div>
-            </div>
-
-            <div style="background:rgba(9,3,18,0.5); border-radius:14px; padding:18px; margin-bottom:20px; border:1px solid var(--dark-border);">
-                <h4 style="color:var(--primary-light); margin-bottom:6px; font-size:13.5px;"><i class="fas fa-tools"></i> Technologies & Strategy Deployed</h4>
-                <p id="caseTech" style="color:var(--gray); font-size:13px;">Next.js, Tailwind CSS, Supabase, Meta Ads Advantage+, Automated Retention Funnels.</p>
-            </div>
-
-            <button class="btn-primary" id="caseStudyCta" style="width:100%; justify-content:center;"><i class="fas fa-rocket"></i> Launch Similar Strategy For My Brand &rarr;</button>
-        </div>
-    </div>
-
     <!-- ====================================================
        🤖 AI AGENCY GROWTH COPILOT (INTERACTIVE CHATBOT)
     ==================================================== -->
@@ -2679,7 +2596,6 @@
                 <li><a href="#scheduler" id="navScheduler">Book</a></li>
                 <li><a href="#ads-gallery" id="navAdsGallery">Ads Gallery</a></li>
                 <li><a href="#transformations" id="navTransformations">Compare</a></li>
-                <li><a href="#work" id="navWork">Work</a></li>
                 <li><a href="#services" id="navServices">Services</a></li>
                 <li><a href="#process" id="navProcess">Blueprint</a></li>
                 <li><a href="#pricing" id="navPricing">Pricing</a></li>
@@ -3267,90 +3183,6 @@
         </div>
     </section>
 
-    <!-- Filterable Portfolio -->
-    <section id="work" class="work">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag"><i class="fas fa-trophy"></i> Masterpieces</span>
-                <h2>Work That <span class="highlight">Speaks Volumes</span></h2>
-                <p>Filter by domain or click any project to view the in-depth case study and client ROI breakdown.</p>
-                <span class="underline"></span>
-                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
-            </div>
-
-            <div class="work-filters" data-aos="fade-up">
-                <button class="work-filter-btn active" data-filter="all">All Projects (6)</button>
-                <button class="work-filter-btn" data-filter="web">Websites & SaaS</button>
-                <button class="work-filter-btn" data-filter="ads">Performance Ads</button>
-                <button class="work-filter-btn" data-filter="software">Custom Software</button>
-                <button class="work-filter-btn" data-filter="video">Video & 3D</button>
-                <button class="work-filter-btn" data-filter="branding">Branding</button>
-            </div>
-
-            <div class="work-grid" data-aos="fade-up" data-aos-delay="150" id="workGrid">
-                <div class="work-card tilt-card" data-category="web" data-title="Luxe E-Commerce Storefront" data-desc="Built a high-performance headless Next.js storefront for a luxury fashion brand with sub-second page loads." data-metric1="+340%" data-metriclbl1="Revenue Growth" data-metric2="5.8x" data-metriclbl2="Average ROAS" data-metric3="-45%" data-metriclbl3="Cart Dropoff" data-timeline="30 Days to Launch" data-quote="Kyrosh took our slow Shopify template and turned it into an ultra-fast global storefront that tripled our checkout conversion." data-author="— Anya R., Founder of Luxe Atelier" data-tech="Next.js, Tailwind CSS, Shopify API, Supabase, Cloudflare Edge">
-                    <span class="work-card-badge">E-Commerce Web</span>
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="E-Commerce" width="600" height="400" loading="lazy">
-                    <div class="work-card-overlay">
-                        <h3>Luxe E-Commerce Storefront</h3>
-                        <p>Web Development & UX Architecture</p>
-                        <button class="btn-view-study"><i class="fas fa-search-plus"></i> View Case Study</button>
-                    </div>
-                </div>
-
-                <div class="work-card tilt-card" data-category="branding" data-title="Apex Brand Identity Overhaul" data-desc="Complete visual rebranding, typography systems, and packaging architecture for an emerging fintech brand." data-metric1="+220%" data-metriclbl1="Trust Perception" data-metric2="4.4x" data-metriclbl2="Investor Interest" data-metric3="99.2%" data-metriclbl3="Brand Recall" data-timeline="4 Weeks Complete" data-quote="The brand identity Kyrosh created helped us close our $2.5M Seed round. Unbelievable eye for modern aesthetics." data-author="— Marcus V., CEO at Apex Fintech" data-tech="Figma, Adobe Illustrator, 3D Brand Guidelines, Motion Design">
-                    <span class="work-card-badge">Branding & Identity</span>
-                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" alt="Brand Identity" width="600" height="400" loading="lazy">
-                    <div class="work-card-overlay">
-                        <h3>Apex Brand Identity Overhaul</h3>
-                        <p>Complete Brand Uplifting</p>
-                        <button class="btn-view-study"><i class="fas fa-search-plus"></i> View Case Study</button>
-                    </div>
-                </div>
-
-                <div class="work-card tilt-card" data-category="ads" data-title="10x Omnichannel Ad Funnel" data-desc="Engineered a multi-tiered Meta & Google Ads machine generating over ₹1.8 Crore in tracked monthly revenue." data-metric1="+450%" data-metriclbl1="Monthly Revenue" data-metric2="6.4x" data-metriclbl2="Blended ROAS" data-metric3="-38%" data-metriclbl3="Cost Per Lead" data-timeline="60 Days to 10x" data-quote="Our previous agency burned budget. Kyrosh cut our CPA in half and scaled our ad spend with extreme profitability." data-author="— Rahul K., Growth Lead at HyperCart" data-tech="Meta Ads Manager, Google Ads 360, GA4, Multi-Touch Attribution">
-                    <span class="work-card-badge">Performance Marketing</span>
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Analytics" width="600" height="400" loading="lazy">
-                    <div class="work-card-overlay">
-                        <h3>10x Omnichannel Ad Funnel</h3>
-                        <p>Performance Marketing & ROAS</p>
-                        <button class="btn-view-study"><i class="fas fa-search-plus"></i> View Case Study</button>
-                    </div>
-                </div>
-
-                <div class="work-card tilt-card" data-category="video" data-title="Viral 3D Product Commercial" data-desc="Produced a cinematic 3D product commercial and UGC video funnel generating 2.4 Million organic impressions." data-metric1="2.4M+" data-metriclbl1="Organic Views" data-metric2="4.9%" data-metriclbl2="Click-Through Rate" data-metric3="+180%" data-metriclbl3="Social Engagement" data-timeline="14 Days Turnaround" data-quote="The motion graphics and 3D renders were Hollywood-grade. The ad paid for itself within 48 hours of launch." data-author="— Sarah J., Marketing VP" data-tech="Cinema 4D, After Effects, DaVinci Resolve, 4K Color Grading">
-                    <span class="work-card-badge">Cinematic Video</span>
-                    <img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=600&h=400&fit=crop" alt="Video" width="600" height="400" loading="lazy">
-                    <div class="work-card-overlay">
-                        <h3>Viral 3D Product Commercial</h3>
-                        <p>Cinematic Video & 3D Motion</p>
-                        <button class="btn-view-study"><i class="fas fa-search-plus"></i> View Case Study</button>
-                    </div>
-                </div>
-
-                <div class="work-card tilt-card" data-category="web" data-title="Global SEO & GEO Domination" data-desc="Propelled 140+ high-intent keywords to position #1 on Google Search and ChatGPT/Perplexity AI results." data-metric1="#1 Rank" data-metriclbl1="140+ Keywords" data-metric2="+520%" data-metriclbl2="Organic Inbound" data-metric3="180K/mo" data-metriclbl3="Monthly Traffic" data-timeline="90 Days Organic Surge" data-quote="We now dominate Google Search and AI engines for our core commercial terms without paying for clicks." data-author="— David M., SaaS Co-Founder" data-tech="SEMrush, Ahrefs, GEO Generative Optimization, Schema Engine">
-                    <span class="work-card-badge">SEO & GEO Search</span>
-                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop" alt="SEO" width="600" height="400" loading="lazy">
-                    <div class="work-card-overlay">
-                        <h3>Global SEO & GEO Domination</h3>
-                        <p>Search & AI Positioning</p>
-                        <button class="btn-view-study"><i class="fas fa-search-plus"></i> View Case Study</button>
-                    </div>
-                </div>
-
-                <div class="work-card tilt-card" data-category="software" data-title="Cloud CRM & AI Automations" data-desc="Built a bespoke operational ERP dashboard saving the enterprise client 160 operational hours each week." data-metric1="160 Hrs" data-metriclbl1="Weekly Time Saved" data-metric2="99.99%" data-metriclbl2="Uptime Reliability" data-metric3="-60%" data-metriclbl3="Manual Labor Cost" data-timeline="6 Weeks Build & Deploy" data-quote="Kyrosh replaced 4 expensive SaaS subscriptions with one custom dashboard that streamlined our entire company." data-author="— Elena B., COO at Nexus Logistics" data-tech="React, Node.js, Python FastAPI, PostgreSQL, AWS Lambda">
-                    <span class="work-card-badge">Custom Software</span>
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop" alt="Software" width="600" height="400" loading="lazy">
-                    <div class="work-card-overlay">
-                        <h3>Cloud CRM & AI Automations</h3>
-                        <p>Custom Software Architecture</p>
-                        <button class="btn-view-study"><i class="fas fa-search-plus"></i> View Case Study</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Services Showcase Grid -->
     <section id="services">
         <div class="container">
@@ -3477,7 +3309,7 @@
                         <p>Perfect for emerging startups and businesses ready to establish strong brand authority.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="price-strikethrough-secret">₹39,999</span><span class="period"> / project</span>
+                        <span class="currency" id="price1Curr">₹</span><span class="amount" id="price1Amt">9,000</span><span class="period"> / project</span><br><span class="price-strikethrough-secret" style="font-size:14px; opacity:0.6; text-decoration:line-through; margin-right:6px;">₹18,000</span>
                         <br>
                         <span class="price-unlocked-badge"><i class="fas fa-lock-open"></i> 50% Welcome Rate Applied</span>
                     </div>
@@ -3499,7 +3331,7 @@
                         <p>Complete marketing & digital ecosystem designed to aggressively double your sales.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="price-strikethrough-secret">₹99,999</span><span class="period"> / mo</span>
+                        <span class="currency" id="price2Curr">₹</span><span class="amount" id="price2Amt">29,000</span><span class="period"> / mo</span><br><span class="price-strikethrough-secret" style="font-size:14px; opacity:0.6; text-decoration:line-through; margin-right:6px;">₹58,000</span>
                         <br>
                         <span class="price-unlocked-badge"><i class="fas fa-bolt"></i> 50% VIP Rate Unlocked</span>
                     </div>
@@ -3520,7 +3352,7 @@
                         <p>Bespoke software architecture, multi-million ad scaling, and full omnichannel takeover.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="price-strikethrough-secret">₹1,99,999</span><span class="period"> / mo</span>
+                        <span class="currency" id="price3Curr">₹</span><span class="amount" id="price3Amt">49,000</span><span class="period"> / mo</span><br><span class="price-strikethrough-secret" style="font-size:14px; opacity:0.6; text-decoration:line-through; margin-right:6px;">₹98,000</span>
                         <br>
                         <span class="price-unlocked-badge" style="color:var(--accent-gold); border-color:var(--accent-gold);"><i class="fas fa-crown"></i> Bespoke Scope Rate</span>
                     </div>
@@ -3974,7 +3806,6 @@
                     <a href="#home" id="footerHome">Home</a>
                     <a href="#scheduler" id="footerScheduler">Book Strategy Call</a>
                     <a href="#transformations" id="footerTransformations">Before / After</a>
-                    <a href="#work" id="footerWork">Portfolio Case Studies</a>
                     <a href="#services" id="footerServices">Our Services</a>
                     <a href="#pricing" id="footerPricing">Pricing & Plans</a>
                     <a href="#careers">Careers & Openings</a>
@@ -4111,7 +3942,7 @@
         updateSoundUI();
 
         function attachAudioTriggers() {
-            const clickables = document.querySelectorAll('button, a, .tilt-card, .work-card, .faq-question, .currency-btn, .theme-color-btn, .date-btn, .slot-btn, .call-type-card');
+            const clickables = document.querySelectorAll('button, a, .tilt-card, .faq-question, .currency-btn, .theme-color-btn, .date-btn, .slot-btn, .call-type-card');
             clickables.forEach(el => {
                 el.addEventListener('mouseenter', () => SoundFX.hover());
                 el.addEventListener('click', () => SoundFX.click());
@@ -4192,7 +4023,7 @@
             renderCursor();
 
             function setupMagneticCursor() {
-                const magnetics = document.querySelectorAll('.btn-primary, .btn-outline, .btn-login, .currency-btn, .theme-color-btn, .work-card, .stat-card, .submit-btn, .ai-bot-float-btn');
+                const magnetics = document.querySelectorAll('.btn-primary, .btn-outline, .btn-login, .currency-btn, .theme-color-btn, .stat-card, .submit-btn, .ai-bot-float-btn');
                 magnetics.forEach(el => {
                     el.addEventListener('mouseenter', () => {
                         isHoveringMagnetic = true;
@@ -4271,7 +4102,7 @@
                 </div>`;
             } else if (q.includes('e-commerce') || q.includes('d2c') || q.includes('store') || q.includes('shopify')) {
                 reply = `ðŸ›’ <strong>E-Commerce Growth & Scaling Architecture:</strong><br>
-                For scaling an online store, we deploy our flagship <strong>Scale & Dominance Package</strong> (â‚¹49,999/mo with 50% OFF applied today).<br><br>
+                For scaling an online store, we deploy our flagship <strong>Scale & Dominance Package</strong> (â‚¹29,000/mo with 50% OFF applied today).<br><br>
                 â€¢ <strong>Next.js / Shopify Headless Storefront:</strong> Sub-second page loads & 3x checkout conversions<br>
                 â€¢ <strong>Meta Advantage+ & Google Shopping:</strong> Multi-tier funnels averaging 5.8x ROAS<br>
                 â€¢ <strong>8 High-Converting UGC & 3D Creatives:</strong> Fresh ad batches produced monthly<br><br>
@@ -4289,14 +4120,14 @@
                 â€¢ <strong>Viral Attention Hooks:</strong> Stop the scroll in the first 1.5 seconds<br>
                 â€¢ <strong>Organic & Paid Lift:</strong> Generated 2.4M+ organic views for client campaigns<br>
                 â€¢ <strong>Full Turnkey Production:</strong> Scripting, 3D modeling, color grade, & sound design<br><br>
-                <button class="btn-primary" onclick="go('work'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-play"></i> Explore Video Portfolio &rarr;</button>`;
+                <button class="btn-primary" onclick="go('ads-gallery'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-play"></i> Explore Ads & Video Portfolio &rarr;</button>`;
             } else if (q.includes('stack') || q.includes('website') || q.includes('web') || q.includes('tech') || q.includes('speed') || q.includes('next.js') || q.includes('react')) {
                 reply = `âš¡ <strong>Modern High-Speed Web Architecture:</strong><br>
                 We develop bespoke, ultra-fast web applications without slow generic templates.<br><br>
                 â€¢ <strong>Frontend:</strong> Next.js 14, React, Tailwind CSS, Vanilla JS, WebGL 3D<br>
                 â€¢ <strong>Backend & Data:</strong> Node.js, Python FastAPI, Supabase, PostgreSQL, Cloudflare Edge<br>
                 â€¢ <strong>Performance Score:</strong> 99+ Google Lighthouse score with sub-second TTFB latency<br><br>
-                <button class="btn-primary" onclick="go('work'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-desktop"></i> View Live Web Masterpieces &rarr;</button>`;
+                <button class="btn-primary" onclick="go('services'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-desktop"></i> View Digital Services &rarr;</button>`;
             } else if (q.includes('brand') || q.includes('logo') || q.includes('identity') || q.includes('packaging') || q.includes('figma')) {
                 reply = `ðŸŽ¨ <strong>Iconic Brand Identity & 3D Packaging:</strong><br>
                 We build memorable visual identities that command premium pricing and investor confidence.<br><br>
@@ -4312,9 +4143,9 @@
             } else if (q.includes('50%') || q.includes('discount') || q.includes('offer') || q.includes('price') || q.includes('cost') || q.includes('pricing') || q.includes('rate')) {
                 reply = `ðŸ·ï¸ <strong>Exclusive 50% Welcome Discount:</strong><br>
                 All clients submitting a project proposal today permanently lock in 50% off across all Kyrosh packages:<br><br>
-                â€¢ <strong>Starter Package:</strong> â‚¹19,999 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹39,999)</span> / project<br>
-                â€¢ <strong>Scale & Dominance:</strong> â‚¹49,999 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹99,999)</span> / month<br>
-                â€¢ <strong>Enterprise Custom:</strong> â‚¹99,999 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹1,99,999)</span> / month<br><br>
+                â€¢ <strong>Starter Package:</strong> â‚¹9,000 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹18,000)</span> / project<br>
+                â€¢ <strong>Scale & Dominance:</strong> â‚¹29,000 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹58,000)</span> / month<br>
+                â€¢ <strong>Enterprise Custom:</strong> â‚¹49,000 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹98,000)</span> / month<br><br>
                 <button class="btn-primary" onclick="go('pricing'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-tags"></i> View Pricing & Lock 50% OFF &rarr;</button>`;
             } else if (q.includes('timeline') || q.includes('how fast') || q.includes('days') || q.includes('time') || q.includes('delivery')) {
                 reply = `â±ï¸ <strong>Guaranteed Turnaround Timelines:</strong><br>
@@ -4538,7 +4369,7 @@
         // ====================================================
         const currentCurrency = 'INR';
         const currencyConfigs = {
-            INR: { symbol: '₹', prefix: '₹', p1Amt: '19,999', p2Amt: '49,999', p3Amt: '99,999', sliderMin: 20000, sliderMax: 1000000, sliderStep: 10000, sliderDefault: 100000, aovMin: 500, aovMax: 25000, aovStep: 500, aovDefault: 2500, presets: [ { label: '₹50K', val: 50000 }, { label: '₹1 Lakh', val: 100000 }, { label: '₹2.5 Lakh', val: 250000 }, { label: '₹5 Lakh', val: 500000 }, { label: '₹10 Lakh+', val: 1000000 } ] }
+            INR: { symbol: '₹', prefix: '₹', p1Amt: '9,000', p2Amt: '29,000', p3Amt: '49,000', sliderMin: 20000, sliderMax: 1000000, sliderStep: 10000, sliderDefault: 100000, aovMin: 500, aovMax: 25000, aovStep: 500, aovDefault: 2500, presets: [ { label: '₹50K', val: 50000 }, { label: '₹1 Lakh', val: 100000 }, { label: '₹2.5 Lakh', val: 250000 }, { label: '₹5 Lakh', val: 500000 }, { label: '₹10 Lakh+', val: 1000000 } ] }
         };
 
         function setCurrency() {
@@ -5011,8 +4842,7 @@
                 try {
                     const { data: { user } } = await supabaseClient.auth.getUser();
                     if (!user) {
-                        alert('Please login first.');
-                        openAuthModal();
+                        openAuthModal('scheduler', 'Please log in to confirm your strategy call');
                         schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call &rarr;';
                         schedSubmitBtn.disabled = false;
                         return;
@@ -5461,84 +5291,6 @@
             baSlider.addEventListener('touchstart', (e) => { isDraggingBA = true; updateSliderPosition(e.touches[0].clientX); });
             window.addEventListener('touchend', () => { isDraggingBA = false; });
             window.addEventListener('touchmove', (e) => { if (isDraggingBA) updateSliderPosition(e.touches[0].clientX); });
-        }
-
-        // ============ FILTERABLE PORTFOLIO & CASE STUDY MODAL ============
-        const workFilterBtns = document.querySelectorAll('.work-filter-btn');
-        const workCards = document.querySelectorAll('.work-card');
-        const caseStudyModal = document.getElementById('caseStudyModal');
-        const closeCaseModal = document.getElementById('closeCaseModal');
-        const caseTitle = document.getElementById('caseTitle');
-        const caseCategory = document.getElementById('caseCategory');
-        const caseTimeline = document.getElementById('caseTimeline');
-        const caseDescription = document.getElementById('caseDescription');
-        const caseMetric1 = document.getElementById('caseMetric1');
-        const caseMetricLbl1 = document.getElementById('caseMetricLbl1');
-        const caseMetric2 = document.getElementById('caseMetric2');
-        const caseMetricLbl2 = document.getElementById('caseMetricLbl2');
-        const caseMetric3 = document.getElementById('caseMetric3');
-        const caseMetricLbl3 = document.getElementById('caseMetricLbl3');
-        const caseQuote = document.getElementById('caseQuote');
-        const caseAuthor = document.getElementById('caseAuthor');
-        const caseTech = document.getElementById('caseTech');
-        const caseStudyCta = document.getElementById('caseStudyCta');
-
-        workFilterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                workFilterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.getAttribute('data-filter');
-                workCards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    if (filter === 'all' || category === filter) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-            });
-        });
-
-        workCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const title = card.getAttribute('data-title');
-                const category = card.querySelector('.work-card-badge')?.textContent || 'Case Study';
-                const desc = card.getAttribute('data-desc');
-                const m1 = card.getAttribute('data-metric1');
-                const ml1 = card.getAttribute('data-metriclbl1');
-                const m2 = card.getAttribute('data-metric2');
-                const ml2 = card.getAttribute('data-metriclbl2');
-                const m3 = card.getAttribute('data-metric3');
-                const ml3 = card.getAttribute('data-metriclbl3');
-                const timeline = card.getAttribute('data-timeline');
-                const quote = card.getAttribute('data-quote');
-                const author = card.getAttribute('data-author');
-                const tech = card.getAttribute('data-tech');
-
-                if (caseTitle) caseTitle.textContent = title;
-                if (caseCategory) caseCategory.textContent = category;
-                if (caseTimeline) caseTimeline.innerHTML = `<i class="fas fa-bolt"></i> ${timeline}`;
-                if (caseDescription) caseDescription.textContent = desc;
-                if (caseMetric1) caseMetric1.textContent = m1;
-                if (caseMetricLbl1) caseMetricLbl1.textContent = ml1;
-                if (caseMetric2) caseMetric2.textContent = m2;
-                if (caseMetricLbl2) caseMetricLbl2.textContent = ml2;
-                if (caseMetric3) caseMetric3.textContent = m3;
-                if (caseMetricLbl3) caseMetricLbl3.textContent = ml3;
-                if (caseQuote) caseQuote.innerHTML = `"${quote}"<div style="font-weight:700; color:#fff; margin-top:6px; font-size:12px;">${author}</div>`;
-                if (caseTech) caseTech.textContent = tech;
-
-                if (caseStudyModal) caseStudyModal.classList.add('active');
-            });
-        });
-
-        if (closeCaseModal) closeCaseModal.addEventListener('click', () => { if (caseStudyModal) caseStudyModal.classList.remove('active'); });
-        if (caseStudyModal) caseStudyModal.addEventListener('click', (e) => { if (e.target === caseStudyModal) caseStudyModal.classList.remove('active'); });
-        if (caseStudyCta) {
-            caseStudyCta.addEventListener('click', () => {
-                if (caseStudyModal) caseStudyModal.classList.remove('active');
-                go('proposal');
-            });
         }
 
         // ============ PRICING PLAN DIRECT SELECTORS ============
@@ -6153,9 +5905,9 @@
             'navHome': 'home',
             'navScanner': 'scanner',
             'navScheduler': 'scheduler',
+            'navAdsGallery': 'ads-gallery',
             'navTransformations': 'transformations',
-            'navWork': 'work',
-            'navServices': 'services',
+                        'navServices': 'services',
             'navProcess': 'process',
             'navPricing': 'pricing',
             'navCareers': 'careers',
@@ -6165,8 +5917,7 @@
             'footerHome': 'home',
             'footerScheduler': 'scheduler',
             'footerTransformations': 'transformations',
-            'footerWork': 'work',
-            'footerServices': 'services',
+                        'footerServices': 'services',
             'footerPricing': 'pricing'
         };
         Object.keys(navMap).forEach(id => {
@@ -6255,7 +6006,7 @@
                 (async () => {
                     try {
                         const { data: { user } } = await supabaseClient.auth.getUser();
-                        if (!user) { alert('Please login first.'); openAuthModal(); return; }
+                        if (!user) { openAuthModal('proposal', 'Please log in to submit your project proposal'); return; }
 
                         const name = document.getElementById('clientName') ? document.getElementById('clientName').value.trim() : '';
                         const email = document.getElementById('clientEmail') ? document.getElementById('clientEmail').value.trim() : '';
