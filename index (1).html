@@ -323,10 +323,33 @@
         .profile-dropdown .dropdown-item.logout-item i { color:#FF6B6B; }
 
         /* Pricing Strikethrough & Mystery Mask */
-        .price-strikethrough-secret { position:relative; display:inline-block; font-family:'Space Grotesk', sans-serif; font-size:32px; font-weight:900; color:rgba(255,255,255,0.45); letter-spacing:2px; text-decoration:line-through; text-decoration-color:#EF4444; text-decoration-thickness:3.5px; filter:blur(1px); user-select:none; transition:all .3s; }
-        .pricing-card:hover .price-strikethrough-secret { filter:blur(0.2px); color:rgba(255,255,255,0.7); }
+        .price-val-container {
+            position: relative;
+            display: inline-flex;
+            align-items: baseline;
+            filter: blur(4px);
+            user-select: none;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .price-val-container::after {
+            content: '';
+            position: absolute;
+            left: -4%;
+            right: -4%;
+            top: 53%;
+            height: 3.5px;
+            background: linear-gradient(90deg, #FF3366, #EF4444, #FF2222);
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.9), 0 0 18px rgba(239, 68, 68, 0.6);
+            pointer-events: none;
+            z-index: 5;
+        }
+        .pricing-card:hover .price-val-container,
+        .pricing-card:focus-within .price-val-container,
+        .pricing-card:active .price-val-container {
+            filter: blur(0.5px);
+        }
         .price-unlocked-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.15); border:1px solid #10B981; color:#10B981; padding:4px 14px; border-radius:50px; font-size:11px; font-weight:800; margin-top:8px; letter-spacing:0.5px; }
-        .profile-dropdown .dropdown-item.logout-item i { color:#FF6B6B; }
 
         /* Hero */
         .hero { min-height:100vh; display:flex; align-items:center; background:radial-gradient(circle at 80% 20%, var(--primary-glow), transparent 55%), radial-gradient(circle at 15% 75%, rgba(56,189,248,0.12), transparent 45%), var(--dark-bg); padding:135px 0 90px; position:relative; overflow:hidden; }
@@ -3309,7 +3332,10 @@
                         <p>Perfect for emerging startups and businesses ready to establish strong brand authority.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="currency" id="price1Curr">₹</span><span class="amount" id="price1Amt">9,000</span><span class="period"> / project</span><br><span class="price-strikethrough-secret" style="font-size:14px; opacity:0.6; text-decoration:line-through; margin-right:6px;">₹18,000</span>
+                        <div class="price-val-container">
+                            <span class="currency" id="price1Curr">₹</span><span class="amount" id="price1Amt">9,000</span>
+                        </div>
+                        <span class="period"> / project</span>
                         <br>
                         <span class="price-unlocked-badge"><i class="fas fa-lock-open"></i> 50% Welcome Rate Applied</span>
                     </div>
@@ -3331,7 +3357,10 @@
                         <p>Complete marketing & digital ecosystem designed to aggressively double your sales.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="currency" id="price2Curr">₹</span><span class="amount" id="price2Amt">29,000</span><span class="period"> / mo</span><br><span class="price-strikethrough-secret" style="font-size:14px; opacity:0.6; text-decoration:line-through; margin-right:6px;">₹58,000</span>
+                        <div class="price-val-container">
+                            <span class="currency" id="price2Curr">₹</span><span class="amount" id="price2Amt">29,000</span>
+                        </div>
+                        <span class="period"> / mo</span>
                         <br>
                         <span class="price-unlocked-badge"><i class="fas fa-bolt"></i> 50% VIP Rate Unlocked</span>
                     </div>
@@ -3352,7 +3381,10 @@
                         <p>Bespoke software architecture, multi-million ad scaling, and full omnichannel takeover.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="currency" id="price3Curr">₹</span><span class="amount" id="price3Amt">49,000</span><span class="period"> / mo</span><br><span class="price-strikethrough-secret" style="font-size:14px; opacity:0.6; text-decoration:line-through; margin-right:6px;">₹98,000</span>
+                        <div class="price-val-container">
+                            <span class="currency" id="price3Curr">₹</span><span class="amount" id="price3Amt">49,000</span>
+                        </div>
+                        <span class="period"> / mo</span>
                         <br>
                         <span class="price-unlocked-badge" style="color:var(--accent-gold); border-color:var(--accent-gold);"><i class="fas fa-crown"></i> Bespoke Scope Rate</span>
                     </div>
