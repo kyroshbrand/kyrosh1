@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="notranslate" translate="no">
 <head>
     <meta charset="UTF-8" />
@@ -5561,6 +5561,42 @@
             if (authForm) { authForm.style.display = 'block'; authForm.reset(); }
             if (authOtpStep) authOtpStep.style.display = 'none';
             if (authModalTitle) authModalTitle.innerHTML = '<i class="fas fa-lock" style="color:var(--primary-light); margin-right:6px;"></i> Client Login';
+                    if (proposalFormWrapper) proposalFormWrapper.style.display = 'none';
+                    if (loginPrompt) loginPrompt.style.display = 'block';
+                    if (schedulerCard) schedulerCard.style.display = 'none';
+                    if (schedulerLoginPrompt) schedulerLoginPrompt.style.display = 'block';
+                }
+            } catch (err) { console.error('updateAuthUI error:', err); }
+        }
+
+        // ============ AUTH MODAL CONTROLLER (Magic Link Only) ============
+        const authModal = document.getElementById('authModal');
+        const closeAuthModal = document.getElementById('closeAuthModal');
+        const authModalTitle = document.getElementById('authModalTitle');
+        const authModalSubtitle = document.getElementById('authModalSubtitle');
+        const authForm = document.getElementById('authForm');
+        const authEmail = document.getElementById('authEmail');
+        const authName = document.getElementById('authName');
+        const authPhone = document.getElementById('authPhone');
+        const authSubmitBtn = document.getElementById('authSubmitBtn');
+        const authError = document.getElementById('authError');
+        const promptLoginBtn = document.getElementById('promptLoginBtn');
+        const schedulerPromptLoginBtn = document.getElementById('schedulerPromptLoginBtn');
+        const authOtpStep = document.getElementById('authOtpStep');
+        const authSentEmail = document.getElementById('authSentEmail');
+        const authResendBtn = document.getElementById('authResendBtn');
+        const authBackBtn = document.getElementById('authBackBtn');
+        const authFootnote = document.getElementById('authFootnote');
+
+        let resendTimer = null;
+        let resendSeconds = 30;
+
+        function resetAuthModalToStep1() {
+            clearInterval(resendTimer);
+            if (authError) { authError.style.display = 'none'; authError.textContent = ''; }
+            if (authForm) { authForm.style.display = 'block'; authForm.reset(); }
+            if (authOtpStep) authOtpStep.style.display = 'none';
+            if (authModalTitle) authModalTitle.innerHTML = '<i class="fas fa-lock" style="color:var(--primary-light); margin-right:6px;"></i> Client Login';
             if (authModalSubtitle) authModalSubtitle.textContent = 'Enter your details to receive an instant Magic Link';
             if (authSubmitBtn) {
                 const spinner = authSubmitBtn.querySelector('.spinner');
@@ -5583,7 +5619,220 @@
             if (authModal) authModal.classList.add('active');
         }
 
-        if (closeAuthModal) closeAuthModal.addEventListener('click', () => { if (authModal) authModal.classList.remove('active');
+        if (closeAuthModal) closeAuthModal.addEventListener('click', () => { if (authModal) authModal.classList.remove('active'); });
+        if (authModal) authModal.addEventListener('click', (e) => { if (e.target === authModal) authModal.classList.remove('active'); });
+        if (promptLoginBtn) promptLoginBtn.addEventListener('click', () => openAuthModal('proposal'));
+        if (schedulerPromptLoginBtn) schedulerPromptLoginBtn.addEventListener('click', () => openAuthModal('scheduler'));
+
+        const navLoginMobile = document.getElementById('navLoginMobile');
+        if (navLoginMobile) {
+            navLoginMobile.addEventListener('click', (e) => {
+                e.preventDefault();
+                const navLinks = document.getElementById('navLinks');
+                if (navLinks) navLinks.classList.remove('active');
+                supabaseClient.auth.getUser().then(({ data: { user } }) => {
+                    if (user) {
+                        openDashboard();
+                    } else {
+                        openAuthModal('dashboard');
+                    }
+                });
+            });
+        }
+
+        function startResendCountdown() {
+            if (!authResendBtn) return;
+            clearInterval(resendTimer);
+            resendSeconds = 30;
+            authResendBtn.disabled = true;
+            authResendBtn.textContent = `Resend Magic Link (${resendSeconds}s)`;
+            resendTimer = setInterval(() => {
+                resendSeconds--;
+                if (resendSeconds <= 0) {
+                    clearInterval(resendTimer);
+                    authResendBtn.disabled = false;
+                    authResendBtn.textContent = 'Resend Magic Link Now';
+                } else {
+                    authResendBtn.textContent = `Resend Magic Link (${resendSeconds}s)`;
+                }
+            }, 1000);
+        }
+
+        if (authBackBtn) {
+            authBackBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                resetAuthModalToStep1();
+            });
+        }
+
+        async function sendMagicLink() {
+            const name = authName ? authName.value.trim() : '';
+            const phone = authPhone ? authPhone.value.trim() : '';
+            const email = authEmail ? authEmail.value.trim() : '';
+
+            if (!email) {
+                if (authError) {
+                    authError.textContent = 'Please enter your email address.';
+                    authError.style.display = 'block';
+                    authError.style.color = '#FF6B6B';
+                    authError.style.borderLeftColor = '#FF6B6B';
+                }
+                return false;
+            }
+
+            if (name) localStorage.setItem('kyrosh_auth_name', name);
+            if (phone) localStorage.setItem('kyrosh_auth_phone', phone);
+            localStorage.setItem('kyrosh_auth_email', email);
+
+            try {
+                const { error } = await supabaseClient.auth.signInWithOtp({
+                    email: email,
+                    options: {
+                        data: { name: name || undefined, phone: phone || undefined },
+                        emailRedirectTo: AUTH_REDIRECT_URL,
+                        shouldCreateUser: true
+                    }
+                });
+
+                if (error) {
+                    if (authError) {
+                        authError.textContent = error.message || 'Could not send the Magic Link. Please try again.';
+                        authError.style.display = 'block';
+                        authError.style.color = '#FF6B6B';
+                        authError.style.borderLeftColor = '#FF6B6B';
+                    }
+                    return false;
+                }
+
+                return true;
+            } catch (err) {
+                if (authError) {
+                    authError.textContent = 'Network error sending the Magic Link. Please check your connection and try again.';
+                    authError.style.display = 'block';
+                    authError.style.color = '#FF6B6B';
+                    authError.style.borderLeftColor = '#FF6B6B';
+                }
+                console.error('sendMagicLink error:', err);
+                return false;
+            }
+        }
+
+        if (authForm) {
+            authForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = authName ? authName.value.trim() : '';
+                const phone = authPhone ? authPhone.value.trim() : '';
+                const email = authEmail ? authEmail.value.trim() : '';
+
+                if (!name || !phone || !email) {
+                    if (authError) {
+                        authError.textContent = 'Please fill in all fields (Name, Phone, and Email).';
+                        authError.style.display = 'block';
+                        authError.style.color = '#FF6B6B';
+                        authError.style.borderLeftColor = '#FF6B6B';
+                    }
+                    return;
+                }
+
+                if (authError) {
+                    authError.style.display = 'none';
+                    authError.textContent = '';
+                }
+
+                if (authSubmitBtn) {
+                    const spinner = authSubmitBtn.querySelector('.spinner');
+                    const btnText = authSubmitBtn.querySelector('.btn-text');
+                    if (spinner) spinner.style.display = 'inline-block';
+                    if (btnText) btnText.textContent = 'Sending Magic Link...';
+                    authSubmitBtn.disabled = true;
+                }
+
+                try {
+                    const success = await sendMagicLink();
+                    if (success) {
+                        SoundFX.success();
+                        if (authForm) authForm.style.display = 'none';
+                        if (authOtpStep) authOtpStep.style.display = 'block';
+                        if (authSentEmail) authSentEmail.textContent = email;
+                        if (authModalTitle) authModalTitle.innerHTML = '<i class="fas fa-paper-plane" style="color:#38BDF8; margin-right:6px;"></i> Check Your Inbox';
+                        if (authModalSubtitle) authModalSubtitle.textContent = "One click and you're in";
+                        startResendCountdown();
+                    }
+                } catch (err) {
+                    if (authError) {
+                        authError.textContent = err.message || 'Something went wrong. Please try again.';
+                        authError.style.display = 'block';
+                    }
+                } finally {
+                    if (authSubmitBtn) {
+                        const spinner = authSubmitBtn.querySelector('.spinner');
+                        const btnText = authSubmitBtn.querySelector('.btn-text');
+                        if (spinner) spinner.style.display = 'none';
+                        if (btnText) btnText.textContent = 'Send Magic Link';
+                        authSubmitBtn.disabled = false;
+                    }
+                }
+            });
+        }
+
+        if (authResendBtn) {
+            authResendBtn.addEventListener('click', async () => {
+                if (authResendBtn.disabled) return;
+                authResendBtn.disabled = true;
+                authResendBtn.textContent = 'Sending...';
+                const success = await sendMagicLink();
+                if (success) {
+                    SoundFX.success();
+                    if (authError) {
+                        authError.style.display = 'block';
+                        authError.style.color = '#10B981';
+                        authError.style.borderLeftColor = '#10B981';
+                        authError.textContent = 'A fresh Magic Link is on its way!';
+                    }
+                    startResendCountdown();
+                } else {
+                    authResendBtn.disabled = false;
+                    authResendBtn.textContent = 'Resend Magic Link';
+                }
+            });
+        }
+
+        // ============ AUTH STATE LISTENER ============
+        const processedSignIns = new Set();
+
+        supabaseClient.auth.onAuthStateChange(async (event, session) => {
+            try {
+                if (event === 'SIGNED_IN' && session?.user) {
+                    const user = session.user;
+                    const sessionKey = (session.access_token || '').slice(-24) || user.id;
+
+                    if (!processedSignIns.has(sessionKey)) {
+                        processedSignIns.add(sessionKey);
+
+                        const pendingName = user.user_metadata?.name || localStorage.getItem('kyrosh_auth_name') || '';
+                        const pendingPhone = user.user_metadata?.phone || localStorage.getItem('kyrosh_auth_phone') || '';
+
+                        if (pendingName || pendingPhone) {
+                            await upsertProfile(user.id, {
+                                name: pendingName,
+                                phone: pendingPhone,
+                                email: user.email,
+                                updated_at: new Date().toISOString()
+                            });
+                        }
+
+                        const profile = await getProfile(user.id);
+                        const displayName = profile?.name || pendingName || user.email || 'User';
+                        const phone = profile?.phone || pendingPhone || '';
+                        await logLogin(user, { name: displayName, phone: phone });
+
+                        // Strip the ?code=... from the address bar
+                        if (window.history && window.history.replaceState) {
+                            window.history.replaceState(null, document.title, window.location.pathname);
+                        }
+                    }
+
+                    if (authModal) authModal.classList.remove('active');
                     const loginSuccessPopup = document.getElementById('loginSuccessPopup');
                     if (loginSuccessPopup) loginSuccessPopup.classList.remove('active');
 
@@ -5605,8 +5854,6 @@
                     processedSignIns.clear();
                     await updateAuthUI(null);
                 } else if (event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED') {
-                    // Keep the UI in sync silently on token refresh / profile
-                    // updates — no popups, no re-logging of the login event.
                     await updateAuthUI(session);
                 }
             } catch (err) {
