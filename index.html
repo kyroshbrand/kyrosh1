@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="notranslate" translate="no">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Language" content="en" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <title>Kyrosh ? No.1 Digital Growth Agency | Websites, Software, Performance Ads & SEO</title>
+    <title>Kyrosh — No.1 Digital Growth Agency | Websites, Software, Performance Ads & SEO</title>
     <meta name="description" content="Kyrosh is a global premier full-stack digital agency delivering high-converting bespoke websites, custom software, 10x ROAS performance ads, cinematic video, and SEO/GEO AI domination." />
     <meta name="keywords" content="digital agency, marketing, custom websites, software development, SEO, GEO, branding, performance ads, Kyrosh, ROI calculator, strategy call scheduler, AI copilot, Shaiban Puttur" />
     <meta name="author" content="Kyrosh Digital Agency" />
@@ -69,7 +69,7 @@
           "@type": "ProfessionalService",
           "@id": "https://kyrosh.com/#service",
           "name": "Kyrosh Digital Agency",
-          "priceRange": "???",
+          "priceRange": "₹₹₹",
           "telephone": "+91-9019958415",
           "email": "kyroshbrand@gmail.com",
           "url": "https://kyrosh.com/",
@@ -1046,7 +1046,7 @@
         .status-dot { width:9px; height:9px; border-radius:50%; background:#10B981; animation:pulseBeacon 2s infinite; }
 
         /* ====================================================
-           ?? AI AGENCY COPILOT FLOATING DRAWER & CHATBOT
+           🤖 AI AGENCY COPILOT FLOATING DRAWER & CHATBOT
         ==================================================== */
         .ai-bot-float-btn {
             position: fixed;
@@ -1309,6 +1309,7 @@
             background: linear-gradient(135deg, #fff, var(--primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             position: relative;
             z-index: 3;
         }
@@ -1351,7 +1352,7 @@
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: confettiFall linear infinite; }
 
         /* ====================================================
-           ?? ULTRA-CLEAN RESPONSIVE MEDIA QUERIES (MOBILE FIRST)
+           📱 ULTRA-CLEAN RESPONSIVE MEDIA QUERIES (MOBILE FIRST)
         ==================================================== */
         @media (max-width: 1100px) {
             .sensory-dock { display: none; }
@@ -1728,6 +1729,516 @@
             .date-picker-grid { grid-template-columns: repeat(3, 1fr) !important; }
             .slot-picker-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
+    
+        /* ====================================================
+           ðŸ”¥ KYROSH ADS GALLERY SECTION STYLING & ANIMATIONS
+        ==================================================== */
+        .ads-gallery-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, #120626 50%, var(--dark-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .ads-gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(60px);
+            animation: floatGlow 10s ease-in-out infinite alternate;
+        }
+        .ads-gallery-section::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            right: -150px;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(70px);
+            animation: floatGlow 12s ease-in-out infinite alternate-reverse;
+        }
+
+        .ads-filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+        .ads-filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid var(--dark-border);
+            color: var(--gray-light);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(8px);
+        }
+        .ads-filter-btn:hover {
+            background: rgba(120, 68, 213, 0.2);
+            border-color: var(--primary-light);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .ads-filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-color: var(--primary-light);
+            color: #fff;
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+
+        .ads-marquee-container {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 48px;
+            position: relative;
+            padding: 16px 0;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .ads-marquee-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            animation: adsMarqueeScroll 35s linear infinite;
+        }
+        .ads-marquee-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes adsMarqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ads-marquee-card {
+            width: 260px;
+            height: 340px;
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            border: 1.5px solid var(--dark-border);
+            background: var(--dark-card);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .ads-marquee-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .ads-marquee-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: var(--primary-light);
+            box-shadow: 0 16px 40px var(--primary-glow);
+        }
+        .ads-marquee-card:hover img {
+            transform: scale(1.08);
+        }
+        .ads-marquee-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(9, 3, 18, 0.85);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+            backdrop-filter: blur(6px);
+            z-index: 2;
+        }
+        .ads-marquee-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(9, 3, 18, 0.95) 0%, rgba(9, 3, 18, 0.3) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+            z-index: 2;
+        }
+        .ads-marquee-overlay h4 {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 800;
+            margin: 0 0 4px;
+        }
+        .ads-marquee-overlay p {
+            color: var(--gray);
+            font-size: 11.5px;
+            margin: 0;
+        }
+
+        .ads-grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 48px;
+        }
+        .ad-grid-card {
+            background: var(--dark-card);
+            border: 1.5px solid var(--dark-border);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--shadow-glass);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .ad-grid-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-light);
+            box-shadow: 0 20px 50px var(--primary-glow);
+        }
+        .ad-card-media {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+            background: #000;
+        }
+        .ad-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .ad-grid-card:hover .ad-card-media img {
+            transform: scale(1.08);
+        }
+        .ad-card-roas-pill {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .ad-card-platform-pill {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(9, 3, 18, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            z-index: 3;
+        }
+        .ad-card-hover-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(120, 68, 213, 0.45);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 4;
+        }
+        .ad-grid-card:hover .ad-card-hover-overlay {
+            opacity: 1;
+        }
+        .ad-card-zoom-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        .ad-grid-card:hover .ad-card-zoom-btn {
+            transform: scale(1);
+        }
+
+        .ad-card-content {
+            padding: 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .ad-card-content h3 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .ad-card-content p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .ad-card-stats-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid var(--dark-border);
+        }
+        .ad-stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .ad-stat-lbl {
+            font-size: 10.5px;
+            color: var(--gray);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .ad-stat-val {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--primary-light);
+        }
+
+        .ads-gallery-cta-box {
+            background: linear-gradient(135deg, rgba(120, 68, 213, 0.25), rgba(56, 189, 248, 0.15));
+            border: 1.5px solid var(--dark-border-glow);
+            border-radius: 24px;
+            padding: 32px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            box-shadow: var(--shadow-glass);
+            backdrop-filter: blur(12px);
+        }
+        .ads-cta-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .ads-cta-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px var(--primary-glow);
+        }
+        .ads-cta-content h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .ads-cta-content p {
+            font-size: 14px;
+            color: var(--gray-light);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .ads-lightbox-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 10005;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .ads-lightbox-modal.active {
+            display: flex;
+        }
+        .ads-lightbox-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 2, 10, 0.88);
+            backdrop-filter: blur(16px);
+        }
+        .ads-lightbox-content {
+            position: relative;
+            background: linear-gradient(160deg, #180931, #0C0419);
+            border: 2px solid var(--primary-light);
+            border-radius: 24px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.9);
+            z-index: 2;
+            animation: popupBounce 0.35s ease;
+        }
+        .ads-lightbox-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--dark-border);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+        .ads-lightbox-close:hover {
+            background: var(--accent-red);
+            transform: scale(1.1);
+        }
+        .ads-lightbox-body {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            height: 100%;
+        }
+        .ads-lightbox-img-wrap {
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 420px;
+        }
+        .ads-lightbox-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            max-height: 540px;
+        }
+        .ads-lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(9, 3, 18, 0.7);
+            border: 1px solid var(--dark-border);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+        .ads-lightbox-nav:hover {
+            background: var(--primary);
+            border-color: var(--primary-light);
+        }
+        .ads-lightbox-nav.prev { left: 12px; }
+        .ads-lightbox-nav.next { right: 12px; }
+        .ads-lightbox-info {
+            padding: 36px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .ads-lightbox-badge {
+            display: inline-block;
+            background: var(--primary-glow);
+            border: 1px solid var(--primary-light);
+            color: var(--primary-light);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+        .ads-lightbox-info h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .ads-lightbox-info p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .ads-lightbox-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .ad-metric-pill {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+        .ad-metric-pill span {
+            display: block;
+            font-size: 11px;
+            color: var(--gray);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .ad-metric-pill strong {
+            font-size: 16px;
+            color: var(--accent-green);
+            font-weight: 800;
+        }
+
+        @media (max-width: 992px) {
+            .ads-grid-container { grid-template-columns: repeat(2, 1fr); }
+            .ads-gallery-cta-box { flex-direction: column; text-align: center; }
+            .ads-cta-content { flex-direction: column; text-align: center; }
+            .ads-lightbox-body { grid-template-columns: 1fr; }
+            .ads-lightbox-img-wrap { min-height: 280px; max-height: 340px; }
+            .ads-lightbox-info { padding: 24px; }
+        }
+        @media (max-width: 640px) {
+            .ads-grid-container { grid-template-columns: 1fr; }
+            .ads-marquee-card { width: 220px; height: 300px; }
+        }
     </style>
 </head>
 <body>
@@ -1752,9 +2263,9 @@
     <!-- Success Popup -->
     <div class="success-popup-overlay" id="successPopup">
         <div class="success-popup" style="text-align:center; max-width:420px; padding:28px 22px; border-radius:24px; border:2px solid var(--primary-light); background:linear-gradient(145deg, var(--dark-card), var(--dark-surface));">
-            <div style="font-size:46px; margin-bottom:10px;">??</div>
+            <div style="font-size:46px; margin-bottom:10px;">🎉</div>
             <h3 style="color:#FFD700; font-size:22px; font-weight:900; margin-bottom:6px;">Proposal Received!</h3>
-            <p style="color:#fff; font-size:14px; line-height:1.5;">Your <strong>50% Welcome Discount</strong> is locked in! ??</p>
+            <p style="color:#fff; font-size:14px; line-height:1.5;">Your <strong>50% Welcome Discount</strong> is locked in! 🚀</p>
             <div style="background:rgba(255,255,255,0.06); border:1px solid var(--dark-border); border-radius:12px; padding:12px; margin:14px 0; text-align:left; font-size:12.5px;">
                 <p style="color:var(--gray-light); margin-bottom:4px;"><i class="fas fa-envelope" style="color:var(--primary-light);"></i> <strong>Email Sent:</strong> <span id="successClientEmail" style="color:#fff;">your email</span></p>
                 <p style="color:var(--gray-light);"><i class="fas fa-user-shield" style="color:var(--accent-green);"></i> <strong>Owner Alerted:</strong> Founder Shaiban & Directors</p>
@@ -1770,7 +2281,7 @@
         <div class="login-success-popup" style="text-align:center;">
             <div style="width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-light)); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:26px; color:#fff;"><i class="fas fa-check"></i></div>
             <h3 style="color:#fff; font-size:22px; font-weight:800; margin-bottom:6px;">Login Successful!</h3>
-            <p style="color:var(--gray); font-size:14px;">Welcome back, <strong id="loginSuccessName" style="color:var(--primary-light);">User</strong> ??</p>
+            <p style="color:var(--gray); font-size:14px;">Welcome back, <strong id="loginSuccessName" style="color:var(--primary-light);">User</strong> 👋</p>
         </div>
     </div>
 
@@ -1830,12 +2341,12 @@
         <div class="showreel-modal" style="max-width:440px; border-radius:28px;">
             <button class="close-modal" id="closeShowreelModal" style="z-index:20; color:#fff; top:12px; right:16px;"><i class="fas fa-times"></i></button>
             <div class="showreel-video-container" style="padding-bottom:177.77%; /* 9:16 Vertical Short */">
-                <iframe id="showreelIframe" src="" title="What is Kyrosh ? Words From Founder Shaiban" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="showreelIframe" src="" title="What is Kyrosh — Words From Founder Shaiban" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div style="padding:18px 20px; text-align:center; background:#100620;">
                 <h4 style="font-size:17px; font-weight:800; color:#fff; margin-bottom:4px;">What is Kyrosh</h4>
                 <p style="font-size:12.5px; color:var(--primary-light); font-weight:600; margin-bottom:14px;">Words From Founder Shaiban</p>
-                <button class="btn-primary" id="showreelClaimBtn" style="width:100%; justify-content:center; padding:10px 18px; font-size:13px;"><i class="fas fa-rocket"></i> Work With Kyrosh (50% OFF) ?</button>
+                <button class="btn-primary" id="showreelClaimBtn" style="width:100%; justify-content:center; padding:10px 18px; font-size:13px;"><i class="fas fa-rocket"></i> Work With Kyrosh (50% OFF) &rarr;</button>
             </div>
         </div>
     </div>
@@ -1844,7 +2355,7 @@
     <div class="wheel-modal-overlay" id="wheelModal">
         <div class="wheel-modal">
             <button class="close-modal" id="closeWheelModal"><i class="fas fa-times"></i></button>
-            <div style="font-size:36px; margin-bottom:4px;">??</div>
+            <div style="font-size:36px; margin-bottom:4px;">🎰</div>
             <h3 style="font-size:24px; font-weight:900; margin-bottom:4px;">Spin & Win <span style="color:var(--primary-light);">Growth Perks</span></h3>
             <p style="color:var(--gray); font-size:13px;">Tap SPIN to unlock an exclusive high-value growth voucher for your brand!</p>
 
@@ -1855,9 +2366,9 @@
             </div>
 
             <div class="wheel-result-box" id="wheelResultBox">
-                <h4 style="color:#FFD700; font-size:18px; font-weight:800;" id="wheelResultTitle">?? Congratulations!</h4>
-                <p style="color:#fff; font-size:14px; margin:6px 0;" id="wheelResultDesc">You unlocked: <strong>?? Extra 10% Off Any Package</strong></p>
-                <button class="btn-primary" id="claimWheelPerkBtn" style="width:100%; justify-content:center; margin-top:10px;"><i class="fas fa-gift"></i> Claim This Perk on My Proposal ?</button>
+                <h4 style="color:#FFD700; font-size:18px; font-weight:800;" id="wheelResultTitle">🎉 Congratulations!</h4>
+                <p style="color:#fff; font-size:14px; margin:6px 0;" id="wheelResultDesc">You unlocked: <strong>🎁 Extra 10% Off Any Package</strong></p>
+                <button class="btn-primary" id="claimWheelPerkBtn" style="width:100%; justify-content:center; margin-top:10px;"><i class="fas fa-gift"></i> Claim This Perk on My Proposal &rarr;</button>
             </div>
         </div>
     </div>
@@ -1895,9 +2406,9 @@
                     <label>Briefly Introduce Yourself & Why Kyrosh</label>
                     <textarea id="careerBio" rows="3" placeholder="Tell us about top projects you've built and what drives you..."></textarea>
                 </div>
-                <button type="submit" class="submit-btn" id="careerSubmitBtn" style="padding:14px;"><i class="fas fa-paper-plane"></i> Submit Application ?</button>
+                <button type="submit" class="submit-btn" id="careerSubmitBtn" style="padding:14px;"><i class="fas fa-paper-plane"></i> Submit Application &rarr;</button>
             </form>
-            <p style="text-align:center; margin-top:12px; color:#10B981; font-weight:700; display:none; font-size:13px;" id="careerSuccessMsg">? Application received! Our talent squad will review your portfolio within 48h.</p>
+            <p style="text-align:center; margin-top:12px; color:#10B981; font-weight:700; display:none; font-size:13px;" id="careerSuccessMsg">✅ Application received! Our talent squad will review your portfolio within 48h.</p>
         </div>
     </div>
 
@@ -1907,7 +2418,7 @@
             <button class="close-edit" id="closeEditModal"><i class="fas fa-times"></i></button>
             <h3 style="font-size:22px; font-weight:800; text-align:center; margin-bottom:18px;"><i class="fas fa-user-edit" style="color:var(--primary-light); margin-right:8px;"></i>Edit Profile</h3>
             <div id="editError" class="edit-error"></div>
-            <div id="editSuccess" class="edit-success">? Profile updated successfully!</div>
+            <div id="editSuccess" class="edit-success">✅ Profile updated successfully!</div>
             <div class="input-group">
                 <i class="fas fa-user"></i>
                 <input type="text" id="editName" placeholder="Full Name" />
@@ -1981,7 +2492,7 @@
 
             <div class="case-quote-box" id="caseQuote">
                 "Kyrosh didn't just build us a website; they engineered an automated sales machine."
-                <div style="font-weight:700; color:#fff; margin-top:6px; font-size:12px;" id="caseAuthor">? Verified Founder</div>
+                <div style="font-weight:700; color:#fff; margin-top:6px; font-size:12px;" id="caseAuthor">✓ Verified Founder</div>
             </div>
 
             <div style="background:rgba(9,3,18,0.5); border-radius:14px; padding:18px; margin-bottom:20px; border:1px solid var(--dark-border);">
@@ -1989,12 +2500,12 @@
                 <p id="caseTech" style="color:var(--gray); font-size:13px;">Next.js, Tailwind CSS, Supabase, Meta Ads Advantage+, Automated Retention Funnels.</p>
             </div>
 
-            <button class="btn-primary" id="caseStudyCta" style="width:100%; justify-content:center;"><i class="fas fa-rocket"></i> Launch Similar Strategy For My Brand ?</button>
+            <button class="btn-primary" id="caseStudyCta" style="width:100%; justify-content:center;"><i class="fas fa-rocket"></i> Launch Similar Strategy For My Brand &rarr;</button>
         </div>
     </div>
 
     <!-- ====================================================
-       ?? AI AGENCY GROWTH COPILOT (INTERACTIVE CHATBOT)
+       🤖 AI AGENCY GROWTH COPILOT (INTERACTIVE CHATBOT)
     ==================================================== -->
     <div class="ai-bot-float-btn" id="aiBotFloatBtn">
         <div class="ai-bot-avatar-icon"><i class="fas fa-robot"></i></div>
@@ -2008,7 +2519,7 @@
                 <div class="ai-bot-avatar-icon"><i class="fas fa-robot"></i></div>
                 <div>
                     <h4 style="font-size:13.5px; font-weight:800; color:#fff;">Kyrosh AI Copilot</h4>
-                    <span style="font-size:10.5px; color:#10B981; font-weight:700;"><i class="fas fa-circle" style="font-size:8px;"></i> Online ? Instant Strategy</span>
+                    <span style="font-size:10.5px; color:#10B981; font-weight:700;"><i class="fas fa-circle" style="font-size:8px;"></i> Online • Instant Strategy</span>
                 </div>
             </div>
             <button class="close-ai" id="closeAiChat" style="position:static; font-size:18px;"><i class="fas fa-times"></i></button>
@@ -2016,13 +2527,19 @@
 
         <div class="ai-chat-body" id="aiChatBody">
             <div class="ai-message bot">
-                ?? <strong>Hello! I am your Kyrosh AI Growth Copilot.</strong><br>
-                How can I accelerate your brand today? Select a quick topic or ask me anything:
+                ðŸ¤– <strong>Hello! I am your Kyrosh AI Growth Copilot.</strong><br>
+                How can I accelerate your brand today? Pick any strategic topic or ask me anything:
                 <div class="ai-quick-chips">
-                    <button class="ai-chip-btn" data-query="Recommend a package for my E-Commerce brand">?? E-Commerce Plan</button>
-                    <button class="ai-chip-btn" data-query="How does the 50% discount work?">?? 50% Discount Info</button>
-                    <button class="ai-chip-btn" data-query="How fast can you build custom software?">? Software Timeline</button>
-                    <button class="ai-chip-btn" data-query="Book a 1-on-1 strategy call">?? Book Call</button>
+                    <button class="ai-chip-btn" data-query="How do your Performance Ads achieve 10x ROAS?">ðŸ“ˆ 10x Performance Ads</button>
+                    <button class="ai-chip-btn" data-query="Recommend a package for my E-Commerce brand">ðŸ›’ E-Commerce Plan</button>
+                    <button class="ai-chip-btn" data-query="What is SEO & GEO AI search domination?">ðŸš€ SEO & GEO AI Domination</button>
+                    <button class="ai-chip-btn" data-query="How does the 50% discount work?">ðŸ·ï¸ 50% Welcome Discount</button>
+                    <button class="ai-chip-btn" data-query="Tell me about your 3D video & viral ad creatives">ðŸŽ¬ 3D Video & UGC Ads</button>
+                    <button class="ai-chip-btn" data-query="How fast can you build custom software?">ðŸ’» Custom Software Scope</button>
+                    <button class="ai-chip-btn" data-query="What is your website development tech stack?">âš¡ Web Speed & Stack</button>
+                    <button class="ai-chip-btn" data-query="What are your project turnaround timelines?">â±ï¸ Project Timelines</button>
+                    <button class="ai-chip-btn" data-query="How does the free diagnostic website scanner work?">ðŸ” Free Website Scanner</button>
+                    <button class="ai-chip-btn" data-query="Book a 1-on-1 strategy call">ðŸ“… Book VIP Strategy Call</button>
                 </div>
             </div>
         </div>
@@ -2041,6 +2558,7 @@
                 <li><a href="#home" id="navHome">Home</a></li>
                 <li><a href="#scanner" id="navScanner">Scanner</a></li>
                 <li><a href="#scheduler" id="navScheduler">Book</a></li>
+                <li><a href="#ads-gallery" id="navAdsGallery">Ads Gallery</a></li>
                 <li><a href="#transformations" id="navTransformations">Compare</a></li>
                 <li><a href="#work" id="navWork">Work</a></li>
                 <li><a href="#services" id="navServices">Services</a></li>
@@ -2101,9 +2619,9 @@
         <p style="text-align:center; color:var(--gray); font-size:13px; margin-bottom:16px; letter-spacing:2.5px; text-transform:uppercase; font-weight:700;">Powering High-Growth Startups & Industry Leaders Globally</p>
         <div class="marquee-wrapper">
             <div class="logos">
-                <span>TECHCORP ? GLOBAL BRAND ? NEXUS DIGITAL ? HYPERGROWTH ? LUMINA STUDIO ? APEX VENTURES ?</span>
-                <span>TECHCORP ? GLOBAL BRAND ? NEXUS DIGITAL ? HYPERGROWTH ? LUMINA STUDIO ? APEX VENTURES ?</span>
-                <span>TECHCORP ? GLOBAL BRAND ? NEXUS DIGITAL ? HYPERGROWTH ? LUMINA STUDIO ? APEX VENTURES ?</span>
+                <span>TECHCORP • GLOBAL BRAND • NEXUS DIGITAL • HYPERGROWTH • LUMINA STUDIO • APEX VENTURES •</span>
+                <span>TECHCORP • GLOBAL BRAND • NEXUS DIGITAL • HYPERGROWTH • LUMINA STUDIO • APEX VENTURES •</span>
+                <span>TECHCORP • GLOBAL BRAND • NEXUS DIGITAL • HYPERGROWTH • LUMINA STUDIO • APEX VENTURES •</span>
             </div>
         </div>
     </div>
@@ -2161,7 +2679,7 @@
                     <div class="scan-progress-bar-bg">
                         <div class="scan-progress-fill" id="scanProgressFill"></div>
                     </div>
-                    <div class="scan-status-text" id="scanStatusText">?? Initializing Kyrosh Diagnostic Core...</div>
+                    <div class="scan-status-text" id="scanStatusText">⚡ Initializing Kyrosh Diagnostic Core...</div>
                 </div>
 
                 <div class="scan-results-container" id="scanResultsContainer">
@@ -2177,7 +2695,7 @@
                                 <p style="color:var(--gray); font-size:13px;">Your site is currently losing an estimated <strong>35% to 55%</strong> of potential buyers due to friction.</p>
                             </div>
                         </div>
-                        <button class="btn-primary" id="scanFixBtn" style="padding:12px 24px;"><i class="fas fa-wrench"></i> Fix These Bottlenecks (50% OFF) ?</button>
+                        <button class="btn-primary" id="scanFixBtn" style="padding:12px 24px;"><i class="fas fa-wrench"></i> Fix These Bottlenecks (50% OFF) &rarr;</button>
                     </div>
 
                     <div class="scan-breakdown-grid">
@@ -2278,7 +2796,7 @@
                         <div style="background:var(--primary-glow); border:1px solid var(--dark-border); border-radius:12px; padding:10px 14px; margin-bottom:16px; font-size:12px; color:var(--gray-light);">
                             <i class="fas fa-video" style="color:var(--accent-cyan); margin-right:6px;"></i> Hosted via <strong>Google Meet / WhatsApp Video</strong>. Link sent instantly.
                         </div>
-                        <button class="btn-primary" id="schedSubmitBtn" style="width:100%; justify-content:center; padding:14px;"><i class="fas fa-check-circle"></i> Confirm Free Strategy Call ?</button>
+                        <button class="btn-primary" id="schedSubmitBtn" style="width:100%; justify-content:center; padding:14px;"><i class="fas fa-check-circle"></i> Confirm Free Strategy Call &rarr;</button>
                     </div>
                 </div>
             </div>
@@ -2291,6 +2809,313 @@
             </div>
         </div>
     </section>
+
+        <!-- ====================================================
+       ðŸ”¥ KYROSH ADS GALLERY (HIGH-CONVERTING AD CREATIVES)
+    ==================================================== -->
+    <section id="ads-gallery" class="ads-gallery-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag"><i class="fas fa-bullhorn"></i> Performance Creatives</span>
+                <h2>KYROSH <span class="highlight">Ads Gallery</span></h2>
+                <p>Explore our multi-million dollar direct-response ad creatives engineered with psychology-backed hooks, high-converting visual hierarchy, and 10x ROAS architecture.</p>
+                <span class="underline"></span>
+                <div class="underline-dots"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="ads-filter-bar" data-aos="fade-up">
+                <button class="ads-filter-btn active" data-ad-cat="all"><i class="fas fa-layer-group"></i> All Creatives (6)</button>
+                <button class="ads-filter-btn" data-ad-cat="meta"><i class="fab fa-facebook-square"></i> Meta & Instagram</button>
+                <button class="ads-filter-btn" data-ad-cat="ugc"><i class="fas fa-video"></i> Direct-Response & UGC</button>
+                <button class="ads-filter-btn" data-ad-cat="ecommerce"><i class="fas fa-shopping-bag"></i> E-Commerce Scale</button>
+            </div>
+
+            <!-- Continuous Infinite Animated Marquee Ribbon -->
+            <div class="ads-marquee-container" data-aos="zoom-in" data-aos-delay="100">
+                <div class="ads-marquee-track" id="adsMarqueeTrack">
+                    <!-- Set 1 -->
+                    <div class="ads-marquee-card" data-ad-index="0">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 7.2x ROAS</span>
+                        <img src="https://i.imgur.com/mWatkD2.jpeg" alt="HyperScale Performance Ad" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>HyperScale Performance Ad</h4>
+                            <p>Meta & Instagram â€¢ 5.4% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="1">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 6.4x ROAS</span>
+                        <img src="https://i.imgur.com/hUcJNl9.jpeg" alt="Cinematic Brand & Offer Ad" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Cinematic Brand & Offer Ad</h4>
+                            <p>Advantage+ Omnichannel â€¢ 4.8% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="2">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 8.1x ROAS</span>
+                        <img src="https://i.imgur.com/tlPv8TI.jpeg" alt="Omnichannel Growth Creative" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Omnichannel Growth Creative</h4>
+                            <p>Stories & Reels â€¢ 6.2% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="3">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 5.9x ROAS</span>
+                        <img src="https://i.imgur.com/nF33Ruw.jpeg" alt="Direct-Response Feature Focus" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Direct-Response Feature Focus</h4>
+                            <p>TikTok & UGC Funnel â€¢ 4.3% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="4">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 9.4x ROAS</span>
+                        <img src="https://i.imgur.com/tLv63JY.jpeg" alt="Luxury & High-AOV Showcase" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Luxury & High-AOV Showcase</h4>
+                            <p>Google & Retargeting â€¢ 7.1% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="5">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 6.7x ROAS</span>
+                        <img src="https://i.imgur.com/4p1jsqg.jpeg" alt="Viral Acquisition Creative" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Viral Acquisition Creative</h4>
+                            <p>Omnichannel Scale â€¢ 5.1% CTR</p>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate Set for Seamless Continuous Loop -->
+                    <div class="ads-marquee-card" data-ad-index="0">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 7.2x ROAS</span>
+                        <img src="https://i.imgur.com/mWatkD2.jpeg" alt="HyperScale Performance Ad" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>HyperScale Performance Ad</h4>
+                            <p>Meta & Instagram â€¢ 5.4% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="1">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 6.4x ROAS</span>
+                        <img src="https://i.imgur.com/hUcJNl9.jpeg" alt="Cinematic Brand & Offer Ad" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Cinematic Brand & Offer Ad</h4>
+                            <p>Advantage+ Omnichannel â€¢ 4.8% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="2">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 8.1x ROAS</span>
+                        <img src="https://i.imgur.com/tlPv8TI.jpeg" alt="Omnichannel Growth Creative" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Omnichannel Growth Creative</h4>
+                            <p>Stories & Reels â€¢ 6.2% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="3">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 5.9x ROAS</span>
+                        <img src="https://i.imgur.com/nF33Ruw.jpeg" alt="Direct-Response Feature Focus" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Direct-Response Feature Focus</h4>
+                            <p>TikTok & UGC Funnel â€¢ 4.3% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="4">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 9.4x ROAS</span>
+                        <img src="https://i.imgur.com/tLv63JY.jpeg" alt="Luxury & High-AOV Showcase" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Luxury & High-AOV Showcase</h4>
+                            <p>Google & Retargeting â€¢ 7.1% CTR</p>
+                        </div>
+                    </div>
+                    <div class="ads-marquee-card" data-ad-index="5">
+                        <span class="ads-marquee-badge"><i class="fas fa-chart-line"></i> 6.7x ROAS</span>
+                        <img src="https://i.imgur.com/4p1jsqg.jpeg" alt="Viral Acquisition Creative" loading="lazy" />
+                        <div class="ads-marquee-overlay">
+                            <h4>Viral Acquisition Creative</h4>
+                            <p>Omnichannel Scale â€¢ 5.1% CTR</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive 3D Grid Showcase -->
+            <div class="ads-grid-container" data-aos="fade-up" data-aos-delay="150" id="adsGridContainer">
+                <!-- Ad 01 -->
+                <div class="ad-grid-card" data-ad-cat="meta ecommerce" data-ad-index="0">
+                    <div class="ad-card-media">
+                        <span class="ad-card-platform-pill"><i class="fab fa-facebook"></i> Meta Feed</span>
+                        <span class="ad-card-roas-pill"><i class="fas fa-bolt"></i> 7.2x ROAS</span>
+                        <img src="https://i.imgur.com/mWatkD2.jpeg" alt="HyperScale Performance Ad" loading="lazy" />
+                        <div class="ad-card-hover-overlay">
+                            <div class="ad-card-zoom-btn"><i class="fas fa-expand-alt"></i></div>
+                        </div>
+                    </div>
+                    <div class="ad-card-content">
+                        <div>
+                            <h3>HyperScale Performance Ad</h3>
+                            <p>High-contrast visual hierarchy engineered with thumb-stopping value propositions that doubled checkout conversion.</p>
+                        </div>
+                        <div class="ad-card-stats-row">
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">Average ROAS</span><span class="ad-stat-val">7.2x</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">CTR</span><span class="ad-stat-val">5.4%</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">CPA Drop</span><span class="ad-stat-val">-44%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad 02 -->
+                <div class="ad-grid-card" data-ad-cat="meta ugc" data-ad-index="1">
+                    <div class="ad-card-media">
+                        <span class="ad-card-platform-pill"><i class="fab fa-instagram"></i> Advantage+</span>
+                        <span class="ad-card-roas-pill"><i class="fas fa-bolt"></i> 6.4x ROAS</span>
+                        <img src="https://i.imgur.com/hUcJNl9.jpeg" alt="Cinematic Brand & Offer Ad" loading="lazy" />
+                        <div class="ad-card-hover-overlay">
+                            <div class="ad-card-zoom-btn"><i class="fas fa-expand-alt"></i></div>
+                        </div>
+                    </div>
+                    <div class="ad-card-content">
+                        <div>
+                            <h3>Cinematic Brand & Offer Ad</h3>
+                            <p>Precision-targeted creative combining lifestyle aesthetics with high-converting social proof for instant brand lift.</p>
+                        </div>
+                        <div class="ad-card-stats-row">
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">Average ROAS</span><span class="ad-stat-val">6.4x</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">CTR</span><span class="ad-stat-val">4.8%</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">Reach</span><span class="ad-stat-val">1.2M+</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad 03 -->
+                <div class="ad-grid-card" data-ad-cat="ecommerce meta" data-ad-index="2">
+                    <div class="ad-card-media">
+                        <span class="ad-card-platform-pill"><i class="fab fa-instagram"></i> Stories & Reels</span>
+                        <span class="ad-card-roas-pill"><i class="fas fa-bolt"></i> 8.1x ROAS</span>
+                        <img src="https://i.imgur.com/tlPv8TI.jpeg" alt="Omnichannel Growth Creative" loading="lazy" />
+                        <div class="ad-card-hover-overlay">
+                            <div class="ad-card-zoom-btn"><i class="fas fa-expand-alt"></i></div>
+                        </div>
+                    </div>
+                    <div class="ad-card-content">
+                        <div>
+                            <h3>Omnichannel Growth Creative</h3>
+                            <p>Dynamic mobile-first vertical format tailored for maximum click-through rates and high checkout velocity.</p>
+                        </div>
+                        <div class="ad-card-stats-row">
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">Average ROAS</span><span class="ad-stat-val">8.1x</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">CTR</span><span class="ad-stat-val">6.2%</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">Conv Rate</span><span class="ad-stat-val">5.8%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad 04 -->
+                <div class="ad-grid-card" data-ad-cat="ugc ecommerce" data-ad-index="3">
+                    <div class="ad-card-media">
+                        <span class="ad-card-platform-pill"><i class="fab fa-tiktok"></i> TikTok & UGC</span>
+                        <span class="ad-card-roas-pill"><i class="fas fa-bolt"></i> 5.9x ROAS</span>
+                        <img src="https://i.imgur.com/nF33Ruw.jpeg" alt="Direct-Response Feature Focus" loading="lazy" />
+                        <div class="ad-card-hover-overlay">
+                            <div class="ad-card-zoom-btn"><i class="fas fa-expand-alt"></i></div>
+                        </div>
+                    </div>
+                    <div class="ad-card-content">
+                        <div>
+                            <h3>Direct-Response Feature Focus</h3>
+                            <p>Customer benefit breakdown designed to overcome purchase objections and drive immediate add-to-carts.</p>
+                        </div>
+                        <div class="ad-card-stats-row">
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">Average ROAS</span><span class="ad-stat-val">5.9x</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">CTR</span><span class="ad-stat-val">4.3%</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">CPA Drop</span><span class="ad-stat-val">-38%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad 05 -->
+                <div class="ad-grid-card" data-ad-cat="meta ecommerce" data-ad-index="4">
+                    <div class="ad-card-media">
+                        <span class="ad-card-platform-pill"><i class="fab fa-google"></i> Google Retargeting</span>
+                        <span class="ad-card-roas-pill"><i class="fas fa-bolt"></i> 9.4x ROAS</span>
+                        <img src="https://i.imgur.com/tLv63JY.jpeg" alt="Luxury & High-AOV Showcase" loading="lazy" />
+                        <div class="ad-card-hover-overlay">
+                            <div class="ad-card-zoom-btn"><i class="fas fa-expand-alt"></i></div>
+                        </div>
+                    </div>
+                    <div class="ad-card-content">
+                        <div>
+                            <h3>Luxury & High-AOV Showcase</h3>
+                            <p>High-aesthetic brand presentation optimized for premium brands, scaling buyer trust and average order value.</p>
+                        </div>
+                        <div class="ad-card-stats-row">
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">Average ROAS</span><span class="ad-stat-val">9.4x</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">CTR</span><span class="ad-stat-val">7.1%</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">AOV Lift</span><span class="ad-stat-val">+42%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad 06 -->
+                <div class="ad-grid-card" data-ad-cat="ugc meta" data-ad-index="5">
+                    <div class="ad-card-media">
+                        <span class="ad-card-platform-pill"><i class="fas fa-globe"></i> Omnichannel Scale</span>
+                        <span class="ad-card-roas-pill"><i class="fas fa-bolt"></i> 6.7x ROAS</span>
+                        <img src="https://i.imgur.com/4p1jsqg.jpeg" alt="Viral Acquisition Creative" loading="lazy" />
+                        <div class="ad-card-hover-overlay">
+                            <div class="ad-card-zoom-btn"><i class="fas fa-expand-alt"></i></div>
+                        </div>
+                    </div>
+                    <div class="ad-card-content">
+                        <div>
+                            <h3>Viral Acquisition Creative</h3>
+                            <p>Scroll-stopping creative featuring irresistible promotional hooks that cut client cost per acquisition by over 40%.</p>
+                        </div>
+                        <div class="ad-card-stats-row">
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">Average ROAS</span><span class="ad-stat-val">6.7x</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">CTR</span><span class="ad-stat-val">5.1%</span></div>
+                            <div class="ad-stat-item"><span class="ad-stat-lbl">Scale Rate</span><span class="ad-stat-val">10x</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Gallery Conversion Bar -->
+            <div class="ads-gallery-cta-box" data-aos="fade-up" data-aos-delay="200">
+                <div class="ads-cta-content">
+                    <div class="ads-cta-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                        <h3>Ready to Scale Your Brand with 10x ROAS Ad Creatives?</h3>
+                        <p>Lock in our <strong>50% Welcome Discount</strong> and get custom high-converting Meta, Google, and TikTok ad funnels crafted for your business.</p>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing';" style="white-space:nowrap; padding:14px 28px; font-size:15px;"><i class="fas fa-bolt"></i> Launch 10x Ad Campaign &rarr;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fullscreen High-Res Ad Lightbox Modal -->
+    <div class="ads-lightbox-modal" id="adsLightboxModal">
+        <div class="ads-lightbox-overlay" id="adsLightboxOverlay"></div>
+        <div class="ads-lightbox-content">
+            <button class="ads-lightbox-close" id="adsLightboxClose"><i class="fas fa-times"></i></button>
+            <div class="ads-lightbox-body">
+                <div class="ads-lightbox-img-wrap">
+                    <img src="" id="adsLightboxImg" alt="Kyrosh Ad Creative Lightbox" />
+                    <div class="ads-lightbox-nav prev" id="adsLightboxPrev"><i class="fas fa-chevron-left"></i></div>
+                    <div class="ads-lightbox-nav next" id="adsLightboxNext"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="ads-lightbox-info">
+                    <span class="ads-lightbox-badge" id="adsLightboxBadge">Meta Advantage+</span>
+                    <h3 id="adsLightboxTitle">Direct-Response Performance Creative</h3>
+                    <p id="adsLightboxDesc">Engineered with high-contrast attention hooks and proven conversion anatomy to drive scalable acquisition.</p>
+                    <div class="ads-lightbox-metrics">
+                        <div class="ad-metric-pill"><span>ROAS</span><strong id="adsLightboxRoas">7.2x</strong></div>
+                        <div class="ad-metric-pill"><span>CTR</span><strong id="adsLightboxCtr">5.4%</strong></div>
+                        <div class="ad-metric-pill"><span>CPA Lift</span><strong id="adsLightboxCvr">-44%</strong></div>
+                    </div>
+                    <button class="btn-primary" id="adsLightboxCta" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing'; document.getElementById('adsLightboxModal').classList.remove('active');" style="width:100%; justify-content:center; margin-top:16px;"><i class="fas fa-rocket"></i> Get This Ad Style For My Brand &rarr;</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Before / After Slider -->
     <section id="transformations">
@@ -2344,7 +3169,7 @@
             </div>
 
             <div class="work-grid" data-aos="fade-up" data-aos-delay="150" id="workGrid">
-                <div class="work-card tilt-card" data-category="web" data-title="Luxe E-Commerce Storefront" data-desc="Built a high-performance headless Next.js storefront for a luxury fashion brand with sub-second page loads." data-metric1="+340%" data-metriclbl1="Revenue Growth" data-metric2="5.8x" data-metriclbl2="Average ROAS" data-metric3="-45%" data-metriclbl3="Cart Dropoff" data-timeline="30 Days to Launch" data-quote="Kyrosh took our slow Shopify template and turned it into an ultra-fast global storefront that tripled our checkout conversion." data-author="? Anya R., Founder of Luxe Atelier" data-tech="Next.js, Tailwind CSS, Shopify API, Supabase, Cloudflare Edge">
+                <div class="work-card tilt-card" data-category="web" data-title="Luxe E-Commerce Storefront" data-desc="Built a high-performance headless Next.js storefront for a luxury fashion brand with sub-second page loads." data-metric1="+340%" data-metriclbl1="Revenue Growth" data-metric2="5.8x" data-metriclbl2="Average ROAS" data-metric3="-45%" data-metriclbl3="Cart Dropoff" data-timeline="30 Days to Launch" data-quote="Kyrosh took our slow Shopify template and turned it into an ultra-fast global storefront that tripled our checkout conversion." data-author="— Anya R., Founder of Luxe Atelier" data-tech="Next.js, Tailwind CSS, Shopify API, Supabase, Cloudflare Edge">
                     <span class="work-card-badge">E-Commerce Web</span>
                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="E-Commerce" width="600" height="400" loading="lazy">
                     <div class="work-card-overlay">
@@ -2354,7 +3179,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="branding" data-title="Apex Brand Identity Overhaul" data-desc="Complete visual rebranding, typography systems, and packaging architecture for an emerging fintech brand." data-metric1="+220%" data-metriclbl1="Trust Perception" data-metric2="4.4x" data-metriclbl2="Investor Interest" data-metric3="99.2%" data-metriclbl3="Brand Recall" data-timeline="4 Weeks Complete" data-quote="The brand identity Kyrosh created helped us close our $2.5M Seed round. Unbelievable eye for modern aesthetics." data-author="? Marcus V., CEO at Apex Fintech" data-tech="Figma, Adobe Illustrator, 3D Brand Guidelines, Motion Design">
+                <div class="work-card tilt-card" data-category="branding" data-title="Apex Brand Identity Overhaul" data-desc="Complete visual rebranding, typography systems, and packaging architecture for an emerging fintech brand." data-metric1="+220%" data-metriclbl1="Trust Perception" data-metric2="4.4x" data-metriclbl2="Investor Interest" data-metric3="99.2%" data-metriclbl3="Brand Recall" data-timeline="4 Weeks Complete" data-quote="The brand identity Kyrosh created helped us close our $2.5M Seed round. Unbelievable eye for modern aesthetics." data-author="— Marcus V., CEO at Apex Fintech" data-tech="Figma, Adobe Illustrator, 3D Brand Guidelines, Motion Design">
                     <span class="work-card-badge">Branding & Identity</span>
                     <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" alt="Brand Identity" width="600" height="400" loading="lazy">
                     <div class="work-card-overlay">
@@ -2364,7 +3189,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="ads" data-title="10x Omnichannel Ad Funnel" data-desc="Engineered a multi-tiered Meta & Google Ads machine generating over ?1.8 Crore in tracked monthly revenue." data-metric1="+450%" data-metriclbl1="Monthly Revenue" data-metric2="6.4x" data-metriclbl2="Blended ROAS" data-metric3="-38%" data-metriclbl3="Cost Per Lead" data-timeline="60 Days to 10x" data-quote="Our previous agency burned budget. Kyrosh cut our CPA in half and scaled our ad spend with extreme profitability." data-author="? Rahul K., Growth Lead at HyperCart" data-tech="Meta Ads Manager, Google Ads 360, GA4, Multi-Touch Attribution">
+                <div class="work-card tilt-card" data-category="ads" data-title="10x Omnichannel Ad Funnel" data-desc="Engineered a multi-tiered Meta & Google Ads machine generating over ₹1.8 Crore in tracked monthly revenue." data-metric1="+450%" data-metriclbl1="Monthly Revenue" data-metric2="6.4x" data-metriclbl2="Blended ROAS" data-metric3="-38%" data-metriclbl3="Cost Per Lead" data-timeline="60 Days to 10x" data-quote="Our previous agency burned budget. Kyrosh cut our CPA in half and scaled our ad spend with extreme profitability." data-author="— Rahul K., Growth Lead at HyperCart" data-tech="Meta Ads Manager, Google Ads 360, GA4, Multi-Touch Attribution">
                     <span class="work-card-badge">Performance Marketing</span>
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Analytics" width="600" height="400" loading="lazy">
                     <div class="work-card-overlay">
@@ -2374,7 +3199,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="video" data-title="Viral 3D Product Commercial" data-desc="Produced a cinematic 3D product commercial and UGC video funnel generating 2.4 Million organic impressions." data-metric1="2.4M+" data-metriclbl1="Organic Views" data-metric2="4.9%" data-metriclbl2="Click-Through Rate" data-metric3="+180%" data-metriclbl3="Social Engagement" data-timeline="14 Days Turnaround" data-quote="The motion graphics and 3D renders were Hollywood-grade. The ad paid for itself within 48 hours of launch." data-author="? Sarah J., Marketing VP" data-tech="Cinema 4D, After Effects, DaVinci Resolve, 4K Color Grading">
+                <div class="work-card tilt-card" data-category="video" data-title="Viral 3D Product Commercial" data-desc="Produced a cinematic 3D product commercial and UGC video funnel generating 2.4 Million organic impressions." data-metric1="2.4M+" data-metriclbl1="Organic Views" data-metric2="4.9%" data-metriclbl2="Click-Through Rate" data-metric3="+180%" data-metriclbl3="Social Engagement" data-timeline="14 Days Turnaround" data-quote="The motion graphics and 3D renders were Hollywood-grade. The ad paid for itself within 48 hours of launch." data-author="— Sarah J., Marketing VP" data-tech="Cinema 4D, After Effects, DaVinci Resolve, 4K Color Grading">
                     <span class="work-card-badge">Cinematic Video</span>
                     <img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=600&h=400&fit=crop" alt="Video" width="600" height="400" loading="lazy">
                     <div class="work-card-overlay">
@@ -2384,7 +3209,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="web" data-title="Global SEO & GEO Domination" data-desc="Propelled 140+ high-intent keywords to position #1 on Google Search and ChatGPT/Perplexity AI results." data-metric1="#1 Rank" data-metriclbl1="140+ Keywords" data-metric2="+520%" data-metriclbl2="Organic Inbound" data-metric3="180K/mo" data-metriclbl3="Monthly Traffic" data-timeline="90 Days Organic Surge" data-quote="We now dominate Google Search and AI engines for our core commercial terms without paying for clicks." data-author="? David M., SaaS Co-Founder" data-tech="SEMrush, Ahrefs, GEO Generative Optimization, Schema Engine">
+                <div class="work-card tilt-card" data-category="web" data-title="Global SEO & GEO Domination" data-desc="Propelled 140+ high-intent keywords to position #1 on Google Search and ChatGPT/Perplexity AI results." data-metric1="#1 Rank" data-metriclbl1="140+ Keywords" data-metric2="+520%" data-metriclbl2="Organic Inbound" data-metric3="180K/mo" data-metriclbl3="Monthly Traffic" data-timeline="90 Days Organic Surge" data-quote="We now dominate Google Search and AI engines for our core commercial terms without paying for clicks." data-author="— David M., SaaS Co-Founder" data-tech="SEMrush, Ahrefs, GEO Generative Optimization, Schema Engine">
                     <span class="work-card-badge">SEO & GEO Search</span>
                     <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop" alt="SEO" width="600" height="400" loading="lazy">
                     <div class="work-card-overlay">
@@ -2394,7 +3219,7 @@
                     </div>
                 </div>
 
-                <div class="work-card tilt-card" data-category="software" data-title="Cloud CRM & AI Automations" data-desc="Built a bespoke operational ERP dashboard saving the enterprise client 160 operational hours each week." data-metric1="160 Hrs" data-metriclbl1="Weekly Time Saved" data-metric2="99.99%" data-metriclbl2="Uptime Reliability" data-metric3="-60%" data-metriclbl3="Manual Labor Cost" data-timeline="6 Weeks Build & Deploy" data-quote="Kyrosh replaced 4 expensive SaaS subscriptions with one custom dashboard that streamlined our entire company." data-author="? Elena B., COO at Nexus Logistics" data-tech="React, Node.js, Python FastAPI, PostgreSQL, AWS Lambda">
+                <div class="work-card tilt-card" data-category="software" data-title="Cloud CRM & AI Automations" data-desc="Built a bespoke operational ERP dashboard saving the enterprise client 160 operational hours each week." data-metric1="160 Hrs" data-metriclbl1="Weekly Time Saved" data-metric2="99.99%" data-metriclbl2="Uptime Reliability" data-metric3="-60%" data-metriclbl3="Manual Labor Cost" data-timeline="6 Weeks Build & Deploy" data-quote="Kyrosh replaced 4 expensive SaaS subscriptions with one custom dashboard that streamlined our entire company." data-author="— Elena B., COO at Nexus Logistics" data-tech="React, Node.js, Python FastAPI, PostgreSQL, AWS Lambda">
                     <span class="work-card-badge">Custom Software</span>
                     <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop" alt="Software" width="600" height="400" loading="lazy">
                     <div class="work-card-overlay">
@@ -2411,7 +3236,7 @@
     <section id="services">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-tag"><i class="fas fa-cubes"></i> 360? Digital Arsenal</span>
+                <span class="section-tag"><i class="fas fa-cubes"></i> 360° Digital Arsenal</span>
                 <h2>Everything Your Brand Needs. <span class="highlight">Under One Roof.</span></h2>
                 <p>No juggling multiple disjointed agencies. We build, design, automate, market, and scale your brand.</p>
                 <span class="underline"></span>
@@ -2425,7 +3250,7 @@
                         <h3>Websites & Web Apps</h3>
                         <p>Blazing-fast e-commerce storefronts, custom SaaS web apps, and ultra-high-converting interactive portals.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Next.js ? React ? Headless</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Next.js • React • Headless</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2434,7 +3259,7 @@
                         <h3>Custom Software & AI</h3>
                         <p>Enterprise operational dashboards, custom backend automations, CRM integrations, and specialized AI pipelines.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Python ? Node ? AI Integrations</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Python • Node • AI Integrations</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2443,7 +3268,7 @@
                         <h3>Cinematic Video & 3D Ads</h3>
                         <p>Scroll-stopping UGC ads, Hollywood-grade 3D product animations, viral reels, and commercial productions.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Cinema 4D ? VFX ? Viral Hooks</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Cinema 4D • VFX • Viral Hooks</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2452,7 +3277,7 @@
                         <h3>Branding & Design Systems</h3>
                         <p>Iconic visual identities, comprehensive design guidelines, 3D packaging, and high-impact social asset suites.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Figma ? Vector Systems ? 3D Assets</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Figma • Vector Systems • 3D Assets</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2461,7 +3286,7 @@
                         <h3>Performance Marketing</h3>
                         <p>Precision-targeted Meta & Google Ads 360 funnels fine-tuned for lowest customer acquisition cost and 10x ROAS.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Meta Ads ? Google 360 ? Scaling</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> Meta Ads • Google 360 • Scaling</span>
                 </div>
 
                 <div class="service-card-modern tilt-card">
@@ -2470,7 +3295,7 @@
                         <h3>SEO & GEO AI Domination</h3>
                         <p>Traditional search ranking + Generative Engine Optimization for top placement in Google, ChatGPT & Perplexity.</p>
                     </div>
-                    <span class="service-card-tag"><i class="fas fa-bolt"></i> #1 Rank ? GEO Schema ? AI Inbound</span>
+                    <span class="service-card-tag"><i class="fas fa-bolt"></i> #1 Rank • GEO Schema • AI Inbound</span>
                 </div>
             </div>
         </div>
@@ -2533,7 +3358,7 @@
                         <p>Perfect for emerging startups and businesses ready to establish strong brand authority.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="price-strikethrough-secret">? 39,999</span><span class="period"> / project</span>
+                        <span class="price-strikethrough-secret">₹39,999</span><span class="period"> / project</span>
                         <br>
                         <span class="price-unlocked-badge"><i class="fas fa-lock-open"></i> 50% Welcome Rate Applied</span>
                     </div>
@@ -2545,17 +3370,17 @@
                         <li class="disabled"><i class="fas fa-times-circle"></i> Custom Software Development</li>
                         <li class="disabled"><i class="fas fa-times-circle"></i> Meta & Google Performance Ads</li>
                     </ul>
-                    <button class="btn-outline select-plan-btn" data-plan="Website Development" style="width:100%; justify-content:center;">Unlock 50% Starter Quote ?</button>
+                    <button class="btn-outline select-plan-btn" data-plan="Website Development" style="width:100%; justify-content:center;">Unlock 50% Starter Quote &rarr;</button>
                 </div>
 
                 <div class="pricing-card featured tilt-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="pricing-badge">? MOST POPULAR & BEST ROI</div>
+                    <div class="pricing-badge">🔥 MOST POPULAR & BEST ROI</div>
                     <div class="pricing-header">
                         <h3>Scale & Dominance</h3>
                         <p>Complete marketing & digital ecosystem designed to aggressively double your sales.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="price-strikethrough-secret">? 99,999</span><span class="period"> / mo</span>
+                        <span class="price-strikethrough-secret">₹99,999</span><span class="period"> / mo</span>
                         <br>
                         <span class="price-unlocked-badge"><i class="fas fa-bolt"></i> 50% VIP Rate Unlocked</span>
                     </div>
@@ -2567,7 +3392,7 @@
                         <li><i class="fas fa-check-circle"></i> Bi-Weekly Growth & Conversion Audits</li>
                         <li><i class="fas fa-check-circle"></i> Dedicated Account Strategist</li>
                     </ul>
-                    <button class="btn-primary select-plan-btn" data-plan="Complete Digital Package" style="width:100%; justify-content:center;">Claim 50% Scale Quote ?</button>
+                    <button class="btn-primary select-plan-btn" data-plan="Complete Digital Package" style="width:100%; justify-content:center;">Claim 50% Scale Quote &rarr;</button>
                 </div>
 
                 <div class="pricing-card tilt-card" data-aos="fade-up" data-aos-delay="300">
@@ -2576,7 +3401,7 @@
                         <p>Bespoke software architecture, multi-million ad scaling, and full omnichannel takeover.</p>
                     </div>
                     <div class="pricing-price">
-                        <span class="price-strikethrough-secret">? 1,99,999</span><span class="period"> / mo</span>
+                        <span class="price-strikethrough-secret">₹1,99,999</span><span class="period"> / mo</span>
                         <br>
                         <span class="price-unlocked-badge" style="color:var(--accent-gold); border-color:var(--accent-gold);"><i class="fas fa-crown"></i> Bespoke Scope Rate</span>
                     </div>
@@ -2588,7 +3413,7 @@
                         <li><i class="fas fa-check-circle"></i> Dedicated Squad (Dev, Copy, Media Buyer)</li>
                         <li><i class="fas fa-check-circle"></i> Guaranteed ROI SLA</li>
                     </ul>
-                    <button class="btn-outline select-plan-btn" data-plan="Software Development" style="width:100%; justify-content:center;">Request Enterprise Scope ?</button>
+                    <button class="btn-outline select-plan-btn" data-plan="Software Development" style="width:100%; justify-content:center;">Request Enterprise Scope &rarr;</button>
                 </div>
             </div>
         </div>
@@ -2610,7 +3435,7 @@
                     <div>
                         <div class="career-header-row">
                             <span class="career-tag-pill">ENGINEERING & AI</span>
-                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">? FAST-TRACK HIRING</span>
+                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">⚡ FAST-TRACK HIRING</span>
                         </div>
                         <h3>Senior Next.js & AI Engineer</h3>
                         <div class="career-meta-row">
@@ -2625,14 +3450,14 @@
                             <li><i class="fas fa-check-circle"></i> 100% remote flexibility & cutting-edge AI tool access</li>
                         </ul>
                     </div>
-                    <button class="btn-primary apply-role-btn" data-role="Senior Next.js & AI Engineer" style="width:100%; justify-content:center;">Apply for Position ?</button>
+                    <button class="btn-primary apply-role-btn" data-role="Senior Next.js & AI Engineer" style="width:100%; justify-content:center;">Apply for Position &rarr;</button>
                 </div>
 
                 <div class="career-card tilt-card">
                     <div>
                         <div class="career-header-row">
                             <span class="career-tag-pill" style="color:#FF7A59; border-color:#FF7A59;">PERFORMANCE MEDIA</span>
-                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">? IMMEDIATE OPENING</span>
+                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">⚡ IMMEDIATE OPENING</span>
                         </div>
                         <h3>Lead Performance Media Buyer</h3>
                         <div class="career-meta-row">
@@ -2647,14 +3472,14 @@
                             <li><i class="fas fa-check-circle"></i> Dedicated in-house video & design support team</li>
                         </ul>
                     </div>
-                    <button class="btn-primary apply-role-btn" data-role="Lead Performance Media Buyer" style="width:100%; justify-content:center;">Apply for Position ?</button>
+                    <button class="btn-primary apply-role-btn" data-role="Lead Performance Media Buyer" style="width:100%; justify-content:center;">Apply for Position &rarr;</button>
                 </div>
 
                 <div class="career-card tilt-card">
                     <div>
                         <div class="career-header-row">
                             <span class="career-tag-pill" style="color:var(--primary-light); border-color:var(--primary-light);">CREATIVE STUDIO</span>
-                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">? HIGH PRIORITY</span>
+                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">🔥 HIGH PRIORITY</span>
                         </div>
                         <h3>Cinematic 3D Motion & VFX Artist</h3>
                         <div class="career-meta-row">
@@ -2668,14 +3493,14 @@
                             <li><i class="fas fa-check-circle"></i> Creative freedom to pioneer futuristic visual aesthetics</li>
                         </ul>
                     </div>
-                    <button class="btn-primary apply-role-btn" data-role="Cinematic 3D Motion & VFX Artist" style="width:100%; justify-content:center;">Apply for Position ?</button>
+                    <button class="btn-primary apply-role-btn" data-role="Cinematic 3D Motion & VFX Artist" style="width:100%; justify-content:center;">Apply for Position &rarr;</button>
                 </div>
 
                 <div class="career-card tilt-card">
                     <div>
                         <div class="career-header-row">
                             <span class="career-tag-pill" style="color:var(--accent-gold); border-color:var(--accent-gold);">SEARCH & GEO</span>
-                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">? OPEN</span>
+                            <span style="color:var(--accent-green); font-size:12px; font-weight:800;">🟢 OPEN</span>
                         </div>
                         <h3>SEO & Generative AI (GEO) Lead</h3>
                         <div class="career-meta-row">
@@ -2689,7 +3514,7 @@
                             <li><i class="fas fa-check-circle"></i> Flexible hours and high-impact ownership</li>
                         </ul>
                     </div>
-                    <button class="btn-primary apply-role-btn" data-role="SEO & GEO Growth Lead" style="width:100%; justify-content:center;">Apply for Position ?</button>
+                    <button class="btn-primary apply-role-btn" data-role="SEO & GEO Growth Lead" style="width:100%; justify-content:center;">Apply for Position &rarr;</button>
                 </div>
             </div>
         </div>
@@ -2924,9 +3749,9 @@
                             </select>
                         </div>
                         <div class="form-group"><label>Project Details & Goals</label><textarea id="clientMessage" rows="3" placeholder="Tell us about your goals, timeline, and current bottlenecks..."></textarea></div>
-                        <button type="submit" class="submit-btn" id="submitBtn">Submit & Claim 50% Proposal ?</button>
+                        <button type="submit" class="submit-btn" id="submitBtn">Submit & Claim 50% Proposal &rarr;</button>
                     </form>
-                    <p style="text-align:center; margin-top:16px; color:#10B981; font-weight:700; display:none;" id="successMsg">? Proposal received! Check your email and WhatsApp for next steps.</p>
+                    <p style="text-align:center; margin-top:16px; color:#10B981; font-weight:700; display:none;" id="successMsg">✅ Proposal received! Check your email and WhatsApp for next steps.</p>
                 </div>
 
                 <div id="loginPrompt" style="text-align:center; padding:50px 20px; background:var(--dark-card); border-radius:24px; border:1.5px solid var(--dark-border); max-width:550px; margin:0 auto; box-shadow:var(--shadow-glass);" data-aos="fade-up">
@@ -3053,7 +3878,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>? 2024 Kyrosh Digital Agency. All Rights Reserved. Engineered with ?? by Kyrosh.</p>
+                <p>© 2024 Kyrosh Digital Agency. All Rights Reserved. Engineered with 💜 by Kyrosh.</p>
             </div>
         </div>
     </footer>
@@ -3066,7 +3891,7 @@
 
     <!-- Floating Action Buttons -->
     <div class="wheel-float-btn" id="wheelFloatBtn" title="Spin to Win Exclusive Growth Perks!">
-        <span class="wheel-float-badge">?? Spin & Win Perk!</span>
+        <span class="wheel-float-badge">🎁 Spin & Win Perk!</span>
         <i class="fas fa-gift"></i>
     </div>
     <a href="tel:+919019958415" class="call-float" title="Call Us"><i class="fas fa-phone"></i></a>
@@ -3094,7 +3919,7 @@
         const AUTH_REDIRECT_URL = window.location.origin + window.location.pathname;
 
         // ====================================================
-        // ?? SYNTHESIZED WEB AUDIO SOUND DESIGN ENGINE
+        // 🔊 SYNTHESIZED WEB AUDIO SOUND DESIGN ENGINE
         // ====================================================
         let audioCtx = null;
         let soundEnabled = localStorage.getItem('kyrosh_sound') !== 'false';
@@ -3176,7 +4001,7 @@
         setTimeout(attachAudioTriggers, 500);
 
         // ====================================================
-        // ?? DYNAMIC ACCENT COLOR THEME PICKER
+        // 🎨 DYNAMIC ACCENT COLOR THEME PICKER
         // ====================================================
         let currentTheme = localStorage.getItem('kyrosh_theme') || 'purple';
 
@@ -3204,7 +4029,7 @@
         setTheme(currentTheme);
 
         // ====================================================
-        // ?? MAGNETIC CUSTOM CURSOR
+        // 🎯 MAGNETIC CUSTOM CURSOR
         // ====================================================
         const cursorDot = document.getElementById('cursorDot');
         const cursorRing = document.getElementById('cursorRing');
@@ -3262,7 +4087,9 @@
         setTimeout(setupMagneticCursor, 600);
 
         // ====================================================
-        // ?? LIVE AI AGENCY COPILOT ENGINE (KYROSH AI)
+        // 🤖 LIVE AI AGENCY COPILOT ENGINE (KYROSH AI)
+                // ====================================================
+        // ðŸ¤– LIVE AI AGENCY COPILOT ENGINE (KYROSH AI)
         // ====================================================
         const aiBotFloatBtn = document.getElementById('aiBotFloatBtn');
         const aiChatWindow = document.getElementById('aiChatWindow');
@@ -3310,48 +4137,100 @@
             const q = query.toLowerCase();
             let reply = "";
 
-            if (q.includes('e-commerce') || q.includes('d2c') || q.includes('store') || q.includes('shopify')) {
-                reply = `??? <strong>E-Commerce Growth Recommendation:</strong><br>
-                For scaling an online store, we recommend our <strong>Scale & Dominance Package</strong> (?49,999/mo with 50% OFF).<br><br>
-                ? Next.js / Shopify High-Speed Storefront<br>
-                ? Meta Advantage+ & Google Shopping Ad Funnels (Avg 5.6x ROAS)<br>
-                ? 8 High-Converting UGC Video Creatives<br><br>
-                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;">Claim 50% E-Commerce Deal ?</button>`;
-            } else if (q.includes('50%') || q.includes('discount') || q.includes('offer') || q.includes('price') || q.includes('cost')) {
-                reply = `?? <strong>Exclusive 50% Welcome Discount:</strong><br>
-                All new clients submitting a proposal today lock in 50% off across all packages:<br><br>
-                ? <strong>Starter Plan:</strong> ?19,999 / project<br>
-                ? <strong>Scale & Dominance:</strong> ?49,999 / month<br>
-                ? <strong>Enterprise Custom:</strong> ?99,999 / month<br><br>
-                <button class="btn-primary" onclick="go('pricing'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;">View All Pricing Packages ?</button>`;
-            } else if (q.includes('timeline') || q.includes('how fast') || q.includes('days') || q.includes('time')) {
-                reply = `? <strong>Turnaround Timelines:</strong><br>
-                ? <strong>High-Converting Websites:</strong> 5 ? 10 Business Days<br>
-                ? <strong>Performance Ad Funnels:</strong> 3 ? 5 Days to Launch<br>
-                ? <strong>Custom Software & AI ERPs:</strong> 2 ? 4 Weeks<br>
-                ? <strong>3D Video Ads & UGC:</strong> 7 ? 10 Days<br><br>
-                Need an emergency fast-track? We can initiate Discovery within 24 hours.`;
-            } else if (q.includes('call') || q.includes('book') || q.includes('meet') || q.includes('consult')) {
-                reply = `?? <strong>Schedule a 1-on-1 VIP Strategy Session:</strong><br>
-                Pick a business date and time slot to consult directly with our growth directors via Google Meet or WhatsApp Video.<br><br>
-                <button class="btn-primary" onclick="go('scheduler'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-calendar-check"></i> Open Call Scheduler ?</button>`;
-            } else if (q.includes('software') || q.includes('saas') || q.includes('app') || q.includes('ai') || q.includes('backend')) {
-                reply = `?? <strong>Custom Software & AI Architecture:</strong><br>
-                We build scalable Next.js web applications, custom CRM platforms, automated AI pipelines, and internal ERP systems that save teams over 140+ hours per month.<br><br>
-                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Software Development'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;">Request Tech Blueprint ?</button>`;
+            if (q.includes('ad') || q.includes('meta') || q.includes('facebook') || q.includes('instagram') || q.includes('tiktok') || q.includes('roas') || q.includes('cpa') || q.includes('media buy') || q.includes('creative') || q.includes('gallery')) {
+                reply = `ðŸ“ˆ <strong>10x ROAS Performance Ads Machine:</strong><br>
+                Kyrosh engineers multi-tier Meta, Google 360, and TikTok ad funnels with direct-response psychological triggers, multi-touch attribution, and rapid creative iteration.<br><br>
+                â€¢ <strong>Track Record:</strong> Scaled brands to 6.4x â€“ 9.4x ROAS while cutting CPA by up to 45%<br>
+                â€¢ <strong>Creative Arsenal:</strong> High-CTR static hooks, 3D motion ads, and viral UGC funnels<br><br>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;">
+                    <button class="btn-primary" onclick="go('ads-gallery'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-images"></i> View Ads Gallery &rarr;</button>
+                    <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-bolt"></i> Claim 50% Off Ads &rarr;</button>
+                </div>`;
+            } else if (q.includes('e-commerce') || q.includes('d2c') || q.includes('store') || q.includes('shopify')) {
+                reply = `ðŸ›’ <strong>E-Commerce Growth & Scaling Architecture:</strong><br>
+                For scaling an online store, we deploy our flagship <strong>Scale & Dominance Package</strong> (â‚¹49,999/mo with 50% OFF applied today).<br><br>
+                â€¢ <strong>Next.js / Shopify Headless Storefront:</strong> Sub-second page loads & 3x checkout conversions<br>
+                â€¢ <strong>Meta Advantage+ & Google Shopping:</strong> Multi-tier funnels averaging 5.8x ROAS<br>
+                â€¢ <strong>8 High-Converting UGC & 3D Creatives:</strong> Fresh ad batches produced monthly<br><br>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Ads & Performance Marketing'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-rocket"></i> Claim 50% E-Commerce Deal &rarr;</button>`;
+            } else if (q.includes('seo') || q.includes('geo') || q.includes('search') || q.includes('rank') || q.includes('chatgpt') || q.includes('perplexity') || q.includes('google')) {
+                reply = `ðŸš€ <strong>SEO & GEO (Generative Engine Optimization) Domination:</strong><br>
+                We position your brand at #1 on Google Search and guarantee recommendations inside AI answer engines like <strong>ChatGPT, Perplexity AI, and Claude</strong>.<br><br>
+                â€¢ <strong>140+ Commercial Keywords:</strong> Position #1 organic dominance<br>
+                â€¢ <strong>Structured Schema Architecture:</strong> LLM training data extraction & citation mapping<br>
+                â€¢ <strong>Zero Ad Spend Inbound:</strong> Generate steady high-intent enterprise pipeline<br><br>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='SEO & Generative Engine Optimization (GEO)'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-chart-line"></i> Unlock GEO Domination (50% OFF) &rarr;</button>`;
+            } else if (q.includes('video') || q.includes('3d') || q.includes('ugc') || q.includes('motion') || q.includes('vfx') || q.includes('commercial')) {
+                reply = `ðŸŽ¬ <strong>Cinematic 3D Video & UGC Production:</strong><br>
+                We produce Hollywood-grade 3D product animations, motion graphics, and viral UGC video funnels in Cinema 4D and DaVinci Resolve.<br><br>
+                â€¢ <strong>Viral Attention Hooks:</strong> Stop the scroll in the first 1.5 seconds<br>
+                â€¢ <strong>Organic & Paid Lift:</strong> Generated 2.4M+ organic views for client campaigns<br>
+                â€¢ <strong>Full Turnkey Production:</strong> Scripting, 3D modeling, color grade, & sound design<br><br>
+                <button class="btn-primary" onclick="go('work'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-play"></i> Explore Video Portfolio &rarr;</button>`;
+            } else if (q.includes('stack') || q.includes('website') || q.includes('web') || q.includes('tech') || q.includes('speed') || q.includes('next.js') || q.includes('react')) {
+                reply = `âš¡ <strong>Modern High-Speed Web Architecture:</strong><br>
+                We develop bespoke, ultra-fast web applications without slow generic templates.<br><br>
+                â€¢ <strong>Frontend:</strong> Next.js 14, React, Tailwind CSS, Vanilla JS, WebGL 3D<br>
+                â€¢ <strong>Backend & Data:</strong> Node.js, Python FastAPI, Supabase, PostgreSQL, Cloudflare Edge<br>
+                â€¢ <strong>Performance Score:</strong> 99+ Google Lighthouse score with sub-second TTFB latency<br><br>
+                <button class="btn-primary" onclick="go('work'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-desktop"></i> View Live Web Masterpieces &rarr;</button>`;
+            } else if (q.includes('brand') || q.includes('logo') || q.includes('identity') || q.includes('packaging') || q.includes('figma')) {
+                reply = `ðŸŽ¨ <strong>Iconic Brand Identity & 3D Packaging:</strong><br>
+                We build memorable visual identities that command premium pricing and investor confidence.<br><br>
+                â€¢ <strong>Comprehensive Guidelines:</strong> Vector logo systems, color theory, typography hierarchy<br>
+                â€¢ <strong>3D Packaging & Assets:</strong> Photorealistic product renders and social media design kits<br>
+                â€¢ <strong>Proven Value:</strong> Rebranded clients closed multi-million dollar fundraising rounds<br><br>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Branding & Creative Design'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-palette"></i> Request Branding Scope &rarr;</button>`;
+            } else if (q.includes('scanner') || q.includes('audit') || q.includes('diagnostic') || q.includes('health') || q.includes('vitals')) {
+                reply = `ðŸ” <strong>Live Funnel & Website Diagnostic Scanner:</strong><br>
+                Use our built-in health scanner to instantly evaluate your website's performance, mobile UX friction, Core Web Vitals, and GEO search readiness.<br><br>
+                â€¢ <strong>100% Free & Real-time:</strong> Enter your domain to generate a prioritized revenue fix list.<br><br>
+                <button class="btn-primary" onclick="go('scanner'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px; margin-top:4px;"><i class="fas fa-wrench"></i> Open Diagnostic Scanner &rarr;</button>`;
+            } else if (q.includes('50%') || q.includes('discount') || q.includes('offer') || q.includes('price') || q.includes('cost') || q.includes('pricing') || q.includes('rate')) {
+                reply = `ðŸ·ï¸ <strong>Exclusive 50% Welcome Discount:</strong><br>
+                All clients submitting a project proposal today permanently lock in 50% off across all Kyrosh packages:<br><br>
+                â€¢ <strong>Starter Package:</strong> â‚¹19,999 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹39,999)</span> / project<br>
+                â€¢ <strong>Scale & Dominance:</strong> â‚¹49,999 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹99,999)</span> / month<br>
+                â€¢ <strong>Enterprise Custom:</strong> â‚¹99,999 <span style="text-decoration:line-through; opacity:0.6;">(â‚¹1,99,999)</span> / month<br><br>
+                <button class="btn-primary" onclick="go('pricing'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-tags"></i> View Pricing & Lock 50% OFF &rarr;</button>`;
+            } else if (q.includes('timeline') || q.includes('how fast') || q.includes('days') || q.includes('time') || q.includes('delivery')) {
+                reply = `â±ï¸ <strong>Guaranteed Turnaround Timelines:</strong><br>
+                â€¢ <strong>High-Converting Websites:</strong> 5 â€“ 10 Business Days<br>
+                â€¢ <strong>Performance Ad Funnels:</strong> 3 â€“ 5 Days to Live Launch<br>
+                â€¢ <strong>Custom Software & AI ERPs:</strong> 2 â€“ 4 Weeks Full Deployment<br>
+                â€¢ <strong>3D Video Ads & UGC:</strong> 7 â€“ 10 Days Turnaround<br><br>
+                Need emergency delivery? We can fast-track discovery within 24 hours.`;
+            } else if (q.includes('call') || q.includes('book') || q.includes('meet') || q.includes('consult') || q.includes('scheduler')) {
+                reply = `ðŸ“… <strong>Schedule a 1-on-1 VIP Strategy Session:</strong><br>
+                Reserve a complimentary 30-minute growth consultation with our founding partners via Google Meet or WhatsApp Video.<br><br>
+                <button class="btn-primary" onclick="go('scheduler'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-calendar-check"></i> Open VIP Call Scheduler &rarr;</button>`;
+            } else if (q.includes('software') || q.includes('saas') || q.includes('app') || q.includes('ai') || q.includes('backend') || q.includes('erp') || q.includes('crm')) {
+                reply = `ðŸ’» <strong>Custom Software & AI Architecture:</strong><br>
+                We engineer bespoke internal ERP platforms, custom CRM pipelines, and intelligent automated workflows saving enterprise clients 140+ hours every month.<br><br>
+                â€¢ <strong>Stack:</strong> React, Python FastAPI, Node.js, PostgreSQL, AWS & Cloudflare<br>
+                â€¢ <strong>Reliability:</strong> 99.99% uptime with bank-grade data security<br><br>
+                <button class="btn-primary" onclick="go('proposal'); document.getElementById('clientService').value='Software Development'; document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-code"></i> Request Tech Blueprint &rarr;</button>`;
+            } else if (q.includes('founder') || q.includes('shaiban') || q.includes('irfan') || q.includes('shafeeq') || q.includes('team') || q.includes('leadership')) {
+                reply = `ðŸ‘¥ <strong>Kyrosh Leadership Squad:</strong><br>
+                â€¢ <strong>Shaiban Puttur:</strong> Founder & Chief Growth Strategist<br>
+                â€¢ <strong>Irfan Vtl:</strong> Chief Executive Officer (CEO)<br>
+                â€¢ <strong>Shafeeq Sullia:</strong> Chief Technology Officer (CTO)<br><br>
+                We have generated tens of crores in client revenue with a relentless obsession for performance.<br><br>
+                <button class="btn-primary" onclick="go('team'); document.getElementById('aiChatWindow').classList.remove('active');" style="padding:6px 14px; font-size:11px;"><i class="fas fa-users"></i> Meet the Founders &rarr;</button>`;
             } else {
-                reply = `? <strong>Kyrosh Growth Strategy:</strong><br>
-                Whether you need bespoke websites, 10x performance ad funnels, cinematic video production, or SEO domination, we engineer end-to-end digital empires.<br><br>
+                reply = `ðŸ¤– <strong>Kyrosh Full-Stack Growth Engine:</strong><br>
+                Whether you need bespoke websites, 10x ROAS performance ads, cinematic video production, or SEO domination, we engineer end-to-end digital empires.<br><br>
                 Would you like our directors to prepare a custom proposal with <strong>50% OFF</strong> for your brand?
                 <div class="ai-quick-chips">
-                    <button class="ai-chip-btn" data-query="Yes, prepare my custom proposal">?? Yes, Get Custom Proposal</button>
-                    <button class="ai-chip-btn" data-query="Book a 1-on-1 strategy call">?? Book Strategy Call</button>
+                    <button class="ai-chip-btn" data-query="Yes, prepare my custom proposal">âš¡ Yes, Get Custom Proposal</button>
+                    <button class="ai-chip-btn" data-query="How do your Performance Ads achieve 10x ROAS?">ðŸ“ˆ 10x Ads Strategy</button>
+                    <button class="ai-chip-btn" data-query="Book a 1-on-1 strategy call">ðŸ“… Book Strategy Call</button>
                 </div>`;
             }
 
             setTimeout(() => {
                 appendBotMessage(reply);
-            }, 600);
+            }, 500);
         }
 
         function sendUserAiMessage() {
@@ -3373,19 +4252,170 @@
             document.querySelectorAll('.ai-chip-btn').forEach(btn => {
                 btn.onclick = () => {
                     const query = btn.getAttribute('data-query');
-                    appendUserMessage(query);
-                    handleAiResponse(query);
+                    if (query) {
+                        appendUserMessage(query);
+                        handleAiResponse(query);
+                    }
                 };
             });
         }
         attachAiChipEvents();
 
         // ====================================================
-        // ???? CURRENCY SYSTEM (INR ? ONLY)
+        // ðŸ”¥ KYROSH ADS GALLERY CONTROLLER & LIGHTBOX ENGINE
+        // ====================================================
+        const adsGalleryData = [
+            {
+                img: 'https://i.imgur.com/mWatkD2.jpeg',
+                title: 'HyperScale Performance Ad',
+                platform: 'Meta & Instagram Feed',
+                badge: 'Direct-Response Scale',
+                desc: 'High-contrast visual hierarchy engineered with thumb-stopping value propositions and psychological hooks that doubled checkout conversions.',
+                roas: '7.2x',
+                ctr: '5.4%',
+                cvr: '-44% CPA',
+                category: 'meta ecommerce'
+            },
+            {
+                img: 'https://i.imgur.com/hUcJNl9.jpeg',
+                title: 'Cinematic Brand & Offer Ad',
+                platform: 'Advantage+ Omnichannel',
+                badge: 'Viral Hook Creative',
+                desc: 'Precision-targeted creative combining lifestyle aesthetics with high-converting social proof for instant brand lift and immediate sales.',
+                roas: '6.4x',
+                ctr: '4.8%',
+                cvr: '1.2M+ Reach',
+                category: 'meta ugc'
+            },
+            {
+                img: 'https://i.imgur.com/tlPv8TI.jpeg',
+                title: 'Omnichannel Growth Creative',
+                platform: 'Stories & Reels Funnel',
+                badge: 'Top Scaler 2024',
+                desc: 'Dynamic mobile-first vertical format tailored for maximum click-through rates, high engagement velocity, and rapid checkout completions.',
+                roas: '8.1x',
+                ctr: '6.2%',
+                cvr: '5.8% CVR',
+                category: 'ecommerce meta'
+            },
+            {
+                img: 'https://i.imgur.com/nF33Ruw.jpeg',
+                title: 'Direct-Response Feature Focus',
+                platform: 'TikTok & UGC Video',
+                badge: 'UGC Conversion',
+                desc: 'Customer benefit breakdown designed to systematically dismantle purchase objections and drive immediate add-to-carts at scale.',
+                roas: '5.9x',
+                ctr: '4.3%',
+                cvr: '-38% CPA',
+                category: 'ugc ecommerce'
+            },
+            {
+                img: 'https://i.imgur.com/tLv63JY.jpeg',
+                title: 'Luxury & High-AOV Showcase',
+                platform: 'Google & Retargeting',
+                badge: 'High AOV Driver',
+                desc: 'High-aesthetic brand presentation optimized for premium brands, scaling buyer trust perception and lifting average order value.',
+                roas: '9.4x',
+                ctr: '7.1%',
+                cvr: '+42% AOV',
+                category: 'meta ecommerce'
+            },
+            {
+                img: 'https://i.imgur.com/4p1jsqg.jpeg',
+                title: 'Viral Acquisition Creative',
+                platform: 'Omnichannel Scale',
+                badge: 'Scale Machine',
+                desc: 'Scroll-stopping creative featuring irresistible promotional hooks that cut client cost per acquisition by over 40% in under 14 days.',
+                roas: '6.7x',
+                ctr: '5.1%',
+                cvr: '10x Scale',
+                category: 'ugc meta'
+            }
+        ];
+
+        let currentAdLightboxIndex = 0;
+        const adsLightboxModal = document.getElementById('adsLightboxModal');
+        const adsLightboxOverlay = document.getElementById('adsLightboxOverlay');
+        const adsLightboxClose = document.getElementById('adsLightboxClose');
+        const adsLightboxImg = document.getElementById('adsLightboxImg');
+        const adsLightboxBadge = document.getElementById('adsLightboxBadge');
+        const adsLightboxTitle = document.getElementById('adsLightboxTitle');
+        const adsLightboxDesc = document.getElementById('adsLightboxDesc');
+        const adsLightboxRoas = document.getElementById('adsLightboxRoas');
+        const adsLightboxCtr = document.getElementById('adsLightboxCtr');
+        const adsLightboxCvr = document.getElementById('adsLightboxCvr');
+        const adsLightboxPrev = document.getElementById('adsLightboxPrev');
+        const adsLightboxNext = document.getElementById('adsLightboxNext');
+
+        function openAdLightbox(index) {
+            currentAdLightboxIndex = (index + adsGalleryData.length) % adsGalleryData.length;
+            const ad = adsGalleryData[currentAdLightboxIndex];
+            if (!ad) return;
+
+            if (adsLightboxImg) adsLightboxImg.src = ad.img;
+            if (adsLightboxBadge) adsLightboxBadge.textContent = ad.platform + ' â€¢ ' + ad.badge;
+            if (adsLightboxTitle) adsLightboxTitle.textContent = ad.title;
+            if (adsLightboxDesc) adsLightboxDesc.textContent = ad.desc;
+            if (adsLightboxRoas) adsLightboxRoas.textContent = ad.roas;
+            if (adsLightboxCtr) adsLightboxCtr.textContent = ad.ctr;
+            if (adsLightboxCvr) adsLightboxCvr.textContent = ad.cvr;
+
+            if (adsLightboxModal) {
+                adsLightboxModal.classList.add('active');
+                SoundFX.pop();
+            }
+        }
+
+        function closeAdLightbox() {
+            if (adsLightboxModal) adsLightboxModal.classList.remove('active');
+        }
+
+        if (adsLightboxClose) adsLightboxClose.addEventListener('click', closeAdLightbox);
+        if (adsLightboxOverlay) adsLightboxOverlay.addEventListener('click', closeAdLightbox);
+        if (adsLightboxPrev) adsLightboxPrev.addEventListener('click', () => openAdLightbox(currentAdLightboxIndex - 1));
+        if (adsLightboxNext) adsLightboxNext.addEventListener('click', () => openAdLightbox(currentAdLightboxIndex + 1));
+
+        document.addEventListener('keydown', (e) => {
+            if (adsLightboxModal && adsLightboxModal.classList.contains('active')) {
+                if (e.key === 'Escape') closeAdLightbox();
+                if (e.key === 'ArrowLeft') openAdLightbox(currentAdLightboxIndex - 1);
+                if (e.key === 'ArrowRight') openAdLightbox(currentAdLightboxIndex + 1);
+            }
+        });
+
+        document.querySelectorAll('.ad-grid-card, .ads-marquee-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const idx = parseInt(card.getAttribute('data-ad-index'), 10);
+                if (!isNaN(idx)) openAdLightbox(idx);
+            });
+        });
+
+        document.querySelectorAll('.ads-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.ads-filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                SoundFX.click();
+
+                const cat = btn.getAttribute('data-ad-cat');
+                document.querySelectorAll('.ad-grid-card').forEach(card => {
+                    const cardCat = card.getAttribute('data-ad-cat') || '';
+                    if (cat === 'all' || cardCat.includes(cat)) {
+                        card.style.display = 'flex';
+                        card.style.animation = 'popupBounce 0.4s ease';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+
+        // ====================================================
+        // 💰 CURRENCY SYSTEM (INR ₹ ONLY)
         // ====================================================
         const currentCurrency = 'INR';
         const currencyConfigs = {
-            INR: { symbol: '?', prefix: '?', p1Amt: '19,999', p2Amt: '49,999', p3Amt: '99,999', sliderMin: 20000, sliderMax: 1000000, sliderStep: 10000, sliderDefault: 100000, aovMin: 500, aovMax: 25000, aovStep: 500, aovDefault: 2500, presets: [ { label: '?50K', val: 50000 }, { label: '?1 Lakh', val: 100000 }, { label: '?2.5 Lakh', val: 250000 }, { label: '?5 Lakh', val: 500000 }, { label: '?10 Lakh+', val: 1000000 } ] }
+            INR: { symbol: '₹', prefix: '₹', p1Amt: '19,999', p2Amt: '49,999', p3Amt: '99,999', sliderMin: 20000, sliderMax: 1000000, sliderStep: 10000, sliderDefault: 100000, aovMin: 500, aovMax: 25000, aovStep: 500, aovDefault: 2500, presets: [ { label: '₹50K', val: 50000 }, { label: '₹1 Lakh', val: 100000 }, { label: '₹2.5 Lakh', val: 250000 }, { label: '₹5 Lakh', val: 500000 }, { label: '₹10 Lakh+', val: 1000000 } ] }
         };
 
         function setCurrency() {
@@ -3407,7 +4437,7 @@
         }
 
         // ====================================================
-        // ?? SHOWREEL LIGHTBOX & 3D DEVICE PREVIEWER CONTROLLERS
+        // 🎬 SHOWREEL LIGHTBOX & 3D DEVICE PREVIEWER CONTROLLERS
         // ====================================================
         const heroWatchShowreel = document.getElementById('heroWatchShowreel');
         const showreelModal = document.getElementById('showreelModal');
@@ -3447,7 +4477,7 @@
         }
 
         // ====================================================
-        // ?? CAREERS & TALENT APPLICATION PORTAL CONTROLLER
+        // 💼 CAREERS & TALENT APPLICATION PORTAL CONTROLLER
         // ====================================================
         const careerModal = document.getElementById('careerModal');
         const closeCareerModal = document.getElementById('closeCareerModal');
@@ -3501,7 +4531,7 @@
                             email: email,
                             phone: phone,
                             business: portfolio,
-                            service: `?? Career: ${currentApplyingRole}`,
+                            service: `💼 Career: ${currentApplyingRole}`,
                             message: `[Portfolio/GitHub: ${portfolio}] Bio: ${bio}`,
                             status: 'career_application',
                             created_at: new Date().toISOString(),
@@ -3515,7 +4545,7 @@
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: 'kyroshbrand@gmail.com',
-                                subject: `?? New Talent Application: ${name} (${currentApplyingRole})`,
+                                subject: `💼 New Talent Application: ${name} (${currentApplyingRole})`,
                                 html: `<h2>New Job Application Received</h2><p><strong>Candidate:</strong> ${name}</p><p><strong>Role:</strong> ${currentApplyingRole}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone}</p><p><strong>Portfolio:</strong> <a href="${portfolio}">${portfolio}</a></p><p><strong>Bio:</strong> ${bio}</p>`
                             })
                         });
@@ -3523,13 +4553,13 @@
 
                     SoundFX.success();
                     if (careerSuccessMsg) careerSuccessMsg.style.display = 'block';
-                    if (careerSubmitBtn) careerSubmitBtn.innerHTML = '? Application Submitted!';
+                    if (careerSubmitBtn) careerSubmitBtn.innerHTML = '✅ Application Submitted!';
                     if (careerAppForm) careerAppForm.reset();
 
                     setTimeout(() => {
                         if (careerModal) careerModal.classList.remove('active');
                         if (careerSubmitBtn) {
-                            careerSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application ?';
+                            careerSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application &rarr;';
                             careerSubmitBtn.disabled = false;
                         }
                     }, 2800);
@@ -3538,7 +4568,7 @@
                     console.error('Career submit err:', err);
                     alert('Something went wrong. Please try again.');
                     if (careerSubmitBtn) {
-                        careerSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application ?';
+                        careerSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application &rarr;';
                         careerSubmitBtn.disabled = false;
                     }
                 }
@@ -3546,7 +4576,7 @@
         }
 
         // ====================================================
-        // ?? GAMIFIED "SPIN-TO-WIN" FORTUNE WHEEL ENGINE
+        // 🎡 GAMIFIED "SPIN-TO-WIN" FORTUNE WHEEL ENGINE
         // ====================================================
         const wheelModal = document.getElementById('wheelModal');
         const wheelFloatBtn = document.getElementById('wheelFloatBtn');
@@ -3558,12 +4588,12 @@
         const claimWheelPerkBtn = document.getElementById('claimWheelPerkBtn');
 
         const wheelPrizes = [
-            { text: "?? Extra 10% Off", color: "#7844D5" },
-            { text: "?? 3D Video Hook", color: "#DC2626" },
-            { text: "? Free Speed Audit", color: "#0284C7" },
-            { text: "?? VIP Priority Slot", color: "#D97706" },
-            { text: "?? Free GEO Audit", color: "#059669" },
-            { text: "?? 50% Voucher", color: "#9333EA" }
+            { text: "🎁 Extra 10% Off", color: "#7844D5" },
+            { text: "🎬 3D Video Hook", color: "#DC2626" },
+            { text: "⚡ Free Speed Audit", color: "#0284C7" },
+            { text: "⭐ VIP Priority Slot", color: "#D97706" },
+            { text: "🔍 Free GEO Audit", color: "#059669" },
+            { text: "🎟️ 50% Voucher", color: "#9333EA" }
         ];
 
         let currentWheelAngle = 0;
@@ -3685,7 +4715,7 @@
         }
 
         // ====================================================
-        // ? INSTANT FUNNEL & WEBSITE HEALTH SCANNER ENGINE
+        // ⚡ INSTANT FUNNEL & WEBSITE HEALTH SCANNER ENGINE
         // ====================================================
         const scannerUrlInput = document.getElementById('scannerUrlInput');
         const scannerRunBtn = document.getElementById('scannerRunBtn');
@@ -3713,10 +4743,10 @@
                 if (scanProgressArea) scanProgressArea.style.display = 'block';
 
                 const scanSteps = [
-                    { progress: 25, text: "?? Testing Server Core Web Vitals & TTFB Latency..." },
-                    { progress: 50, text: "?? Analyzing Mobile Viewport & UX Friction Index..." },
-                    { progress: 75, text: "?? Checking Generative Search (GEO) & Schema Markup..." },
-                    { progress: 100, text: "?? Auditing Ad Pixel Tracking & Conversion Funnels..." }
+                    { progress: 25, text: "🔍 Testing Server Core Web Vitals & TTFB Latency..." },
+                    { progress: 50, text: "📱 Analyzing Mobile Viewport & UX Friction Index..." },
+                    { progress: 75, text: "🤖 Checking Generative Search (GEO) & Schema Markup..." },
+                    { progress: 100, text: "🎯 Auditing Ad Pixel Tracking & Conversion Funnels..." }
                 ];
 
                 let currentStep = 0;
@@ -3755,7 +4785,7 @@
         }
 
         // ====================================================
-        // ?? STRATEGY CALL SCHEDULER CONTROLLER
+        // 📅 STRATEGY CALL SCHEDULER CONTROLLER
         // ====================================================
         let selectedDate = null;
         let selectedSlot = null;
@@ -3860,7 +4890,7 @@
                     if (!user) {
                         alert('Please login first.');
                         openAuthModal();
-                        schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call ?';
+                        schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call &rarr;';
                         schedSubmitBtn.disabled = false;
                         return;
                     }
@@ -3872,7 +4902,7 @@
                             email: email,
                             phone: phone,
                             business: website,
-                            service: `?? Strategy Call: ${selectedCallType}`,
+                            service: `📅 Strategy Call: ${selectedCallType}`,
                             message: `Scheduled Date: ${selectedDate} at ${selectedSlot} (${currentCurrency}). Website: ${website}`,
                             status: 'scheduled',
                             created_at: new Date().toISOString(),
@@ -3886,7 +4916,7 @@
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: email,
-                                subject: `?? Strategy Session Confirmed: ${selectedDate} @ ${selectedSlot} | Kyrosh`,
+                                subject: `📅 Strategy Session Confirmed: ${selectedDate} @ ${selectedSlot} | Kyrosh`,
                                 html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:1px solid #7844D5; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.6);">
     <tr>
@@ -3897,7 +4927,7 @@
     </tr>
     <tr>
       <td style="padding:28px 24px;">
-        <h2 style="color:#ffffff; font-size:20px; font-weight:800; margin-top:0; margin-bottom:12px;">Hi ${name}! ??</h2>
+        <h2 style="color:#ffffff; font-size:20px; font-weight:800; margin-top:0; margin-bottom:12px;">Hi ${name}! 👋</h2>
         <p style="color:#CBD5E1; font-size:14.5px; line-height:1.6; margin-bottom:20px;">Your private 1-on-1 Growth Consultation with our executive directors has been scheduled.</p>
         
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1E0F38; border:1px solid rgba(120,68,213,0.4); border-radius:14px; padding:16px; margin-bottom:24px;">
@@ -3921,15 +4951,15 @@
 
         <div style="text-align:center; margin:26px 0 16px;">
           <a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20booked%20a%20Strategy%20Call%20for%20${encodeURIComponent(selectedDate)}%20at%20${encodeURIComponent(selectedSlot)}." style="background:linear-gradient(135deg, #10B981, #059669); color:#ffffff; text-decoration:none; padding:14px 28px; border-radius:50px; font-size:14px; font-weight:800; display:inline-block; box-shadow:0 6px 20px rgba(16,185,129,0.4);">
-            ?? Confirm on WhatsApp (+91 90199 58415)
+            💬 Confirm on WhatsApp (+91 90199 58415)
           </a>
         </div>
       </td>
     </tr>
     <tr>
       <td style="background:#0F051C; padding:18px 24px; text-align:center; border-top:1px solid rgba(255,255,255,0.08);">
-        <p style="color:#64748B; font-size:12px; margin:0 0 6px;">? 2024 Kyrosh Digital Agency. All Rights Reserved.</p>
-        <p style="color:#94A3B8; font-size:11.5px; margin:0;">Shaiban Puttur (Founder) ? Irfan Vtl (CEO) ? Shafeeq Sullia (CTO)</p>
+        <p style="color:#64748B; font-size:12px; margin:0 0 6px;">© 2024 Kyrosh Digital Agency. All Rights Reserved.</p>
+        <p style="color:#94A3B8; font-size:11.5px; margin:0;">Shaiban Puttur (Founder) • Irfan Vtl (CEO) • Shafeeq Sullia (CTO)</p>
       </td>
     </tr>
   </table>
@@ -3938,19 +4968,19 @@
                         });
                     } catch (err) { console.error('Scheduler email err:', err); }
 
-                    // ============ ?? OWNER CALL ALERT ============
+                    // ============ 📅 OWNER CALL ALERT ============
                     try {
                         await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: 'kyroshbrand@gmail.com',
-                                subject: `?? NEW STRATEGY CALL BOOKED: ${name} (${selectedDate} @ ${selectedSlot})`,
+                                subject: `🚨 NEW STRATEGY CALL BOOKED: ${name} (${selectedDate} @ ${selectedSlot})`,
                                 html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:2px solid #38BDF8; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(56,189,248,0.3);">
     <tr>
       <td style="background:linear-gradient(135deg, #0284C7, #7844D5); padding:24px; text-align:center;">
-        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">?? STRATEGY CALL BOOKED</h1>
+        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">🚨 STRATEGY CALL BOOKED</h1>
         <p style="color:#E0F2FE; margin:4px 0 0; font-size:13px; font-weight:700; text-transform:uppercase;">${selectedDate} at ${selectedSlot}</p>
       </td>
     </tr>
@@ -3983,12 +5013,12 @@
           <tr>
             <td style="text-align:center; padding-right:6px;">
               <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}?text=Hi%20${encodeURIComponent(name)}!%20This%20is%20Shaiban%20from%20Kyrosh.%20Confirming%20our%20strategy%20call%20for%20${encodeURIComponent(selectedDate)}%20at%20${encodeURIComponent(selectedSlot)}." style="background:#25D366; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
-                ?? WhatsApp Client
+                💬 WhatsApp Client
               </a>
             </td>
             <td style="text-align:center; padding-left:6px;">
               <a href="tel:${phone}" style="background:#7844D5; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
-                ?? Direct Call
+                📞 Direct Call
               </a>
             </td>
           </tr>
@@ -4002,26 +5032,26 @@
                     } catch (err) { console.error('Owner call email err:', err); }
 
                     SoundFX.success();
-                    schedSubmitBtn.innerHTML = '? Strategy Call Confirmed!';
+                    schedSubmitBtn.innerHTML = '✅ Strategy Call Confirmed!';
                     const successPopup = document.getElementById('successPopup');
                     if (successPopup) successPopup.classList.add('active');
                     setTimeout(() => {
                         if (successPopup) successPopup.classList.remove('active');
-                        schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call ?';
+                        schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call &rarr;';
                         schedSubmitBtn.disabled = false;
                     }, 4000);
 
                 } catch (err) {
                     console.error('Scheduler error:', err);
                     alert('Something went wrong. Please try again.');
-                    schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call ?';
+                    schedSubmitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Free Strategy Call &rarr;';
                     schedSubmitBtn.disabled = false;
                 }
             });
         }
 
         // ====================================================
-        // ?? CLIENT PROJECT STATUS DASHBOARD
+        // 📊 CLIENT PROJECT STATUS DASHBOARD
         // ====================================================
         const dashboardModal = document.getElementById('dashboardModal');
         const closeDashboardModal = document.getElementById('closeDashboardModal');
@@ -4069,7 +5099,7 @@
                                     <h3 style="font-size:18px; font-weight:800; color:#fff;">${p.service || 'Digital Empire Build'}</h3>
                                     <p style="font-size:12px; color:var(--gray-light);">Brand: <strong style="color:var(--primary-light);">${p.business || 'Your Brand'}</strong></p>
                                 </div>
-                                <span class="status-badge-live">? ${statusText}</span>
+                                <span class="status-badge-live">🟢 ${statusText}</span>
                             </div>
 
                             <div style="display:flex; justify-content:space-between; font-size:12.5px; font-weight:700; color:var(--gray-light);">
@@ -4207,7 +5237,7 @@
         function formatCurrency(val) {
             const cfg = currencyConfigs[currentCurrency] || currencyConfigs.INR;
             if (currentCurrency === 'INR') {
-                return '?' + Number(val).toLocaleString('en-IN');
+                return '₹' + Number(val).toLocaleString('en-IN');
             } else if (currentCurrency === 'AED') {
                 return Number(val).toLocaleString('en-US') + ' AED';
             } else {
@@ -4216,7 +5246,7 @@
         }
 
         // ====================================================
-        // ?? BEFORE / AFTER SLIDER CONTROLLER
+        // 🔄 BEFORE / AFTER SLIDER CONTROLLER
         // ====================================================
         const baSlider = document.getElementById('baSlider');
         const baAfterWrap = document.getElementById('baAfterWrap');
@@ -4231,20 +5261,20 @@
             website: {
                 beforeImg: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1200&h=675&fit=crop',
                 afterImg: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop',
-                beforeLbl: '?? BEFORE: Generic (1.2% Conv)',
-                afterLbl: '?? AFTER: Kyrosh (4.8% Conv)'
+                beforeLbl: '🔴 BEFORE: Generic (1.2% Conv)',
+                afterLbl: '🚀 AFTER: Kyrosh (4.8% Conv)'
             },
             ad: {
                 beforeImg: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=1200&h=675&fit=crop',
                 afterImg: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop',
-                beforeLbl: '?? BEFORE: Static Ad (1.1x ROAS)',
-                afterLbl: '?? AFTER: 3D Video (6.4x ROAS)'
+                beforeLbl: '🔴 BEFORE: Static Ad (1.1x ROAS)',
+                afterLbl: '🚀 AFTER: 3D Video (6.4x ROAS)'
             },
             seo: {
                 beforeImg: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1200&h=675&fit=crop',
                 afterImg: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&h=675&fit=crop',
-                beforeLbl: '?? BEFORE: Page 4 (120 visits)',
-                afterLbl: '?? AFTER: #1 Rank (180K visits)'
+                beforeLbl: '🔴 BEFORE: Page 4 (120 visits)',
+                afterLbl: '🚀 AFTER: #1 Rank (180K visits)'
             }
         };
 
@@ -4510,7 +5540,7 @@
                                     <div class="user-info">
                                         <h4>${displayName}</h4>
                                         <p>${user.email || ''}</p>
-                                        <p style="font-size:11px; color:var(--gray);">?? ${phone}</p>
+                                        <p style="font-size:11px; color:var(--gray);">📱 ${phone}</p>
                                     </div>
                                 </div>
                                 <div class="dropdown-section">
@@ -5084,7 +6114,7 @@
                         const btn = document.getElementById('submitBtn');
 
                         if (!name || !phone || !service) { alert('Please fill in all required fields.'); return; }
-                        if (btn) { btn.textContent = '? Submitting Proposal...'; btn.disabled = true; }
+                        if (btn) { btn.textContent = '⏳ Submitting Proposal...'; btn.disabled = true; }
                         gtag('event', 'form_submit', { 'event_category': 'Proposal', 'event_label': service });
 
                         try {
@@ -5102,7 +6132,7 @@
                             });
                         } catch (err) { console.error('Supabase proposal insert error:', err); }
 
-                        // ============ ?? ENROLL IN BI-WEEKLY EMAIL SEQUENCE ============
+                        // ============ ✉️ ENROLL IN BI-WEEKLY EMAIL SEQUENCE ============
                         try {
                             await upsertProfile(user.id, {
                                 name: name,
@@ -5112,7 +6142,7 @@
                             });
                         } catch (err) { console.error('Profile newsletter sync error:', err); }
 
-                        // ============ ?? GOOGLE SHEETS REDUNDANT BACKUP ============
+                        // ============ 📊 GOOGLE SHEETS REDUNDANT BACKUP ============
                         try {
                             await fetch("https://script.google.com/macros/s/AKfycbw3hXnvZqSegfn9VYxY2pGe68zspmz8NpjqUQJ6rsPoGpilGrzkebQkCQwi_mYOYMFvXg/exec", {
                                 method: "POST",
@@ -5124,14 +6154,14 @@
                             });
                         } catch (err) { console.error('Google Sheets proposal error:', err); }
 
-                        // ============ ?? CLIENT CONFIRMATION EMAIL (WELCOME & 50% DISCOUNT) ============
+                        // ============ 📩 CLIENT CONFIRMATION EMAIL (WELCOME & 50% DISCOUNT) ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: email,
-                                    subject: `?? Proposal Received ? 50% Welcome Rate Locked | Kyrosh`,
+                                    subject: `🎉 Proposal Received • 50% Welcome Rate Locked | Kyrosh`,
                                     html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:1px solid #7844D5; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.6);">
     <tr>
@@ -5142,7 +6172,7 @@
     </tr>
     <tr>
       <td style="padding:28px 24px;">
-        <h2 style="color:#ffffff; font-size:20px; font-weight:800; margin-top:0; margin-bottom:12px;">Hi ${name}! ??</h2>
+        <h2 style="color:#ffffff; font-size:20px; font-weight:800; margin-top:0; margin-bottom:12px;">Hi ${name}! 👋</h2>
         <p style="color:#CBD5E1; font-size:14.5px; line-height:1.6; margin-bottom:20px;">Founder Shaiban Puttur and our executive engineering squad have received your project proposal. Your <strong>50% Welcome Discount</strong> is locked in!</p>
         
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1E0F38; border:1px solid rgba(120,68,213,0.4); border-radius:14px; padding:16px; margin-bottom:24px;">
@@ -5164,22 +6194,22 @@
           </tr>
         </table>
 
-        <h3 style="color:#FFD700; font-size:15px; font-weight:800; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.8px;">? Next Steps (Within 12 Hours):</h3>
+        <h3 style="color:#FFD700; font-size:15px; font-weight:800; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.8px;">⚡ Next Steps (Within 12 Hours):</h3>
         <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 6px;">1. <strong>Strategic Scope Teardown</strong>: Our technical director audits your positioning and bottlenecks.</p>
         <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 6px;">2. <strong>Architecture Blueprint & Quote</strong>: Custom timeline and discounted invoice delivered.</p>
         <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 20px;">3. <strong>Production Kickoff</strong>: Rapid deployment to market.</p>
 
         <div style="text-align:center; margin:26px 0 16px;">
           <a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20submitted%20my%20proposal%20for%20${encodeURIComponent(service)}%20and%20want%20to%20fast-track%20kickoff." style="background:linear-gradient(135deg, #10B981, #059669); color:#ffffff; text-decoration:none; padding:14px 28px; border-radius:50px; font-size:14px; font-weight:800; display:inline-block; box-shadow:0 6px 20px rgba(16,185,129,0.4);">
-            ?? Fast-Track on WhatsApp (+91 90199 58415)
+            💬 Fast-Track on WhatsApp (+91 90199 58415)
           </a>
         </div>
       </td>
     </tr>
     <tr>
       <td style="background:#0F051C; padding:18px 24px; text-align:center; border-top:1px solid rgba(255,255,255,0.08);">
-        <p style="color:#64748B; font-size:12px; margin:0 0 6px;">? 2024 Kyrosh Digital Agency. All Rights Reserved.</p>
-        <p style="color:#94A3B8; font-size:11.5px; margin:0;">Shaiban Puttur (Founder) ? Irfan Vtl (CEO) ? Shafeeq Sullia (CTO)</p>
+        <p style="color:#64748B; font-size:12px; margin:0 0 6px;">© 2024 Kyrosh Digital Agency. All Rights Reserved.</p>
+        <p style="color:#94A3B8; font-size:11.5px; margin:0;">Shaiban Puttur (Founder) • Irfan Vtl (CEO) • Shafeeq Sullia (CTO)</p>
       </td>
     </tr>
   </table>
@@ -5188,19 +6218,19 @@
                             });
                         } catch (err) { console.error('Client email dispatch error:', err); }
 
-                        // ============ ?? OWNER INSTANT LEAD ALERT ============
+                        // ============ 🔥 OWNER INSTANT LEAD ALERT ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: 'kyroshbrand@gmail.com',
-                                    subject: `?? HOT NEW PROPOSAL [${currentCurrency}]: ${name} (${service})`,
+                                    subject: `🔥 HOT NEW PROPOSAL [${currentCurrency}]: ${name} (${service})`,
                                     html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:2px solid #EF4444; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(239,68,68,0.3);">
     <tr>
       <td style="background:linear-gradient(135deg, #DC2626, #7844D5); padding:24px; text-align:center;">
-        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">?? HOT LEAD ALERT</h1>
+        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">🔥 HOT LEAD ALERT</h1>
         <p style="color:#FEE2E2; margin:4px 0 0; font-size:13px; font-weight:700; text-transform:uppercase;">New 50% Proposal Submitted [${currentCurrency}]</p>
       </td>
     </tr>
@@ -5237,12 +6267,12 @@
           <tr>
             <td style="text-align:center; padding-right:6px;">
               <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}?text=Hi%20${encodeURIComponent(name)}!%20This%20is%20Shaiban%20from%20Kyrosh.%20I%20received%20your%20proposal%20for%20${encodeURIComponent(service)}." style="background:#25D366; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
-                ?? WhatsApp Client
+                💬 WhatsApp Client
               </a>
             </td>
             <td style="text-align:center; padding-left:6px;">
               <a href="tel:${phone}" style="background:#7844D5; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
-                ?? Direct Call
+                📞 Direct Call
               </a>
             </td>
           </tr>
@@ -5256,10 +6286,10 @@
                         } catch (err) { console.error('Owner email notification error:', err); }
 
                         SoundFX.success();
-                        if (btn) btn.textContent = '? Proposal Submitted!';
+                        if (btn) btn.textContent = '✅ Proposal Submitted!';
                         const successMsg = document.getElementById('successMsg');
                         if (successMsg) {
-                            successMsg.innerHTML = `? Proposal received! Confirmation email dispatched to <strong>${email}</strong> & Founder Shaiban alerted.`;
+                            successMsg.innerHTML = `✅ Proposal received! Confirmation email dispatched to <strong>${email}</strong> & Founder Shaiban alerted.`;
                             successMsg.style.display = 'block';
                         }
                         if (proposalForm) proposalForm.reset();
@@ -5276,7 +6306,7 @@
                         setTimeout(() => { if (successPopup) successPopup.classList.remove('active'); }, 5000);
 
                         setTimeout(() => {
-                            if (btn) { btn.textContent = 'Submit & Claim 50% Proposal ?'; btn.disabled = false; }
+                            if (btn) { btn.textContent = 'Submit & Claim 50% Proposal &rarr;'; btn.disabled = false; }
                             if (successMsg) successMsg.style.display = 'none';
                         }, 6000);
 
@@ -5291,7 +6321,7 @@
         // ============ AOS INITIALIZATION ============
         try { if (typeof AOS !== 'undefined') { AOS.init({ duration: 800, once: true }); } } catch (err) { console.error('AOS init error:', err); }
 
-        console.log('?? Kyrosh AI Copilot is online and ready to convert visitors!');
+        console.log('🤖 Kyrosh AI Copilot is online and ready to convert visitors!');
     </script>
 </body>
 </html>
