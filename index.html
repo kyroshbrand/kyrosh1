@@ -1411,28 +1411,47 @@
             .nav-links li a { font-size: 14.5px; font-weight: 700; display: block; padding: 5px 0; }
             .hamburger { display: block; font-size: 22px; }
 
-            /* Main Section Mobile Re-ordering (Priority Booking placed right before Official Channels) */
+            /* ====================================================
+               ðŸ“± MOBILE VIEW REORDERING & VISIBILITY (MAX-WIDTH: 768PX)
+               ==================================================== */
+            /* 1. Reorder Main Container into Flex Column */
             #pageMain {
                 display: flex !important;
                 flex-direction: column !important;
+                width: 100% !important;
+                overflow-x: hidden !important;
             }
-            #home { order: 1 !important; }
-            .logo-strip { order: 2 !important; }
-            #stats { order: 3 !important; }
-            #scanner { order: 4 !important; }
-            #transformations { order: 5 !important; }
-            #work { order: 6 !important; }
-            #services { order: 7 !important; }
-            #process { order: 8 !important; }
-            #pricing { order: 9 !important; }
-            #careers { order: 10 !important; }
-            #team { order: 11 !important; }
-            #certificates { order: 12 !important; }
-            #testimonials { order: 13 !important; }
-            #faq { order: 14 !important; }
-            #proposal { order: 15 !important; }
-            #scheduler { order: 16 !important; } /* Priority Booking right before Official Channels! */
-            #instagram { order: 17 !important; } /* Official Channels */
+
+            /* 2. Exact 10-Section Mobile Vertical Stacking Order */
+            #home { order: 1 !important; }          /* 1. Home */
+            #scanner { order: 2 !important; }       /* 2. Scanner */
+            #ads-gallery { order: 3 !important; }   /* 3. Ads Gallery */
+            #scheduler { order: 4 !important; }     /* 4. Book */
+            #services { order: 5 !important; }      /* 5. Services */
+            #pricing { order: 6 !important; }       /* 6. Pricing */
+            #careers { order: 7 !important; }       /* 7. Careers */
+            #faq { order: 8 !important; }           /* 8. FAQ */
+            #proposal { order: 9 !important; }      /* 9. Proposal */
+            #instagram { order: 10 !important; }    /* 10. Follow Kyrosh in Instagram */
+
+            /* 3. Hide all other sections and elements on mobile */
+            .logo-strip,
+            #stats,
+            #transformations,
+            #work,
+            #process,
+            #team,
+            #certificates,
+            #testimonials {
+                display: none !important;
+            }
+
+            /* Hide matching links from mobile navigation drawer */
+            #navLinks a[href="#transformations"],
+            #navLinks a[href="#work"],
+            #navLinks a[href="#process"] {
+                display: none !important;
+            }
 
             /* Hero Section: High-Impact, Bold & Clean on Mobile */
             .hero {
@@ -1523,6 +1542,88 @@
             .stat-card { padding: 14px 12px !important; border-radius: 14px !important; }
             .stat-number { font-size: 26px !important; margin-bottom: 2px !important; }
             .stat-card p { font-size: 11.5px !important; }
+
+            
+            /* KYROSH Ads Gallery Mobile Spacing & Clean Touch Layout */
+            #ads-gallery {
+                order: 3 !important;
+                padding: 34px 0 !important;
+                background: linear-gradient(180deg, var(--dark-bg) 0%, #120626 50%, var(--dark-bg) 100%) !important;
+            }
+            .ads-marquee-container {
+                margin-bottom: 20px !important;
+            }
+            .ads-marquee-track {
+                gap: 12px !important;
+            }
+            .ads-marquee-card {
+                width: 180px !important;
+                height: 250px !important;
+                border-radius: 12px !important;
+            }
+            .ads-marquee-card img {
+                width: 180px !important;
+                height: 250px !important;
+            }
+            .ads-marquee-overlay {
+                padding: 10px !important;
+            }
+            .ads-marquee-overlay h4 {
+                font-size: 11px !important;
+            }
+            .ads-filter-bar {
+                gap: 6px !important;
+                margin-bottom: 18px !important;
+            }
+            .ads-filter-btn {
+                padding: 6px 12px !important;
+                font-size: 11px !important;
+            }
+            .ads-grid-container {
+                grid-template-columns: 1fr !important;
+                gap: 14px !important;
+            }
+            .ad-grid-card {
+                max-width: 340px !important;
+                margin: 0 auto !important;
+                width: 100% !important;
+                border-radius: 14px !important;
+            }
+            .ad-grid-img-wrap {
+                height: 260px !important;
+            }
+            .ads-gallery-cta-box {
+                flex-direction: column !important;
+                text-align: center !important;
+                padding: 20px 14px !important;
+                margin-top: 20px !important;
+                gap: 14px !important;
+                border-radius: 16px !important;
+            }
+            .ads-cta-content {
+                flex-direction: column !important;
+                text-align: center !important;
+                gap: 10px !important;
+            }
+            .ads-cta-icon {
+                margin: 0 auto !important;
+                width: 44px !important;
+                height: 44px !important;
+                font-size: 20px !important;
+            }
+            .ads-cta-text h3 {
+                font-size: 15px !important;
+            }
+            .ads-cta-text p {
+                font-size: 11.5px !important;
+            }
+            .ads-cta-btn {
+                width: 100% !important;
+                text-align: center !important;
+                justify-content: center !important;
+                padding: 10px 18px !important;
+                font-size: 12px !important;
+            }
 
             /* Funnel Scanner */
             #scanner { padding: 34px 0 !important; }
