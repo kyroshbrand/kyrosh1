@@ -181,7 +181,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html {
-            scroll-behavior: smooth;
+            overflow-x: hidden;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -200,7 +200,7 @@
             transform: translateZ(0);
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            will-change: transform;
+            /* will-change removed for mobile VRAM optimization */
         }
         ::selection { background: var(--primary); color: #fff; }
         .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
@@ -248,7 +248,7 @@
         .section-header .underline-dots span:nth-child(5) { animation-delay: 0.8s; }
 
         /* Tilt */
-        .tilt-card { transform-style: preserve-3d; perspective: 1000px; transition: transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s; will-change: transform; }
+        .tilt-card { transform-style: preserve-3d; perspective: 1000px; transition: transform 0.15s ease-out, border-color 0.3s, box-shadow 0.3s; /* will-change removed for mobile VRAM optimization */ }
 
         /* Keyframes */
         @keyframes badgeGlow { 0%,100% { box-shadow: 0 0 15px var(--primary-glow); border-color: var(--dark-border); } 50% { box-shadow: 0 0 35px var(--primary-glow); border-color: var(--primary-light); } }
@@ -1373,8 +1373,26 @@
         }
 
         @media (max-width: 768px) {
-            /* Disable Custom Magnetic Cursor on Mobile/Touch */
-            .cursor-dot, .cursor-ring, .mouse-glow { display: none !important; }
+            /* Disable Heavy GPU Blurs, Orbs & Overlays on Mobile to Prevent Scroll Lag */
+            .cursor-dot, .cursor-ring, .mouse-glow, .hero-orb, #particles { display: none !important; }
+            
+            /* High-Performance Rendering: Disable expensive backdrop-filter on mobile */
+            .nav-links, .sensory-dock, .pricing-card, .service-card-modern, .scheduler-card, .scanner-card, .ad-grid-card, .proposal-form-wrapper, .faq-item {
+                -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+            }
+            
+            /* Native Touch Scrolling with Zero Layout Lockup */
+            html, body {
+                -webkit-overflow-scrolling: touch !important;
+                scroll-behavior: auto !important;
+            }
+            
+            /* Hardware Acceleration for Mobile Main View */
+            #pageMain {
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+            }
 
             /* Global Compact Section Spacing on Mobile */
             section { padding: 36px 0 !important; }
@@ -4132,6 +4150,8 @@
         // ====================================================
         // 🎯 MAGNETIC CUSTOM CURSOR
         // ====================================================
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 768);
+
         const cursorDot = document.getElementById('cursorDot');
         const cursorRing = document.getElementById('cursorRing');
 
@@ -4142,50 +4162,52 @@
         let isHoveringMagnetic = false;
         let magneticTarget = null;
 
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            if (cursorDot) {
-                cursorDot.style.left = mouseX + 'px';
-                cursorDot.style.top = mouseY + 'px';
-            }
-        });
-
-        function renderCursor() {
-            if (cursorRing) {
-                if (isHoveringMagnetic && magneticTarget) {
-                    const rect = magneticTarget.getBoundingClientRect();
-                    const targetCenterX = rect.left + rect.width / 2;
-                    const targetCenterY = rect.top + rect.height / 2;
-                    ringX += (targetCenterX - ringX) * 0.25;
-                    ringY += (targetCenterY - ringY) * 0.25;
-                } else {
-                    ringX += (mouseX - ringX) * 0.18;
-                    ringY += (mouseY - ringY) * 0.18;
+        if (!isTouchDevice) {
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                if (cursorDot) {
+                    cursorDot.style.left = mouseX + 'px';
+                    cursorDot.style.top = mouseY + 'px';
                 }
-                cursorRing.style.left = ringX + 'px';
-                cursorRing.style.top = ringY + 'px';
-            }
-            requestAnimationFrame(renderCursor);
-        }
-        renderCursor();
+            }, { passive: true });
 
-        function setupMagneticCursor() {
-            const magnetics = document.querySelectorAll('.btn-primary, .btn-outline, .btn-login, .currency-btn, .theme-color-btn, .work-card, .stat-card, .submit-btn, .ai-bot-float-btn');
-            magnetics.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    isHoveringMagnetic = true;
-                    magneticTarget = el;
-                    if (cursorRing) cursorRing.classList.add('active');
+            function renderCursor() {
+                if (cursorRing) {
+                    if (isHoveringMagnetic && magneticTarget) {
+                        const rect = magneticTarget.getBoundingClientRect();
+                        const targetCenterX = rect.left + rect.width / 2;
+                        const targetCenterY = rect.top + rect.height / 2;
+                        ringX += (targetCenterX - ringX) * 0.25;
+                        ringY += (targetCenterY - ringY) * 0.25;
+                    } else {
+                        ringX += (mouseX - ringX) * 0.18;
+                        ringY += (mouseY - ringY) * 0.18;
+                    }
+                    cursorRing.style.left = ringX + 'px';
+                    cursorRing.style.top = ringY + 'px';
+                }
+                requestAnimationFrame(renderCursor);
+            }
+            renderCursor();
+
+            function setupMagneticCursor() {
+                const magnetics = document.querySelectorAll('.btn-primary, .btn-outline, .btn-login, .currency-btn, .theme-color-btn, .work-card, .stat-card, .submit-btn, .ai-bot-float-btn');
+                magnetics.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        isHoveringMagnetic = true;
+                        magneticTarget = el;
+                        if (cursorRing) cursorRing.classList.add('active');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        isHoveringMagnetic = false;
+                        magneticTarget = null;
+                        if (cursorRing) cursorRing.classList.remove('active');
+                    });
                 });
-                el.addEventListener('mouseleave', () => {
-                    isHoveringMagnetic = false;
-                    magneticTarget = null;
-                    if (cursorRing) cursorRing.classList.remove('active');
-                });
-            });
+            }
+            setTimeout(setupMagneticCursor, 600);
         }
-        setTimeout(setupMagneticCursor, 600);
 
         // ====================================================
         // 🤖 LIVE AI AGENCY COPILOT ENGINE (KYROSH AI)
@@ -5250,41 +5272,68 @@
             go('proposal');
         });
 
-        // ============ SCROLL PROGRESS BAR ============
+                // ============ UNIFIED HIGH-PERFORMANCE SCROLL ENGINE ============
         const scrollProgress = document.getElementById('scrollProgress');
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            if (scrollProgress) scrollProgress.style.width = scrolled + '%';
-        });
+        const headerEl = document.getElementById('header');
+        let isScrollEngineTicking = false;
 
-        // ============ MOUSE AMBIENT GLOW FOLLOWER ============
-        const mouseGlow = document.getElementById('mouseGlow');
-        window.addEventListener('mousemove', (e) => {
-            if (mouseGlow) {
-                mouseGlow.style.left = e.clientX + 'px';
-                mouseGlow.style.top = e.clientY + 'px';
+        function updateScrollVisuals() {
+            const winScroll = window.scrollY || document.documentElement.scrollTop || 0;
+            
+            // Header Scrolled Glass Effect
+            if (headerEl) {
+                if (winScroll > 30) {
+                    if (!headerEl.classList.contains('scrolled')) headerEl.classList.add('scrolled');
+                } else {
+                    if (headerEl.classList.contains('scrolled')) headerEl.classList.remove('scrolled');
+                }
             }
-        });
+            
+            // Scroll Progress Bar
+            if (scrollProgress) {
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (docHeight > 0) {
+                    scrollProgress.style.width = ((winScroll / docHeight) * 100) + '%';
+                }
+            }
+            
+            isScrollEngineTicking = false;
+        }
 
-        // ============ 3D CARD PERSPECTIVE TILT EFFECT ============
-        const tiltCards = document.querySelectorAll('.tilt-card');
-        tiltCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -7;
-                const rotateY = ((x - centerX) / centerX) * 7;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+        window.addEventListener('scroll', () => {
+            if (!isScrollEngineTicking) {
+                requestAnimationFrame(updateScrollVisuals);
+                isScrollEngineTicking = true;
+            }
+        }, { passive: true });
+
+        // ============ MOUSE AMBIENT GLOW & 3D TILT (DESKTOP ONLY) ============
+        if (!isTouchDevice) {
+            const mouseGlow = document.getElementById('mouseGlow');
+            if (mouseGlow) {
+                window.addEventListener('mousemove', (e) => {
+                    mouseGlow.style.left = e.clientX + 'px';
+                    mouseGlow.style.top = e.clientY + 'px';
+                }, { passive: true });
+            }
+
+            const tiltCards = document.querySelectorAll('.tilt-card');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -6;
+                    const rotateY = ((x - centerX) / centerX) * 6;
+                    card.style.transform = perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px);
+                }, { passive: true });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+                });
             });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
-            });
-        });
+        }
 
         // ============ ANIMATED NUMBER COUNTERS (NUMBERS THAT DEFINE EXCELLENCE) ============
         const counters = document.querySelectorAll('.counter');
@@ -6127,18 +6176,20 @@
 
         // ============ PARTICLES GENERATOR ============
         const pc = document.getElementById('particles');
-        function makeParticle() {
-            if (!pc) return;
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.width = p.style.height = (Math.random() * 4 + 2) + 'px';
-            p.style.left = Math.random() * 100 + '%';
-            p.style.animationDuration = (Math.random() * 12 + 10) + 's';
-            pc.appendChild(p);
-            setTimeout(() => { if (p.parentNode) p.remove(); }, 22000);
+        if (!isTouchDevice && pc) {
+            function makeParticle() {
+                if (!pc) return;
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.width = p.style.height = (Math.random() * 4 + 2) + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 12 + 10) + 's';
+                pc.appendChild(p);
+                setTimeout(() => { if (p.parentNode) p.remove(); }, 22000);
+            }
+            for (let i = 0; i < 15; i++) setTimeout(makeParticle, Math.random() * 2500);
+            setInterval(makeParticle, 2500);
         }
-        for (let i = 0; i < 25; i++) setTimeout(makeParticle, Math.random() * 2500);
-        setInterval(makeParticle, 1800);
 
         // ============ TYPING EFFECT ============
         const tt = document.getElementById('typingText');
@@ -6420,7 +6471,7 @@
         }
 
         // ============ AOS INITIALIZATION ============
-        try { if (typeof AOS !== 'undefined') { AOS.init({ duration: 800, once: true }); } } catch (err) { console.error('AOS init error:', err); }
+        try { if (typeof AOS !== 'undefined') { AOS.init({ duration: 600, once: true, disable: isTouchDevice, offset: 30 }); } } catch (err) { console.error('AOS init error:', err); }
 
         console.log('🤖 Kyrosh AI Copilot is online and ready to convert visitors!');
     </script>
