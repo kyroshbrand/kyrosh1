@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="notranslate" translate="no">
 <head>
     <meta charset="UTF-8" />
@@ -3851,6 +3851,20 @@
        JAVASCRIPT: AI COPILOT, SENSORY AUDIO, THEMES, SUPABASE
     ==================================================== -->
     <script>
+        // ============ PRELOADER ENGINE (FAILSAFE DISMISSAL) ============
+        function dismissPreloader() {
+            const preloader = document.getElementById('preloader');
+            if (preloader && !preloader.classList.contains('hidden')) {
+                preloader.classList.add('hidden');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 600);
+            }
+        }
+        window.addEventListener('load', dismissPreloader);
+        document.addEventListener('DOMContentLoaded', () => { setTimeout(dismissPreloader, 300); });
+        setTimeout(dismissPreloader, 800);
+
         // ============ SUPABASE CONFIGURATION ============
         const SUPABASE_URL = 'https://qihxvqtetktpqszkxjkk.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_xtgsAZuCdU_0b3C87IgtxA_V8apZy2a';
@@ -5533,41 +5547,6 @@
             } catch (err) { console.error('updateAuthUI error:', err); }
         }
 
-        // ============ AUTH MODAL CONTROLLER (Magic Link Only) ============
-        const authModal = document.getElementById('authModal');
-        const closeAuthModal = document.getElementById('closeAuthModal');
-        const authModalTitle = document.getElementById('authModalTitle');
-        const authModalSubtitle = document.getElementById('authModalSubtitle');
-        const authForm = document.getElementById('authForm');
-        const authEmail = document.getElementById('authEmail');
-        const authName = document.getElementById('authName');
-        const authPhone = document.getElementById('authPhone');
-        const authSubmitBtn = document.getElementById('authSubmitBtn');
-        const authError = document.getElementById('authError');
-        const promptLoginBtn = document.getElementById('promptLoginBtn');
-        const schedulerPromptLoginBtn = document.getElementById('schedulerPromptLoginBtn');
-        const authOtpStep = document.getElementById('authOtpStep');
-        const authSentEmail = document.getElementById('authSentEmail');
-        const authResendBtn = document.getElementById('authResendBtn');
-        const authBackBtn = document.getElementById('authBackBtn');
-        const authFootnote = document.getElementById('authFootnote');
-
-        let resendTimer = null;
-        let resendSeconds = 30;
-
-        function resetAuthModalToStep1() {
-            clearInterval(resendTimer);
-            if (authError) { authError.style.display = 'none'; authError.textContent = ''; }
-            if (authForm) { authForm.style.display = 'block'; authForm.reset(); }
-            if (authOtpStep) authOtpStep.style.display = 'none';
-            if (authModalTitle) authModalTitle.innerHTML = '<i class="fas fa-lock" style="color:var(--primary-light); margin-right:6px;"></i> Client Login';
-                    if (proposalFormWrapper) proposalFormWrapper.style.display = 'none';
-                    if (loginPrompt) loginPrompt.style.display = 'block';
-                    if (schedulerCard) schedulerCard.style.display = 'none';
-                    if (schedulerLoginPrompt) schedulerLoginPrompt.style.display = 'block';
-                }
-            } catch (err) { console.error('updateAuthUI error:', err); }
-        }
 
         // ============ AUTH MODAL CONTROLLER (Magic Link Only) ============
         const authModal = document.getElementById('authModal');
@@ -5860,20 +5839,6 @@
                 console.error('Auth state handling error:', err);
             }
         });
-
-        // ============ PRELOADER ENGINE (FAILSAFE DISMISSAL) ============
-        function dismissPreloader() {
-            const preloader = document.getElementById('preloader');
-            if (preloader && !preloader.classList.contains('hidden')) {
-                preloader.classList.add('hidden');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 600);
-            }
-        }
-        window.addEventListener('load', dismissPreloader);
-        document.addEventListener('DOMContentLoaded', () => { setTimeout(dismissPreloader, 400); });
-        setTimeout(dismissPreloader, 1200); // 1.2s absolute fallback guarantee
 
         // ============ INITIAL SESSION BOOTSTRAP ============
         (async () => {
