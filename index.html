@@ -4021,6 +4021,33 @@
         document.addEventListener('DOMContentLoaded', () => { setTimeout(dismissPreloader, 300); });
         setTimeout(dismissPreloader, 800);
 
+        // ============ DEEP ROUTING FOR INDEXED CLEAN URLS ============
+        function handleDeepRouting() {
+            const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+            const routeMap = {
+                'ads-gallery': 'ads-gallery',
+                'gallery': 'ads-gallery',
+                'services': 'services',
+                'pricing': 'pricing',
+                'scanner': 'scanner',
+                'scheduler': 'scheduler',
+                'team': 'team',
+                'proposal': 'proposal',
+                'faq': 'faq',
+                'careers': 'careers'
+            };
+            if (path && routeMap[path]) {
+                setTimeout(() => {
+                    const el = document.getElementById(routeMap[path]);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 500);
+            }
+        }
+        window.addEventListener('DOMContentLoaded', handleDeepRouting);
+        window.addEventListener('load', handleDeepRouting);
+
         // ============ SUPABASE CONFIGURATION ============
         const SUPABASE_URL = 'https://qihxvqtetktpqszkxjkk.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_xtgsAZuCdU_0b3C87IgtxA_V8apZy2a';
