@@ -1,0 +1,30 @@
+﻿# ====================================================
+# KYROSH PRODUCTION ROBOTS.TXT (SEO & GEO AI OPTIMIZED)
+# ====================================================
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# AI Crawlers & Generative Engine Optimization (GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap Reference
+Sitemap: https://kyrosh.in/sitemap.xml
