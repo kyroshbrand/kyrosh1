@@ -3833,7 +3833,7 @@
             </div>
             
             <div id="proposalContent">
-                <div class="proposal-form-wrapper" data-aos="fade-up" data-aos-delay="150" id="proposalFormWrapper" style="display:none;">
+                <div class="proposal-form-wrapper" data-aos="fade-up" data-aos-delay="150" id="proposalFormWrapper" style="display:block;">
                     <h3 style="text-align:center; font-size:22px; font-weight:800; margin-bottom:8px;">Start Your Project</h3>
                     <p style="text-align:center; color:var(--gray); margin-bottom:24px; font-size:14px;">Tell us about your project & our directors will prepare your custom proposal</p>
                     <form id="proposalForm">
@@ -3861,7 +3861,7 @@
                     <p style="text-align:center; margin-top:16px; color:#10B981; font-weight:700; display:none;" id="successMsg">✅ Proposal received! Check your email and WhatsApp for next steps.</p>
                 </div>
 
-                <div id="loginPrompt" style="text-align:center; padding:50px 20px; background:var(--dark-card); border-radius:24px; border:1.5px solid var(--dark-border); max-width:550px; margin:0 auto; box-shadow:var(--shadow-glass);" data-aos="fade-up">
+                <div id="loginPrompt" style="display:none; text-align:center; padding:50px 20px; background:var(--dark-card); border-radius:24px; border:1.5px solid var(--dark-border); max-width:550px; margin:0 auto; box-shadow:var(--shadow-glass);" data-aos="fade-up">
                     <div style="width:70px; height:70px; border-radius:50%; background:var(--primary-glow); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:32px; color:var(--primary-light); border:2px solid var(--dark-border);"><i class="fas fa-lock"></i></div>
                     <h3 style="font-size:24px; font-weight:800; margin-bottom:10px;">Please Login to Unlock Proposal Form</h3>
                     <p style="color:var(--gray); margin-bottom:28px; font-size:15px; line-height:1.6;">Login to submit your proposal, track live milestones, and claim your exclusive <strong>50% OFF</strong> welcome discount.</p>
@@ -5723,8 +5723,8 @@
                         navLoginMobile.innerHTML = '<i class="fas fa-user-circle"></i> Login';
                         navLoginMobile.style.color = 'var(--primary-light)';
                     }
-                    if (proposalFormWrapper) proposalFormWrapper.style.display = 'none';
-                    if (loginPrompt) loginPrompt.style.display = 'block';
+                    if (proposalFormWrapper) proposalFormWrapper.style.display = 'block';
+                    if (loginPrompt) loginPrompt.style.display = 'none';
                     if (schedulerCard) schedulerCard.style.display = 'none';
                     if (schedulerLoginPrompt) schedulerLoginPrompt.style.display = 'block';
                 }
@@ -6227,8 +6227,13 @@
                 e.preventDefault();
                 (async () => {
                     try {
-                        const { data: { user } } = await supabaseClient.auth.getUser();
-                        if (!user) { openAuthModal('proposal', 'Please log in to submit your project proposal'); return; }
+                        let currentUser = null;
+                        try {
+                            const { data: userData } = await supabaseClient.auth.getUser();
+                            currentUser = userData?.user || null;
+                        } catch (authErr) {
+                            console.log('Guest proposal mode');
+                        }
 
                         const name = document.getElementById('clientName') ? document.getElementById('clientName').value.trim() : '';
                         const email = document.getElementById('clientEmail') ? document.getElementById('clientEmail').value.trim() : '';
@@ -6239,66 +6244,95 @@
                         const btn = document.getElementById('submitBtn');
 
                         if (!name || !phone || !service) { alert('Please fill in all required fields.'); return; }
-                        if (btn) { btn.textContent = '⏳ Submitting Proposal...'; btn.disabled = true; }
+                        if (btn) { btn.textContent = 'â³ Submitting Proposal...'; btn.disabled = true; }
                         gtag('event', 'form_submit', { 'event_category': 'Proposal', 'event_label': service });
 
-                        try {
-                            await supabaseClient.from('proposals').insert({
-                                user_id: user.id,
-                                name: name,
-                                email: email,
-                                phone: phone,
-                                business: business || '',
-                                service: service,
-                                message: `[Currency: ${currentCurrency}] [Newsletter: Enrolled (Bi-Weekly Drip)] ` + (message || ''),
-                                status: 'in_production',
-                                created_at: new Date().toISOString(),
-                                updated_at: new Date().toISOString()
-                            });
-                        } catch (err) { console.error('Supabase proposal insert error:', err); }
+                        // ============ ðŸ’¾ INSERT PROPOSAL INTO SUPABASE ============
+                        const proposalPayload = {
+                            name: name,
+                            email: email,
+                            phone: phone,
+                            business: business || '',
+                            service: service,
+                            message: `[Currency: ${currentCurrency}] [Newsletter: Enrolled (Bi-Weekly Drip)] ` + (message || ''),
+                            status: 'in_production',
+                            created_at: new Date().toISOString()
+                        };
+                        if (currentUser && currentUser.id) {
+                            proposalPayload.user_id = currentUser.id;
+                        }
 
-                        // ============ ✉️ ENROLL IN BI-WEEKLY EMAIL SEQUENCE ============
                         try {
-                            await upsertProfile(user.id, {
-                                name: name,
-                                phone: phone,
-                                email: email,
-                                updated_at: new Date().toISOString()
-                            });
-                        } catch (err) { console.error('Profile newsletter sync error:', err); }
+                            const { data: insertData, error: insertError } = await supabaseClient
+                                .from('proposals')
+                                .insert([proposalPayload])
+                                .select();
+                            
+                            if (insertError) {
+                                console.warn('Supabase initial insert note:', insertError.message);
+                                // If foreign key or user_id constraint error occurred, fallback insert without user_id
+                                if (proposalPayload.user_id) {
+                                    delete proposalPayload.user_id;
+                                    const { error: fallbackError } = await supabaseClient
+                                        .from('proposals')
+                                        .insert([proposalPayload]);
+                                    if (fallbackError) {
+                                        console.error('Supabase fallback insert error:', fallbackError.message);
+                                    } else {
+                                        console.log('âœ… Proposal saved successfully to Supabase (guest mode)');
+                                    }
+                                }
+                            } else {
+                                console.log('âœ… Proposal saved successfully to Supabase:', insertData);
+                            }
+                        } catch (err) { 
+                            console.error('Supabase proposal insert exception:', err); 
+                        }
 
-                        // ============ 📊 GOOGLE SHEETS REDUNDANT BACKUP ============
+                        // ============ âœ‰ï¸ ENROLL IN BI-WEEKLY EMAIL SEQUENCE ============
+                        if (currentUser && currentUser.id) {
+                            try {
+                                await upsertProfile(currentUser.id, {
+                                    name: name,
+                                    phone: phone,
+                                    email: email,
+                                    updated_at: new Date().toISOString()
+                                });
+                            } catch (err) { console.error('Profile newsletter sync error:', err); }
+                        }
+
+                        // ============ ðŸ“Š GOOGLE SHEETS REDUNDANT BACKUP ============
                         try {
                             await fetch("https://script.google.com/macros/s/AKfycbw3hXnvZqSegfn9VYxY2pGe68zspmz8NpjqUQJ6rsPoGpilGrzkebQkCQwi_mYOYMFvXg/exec", {
                                 method: "POST",
                                 mode: "no-cors",
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
-                                    name, email, phone, business, service, message: `[Currency: ${currentCurrency}] [Newsletter: Bi-Weekly Drip Enrolled] ` + message, userId: user.id, timestamp: new Date().toISOString()
+                                    name, email, phone, business, service, message: `[Currency: ${currentCurrency}] [Newsletter: Bi-Weekly Drip Enrolled] ` + message, userId: currentUser?.id || 'guest', timestamp: new Date().toISOString()
                                 })
                             });
                         } catch (err) { console.error('Google Sheets proposal error:', err); }
 
-                        // ============ 📩 CLIENT CONFIRMATION EMAIL (WELCOME & 50% DISCOUNT) ============
+                        // ============ ðŸ“© CLIENT CONFIRMATION EMAIL (SENT TO REGULAR USER) ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: email,
-                                    subject: `🎉 Proposal Received • 50% Welcome Rate Locked | Kyrosh`,
+                                    subject: `Project Proposal Received â€” Kyrosh`,
                                     html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:1px solid #7844D5; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.6);">
     <tr>
       <td style="background:linear-gradient(135deg, #7844D5, #0284C7); padding:28px 24px; text-align:center;">
         <h1 style="color:#ffffff; margin:0; font-size:26px; font-weight:900; letter-spacing:1px;">KYROSH<span style="color:#FFD700;">.</span></h1>
-        <p style="color:#E0E7FF; margin:6px 0 0; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px;">Official Project Confirmation & 50% Rate Locked</p>
+        <p style="color:#E0E7FF; margin:6px 0 0; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px;">Project Proposal Confirmation</p>
       </td>
     </tr>
     <tr>
       <td style="padding:28px 24px;">
-        <h2 style="color:#ffffff; font-size:20px; font-weight:800; margin-top:0; margin-bottom:12px;">Hi ${name}! 👋</h2>
-        <p style="color:#CBD5E1; font-size:14.5px; line-height:1.6; margin-bottom:20px;">Founder Shaiban Puttur and our executive engineering squad have received your project proposal. Your <strong>50% Welcome Discount</strong> is locked in!</p>
+        <h2 style="color:#ffffff; font-size:20px; font-weight:800; margin-top:0; margin-bottom:12px;">Hi ${name}! ðŸ‘‹</h2>
+        <p style="color:#CBD5E1; font-size:14.5px; line-height:1.6; margin-bottom:20px;">Thank you for reaching out to Kyrosh. Our executive growth and engineering directors have received your project proposal and are currently reviewing your project scope.</p>
         
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#1E0F38; border:1px solid rgba(120,68,213,0.4); border-radius:14px; padding:16px; margin-bottom:24px;">
           <tr>
@@ -6307,7 +6341,7 @@
           </tr>
           <tr>
             <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Currency Rate:</td>
-            <td style="padding:6px 0; color:#34D399; font-weight:700; font-size:13px; text-align:right;">${currentCurrency} (50% OFF Applied)</td>
+            <td style="padding:6px 0; color:#34D399; font-weight:700; font-size:13px; text-align:right;">${currentCurrency}</td>
           </tr>
           <tr>
             <td style="padding:6px 0; color:#94A3B8; font-size:13px;">Direct Phone:</td>
@@ -6319,44 +6353,44 @@
           </tr>
         </table>
 
-        <h3 style="color:#FFD700; font-size:15px; font-weight:800; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.8px;">⚡ Next Steps (Within 12 Hours):</h3>
-        <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 6px;">1. <strong>Strategic Scope Teardown</strong>: Our technical director audits your positioning and bottlenecks.</p>
-        <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 6px;">2. <strong>Architecture Blueprint & Quote</strong>: Custom timeline and discounted invoice delivered.</p>
-        <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 20px;">3. <strong>Production Kickoff</strong>: Rapid deployment to market.</p>
+        <h3 style="color:#FFD700; font-size:15px; font-weight:800; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.8px;">âš¡ Next Steps (Within 12 Hours):</h3>
+        <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 6px;">1. <strong>Strategic Scope Audit</strong>: Our technical director audits your requirements and technical architecture.</p>
+        <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 6px;">2. <strong>Blueprint & Custom Quote</strong>: Detailed execution roadmap and project milestones delivered.</p>
+        <p style="color:#E2E8F0; font-size:13.5px; line-height:1.5; margin:0 0 20px;">3. <strong>Kickoff & Deployment</strong>: Seamless development and campaign launch.</p>
 
         <div style="text-align:center; margin:26px 0 16px;">
-          <a href="https://wa.me/919019958415?text=Hi%20Shaiban!%20I%20just%20submitted%20my%20proposal%20for%20${encodeURIComponent(service)}%20and%20want%20to%20fast-track%20kickoff." style="background:linear-gradient(135deg, #10B981, #059669); color:#ffffff; text-decoration:none; padding:14px 28px; border-radius:50px; font-size:14px; font-weight:800; display:inline-block; box-shadow:0 6px 20px rgba(16,185,129,0.4);">
-            💬 Fast-Track on WhatsApp (+91 90199 58415)
+          <a href="https://wa.me/919019958415?text=Hi%20Kyrosh!%20I%20just%20submitted%20my%20proposal%20for%20${encodeURIComponent(service)}" style="background:linear-gradient(135deg, #10B981, #059669); color:#ffffff; text-decoration:none; padding:14px 28px; border-radius:50px; font-size:14px; font-weight:800; display:inline-block; box-shadow:0 6px 20px rgba(16,185,129,0.4);">
+            ðŸ’¬ Chat with Our Team on WhatsApp (+91 90199 58415)
           </a>
         </div>
       </td>
     </tr>
     <tr>
       <td style="background:#0F051C; padding:18px 24px; text-align:center; border-top:1px solid rgba(255,255,255,0.08);">
-        <p style="color:#64748B; font-size:12px; margin:0 0 6px;">© 2024 Kyrosh Digital Agency. All Rights Reserved.</p>
-        <p style="color:#94A3B8; font-size:11.5px; margin:0;">Shaiban Puttur (Founder) • Irfan Vtl (CEO) • Shafeeq Sullia (CTO)</p>
+        <p style="color:#64748B; font-size:12px; margin:0 0 6px;">Â© 2024 Kyrosh Digital Agency. All Rights Reserved.</p>
+        <p style="color:#94A3B8; font-size:11.5px; margin:0;">Shaiban Puttur (Founder) â€¢ Irfan Vtl (CEO) â€¢ Shafeeq Sullia (CTO)</p>
       </td>
     </tr>
   </table>
 </div>`
                                 })
                             });
-                        } catch (err) { console.error('Client email dispatch error:', err); }
+                        } catch (err) { console.error('Client confirmation email error:', err); }
 
-                        // ============ 🔥 OWNER INSTANT LEAD ALERT ============
+                        // ============ ðŸ”¥ HOT DEAL ALERT NOTIFICATION (ADMIN ONLY) ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
-                                    to: 'kyroshbrand@gmail.com',
-                                    subject: `🔥 HOT NEW PROPOSAL [${currentCurrency}]: ${name} (${service})`,
+                                    to: 'kyroshbrand@gmail.com', // STRICTLY ADMIN ONLY
+                                    subject: `ðŸ”¥ HOT DEAL ALERT [PROPOSAL]: ${name} (${service}) [${currentCurrency}]`,
                                     html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:2px solid #EF4444; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(239,68,68,0.3);">
     <tr>
       <td style="background:linear-gradient(135deg, #DC2626, #7844D5); padding:24px; text-align:center;">
-        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">🔥 HOT LEAD ALERT</h1>
-        <p style="color:#FEE2E2; margin:4px 0 0; font-size:13px; font-weight:700; text-transform:uppercase;">New 50% Proposal Submitted [${currentCurrency}]</p>
+        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">ðŸ”¥ HOT DEAL ALERT (ADMIN)</h1>
+        <p style="color:#FEE2E2; margin:4px 0 0; font-size:13px; font-weight:700; text-transform:uppercase;">New Project Proposal Submitted [${currentCurrency}]</p>
       </td>
     </tr>
     <tr>
@@ -6392,12 +6426,12 @@
           <tr>
             <td style="text-align:center; padding-right:6px;">
               <a href="https://wa.me/${phone.replace(/[^0-9]/g,'')}?text=Hi%20${encodeURIComponent(name)}!%20This%20is%20Shaiban%20from%20Kyrosh.%20I%20received%20your%20proposal%20for%20${encodeURIComponent(service)}." style="background:#25D366; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
-                💬 WhatsApp Client
+                ðŸ’¬ WhatsApp Client
               </a>
             </td>
             <td style="text-align:center; padding-left:6px;">
               <a href="tel:${phone}" style="background:#7844D5; color:#ffffff; text-decoration:none; padding:12px 18px; border-radius:50px; font-size:13px; font-weight:800; display:block; text-align:center;">
-                📞 Direct Call
+                ðŸ“ž Direct Call
               </a>
             </td>
           </tr>
@@ -6408,7 +6442,7 @@
 </div>`
                                 })
                             });
-                        } catch (err) { console.error('Owner email notification error:', err); }
+                        } catch (err) { console.error('Admin Hot Deal alert notification error:', err); }
 
                         SoundFX.success();
                         if (btn) btn.textContent = '✅ Proposal Submitted!';
