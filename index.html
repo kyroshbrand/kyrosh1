@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="notranslate" translate="no">
 <head>
     <meta charset="UTF-8" />
@@ -4694,7 +4694,7 @@
                     try {
                         await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+                            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: 'kyroshbrand@gmail.com',
                                 subject: `💼 New Talent Application: ${name} (${currentApplyingRole})`,
@@ -5064,7 +5064,7 @@
                     try {
                         await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+                            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: email,
                                 subject: `📅 Strategy Session Confirmed: ${selectedDate} @ ${selectedSlot} | Kyrosh`,
@@ -5123,7 +5123,7 @@
                     try {
                         await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                             method: 'POST',
-                            headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+                            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: 'kyroshbrand@gmail.com',
                                 subject: `🚨 NEW STRATEGY CALL BOOKED: ${name} (${selectedDate} @ ${selectedSlot})`,
@@ -6348,7 +6348,7 @@
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
-                                headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+                                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: email,
                                     subject: `Project Proposal Received — Kyrosh`,
@@ -6412,7 +6412,7 @@
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
-                                headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+                                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: 'kyroshbrand@gmail.com', // STRICTLY ADMIN ONLY
                                     subject: `🔥 HOT DEAL ALERT [PROPOSAL]: ${name} (${service}) [${currentCurrency}]`,
