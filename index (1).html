@@ -2983,7 +2983,7 @@
                 </div>
             </div>
 
-            <div id="schedulerLoginPrompt" style="text-align:center; padding:50px 20px; background:var(--dark-card); border-radius:24px; border:1.5px solid var(--dark-border); max-width:550px; margin:0 auto; box-shadow:var(--shadow-glass);" data-aos="fade-up">
+            <div id="schedulerLoginPrompt" style="display:none; text-align:center; padding:50px 20px; background:var(--dark-card); border-radius:24px; border:1.5px solid var(--dark-border); max-width:550px; margin:0 auto; box-shadow:var(--shadow-glass);" data-aos="fade-up">
                 <div style="width:70px; height:70px; border-radius:50%; background:var(--primary-glow); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:32px; color:var(--primary-light); border:2px solid var(--dark-border);"><i class="fas fa-lock"></i></div>
                 <h3 style="font-size:24px; font-weight:800; margin-bottom:10px;">Please Login to Book Your Strategy Session</h3>
                 <p style="color:var(--gray); margin-bottom:28px; font-size:15px; line-height:1.6;">Login to reserve your free 30-minute VIP growth audit and get your booking form pre-filled with your details.</p>
@@ -5725,8 +5725,8 @@
                     }
                     if (proposalFormWrapper) proposalFormWrapper.style.display = 'block';
                     if (loginPrompt) loginPrompt.style.display = 'none';
-                    if (schedulerCard) schedulerCard.style.display = 'none';
-                    if (schedulerLoginPrompt) schedulerLoginPrompt.style.display = 'block';
+                    if (schedulerCard) schedulerCard.style.display = 'grid';
+                    if (schedulerLoginPrompt) schedulerLoginPrompt.style.display = 'none';
                 }
             } catch (err) { console.error('updateAuthUI error:', err); }
         }
