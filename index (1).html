@@ -6243,7 +6243,7 @@
                         const message = document.getElementById('clientMessage') ? document.getElementById('clientMessage').value.trim() : '';
                         const btn = document.getElementById('submitBtn');
 
-                        if (!name || !phone || !service) { alert('Please fill in all required fields.'); return; }
+                        if (!name || !email || !phone || !service) { alert('Please fill in all required fields (Name, Email, Phone, and Service).'); return; }
                         if (btn) { btn.textContent = '&#9203; Submitting Proposal...'; btn.disabled = true; }
                         gtag('event', 'form_submit', { 'event_category': 'Proposal', 'event_label': service });
 
