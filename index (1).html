@@ -4697,7 +4697,8 @@
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: 'kyroshbrand@gmail.com',
-                                subject: `💼 New Talent Application: ${name} (${currentApplyingRole})`,
+                                subject: `New Job Application: ${name} — ${currentApplyingRole}`,
+                                text: `New Job Application Received\n\nCandidate: ${name}\nRole: ${currentApplyingRole}\nEmail: ${email}\nPhone: ${phone}\nPortfolio: ${portfolio}\nBio: ${bio}`,
                                 html: `<h2>New Job Application Received</h2><p><strong>Candidate:</strong> ${name}</p><p><strong>Role:</strong> ${currentApplyingRole}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone}</p><p><strong>Portfolio:</strong> <a href="${portfolio}">${portfolio}</a></p><p><strong>Bio:</strong> ${bio}</p>`
                             })
                         });
@@ -5067,13 +5068,14 @@
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: email,
-                                subject: `📅 Strategy Session Confirmed: ${selectedDate} @ ${selectedSlot} | Kyrosh`,
+                                subject: `Strategy Session Confirmed: ${selectedDate} at ${selectedSlot} — Kyrosh`,
+                                text: `Hi ${name},\n\nYour strategy consultation with Kyrosh has been confirmed for ${selectedDate} at ${selectedSlot}.\n\nMeeting Focus: ${selectedCallType}\nWebsite / Brand: ${website || 'Direct Advisory'}\nMeeting Platform: Google Meet / Direct WhatsApp Video\n\nBest regards,\nKyrosh Digital Agency\nhttps://kyrosh.in`,
                                 html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:1px solid #7844D5; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.6);">
     <tr>
       <td style="background:linear-gradient(135deg, #7844D5, #0284C7); padding:28px 24px; text-align:center;">
         <h1 style="color:#ffffff; margin:0; font-size:26px; font-weight:900; letter-spacing:1px;">KYROSH<span style="color:#FFD700;">.</span></h1>
-        <p style="color:#E0E7FF; margin:6px 0 0; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px;">VIP 1-on-1 Strategy Session Confirmed</p>
+        <p style="color:#E0E7FF; margin:6px 0 0; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px;">1-on-1 Strategy Session Confirmed</p>
       </td>
     </tr>
     <tr>
@@ -5126,13 +5128,14 @@
                             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                             body: JSON.stringify({
                                 to: 'kyroshbrand@gmail.com',
-                                subject: `🚨 NEW STRATEGY CALL BOOKED: ${name} (${selectedDate} @ ${selectedSlot})`,
+                                subject: `New Strategy Call Booked: ${name} (${selectedDate} at ${selectedSlot})`,
+                                text: `New Strategy Call Booked\n\nClient Name: ${name}\nDate & Time: ${selectedDate} at ${selectedSlot}\nPhone: ${phone}\nEmail: ${email}\nWebsite: ${website || 'Direct Advisory'}\nFocus: ${selectedCallType}`,
                                 html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:2px solid #38BDF8; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(56,189,248,0.3);">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:1px solid #38BDF8; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(56,189,248,0.3);">
     <tr>
       <td style="background:linear-gradient(135deg, #0284C7, #7844D5); padding:24px; text-align:center;">
-        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">🚨 STRATEGY CALL BOOKED</h1>
-        <p style="color:#E0F2FE; margin:4px 0 0; font-size:13px; font-weight:700; text-transform:uppercase;">${selectedDate} at ${selectedSlot}</p>
+        <h1 style="color:#ffffff; margin:0; font-size:22px; font-weight:800;">Strategy Call Booked</h1>
+        <p style="color:#E0F2FE; margin:4px 0 0; font-size:13px; font-weight:600; text-transform:uppercase;">${selectedDate} at ${selectedSlot}</p>
       </td>
     </tr>
     <tr>
@@ -6351,7 +6354,8 @@
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: email,
-                                    subject: `Project Proposal Received — Kyrosh`,
+                                    subject: `We have received your project proposal — Kyrosh`,
+                                    text: `Hi ${name},\n\nThank you for reaching out to Kyrosh. We have received your project proposal for ${service}.\n\nOur team is reviewing your project details and will follow up within 12 hours with your roadmap and scope.\n\nSummary:\nService: ${service}\nCurrency: ${currentCurrency}\nPhone: ${phone}\nCompany / Brand: ${business || 'Direct Project'}\n\nBest regards,\nKyrosh Digital Agency\nhttps://kyrosh.in`,
                                     html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:1px solid #7844D5; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.6);">
     <tr>
@@ -6408,20 +6412,21 @@
                             });
                         } catch (err) { console.error('Client confirmation email error:', err); }
 
-                        // ============ 🔥 HOT DEAL ALERT NOTIFICATION (ADMIN ONLY) ============
+                        // ============ 📩 PROPOSAL NOTIFICATION (ADMIN) ============
                         try {
                             await fetch('https://qihxvqtetktpqszkxjkk.supabase.co/functions/v1/send-email', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
                                 body: JSON.stringify({
                                     to: 'kyroshbrand@gmail.com', // STRICTLY ADMIN ONLY
-                                    subject: `🔥 HOT DEAL ALERT [PROPOSAL]: ${name} (${service}) [${currentCurrency}]`,
+                                    subject: `New Project Proposal: ${name} — ${service} [${currentCurrency}]`,
+                                    text: `New Project Proposal Submitted\n\nClient Name: ${name}\nService: ${service} [${currentCurrency}]\nPhone: ${phone}\nEmail: ${email}\nCompany / Brand: ${business || 'Not specified'}\nProject Goals / Notes: ${message || 'None provided'}`,
                                     html: `<div style="font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif; background-color:#090312; color:#ffffff; padding:32px 16px; margin:0; width:100%;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:2px solid #EF4444; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(239,68,68,0.3);">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px; margin:0 auto; background:#140827; border:1px solid #7844D5; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(120,68,213,0.3);">
     <tr>
-      <td style="background:linear-gradient(135deg, #DC2626, #7844D5); padding:24px; text-align:center;">
-        <h1 style="color:#ffffff; margin:0; font-size:24px; font-weight:900;">🔥 HOT DEAL ALERT (ADMIN)</h1>
-        <p style="color:#FEE2E2; margin:4px 0 0; font-size:13px; font-weight:700; text-transform:uppercase;">New Project Proposal Submitted [${currentCurrency}]</p>
+      <td style="background:linear-gradient(135deg, #7844D5, #0284C7); padding:24px; text-align:center;">
+        <h1 style="color:#ffffff; margin:0; font-size:22px; font-weight:800;">New Project Proposal</h1>
+        <p style="color:#E0E7FF; margin:4px 0 0; font-size:13px; font-weight:600; text-transform:uppercase;">Client Submission Details [${currentCurrency}]</p>
       </td>
     </tr>
     <tr>
