@@ -69,7 +69,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            overflow-x: hidden;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -1767,6 +1767,516 @@
             .popup-modal-card h3 {
                 font-size: 21px !important;
             }
+        }
+    
+        /* ====================================================
+           🔥 KYROSH ADS GALLERY SECTION STYLING & ANIMATIONS
+        ==================================================== */
+        .ads-gallery-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, #120626 50%, var(--dark-bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .ads-gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(60px);
+            animation: floatGlow 10s ease-in-out infinite alternate;
+        }
+        .ads-gallery-section::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            right: -150px;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(70px);
+            animation: floatGlow 12s ease-in-out infinite alternate-reverse;
+        }
+
+        .ads-filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+        .ads-filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid var(--dark-border);
+            color: var(--gray-light);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(8px);
+        }
+        .ads-filter-btn:hover {
+            background: rgba(120, 68, 213, 0.2);
+            border-color: var(--primary-light);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .ads-filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-color: var(--primary-light);
+            color: #fff;
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+
+        .ads-marquee-container {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 48px;
+            position: relative;
+            padding: 16px 0;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .ads-marquee-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            animation: adsMarqueeScroll 35s linear infinite;
+        }
+        .ads-marquee-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes adsMarqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ads-marquee-card {
+            width: 260px;
+            height: 340px;
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            border: 1.5px solid var(--dark-border);
+            background: var(--dark-card);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .ads-marquee-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .ads-marquee-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: var(--primary-light);
+            box-shadow: 0 16px 40px var(--primary-glow);
+        }
+        .ads-marquee-card:hover img {
+            transform: scale(1.08);
+        }
+        .ads-marquee-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(9, 3, 18, 0.85);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 800;
+            backdrop-filter: blur(6px);
+            z-index: 2;
+        }
+        .ads-marquee-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(9, 3, 18, 0.95) 0%, rgba(9, 3, 18, 0.3) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+            z-index: 2;
+        }
+        .ads-marquee-overlay h4 {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 800;
+            margin: 0 0 4px;
+        }
+        .ads-marquee-overlay p {
+            color: var(--gray);
+            font-size: 11.5px;
+            margin: 0;
+        }
+
+        .ads-grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 48px;
+        }
+        .ad-grid-card {
+            background: var(--dark-card);
+            border: 1.5px solid var(--dark-border);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--shadow-glass);
+            transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .ad-grid-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-light);
+            box-shadow: 0 20px 50px var(--primary-glow);
+        }
+        .ad-card-media {
+            position: relative;
+            height: 320px;
+            overflow: hidden;
+            background: #000;
+        }
+        .ad-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .ad-grid-card:hover .ad-card-media img {
+            transform: scale(1.08);
+        }
+        .ad-card-roas-pill {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .ad-card-platform-pill {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(9, 3, 18, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            z-index: 3;
+        }
+        .ad-card-hover-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(120, 68, 213, 0.45);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 4;
+        }
+        .ad-grid-card:hover .ad-card-hover-overlay {
+            opacity: 1;
+        }
+        .ad-card-zoom-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        .ad-grid-card:hover .ad-card-zoom-btn {
+            transform: scale(1);
+        }
+
+        .ad-card-content {
+            padding: 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .ad-card-content h3 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .ad-card-content p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .ad-card-stats-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid var(--dark-border);
+        }
+        .ad-stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .ad-stat-lbl {
+            font-size: 10.5px;
+            color: var(--gray);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .ad-stat-val {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--primary-light);
+        }
+
+        .ads-gallery-cta-box {
+            background: linear-gradient(135deg, rgba(120, 68, 213, 0.25), rgba(56, 189, 248, 0.15));
+            border: 1.5px solid var(--dark-border-glow);
+            border-radius: 24px;
+            padding: 32px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            box-shadow: var(--shadow-glass);
+            backdrop-filter: blur(12px);
+        }
+        .ads-cta-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .ads-cta-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px var(--primary-glow);
+        }
+        .ads-cta-content h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .ads-cta-content p {
+            font-size: 14px;
+            color: var(--gray-light);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .ads-lightbox-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 10005;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .ads-lightbox-modal.active {
+            display: flex;
+        }
+        .ads-lightbox-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 2, 10, 0.88);
+            backdrop-filter: blur(16px);
+        }
+        .ads-lightbox-content {
+            position: relative;
+            background: linear-gradient(160deg, #180931, #0C0419);
+            border: 2px solid var(--primary-light);
+            border-radius: 24px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.9);
+            z-index: 2;
+            animation: popupBounce 0.35s ease;
+        }
+        .ads-lightbox-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--dark-border);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+        .ads-lightbox-close:hover {
+            background: var(--accent-red);
+            transform: scale(1.1);
+        }
+        .ads-lightbox-body {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            height: 100%;
+        }
+        .ads-lightbox-img-wrap {
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 420px;
+        }
+        .ads-lightbox-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            max-height: 540px;
+        }
+        .ads-lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(9, 3, 18, 0.7);
+            border: 1px solid var(--dark-border);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+        .ads-lightbox-nav:hover {
+            background: var(--primary);
+            border-color: var(--primary-light);
+        }
+        .ads-lightbox-nav.prev { left: 12px; }
+        .ads-lightbox-nav.next { right: 12px; }
+        .ads-lightbox-info {
+            padding: 36px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .ads-lightbox-badge {
+            display: inline-block;
+            background: var(--primary-glow);
+            border: 1px solid var(--primary-light);
+            color: var(--primary-light);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+        .ads-lightbox-info h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .ads-lightbox-info p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .ads-lightbox-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .ad-metric-pill {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+        .ad-metric-pill span {
+            display: block;
+            font-size: 11px;
+            color: var(--gray);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .ad-metric-pill strong {
+            font-size: 16px;
+            color: var(--accent-green);
+            font-weight: 800;
+        }
+
+        @media (max-width: 992px) {
+            .ads-grid-container { grid-template-columns: repeat(2, 1fr); }
+            .ads-gallery-cta-box { flex-direction: column; text-align: center; }
+            .ads-cta-content { flex-direction: column; text-align: center; }
+            .ads-lightbox-body { grid-template-columns: 1fr; }
+            .ads-lightbox-img-wrap { min-height: 280px; max-height: 340px; }
+            .ads-lightbox-info { padding: 24px; }
+        }
+        @media (max-width: 640px) {
+            .ads-grid-container { grid-template-columns: 1fr; }
+            .ads-marquee-card { width: 220px; height: 300px; }
         }
     </style>
 </head>

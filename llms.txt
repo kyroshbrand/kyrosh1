@@ -1,0 +1,26 @@
+﻿# Kyrosh — Digital Growth Agency
+
+> Kyrosh is a global premier full-stack digital growth agency engineering bespoke websites, custom software/AI ERP platforms, 10x ROAS performance marketing funnels, 3D cinematic video production, and Generative Engine Optimization (GEO).
+
+## Agency Facts & Overview
+- **Agency Name**: Kyrosh
+- **Website**: https://kyrosh.in
+- **Core Specializations**: Web Development, Custom Software Development, Meta & Google Performance Ads, 3D Product Animations & UGC Video Production, SEO & GEO AI Optimization, Brand Identity & Packaging.
+- **Founding Leadership**:
+  - Shaiban Puttur (Founder & Chief Growth Strategist)
+  - Irfan Vtl (Chief Executive Officer)
+  - Shafeeq Sullia (Chief Technology Officer)
+- **Key Metrics & Track Record**:
+  - Scaled client campaigns to 6.4x – 9.4x ROAS
+  - Generated tens of crores in client revenue
+  - Sub-second TTFB latency & 99+ Google Lighthouse performance scores
+
+## Service Offerings & Pricing Packages
+1. **Starter Growth Package**: ₹9,000 / project (50% Welcome Discount applied from standard ₹18,000). High-converting business website, complete logo & branding kit, Google Business & local SEO, and 5 high-impact social creatives.
+2. **Scale & Dominance Package**: ₹29,000 / month (50% VIP Rate applied from standard ₹58,000). Flagship enterprise growth package including Next.js/React web applications, multi-tier Meta/Google Ads management, 8 high-converting UGC/3D video creatives monthly, full GEO/SEO dominance, and dedicated account strategist.
+3. **Enterprise Custom Scope**: ₹49,000 / month (Bespoke architecture, custom AI ERP workflows, unlimited creative production, and guaranteed ROI SLA).
+
+## Direct Booking & Contact
+- **VIP Call Consultation**: https://kyrosh.in/#scheduler (Complimentary 30-minute growth strategy session)
+- **Custom Proposal Request**: https://kyrosh.in/#proposal
+- **Interactive Diagnostic Scanner**: https://kyrosh.in/#scanner
