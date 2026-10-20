@@ -1,3 +1,6 @@
 *.bak
 *.original_bak
 *.ps1
+supabase.exe
+.temp/
+supabase/.temp/
