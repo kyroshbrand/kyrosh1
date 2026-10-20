@@ -3448,25 +3448,26 @@
             if (!isActive) el.classList.add('active');
         }
         // ====================================================
+        // ====================================================
         // MOBILE EXPAND/COLLAPSE HANDLER
         // ====================================================
         function toggleMobileFold(section) {
             if (section === 'campaigns') {
-                const grid = document.querySelector('#campaigns .campaign-grid');
-                const btnText = document.getElementById('textToggleCampaigns');
+                var grid = document.querySelector('#campaigns .campaign-grid');
+                var btnText = document.getElementById('textToggleCampaigns');
                 if (grid) {
                     grid.classList.toggle('expanded');
                     if (btnText) {
-                        btnText.innerText = grid.classList.contains('expanded') ? 'Show Less Campaigns â†‘' : 'View All 4 Signature Campaigns';
+                        btnText.innerText = grid.classList.contains('expanded') ? 'Show Less Campaigns' : 'View All 4 Signature Campaigns';
                     }
                 }
             } else if (section === 'pillars') {
-                const grid = document.querySelector('#pillars .services-grid');
-                const btnText = document.getElementById('textTogglePillars');
+                var grid = document.querySelector('#pillars .services-grid');
+                var btnText = document.getElementById('textTogglePillars');
                 if (grid) {
                     grid.classList.toggle('expanded');
                     if (btnText) {
-                        btnText.innerText = grid.classList.contains('expanded') ? 'Show Less Pillars â†‘' : 'View All 6 Agency Execution Pillars';
+                        btnText.innerText = grid.classList.contains('expanded') ? 'Show Less Pillars' : 'View All 6 Agency Execution Pillars';
                     }
                 }
             }
@@ -3476,31 +3477,37 @@
         // 10-SECOND AUTO PROPOSAL MODAL POPUP
         // ====================================================
         function openProposalModal() {
-            const modal = document.getElementById('proposalPopupModal');
+            var modal = document.getElementById('proposalPopupModal');
             if (modal) {
                 modal.style.display = 'flex';
             }
         }
 
         function closeProposalModal() {
-            const modal = document.getElementById('proposalPopupModal');
+            var modal = document.getElementById('proposalPopupModal');
             if (modal) {
                 modal.style.display = 'none';
-                sessionStorage.setItem('kyrosh_popup_closed', 'true');
+                try {
+                    sessionStorage.setItem('kyrosh_popup_closed', 'true');
+                } catch (e) {}
             }
         }
 
         function handleBackdropClick(e) {
-            if (e.target.id === 'proposalPopupModal') {
+            if (e.target && e.target.id === 'proposalPopupModal') {
                 closeProposalModal();
             }
         }
 
         // Automatically trigger popup exactly 10 seconds after opening
-        setTimeout(() => {
-            const hasClosed = sessionStorage.getItem('kyrosh_popup_closed');
-            const hasSubmitted = sessionStorage.getItem('kyrosh_popup_submitted');
-            if (!hasClosed && !hasSubmitted) {
+        setTimeout(function() {
+            try {
+                var hasClosed = sessionStorage.getItem('kyrosh_popup_closed');
+                var hasSubmitted = sessionStorage.getItem('kyrosh_popup_submitted');
+                if (!hasClosed && !hasSubmitted) {
+                    openProposalModal();
+                }
+            } catch (e) {
                 openProposalModal();
             }
         }, 10000); // 10 seconds
@@ -3508,18 +3515,18 @@
         // Handle Modal Proposal Submission (Supabase + Email + WhatsApp)
         async function handleModalProposalSubmit(e) {
             e.preventDefault();
-            const btn = document.getElementById('mPropSubmitBtn');
-            const origHtml = btn ? btn.innerHTML : '';
+            var btn = document.getElementById('mPropSubmitBtn');
+            var origHtml = btn ? btn.innerHTML : '';
             if (btn) {
                 btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Reserving 50% Rate...';
                 btn.disabled = true;
             }
 
-            const name = document.getElementById('mPropName').value.trim();
-            const phone = document.getElementById('mPropPhone').value.trim();
-            const email = document.getElementById('mPropEmail').value.trim();
-            const service = document.getElementById('mPropService').value;
-            const message = document.getElementById('mPropMessage').value.trim() || 'Fast track proposal';
+            var name = document.getElementById('mPropName').value.trim();
+            var phone = document.getElementById('mPropPhone').value.trim();
+            var email = document.getElementById('mPropEmail').value.trim();
+            var service = document.getElementById('mPropService').value;
+            var message = document.getElementById('mPropMessage').value.trim() || 'Fast track proposal';
 
             // 1. Supabase Lead Insertion
             if (supabaseClient) {
@@ -3530,12 +3537,12 @@
                         phone: phone,
                         business: 'VIP Popup Lead',
                         service: service,
-                        message: [50% Modal Lead]  + message,
+                        message: '[50% Modal Lead] ' + message,
                         status: 'hot_lead',
                         created_at: new Date().toISOString(),
                         updated_at: new Date().toISOString()
                     });
-                    console.log('âœ… Modal proposal saved to Supabase.');
+                    console.log('Proposal lead saved to Supabase.');
                 } catch (err) {
                     console.error('Supabase error:', err);
                 }
@@ -3543,54 +3550,57 @@
 
             // 2. Dispatch Email via Edge Function
             try {
-                fetch(${SUPABASE_URL}/functions/v1/send-email, {
+                fetch(SUPABASE_URL + '/functions/v1/send-email', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': Bearer 
+                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
                     },
                     body: JSON.stringify({
                         to: email,
-                        subject: 50% Founder Rate Reserved | Kyrosh,
-                        html: <div style="font-family:'Segoe UI',sans-serif; background-color:#06040A; color:#ffffff; padding:32px; border-radius:18px;">
-                            <h2 style="color:#FF2A85;">Your 50% Welcome Rate Is Reserved</h2>
-                            <p>Hi ,</p>
-                            <p>Thank you for connecting with Kyrosh! We have received your request for <strong></strong>.</p>
-                            <p>Our team is reviewing your project requirements and will connect via WhatsApp/Email shortly.</p>
-                            <p>Warm regards,<br><strong>Shafeeq, Shaiban, Irfan & The Kyrosh Team</strong></p>
-                        </div>
+                        subject: '50% Founder Rate Reserved | Kyrosh',
+                        html: '<div style="font-family:Segoe UI,sans-serif; background-color:#06040A; color:#ffffff; padding:32px; border-radius:18px;">' +
+                            '<h2 style="color:#FF2A85;">Your 50% Welcome Rate Is Reserved</h2>' +
+                            '<p>Hi ' + name + ',</p>' +
+                            '<p>Thank you for connecting with Kyrosh! We have received your inquiry for <strong>' + service + '</strong>.</p>' +
+                            '<p>Our team is reviewing your requirements and will connect via WhatsApp/Email shortly.</p>' +
+                            '<p>Warm regards,<br><strong>Shafeeq, Shaiban, Irfan & The Kyrosh Team</strong></p>' +
+                            '</div>'
                     })
-                }).catch(() => {});
+                }).catch(function() {});
 
-                fetch(${SUPABASE_URL}/functions/v1/send-email, {
+                fetch(SUPABASE_URL + '/functions/v1/send-email', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': Bearer 
+                        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
                     },
                     body: JSON.stringify({
                         to: 'kyroshbrand@gmail.com',
-                        subject: ðŸ”¥ POPUP 50% LEAD:  (),
-                        html: <p><strong>Name:</strong> <br><strong>Phone:</strong> <br><strong>Email:</strong> <br><strong>Service:</strong> <br><strong>Notes:</strong> </p>
+                        subject: 'HOT POPUP LEAD: ' + name + ' (' + service + ')',
+                        html: '<p><strong>Name:</strong> ' + name + '<br><strong>Phone:</strong> ' + phone + '<br><strong>Email:</strong> ' + email + '<br><strong>Service:</strong> ' + service + '<br><strong>Notes:</strong> ' + message + '</p>'
                     })
-                }).catch(() => {});
+                }).catch(function() {});
             } catch (emErr) {}
 
             // 3. Format WhatsApp Redirect
-            const waMsg = *NEW 50% DISCOUNT INQUIRY - KYROSH*\n\n +
-                          *Name:* \n +
-                          *Phone:* \n +
-                          *Email:* \n +
-                          *Service:* \n +
-                          *Notes:* ;
-            const waEncoded = encodeURIComponent(waMsg);
+            var waMsg = '*NEW 50% DISCOUNT INQUIRY - KYROSH*\n\n' +
+                        '*Name:* ' + name + '\n' +
+                        '*Phone:* ' + phone + '\n' +
+                        '*Email:* ' + email + '\n' +
+                        '*Service:* ' + service + '\n' +
+                        '*Notes:* ' + message;
+            var waEncoded = encodeURIComponent(waMsg);
 
-            sessionStorage.setItem('kyrosh_popup_submitted', 'true');
+            try {
+                sessionStorage.setItem('kyrosh_popup_submitted', 'true');
+            } catch (e) {}
+
             if (btn) btn.innerHTML = '<i class="fas fa-check"></i> 50% Rate Locked!';
 
-            setTimeout(() => {
-                alert(ðŸŽ‰ Thank you !\n\nYour 50% discount welcome rate is locked. Opening WhatsApp to connect with the team.);
-                window.open(https://wa.me/919019958415?text=, '_blank');
+            setTimeout(function() {
+                alert('Thank you ' + name + '!\n\nYour 50% discount welcome rate is locked. Opening WhatsApp to connect with the team.');
+                window.open('https://wa.me/919019958415?text=' + waEncoded, '_blank');
                 closeProposalModal();
                 if (btn) {
                     btn.innerHTML = origHtml;
@@ -3599,13 +3609,14 @@
             }, 600);
         }
     </script>
+
     <!-- ====================================================
          10-SECOND AUTO PROPOSAL POPUP MODAL
     ==================================================== -->
     <div id="proposalPopupModal" class="popup-modal-backdrop" onclick="handleBackdropClick(event)">
         <div class="popup-modal-card">
             <button type="button" class="popup-modal-close" onclick="closeProposalModal()" aria-label="Close modal">&times;</button>
-            <div class="popup-badge"><i class="fas fa-fire"></i> Limited Founder Rate Â· 50% OFF</div>
+            <div class="popup-badge"><i class="fas fa-bolt"></i> Founder Rate · 50% OFF</div>
             <h3>Scale Your Brand with <span class="highlight">Kyrosh</span></h3>
             <p class="popup-sub">Get a tailored execution roadmap and lock your 50% discount rate. Direct connection with senior team within 2 hours.</p>
 
@@ -3636,7 +3647,7 @@
                     <textarea id="mPropMessage" rows="2" placeholder="Tell us about your brand, goals or website..." style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.05); border:1px solid var(--dark-border); border-radius:10px; color:#fff; font-size:14px; resize:none;"></textarea>
                 </div>
                 <button type="submit" id="mPropSubmitBtn" class="btn-primary" style="width:100%; justify-content:center; padding:14px; font-size:15px; border-radius:12px;">
-                    <i class="fas fa-paper-plane"></i> Lock 50% Rate & Submit Proposal â†’
+                    <i class="fas fa-paper-plane"></i> Lock 50% Rate & Submit Proposal →
                 </button>
             </form>
         </div>
