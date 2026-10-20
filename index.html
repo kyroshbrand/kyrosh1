@@ -3420,7 +3420,7 @@
             } catch (emailErr) {}
 
             // 3. Format WhatsApp redirect
-            const message = `*PROPOSAL & 50% DISCOUNT INQUIRY - KYROSH*\n\n` +
+            const message = `*PROPOSAL SUBMISSION - UNDER ACTIVE REVIEW*\n\n` +
                             `*Name:* ${name}\n` +
                             `*Email:* ${email}\n` +
                             `*Phone:* ${phone}\n` +
@@ -3432,7 +3432,7 @@
             if (btn) btn.innerHTML = '<i class="fas fa-check"></i> Proposal Submitted!';
 
             setTimeout(() => {
-                alert(`🎉 Proposal Request Received from ${name}!\n\nYour 50% discount rate is locked. Opening WhatsApp for direct instant connection.`);
+                alert(`🎉 Proposal Received & Under Active Review! ${name}!\n\nYour 50% discount rate is locked. Opening WhatsApp for direct instant connection.`);
                 window.open(`https://wa.me/919019958415?text=${encoded}`, '_blank');
                 if (btn) {
                     btn.innerHTML = origHtml;
@@ -3584,7 +3584,7 @@
             } catch (emErr) {}
 
             // 3. Format WhatsApp Redirect
-            var waMsg = '*NEW 50% DISCOUNT INQUIRY - KYROSH*\n\n' +
+            var waMsg = '*PROPOSAL SUBMISSION - UNDER ACTIVE REVIEW*\n\n' +
                         '*Name:* ' + name + '\n' +
                         '*Phone:* ' + phone + '\n' +
                         '*Email:* ' + email + '\n' +
@@ -3599,7 +3599,7 @@
             if (btn) btn.innerHTML = '<i class="fas fa-check"></i> 50% Rate Locked!';
 
             setTimeout(function() {
-                alert('Thank you ' + name + '!\n\nYour 50% discount welcome rate is locked. Opening WhatsApp to connect with the team.');
+                alert('Thank you ' + name + '!\n\nYour proposal is now UNDER ACTIVE REVIEW by our leadership team.\n\nWe will contact you via WhatsApp / SMS from 9019958415 / 9019968415 within 2 hours. Opening WhatsApp to connect.');
                 window.open('https://wa.me/919019958415?text=' + waEncoded, '_blank');
                 closeProposalModal();
                 if (btn) {
