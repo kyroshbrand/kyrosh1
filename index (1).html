@@ -75,7 +75,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        body {
+        bo {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--dark-bg);
             background-image: 
@@ -711,20 +711,20 @@
         .campaign-card:hover .campaign-img {
             transform: scale(1.04);
         }
-        .campaign-body {
+        .campaign-bo {
             padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
-        .campaign-body h3 {
+        .campaign-bo h3 {
             font-size: 19px;
             font-weight: 800;
             line-height: 1.3;
             margin-bottom: 8px;
             color: #fff;
         }
-        .campaign-body p {
+        .campaign-bo p {
             font-size: 13.5px;
             color: var(--gray);
             line-height: 1.6;
@@ -1499,6 +1499,97 @@
             }
         }
         @media (max-width: 768px) {
+            /* Hide top action badges on mobile header to prevent overflowing view */
+            .nav-actions .btn-whatsapp-nav,
+            .nav-actions .btn-primary {
+                display: none !important;
+            }
+            .nav-container {
+                padding: 0 16px !important;
+                height: 64px !important;
+            }
+            .brand-logo-img {
+                width: 36px !important;
+                height: 36px !important;
+            }
+            .logo {
+                font-size: 22px !important;
+            }
+
+            /* Fit Hero section cleanly within mobile viewport without horizontal overflow */
+            .hero {
+                padding: 80px 0 32px !important;
+                overflow: hidden !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .hero-text {
+                text-align: center !important;
+                max-width: 100% !important;
+                padding: 0 8px !important;
+            }
+            .hero h1 {
+                font-size: clamp(26px, 7vw, 34px) !important;
+                line-height: 1.18 !important;
+                margin-bottom: 12px !important;
+                overflow-wrap: break-word !important;
+                word-break: break-word !important;
+            }
+            .hero-slogan {
+                font-size: 14.5px !important;
+                margin-bottom: 12px !important;
+            }
+            .hero-desc {
+                font-size: 13.5px !important;
+                line-height: 1.55 !important;
+                margin: 0 auto 18px !important;
+                max-width: 480px !important;
+                color: var(--gray) !important;
+            }
+            .hero-buttons {
+                flex-direction: column !important;
+                gap: 10px !important;
+                width: 100% !important;
+                max-width: 360px !important;
+                margin: 0 auto 14px !important;
+            }
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                width: 100% !important;
+                justify-content: center !important;
+                padding: 12px 18px !important;
+                font-size: 14px !important;
+            }
+            /* Hide heavy pillar badge grid on mobile hero to keep hero lightweight and perfectly fitted */
+            .hero-pillars-label,
+            .hero-pillars-row {
+                display: none !important;
+            }
+            .mobile-section-pills {
+                justify-content: center !important;
+                margin: 8px 0 16px !important;
+            }
+            .hero-visual-card {
+                width: 100% !important;
+                max-width: 420px !important;
+                margin: 0 auto !important;
+                border-radius: 16px !important;
+                overflow: hidden !important;
+            }
+            .hero-visual-img {
+                width: 100% !important;
+                height: auto !important;
+                display: block !important;
+            }
+
             .nav-links {
                 display: none;
             }
@@ -1739,7 +1830,7 @@
         }
 
         @media (max-width: 768px) {
-            body {
+            bo {
                 padding-bottom: 74px !important;
                 overflow-x: hidden;
             }
@@ -2166,7 +2257,7 @@
             background: var(--accent-red);
             transform: scale(1.1);
         }
-        .ads-lightbox-body {
+        .ads-lightbox-bo {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
             height: 100%;
@@ -2270,7 +2361,7 @@
             .ads-grid-container { grid-template-columns: repeat(2, 1fr); }
             .ads-gallery-cta-box { flex-direction: column; text-align: center; }
             .ads-cta-content { flex-direction: column; text-align: center; }
-            .ads-lightbox-body { grid-template-columns: 1fr; }
+            .ads-lightbox-bo { grid-template-columns: 1fr; }
             .ads-lightbox-img-wrap { min-height: 280px; max-height: 340px; }
             .ads-lightbox-info { padding: 24px; }
         }
@@ -2280,7 +2371,7 @@
         }
     </style>
 </head>
-<body>
+<bo
 
     <!-- Ambient Mouse Glow -->
     <div class="mouse-glow" id="mouseGlow"></div>
@@ -2311,7 +2402,7 @@
             <a href="#home" class="logo-wrap">
                 <img src="./kyrosh-logo.png" alt="Kyrosh Official Brand Logo" class="brand-logo-img">
                 <div class="logo-text-group">
-                    <span class="logo-subtitle">The Masters' Brand</span>
+                    
                     <span class="logo">KYRO<span class="logo-accent">SH</span><span class="logo-dot">.</span></span>
                 </div>
             </a>
@@ -2330,8 +2421,8 @@
                 <a href="https://wa.me/919019958415?text=Hello%20Kyrosh!%20I%20want%20to%20discuss%20my%20brand%20project." target="_blank" class="btn-whatsapp-nav">
                     <i class="fab fa-whatsapp"></i> Chat Now
                 </a>
-                <a href="#scheduler" class="btn-primary" style="padding: 10px 22px; font-size: 13.5px;">
-                    <i class="fas fa-calendar-check"></i> Book Call
+                <a href="#proposal" onclick="openProposalModal(); return false;" class="btn-primary" id="navBookProposalBtn" style="padding: 10px 22px; font-size: 13.5px;">
+                    <i class="fas fa-paper-plane"></i> Book Proposal
                 </a>
                 <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
@@ -2444,7 +2535,7 @@
                         <div class="campaign-img-wrap">
                             <img src="./kyrosh-poster-standout.png" alt="Build a Brand that stands out - Kyrosh" class="campaign-img">
                         </div>
-                        <div class="campaign-body">
+                        <div class="campaign-bo
                             <h3>Build a Brand That Stands Out</h3>
                             <p>Don't just post content. Creative thinking. Meaningful impact that cuts through the market noise.</p>
                             <a href="#scheduler" class="btn-campaign-action">
@@ -2458,7 +2549,7 @@
                         <div class="campaign-img-wrap">
                             <img src="./kyrosh-poster-upgrade.jpg" alt="Your marketing needs an UPGRADE - Kyrosh" class="campaign-img">
                         </div>
-                        <div class="campaign-body">
+                        <div class="campaign-bo
                             <h3>Your Marketing Needs an Upgrade</h3>
                             <p>Still thinking like yesterday? Old ideas keep brands stuck. Fresh thinking moves them forward.</p>
                             <a href="#scheduler" class="btn-campaign-action">
@@ -2472,7 +2563,7 @@
                         <div class="campaign-img-wrap">
                             <img src="./kyrosh-poster-camel.jpg" alt="A brand without branding? Just as hard - Kyrosh" class="campaign-img">
                         </div>
-                        <div class="campaign-body">
+                        <div class="campaign-bo
                             <h3>A Brand Without Branding? Impossible</h3>
                             <p>A camel through a needle's eye? Impossible. A brand without branding? Just as hard. Make your brand matter.</p>
                             <a href="#scheduler" class="btn-campaign-action">
@@ -2486,7 +2577,7 @@
                         <div class="campaign-img-wrap">
                             <img src="./kyrosh-dream-website.png" alt="We Build Your Dream Website - Kyrosh" class="campaign-img">
                         </div>
-                        <div class="campaign-body">
+                        <div class="campaign-bo
                             <h3>We Build Your Dream Website</h3>
                             <p>Got a dream website in mind? High-converting custom architectures built for speed and maximum checkout conversions.</p>
                             <a href="#scheduler" class="btn-campaign-action">
@@ -2588,7 +2679,7 @@
                             <ul class="service-deliverables">
                                 <li><i class="fas fa-check"></i> Meta Ads Advantage+ Funnel Optimization</li>
                                 <li><i class="fas fa-check"></i> Google Search & Performance Max</li>
-                                <li><i class="fas fa-check"></i> Dynamic Multi-Touch Retargeting</li>
+                                <li><i class="fas fa-check"></i>  Multi-Touch Retargeting</li>
                                 <li><i class="fas fa-check"></i> Real-Time ROAS Analytics Tracking</li>
                             </ul>
                         </div>
@@ -2751,7 +2842,7 @@
                     <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
                         <div>
                             <div class="pricing-title">Starter Growth</div>
-                            <div class="pricing-desc">For emerging brands ready to build a professional foundation.</div>
+                            <div class="pricing-desc">For emerging brands rea to build a professional foundation.</div>
                             <div class="pricing-price-wrap">
                                 <div class="pricing-price">Custom</div>
                                 <span class="pricing-discount-badge">50% OFF</span>
@@ -3083,7 +3174,7 @@
                     <a href="#home" class="logo-wrap" style="margin-bottom:14px;">
                         <img src="./kyrosh-logo.png" alt="Kyrosh Logo" class="brand-logo-img">
                         <div class="logo-text-group">
-                            <span class="logo-subtitle">The Masters' Brand</span>
+                            
                             <span class="logo">KYRO<span class="logo-accent">SH</span><span class="logo-dot">.</span></span>
                         </div>
                     </a>
@@ -3177,7 +3268,7 @@
 
         // Scroll Progress Indicator
         window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const winScroll = document.bo || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             const bar = document.getElementById('scrollProgress');
@@ -3281,8 +3372,9 @@
                 }
             }
 
-            // 2. Dispatch email notifications via Supabase Edge Function
+            // 2. Dispatch email & SMS/WhatsApp notifications via Supabase Edge Function
             try {
+                // A. Confirmation Email to Client
                 fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
                     method: 'POST',
                     headers: {
@@ -3291,19 +3383,18 @@
                     },
                     body: JSON.stringify({
                         to: email,
-                        subject: `Strategy Session Confirmed: ${selectedDateVal} @ ${selectedSlotVal} | Kyrosh`,
+                        subject: `Proposal Received Â· 50% Welcome Rate Locked | Kyrosh`,
                         html: `<div style="font-family:'Segoe UI',sans-serif; background-color:#06040A; color:#ffffff; padding:32px; border-radius:18px;">
-                            <h2 style="color:#FF2A85;">VIP Strategy Session Confirmed</h2>
-                            <p>Hello ${name},</p>
-                            <p>We have reserved your private 30-minute growth session with the Kyrosh leadership team.</p>
-                            <p><strong>Topic:</strong> ${selectedCallTypeVal}<br>
-                            <strong>Date & Time:</strong> ${selectedDateVal} at ${selectedSlotVal}<br>
-                            <strong>Format:</strong> Google Meet / WhatsApp Video</p>
-                            <p>Looking forward to partnering with you,<br><strong>Shaiban Puttur & The Kyrosh Team</strong></p>
+                            <h2 style="color:#FF2A85;">Proposal Received Â· 50% Welcome Rate Locked</h2>
+                            <p>Hi ${name},</p>
+                            <p>We received your inquiry for <strong>${service}</strong> for <strong>${brand}</strong>.</p>
+                            <p>Your 50% discount welcome rate has been reserved. Our senior growth team will prepare your custom proposal and reach out within 2 hours.</p>
+                            <p>Best regards,<br><strong>The Kyrosh Growth Team</strong></p>
                         </div>`
                     })
                 }).catch(() => {});
 
+                // B. Multi-Channel Owner Notification: Gmail + WhatsApp + SMS to 9019958415
                 fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
                     method: 'POST',
                     headers: {
@@ -3312,8 +3403,21 @@
                     },
                     body: JSON.stringify({
                         to: 'kyroshbrand@gmail.com',
-                        subject: `🔥 NEW STRATEGY CALL: ${name} (${selectedDateVal} @ ${selectedSlotVal})`,
-                        html: `<p><strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}<br><strong>Phone:</strong> ${phone}<br><strong>Website:</strong> ${website}<br><strong>Topic:</strong> ${selectedCallTypeVal}<br><strong>Date:</strong> ${selectedDateVal} @ ${selectedSlotVal}</p>`
+                        subject: `HOT NEW PROPOSAL: ${name} (${brand} - ${service})`,
+                        html: `<div style="font-family:'Segoe UI',sans-serif; background-color:#06040A; color:#ffffff; padding:24px; border-radius:14px; border:1px solid #FF2A85;">
+                            <h2 style="color:#FF2A85; margin-top:0;">New Proposal Lead Received</h2>
+                            <p><strong>Client Name:</strong> ${name}</p>
+                            <p><strong>Phone:</strong> <a href="tel:${phone}" style="color:#38BDF8;">${phone}</a> &nbsp;|&nbsp; <a href="https://wa.me/${phone.replace(/[^0-9]/g, '')}" style="color:#25D366; font-weight:bold;">WhatsApp Client</a></p>
+                            <p><strong>Email:</strong> <a href="mailto:${email}" style="color:#FF2A85;">${email}</a></p>
+                            <p><strong>Brand / Business:</strong> ${brand}</p>
+                            <p><strong>Service Requested:</strong> ${service}</p>
+                            <p><strong>Project Notes:</strong> ${note}</p>
+                            <hr style="border:none; border-top:1px solid rgba(255,255,255,0.1); margin:16px 0;">
+                            <p style="font-size:12px; color:#888;">Submitted via Kyrosh Web Platform Â· ${new Date().toLocaleString()}</p>
+                        </div>`,
+                        phone: '9019958415',
+                        smsMessage: `Kyrosh Alert: New proposal from ${name} (${phone}) for ${service}. Email: ${email}`,
+                        whatsappMessage: `*NEW PROPOSAL SUBMISSION - KYROSH*\n\n*Client:* ${name}\n*Phone:* ${phone}\n*Email:* ${email}\n*Brand:* ${brand}\n*Service:* ${service}\n*Notes:* ${note}\n\n*Action:* Client waiting for review.`
                     })
                 }).catch(() => {});
             } catch (emailErr) {}
@@ -3380,8 +3484,9 @@
                 }
             }
 
-            // 2. Dispatch email notifications via Supabase Edge Function
+            // 2. Dispatch email & SMS/WhatsApp notifications via Supabase Edge Function
             try {
+                // A. Confirmation Email to Client
                 fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
                     method: 'POST',
                     headers: {
@@ -3390,9 +3495,9 @@
                     },
                     body: JSON.stringify({
                         to: email,
-                        subject: `Proposal Received · 50% Discount Rate Locked | Kyrosh`,
+                        subject: `Proposal Received Â· 50% Welcome Rate Locked | Kyrosh`,
                         html: `<div style="font-family:'Segoe UI',sans-serif; background-color:#06040A; color:#ffffff; padding:32px; border-radius:18px;">
-                            <h2 style="color:#FF2A85;">Proposal Received · 50% Welcome Rate Locked</h2>
+                            <h2 style="color:#FF2A85;">Proposal Received Â· 50% Welcome Rate Locked</h2>
                             <p>Hi ${name},</p>
                             <p>We received your inquiry for <strong>${service}</strong> for <strong>${brand}</strong>.</p>
                             <p>Your 50% discount welcome rate has been reserved. Our senior growth team will prepare your custom proposal and reach out within 2 hours.</p>
@@ -3401,6 +3506,7 @@
                     })
                 }).catch(() => {});
 
+                // B. Multi-Channel Owner Notification: Gmail + WhatsApp + SMS to 9019958415
                 fetch(`${SUPABASE_URL}/functions/v1/send-email`, {
                     method: 'POST',
                     headers: {
@@ -3409,8 +3515,21 @@
                     },
                     body: JSON.stringify({
                         to: 'kyroshbrand@gmail.com',
-                        subject: `🔥 HOT NEW PROPOSAL: ${name} (${brand} - ${service})`,
-                        html: `<p><strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}<br><strong>Phone:</strong> ${phone}<br><strong>Brand:</strong> ${brand}<br><strong>Service:</strong> ${service}<br><strong>Notes:</strong> ${note}</p>`
+                        subject: `HOT NEW PROPOSAL: ${name} (${brand} - ${service})`,
+                        html: `<div style="font-family:'Segoe UI',sans-serif; background-color:#06040A; color:#ffffff; padding:24px; border-radius:14px; border:1px solid #FF2A85;">
+                            <h2 style="color:#FF2A85; margin-top:0;">New Proposal Lead Received</h2>
+                            <p><strong>Client Name:</strong> ${name}</p>
+                            <p><strong>Phone:</strong> <a href="tel:${phone}" style="color:#38BDF8;">${phone}</a> &nbsp;|&nbsp; <a href="https://wa.me/${phone.replace(/[^0-9]/g, '')}" style="color:#25D366; font-weight:bold;">WhatsApp Client</a></p>
+                            <p><strong>Email:</strong> <a href="mailto:${email}" style="color:#FF2A85;">${email}</a></p>
+                            <p><strong>Brand / Business:</strong> ${brand}</p>
+                            <p><strong>Service Requested:</strong> ${service}</p>
+                            <p><strong>Project Notes:</strong> ${note}</p>
+                            <hr style="border:none; border-top:1px solid rgba(255,255,255,0.1); margin:16px 0;">
+                            <p style="font-size:12px; color:#888;">Submitted via Kyrosh Web Platform Â· ${new Date().toLocaleString()}</p>
+                        </div>`,
+                        phone: '9019958415',
+                        smsMessage: `Kyrosh Alert: New proposal from ${name} (${phone}) for ${service}. Email: ${email}`,
+                        whatsappMessage: `*NEW PROPOSAL SUBMISSION - KYROSH*\n\n*Client:* ${name}\n*Phone:* ${phone}\n*Email:* ${email}\n*Brand:* ${brand}\n*Service:* ${service}\n*Notes:* ${note}\n\n*Action:* Client waiting for review.`
                     })
                 }).catch(() => {});
             } catch (emailErr) {}
@@ -3565,6 +3684,7 @@
                     })
                 }).catch(function() {});
 
+                // Multi-Channel Owner Notification: Gmail + WhatsApp + SMS to 9019958415
                 fetch(SUPABASE_URL + '/functions/v1/send-email', {
                     method: 'POST',
                     headers: {
@@ -3573,8 +3693,20 @@
                     },
                     body: JSON.stringify({
                         to: 'kyroshbrand@gmail.com',
-                        subject: 'HOT POPUP LEAD: ' + name + ' (' + service + ')',
-                        html: '<p><strong>Name:</strong> ' + name + '<br><strong>Phone:</strong> ' + phone + '<br><strong>Email:</strong> ' + email + '<br><strong>Service:</strong> ' + service + '<br><strong>Notes:</strong> ' + message + '</p>'
+                        subject: 'ðŸ”¥ HOT POPUP 50% LEAD: ' + name + ' (' + service + ')',
+                        html: '<div style="font-family:Segoe UI,sans-serif; background-color:#06040A; color:#ffffff; padding:24px; border-radius:14px; border:1px solid #FF2A85;">' +
+                            '<h2 style="color:#FF2A85; margin-top:0;">ðŸ”¥ 50% VIP Popup Lead Received</h2>' +
+                            '<p><strong>Client Name:</strong> ' + name + '</p>' +
+                            '<p><strong>Phone:</strong> <a href="tel:' + phone + '" style="color:#38BDF8;">' + phone + '</a> &nbsp;|&nbsp; <a href="https://wa.me/' + phone.replace(/[^0-9]/g, '') + '" style="color:#25D366; font-weight:bold;">WhatsApp Client</a></p>' +
+                            '<p><strong>Email:</strong> <a href="mailto:' + email + '" style="color:#FF2A85;">' + email + '</a></p>' +
+                            '<p><strong>Service Requested:</strong> ' + service + '</p>' +
+                            '<p><strong>Project Notes:</strong> ' + message + '</p>' +
+                            '<hr style="border:none; border-top:1px solid rgba(255,255,255,0.1); margin:16px 0;">' +
+                            '<p style="font-size:12px; color:#888;">Submitted via 10s Fast-Track Modal Â· ' + new Date().toLocaleString() + '</p>' +
+                            '</div>',
+                        phone: '9019958415',
+                        smsMessage: 'Kyrosh VIP Popup Lead: ' + name + ' (' + phone + ') requested ' + service,
+                        whatsappMessage: 'ðŸ”¥ *NEW 50% DISCOUNT VIP LEAD - KYROSH*\n\n*Client:* ' + name + '\n*Phone:* ' + phone + '\n*Email:* ' + email + '\n*Service:* ' + service + '\n*Notes:* ' + message
                     })
                 }).catch(function() {});
             } catch (emErr) {}

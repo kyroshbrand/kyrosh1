@@ -87,11 +87,12 @@ serve(async (req) => {
         } catch (smsErr: unknown) {
           results.sms_error = (smsErr as Error).message
         }
-      } else if (TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN && TWILIO_PHONE_NUMBER) {
+      } else if (TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN) {
         try {
+          const senderNumber = TWILIO_PHONE_NUMBER || "+14155238886"
           const twilioAuth = btoa(`${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`)
           const twilioBody = new URLSearchParams()
-          twilioBody.append("From", TWILIO_PHONE_NUMBER)
+          twilioBody.append("From", senderNumber)
           twilioBody.append("To", `+${targetPhone}`)
           twilioBody.append("Body", smsMessage)
 
@@ -116,7 +117,7 @@ serve(async (req) => {
     }
 
     // ====================================================
-    // 3. AUTOMATED WHATSAPP DISPATCH (META CLOUD API)
+    // 3. AUTOMATED WHATSAPP DISPATCH (META CLOUD API OR TWILIO)
     // ====================================================
     if (targetPhone && whatsappMessage) {
       if (WHATSAPP_ACCESS_TOKEN && WHATSAPP_PHONE_NUMBER_ID) {
@@ -141,8 +142,31 @@ serve(async (req) => {
         } catch (waErr: unknown) {
           results.whatsapp_error = (waErr as Error).message
         }
+      } else if (TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN) {
+        try {
+          const twilioAuth = btoa(`${TWILIO_ACCOUNT_SID}:${TWILIO_AUTH_TOKEN}`)
+          const twBody = new URLSearchParams()
+          twBody.append("From", "whatsapp:+14155238886")
+          twBody.append("To", `whatsapp:+${targetPhone}`)
+          twBody.append("Body", whatsappMessage)
+
+          const twRes = await fetch(
+            `https://api.twilio.com/2010-04-01/Accounts/${TWILIO_ACCOUNT_SID}/Messages.json`,
+            {
+              method: "POST",
+              headers: {
+                "Authorization": `Basic ${twilioAuth}`,
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              body: twBody.toString(),
+            }
+          )
+          results.whatsapp = await twRes.json()
+        } catch (twErr: unknown) {
+          results.whatsapp_error = (twErr as Error).message
+        }
       } else {
-        results.whatsapp_notice = "Add WHATSAPP_ACCESS_TOKEN & WHATSAPP_PHONE_NUMBER_ID in Supabase for direct WhatsApp bot messaging."
+        results.whatsapp_notice = "Add WHATSAPP_ACCESS_TOKEN or TWILIO credentials in Supabase for direct WhatsApp bot messaging."
       }
     }
 
