@@ -543,18 +543,16 @@
             height: auto;
             border-radius: 18px;
             display: block;
-            object-fit: cover;
+            object-fit: contain;
         }
         .hero-visual-overlay-badge {
-            position: absolute;
-            bottom: 24px;
-            left: 24px;
-            right: 24px;
+            position: relative;
+            margin-top: 12px;
             background: rgba(8, 4, 14, 0.85);
             backdrop-filter: blur(16px);
             border: 1px solid var(--dark-border);
-            border-radius: 16px;
-            padding: 14px 18px;
+            border-radius: 14px;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -702,9 +700,10 @@
         }
         .campaign-img {
             width: 100%;
-            height: 360px;
-            object-fit: contain;
-            background: #000;
+            aspect-ratio: 4 / 5;
+            height: auto;
+            object-fit: cover;
+            background: #05020a;
             display: block;
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
@@ -2541,7 +2540,7 @@
 
                     <!-- Visual Card: Seamless Team Banner (Cut Line Fixed) -->
                     <div class="hero-visual-card" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="./kyrosh-hero-team.png" alt="Kyrosh Leadership Team" class="hero-visual-img">
+                        <img src="./kyrosh-hero-team.jpg" alt="Kyrosh Masterminds Leadership Team" class="hero-visual-img">
                         <div class="hero-visual-overlay-badge">
                             <div class="hero-visual-tag">
                                 <i class="fas fa-shield-alt" style="color:var(--primary);"></i> <span>KYROSH</span> Masterminds
@@ -2587,16 +2586,16 @@
                 </div>
 
                 <div class="campaign-grid">
-                    <!-- Campaign 1: Build a Brand That Stands Out (HD Poster) -->
+                    <!-- Campaign 1: Your Next Big Success Story (Target - HD Poster) -->
                     <div class="campaign-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="campaign-img-wrap">
-                            <img src="./kyrosh-poster-standout.png" alt="Build a Brand that stands out - Kyrosh" class="campaign-img">
+                            <img src="./kyrosh-poster-target.jpg" alt="Your Next Big Success Story - Kyrosh" class="campaign-img">
                         </div>
                         <div class="campaign-body">
-                            <h3>Build a Brand That Stands Out</h3>
-                            <p>Don't just post content. Creative thinking. Meaningful impact that cuts through the market noise.</p>
+                            <h3>Your Next Big Success Story</h3>
+                            <p>Your brand is more than just a business... It's your next big success story. We make people notice and brands matter.</p>
                             <a href="#scheduler" class="btn-campaign-action">
-                                Stand Out Now <i class="fas fa-arrow-right"></i>
+                                Level Up With Kyrosh <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
@@ -2632,7 +2631,7 @@
                     <!-- Campaign 4: We Build Your Dream Website (HD Poster) -->
                     <div class="campaign-card mobile-fold-card" data-aos="fade-up" data-aos-delay="400">
                         <div class="campaign-img-wrap">
-                            <img src="./kyrosh-dream-website.png" alt="We Build Your Dream Website - Kyrosh" class="campaign-img">
+                            <img src="./kyrosh-dream-website.jpg" alt="We Build Your Dream Website - Kyrosh" class="campaign-img">
                         </div>
                         <div class="campaign-body">
                             <h3>We Build Your Dream Website</h3>
